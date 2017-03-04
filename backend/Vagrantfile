@@ -25,6 +25,7 @@ Vagrant.configure('2') do |config|
       echo "Environment=\"GOOGLE_APPLICATION_CREDENTIALS=/data/.gcp/filiplindqvist-com-e0b61f4cb4a7.json\"" >> /etc/systemd/system/docker.service.d/gcp-credentials.conf
       echo "" >> /etc/systemd/system/docker.service.d/gcp-credentials.conf
 
+      curl -sSL https://agent.digitalocean.com/install.sh | sh
     SHELL
 
     config.vm.network "forwarded_port", guest: 80, host: 8080
