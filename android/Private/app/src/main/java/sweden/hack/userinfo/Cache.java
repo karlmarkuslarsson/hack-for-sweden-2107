@@ -3,7 +3,8 @@ package sweden.hack.userinfo;
 public class Cache {
 
     private static Cache sSharedInstance;
-    String userFirstName;
+    private String mUserFirstName;
+    private String mUserLastName;
 
     private Cache() {
     }
@@ -16,10 +17,19 @@ public class Cache {
     }
 
     public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
+        mUserFirstName = userFirstName;
     }
 
     public String getUserFirstName() {
-        return userFirstName;
+        return mUserFirstName;
     }
+
+    public void setUserLastName(String userLastName) {
+        mUserLastName = userLastName;
+    }
+
+    public String getUserLastName() {
+        return mUserLastName;
+    }
+
 }
