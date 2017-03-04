@@ -1,4 +1,4 @@
-package sweden.hack.aprivate;
+package sweden.hack.userinfo;
 
 import org.junit.Test;
 
