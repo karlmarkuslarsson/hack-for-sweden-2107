@@ -13,4 +13,5 @@ public class Cache {
         }
         return sSharedInstance;
     }
+
 }
