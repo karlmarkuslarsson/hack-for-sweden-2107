@@ -1,0 +1,15 @@
+package sweden.hack.userinfo.viewholders.main;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import sweden.hack.userinfo.listeners.MainCardListener;
+import sweden.hack.userinfo.objects.main.base.MainCard;
+
+public abstract class MainViewHolder extends RecyclerView.ViewHolder {
+    public MainViewHolder(View itemView) {
+        super(itemView);
+    }
+
+    public abstract void init(MainCard card, MainCardListener listener);
+}
