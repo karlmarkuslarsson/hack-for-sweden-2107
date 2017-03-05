@@ -8,4 +8,13 @@ public class DataHelper {
         Cache.sharedInstance().setUserPersonNumber(personNumber);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_PERSON_NUMER, personNumber);
     }
+
+    public static String getUserPersonNumber() {
+        String userPersonNumber = Cache.sharedInstance().getPersonNumber();
+        if (userPersonNumber == null) {
+            userPersonNumber = SharedPrefsHelper.sharedInstance()
+                    .getPreference(Constants.USER_PERSON_NUMER, (String) null);
+        }
+        return userPersonNumber;
+    }
 }

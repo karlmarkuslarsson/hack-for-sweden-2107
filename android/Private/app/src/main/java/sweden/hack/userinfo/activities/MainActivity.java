@@ -1,15 +1,20 @@
 package sweden.hack.userinfo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
+import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.GenderCard;
@@ -87,6 +92,30 @@ public class MainActivity extends AppCompatActivity {
                                            @NonNull int[] grantResults) {
         mLocationHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.main_menu_logout:
+                logout();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        DataHelper.setUserPersonNumber(null);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

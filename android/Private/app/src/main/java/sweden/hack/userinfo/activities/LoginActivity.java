@@ -23,9 +23,20 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        initViews();
-        setupCallbacks();
+        if (!userSignedIn()) {
+            setContentView(R.layout.activity_login);
+            initViews();
+            setupCallbacks();
+        }
+    }
+
+    private boolean userSignedIn() {
+        String personNumber = DataHelper.getUserPersonNumber();
+        if (personNumber != null && personNumber.length() == 10) {
+            startMainActivity();
+            return true;
+        }
+        return false;
     }
 
     private void setupCallbacks() {
@@ -68,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void initViews() {
