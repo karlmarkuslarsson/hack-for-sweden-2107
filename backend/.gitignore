@@ -1,2 +1,4 @@
 .ssh/
 .vagrant/
+
+**/node_modules
