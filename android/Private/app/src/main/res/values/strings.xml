@@ -3,4 +3,5 @@
     <string name="button_login">Login</string>
     <string name="gender_woman">Woman</string>
     <string name="gender_man">Man</string>
+    <string name="person_number_minimum_length_error">Must be 10 numbers</string>
 </resources>
