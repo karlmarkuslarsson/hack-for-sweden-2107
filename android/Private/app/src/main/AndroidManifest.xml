@@ -16,6 +16,9 @@
         android:supportsRtl="false"
         android:theme="@style/PinkTheme">
         <activity android:name="sweden.hack.userinfo.activities.MainActivity">
+        </activity>
+
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
