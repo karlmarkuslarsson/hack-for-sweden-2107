@@ -1,40 +1,42 @@
-var request = require('request');
+const request = require('request');
 
-var url = "http://api.scb.se/OV0104/v1/doris/sv/ssd/BE/BE0101/BE0101A/BefolkningNy";
+function as_keyvalue(data) {
+    const cols = data.columns
+            .map(s => s.text)
+            .map(s => s.replace(/ /gi, " ")
+                .replace(/,/gi, " ")
+                .replace(/  /gi, "_")
+                .replace(/ /g, "_")
+            );
 
-var form_data = function () {
-    return {
-        "query": [
-            {
-                "code": "ContentsCode",
-                "selection": {
-                    "filter": "item",
-                    "values": [
-                        "BE0101N1"
-                    ]
-                }
-            },
-            {
-                "code": "Tid",
-                "selection": {
-                    "filter": "item",
-                    "values": [
-                        "2010",
-                        "2011"
-                    ]
-                }
-            }
-        ],
-        "response": {
-            "format": "json"
-        }
+    const values = data.data
+        .map(cell => cell.key.concat(cell.values))
+        .map(function (cell) {
+            return cell.map(function (v, i) { return [cols[i], v]; });
+        })
+        .map(function (cell) {
+            const a = {};
+            cell.forEach(function (itm, idx) {
+                a[itm[0].toLocaleLowerCase()] = itm[1];
+            });
+            return a;
+        });
+
+    return values;
+}
+
+function as_keyvalue_resp(done) {
+    return function (err, resp, data) {
+        const jsonString = (data||'{}');
+        const json = JSON.parse(jsonString.trim());
+        done(err, as_keyvalue(json));
     }
-};
+}
 
-exports.get = function (done) {
+exports.get = function (url, request_data, done) {
     request({
         url: url,
         method: "POST",
-        json: form_data()
-    }, done);
+        json: request_data
+    }, as_keyvalue_resp(done));
 };
