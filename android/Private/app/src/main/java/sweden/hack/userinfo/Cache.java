@@ -14,8 +14,10 @@ public class Cache {
     }
 
     public static Cache sharedInstance() {
-        if (sSharedInstance == null) {
-            sSharedInstance = new Cache();
+        synchronized (Cache.class) {
+            if (sSharedInstance == null) {
+                sSharedInstance = new Cache();
+            }
         }
         return sSharedInstance;
     }

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import timber.log.Timber;
+
 public class CustomApplication extends Application {
 
     private static CustomApplication sSharedInstance;
@@ -24,6 +26,7 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Timber.plant(new Timber.DebugTree());
         sSharedInstance = this;
         JodaTimeAndroid.init(this);
         mCache = Cache.sharedInstance();
