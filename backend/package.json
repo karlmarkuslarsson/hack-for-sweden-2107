@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/karlmarkuslarsson/hack-for-sweden-2107/issues"
   },
-  "homepage": "https://github.com/karlmarkuslarsson/hack-for-sweden-2107"
+  "homepage": "https://github.com/karlmarkuslarsson/hack-for-sweden-2107",
+  "dependencies": {
+    "express": "^4.15.0",
+    "request": "^2.80.0"
+  }
 }
