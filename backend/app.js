@@ -22,11 +22,10 @@ app.get('/', function (req, res) {
     const content = [
         '<html>',
         '<h1>Hello hack for sweden!</h1>',
-        'The following apis are available.',
+        '<p>The following apis are available.</p>',
+        "<p><img src='http://thecatapi.com/api/images/get?format=src&type=gif'></p>",
         '<h2>APIs</h2>',
-        '<dl>',
-        links,
-        '</dl>',
+        '<dl>',links,'</dl>',
         '</html>'
     ];
     res.send(content.join(''))
