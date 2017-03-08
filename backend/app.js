@@ -1,28 +1,38 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var befolk = require('./befolk');
-var inkomst = require('./inkomst');
+const apis = ['befolk', 'inkomst', 'internet'];
 
-var PORT = process.env.NODE_PORT || 3000
+const PORT = process.env.NODE_PORT || 3000;
+
+apis.forEach(function (name) {
+    const api = require(`./${name}`);
+    app.get('/' + name, function(req, res) {
+        api.get(function(err, data) {
+            res.send(data);
+        });
+    });
+    console.log(`Registering api '${name}' on GET /${name}`);
+});
 
 app.get('/', function (req, res) {
-  	res.send('Hello hack for sweden!')
-})
-
-app.get('/scb', function(req, res) {
-	befolk.get(function(err, data) {
-		console.log(data);
-		res.send(data);
-	});
-})
-
-app.get('/inkomst', function(req, res) {
-    inkomst.get(function(err, data) {
-        res.send(data);
-    });
-})
+    const links = apis.map(s => {
+        return `<dt>${s}</dt><dd><a href="/${s}">GET /${s}</a></dd>`;
+    }).join('');
+    const content = [
+        '<html>',
+        '<h1>Hello hack for sweden!</h1>',
+        'The following apis are available.',
+        '<h2>APIs</h2>',
+        '<dl>',
+        links,
+        '</dl>',
+        '</html>'
+    ];
+    res.send(content.join(''))
+});
 
 app.listen(PORT, function () {
-  console.log('App listening on port', PORT)
-})
+  console.log('App started on port', PORT);
+  console.log(`http://localhost:${PORT}/`);
+});
