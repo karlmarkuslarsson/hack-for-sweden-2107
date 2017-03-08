@@ -1,19 +1,26 @@
-var request = require('request');
+const request = require('request');
 
 function as_keyvalue(data) {
-    const cols = data.columns.map((s) => s.text);
+    const cols = data.columns
+            .map(s => s.text)
+            .map(s => s.replace(/ /gi, " ")
+                .replace(/,/gi, " ")
+                .replace(/  /gi, "_")
+                .replace(/ /g, "_")
+            );
 
-    const values = data.data.map(function(cell) {
-        return cell.key.concat(cell.values);
-    }).map(function (cell) {
-        return cell.map(function (v, i) { return [cols[i], v]; });
-    }).map(function (cell) {
-        var a = {};
-        cell.forEach(function (itm, idx) {
-            a[itm[0]] = itm[1];
+    const values = data.data
+        .map(cell => cell.key.concat(cell.values))
+        .map(function (cell) {
+            return cell.map(function (v, i) { return [cols[i], v]; });
+        })
+        .map(function (cell) {
+            const a = {};
+            cell.forEach(function (itm, idx) {
+                a[itm[0].toLocaleLowerCase()] = itm[1];
+            });
+            return a;
         });
-        return a;
-    });
 
     return values;
 }
