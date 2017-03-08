@@ -63,11 +63,12 @@ public class MainActivity extends AppCompatActivity {
     private void reloadData() {
         mAdapter.reset();
         addGenderCard();
+        // network requests...
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     private void addGenderCard() {
-        mAdapter.addCard(new GenderCard(Cache.sharedInstance().getPersonNumber()));
+        mAdapter.addCard(new GenderCard(DataHelper.getUserPersonNumber()));
     }
 
     private void initViews() {

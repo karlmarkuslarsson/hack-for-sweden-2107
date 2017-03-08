@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import sweden.hack.userinfo.helpers.DataHelper;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    private View mLoginButton;
+    private Button mLoginButton;
     private EditText mInputField;
 
     @Override
@@ -83,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        mLoginButton = findViewById(R.id.activity_login_button);
+        mLoginButton = (Button) findViewById(R.id.activity_login_button);
         mInputField = (EditText) findViewById(R.id.activity_login_input);
     }
 
