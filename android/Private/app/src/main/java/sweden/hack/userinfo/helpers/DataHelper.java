@@ -9,6 +9,16 @@ public class DataHelper {
         SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_PERSON_NUMER, personNumber);
     }
 
+    public static void setFirstName(String firstName) {
+        Cache.sharedInstance().setUserFirstName(firstName);
+        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_FIRST_NAME, firstName);
+    }
+
+    public static void setSurname(String surname) {
+        Cache.sharedInstance().setUserLastName(surname);
+        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_SURNAME, surname);
+    }
+
     public static String getUserPersonNumber() {
         String userPersonNumber = Cache.sharedInstance().getPersonNumber();
         if (userPersonNumber == null) {

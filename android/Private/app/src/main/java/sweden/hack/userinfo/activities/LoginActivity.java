@@ -19,7 +19,9 @@ import sweden.hack.userinfo.helpers.DataHelper;
 
 public class LoginActivity extends AppCompatActivity {
     private Button mLoginButton;
-    private EditText mInputField;
+    private EditText mPersonNumberField;
+    private EditText mFirstNameField;
+    private EditText mSurnameField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +46,21 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = mInputField.getText().toString();
+                String personNumber = mPersonNumberField.getText().toString();
+                String firstName = mFirstNameField.getText().toString();
+                String surname = mSurnameField.getText().toString();
 
                 // TODO: condition for input field
-                if (checkIfInputIsCorrect(input)) {
-                    DataHelper.setUserPersonNumber(input);
+                if (checkIfInputIsCorrect(personNumber, firstName, surname)) {
+                    DataHelper.setUserPersonNumber(personNumber);
+                    DataHelper.setFirstName(firstName);
+                    DataHelper.setSurname(surname);
                     startMainActivity();
                 }
             }
         });
 
-        mInputField.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        mPersonNumberField.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -66,15 +72,26 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkIfInputIsCorrect(String input) {
-        if (input.length() != 10) {
-            mInputField.setError(getString(R.string.person_number_minimum_length_error));
-            return false;
+    private boolean checkIfInputIsCorrect(String personNumber, String firstName, String surname) {
+        boolean success = true;
+        if (personNumber.length() != 10) {
+            mPersonNumberField.setError(getString(R.string.person_number_minimum_length_error));
+            success = false;
+        }
+
+        if (firstName.isEmpty()) {
+            mFirstNameField.setError(getString(R.string.name_length_error));
+            success = false;
+        }
+
+        if (surname.isEmpty()) {
+            mSurnameField.setError(getString(R.string.name_length_error));
+            success = false;
         }
 
         // add more checks..
 
-        return true;
+        return success;
     }
 
     private void startMainActivity() {
@@ -85,7 +102,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initViews() {
         mLoginButton = (Button) findViewById(R.id.activity_login_button);
-        mInputField = (EditText) findViewById(R.id.activity_login_input);
+        mPersonNumberField = (EditText) findViewById(R.id.activity_login_input);
+        mFirstNameField = (EditText) findViewById(R.id.activity_login_first_name);
+        mSurnameField = (EditText) findViewById(R.id.activity_login_surname);
     }
 
 }
