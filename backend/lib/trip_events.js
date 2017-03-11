@@ -99,13 +99,13 @@ exports.get = function (done) {
                 price: "80 SEK",
                 duration: 160,
                 temp_rec: 14,
-                lat: 13.3919,
-                lng: 53.1857,
+                lat: 59.3274506,
+                lng: 18.0543456,
                 img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Stockholms_stadshus_september_2011.jpg",
                 tag: "amusement"
             },
             {
-                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217bb1",
                 title: "Globen",
                 description: "Ericsson Globe is an indoor arena located in Stockholm Globe City, Johanneshov district of Stockholm, Sweden. The Ericsson Globe is the largest hemispherical building on Earth and took two and a half years to build.",
                 price: "0 SEK",
@@ -117,7 +117,7 @@ exports.get = function (done) {
                 tag: "architecture"
             },
             {
-                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217ba1",
                 title: "Fotografiska",
                 description: "Fotografiska is a centre for contemporary photography in Stockholm, Sweden that opened on 21 May 2010.",
                 price: "120 SEK",
@@ -129,19 +129,53 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217aa1",
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217ab1",
                 title: "ABBA: The Museum",
                 description: "ABBA The Museum is an interactive exhibition about the pop-group ABBA that opened in Stockholm, Sweden in May 2013",
                 price: "195 SEK",
-                duration: 40,
+                duration: 60,
                 temp_rec: 0,
                 lat: 59.3249222,
                 lng: 18.0943349,
                 img: "https://www.thelocal.se/userdata/images/1439479566_Abba.jpg",
                 tag: "museum"
             },
-
-
+            {
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217ac1",
+                title: "Moderna Museet",
+                description: "Moderna Museet, Stockholm, Sweden, is a state museum for modern and contemporary art located on the island of Skeppsholmen in central Stockholm, opened in 1958.",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3260466,
+                lng: 18.0824992,
+                img: "http://img.timeinc.net/time/asia/magazine/2009/0720/stockholm_04.jpg",
+                tag: "museum"
+            },
+            {
+                id: "ff4023da-8a60-4ecc-b0f1-1a2e0e217ac1",
+                title: "Swedish National Museum of Science and Technology",
+                description: "Interactive science & technology museum with family-friendly exhibits, a library & archives.",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3325049,
+                lng: 18.116777,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Tekniska_museet_2008b.jpg/250px-Tekniska_museet_2008b.jpg",
+                tag: "museum"
+            },
+            {
+                id: "ff4023da-8a60-4ecc-baf1-1a2e0e217ac1",
+                title: "Kaknästornet (Tower)",
+                description: "155m-high TV tower with an observation deck, 28th floor restaurant, 30th floor cafe-bar & gift shop.",
+                price: "70 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3350448,
+                lng: 18.1246041,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Kakn%C3%A4stornet_2008x.jpg/250px-Kakn%C3%A4stornet_2008x.jpg",
+                tag: "architecture"
+            },
 
 
 
@@ -228,11 +262,51 @@ exports.get = function (done) {
                 price: "0 SEK",
                 duration: 45,
                 temp_rec: 5,
-                lat: 59.3196123
+                lat: 59.3196123,
                 lng: 18.0731519,
                 img: "https://cdn.theculturetrip.com/images/56-3928702-14400733267e6d5ecfb96244c49c7c5c32bc2f3137.jpg",
                 tag: "sightseeing"
             }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Gärdet",
+                description: "All Stockholmers favourite parks to visit on weekends",
+                price: "0 SEK",
+                duration: 60,
+                temp_rec: 20,
+                lat: 59.3424934,
+                lng: 18.0812583,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG/500px-Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG",
+                tag: "nature"
+            }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Mallis",
+                description: "Scandinavias biggest shopping centers",
+                price: "0 SEK",
+                duration: 90,
+                temp_rec: 0,
+                lat: 59.3701864,
+                lng: 18.0033383,
+                img: "http://mallofscandinavia.se/-/media/Unibail/Country~o~SE/MallofScandinavia/Centrumbilder/Accessbild.ashx",
+                tag: "shopping"
+            }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Vasa Museum",
+                description: "See the warship from 17th century  ",
+                price: "0 SEK",
+                duration: 60,
+                temp_rec: 130,
+                lat: 59.3280233,
+                lng: 18.0913964,
+                img: "http://hg2.com/wp-content/uploads/2015/07/stockholm-culture-vasamuseeta.jpg",
+                tag: "museum"
+            }
+
 
 
         ],
@@ -254,6 +328,30 @@ exports.get = function (done) {
                 title: "Urban Deli",
                 description: "The popular restaurant concept Urban Deli has expanded with a roof top bar at Sveavägen. At the 9th floor you find the green art park. Go for the food, the drinks, ...",
                 img: "http://thatsup.se/content/img/article/14/mar/f1888863dac9489ef2f7dbb1cf047d32.jpg"
+            },
+            {
+                id: "325abc99-c36d-472e-b402-1f4d9e040571",
+                title: "Ling Long",
+                description: "Ling Long pays homage to modern Asian cuisine with emphasis on quality Nordic ingredients. The restaurant is predominantly inspired the Sichuan province in China but also fuses influences from Bali and Singapore.",
+                img: "http://static.thatsup.co/content/img/place/l/i/ling-long-9.jpg"
+            },
+            {
+                id: "325abc00-c36d-472e-b402-1f4d9e040571",
+                title: "Surfers",
+                description: "Surfers are like a Kinder egg - a kitsch tavern seemingly devoted digestible surfarkäk but serves delicious food from the innermost and most spicy China.",
+                img: "https://images-2.svd.se/v2/images/3e0c269d-4c92-45da-9f0a-9d2b24421f9a?fit=crop&h=417&q=70&w=625&s=df9a31ef0ec942d1da05ccd7a156bf9c5c6dd0fc"
+            },
+            {
+                id: "09e8aaba-e368-427f-8e11-12e05d3f0caf",
+                title: "Meatballs for the People",
+                description: "The classic Swedish meatball. The shop offers 14 kinds of meatballs made of ingredients like elk, beef and salmon.",
+                img: "http://static.thatsup.co/content/img/place/m/e/meatballs-for-the-people-5.jpg"
+            },
+            {
+                id: "325abc00-c36d-472e-b402-1e4d9e040571",
+                title: "Burgers & Lobsters",
+                description: "Burger and Lobster: serving wild live lobster and corn fed Nebraskan beef burgers since 2011. ",
+                img: "http://www.stockholmfoodie.com/wp-content/uploads/2015/06/img_35681.jpg"
             }
         ]
     })
