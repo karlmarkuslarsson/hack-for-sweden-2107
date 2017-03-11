@@ -11,13 +11,13 @@ exports.get = function (done) {
             {
                 id: "87db67f6-6e36-47a4-9a92-6700d38e491d",
                 title: "Skansen",
-                description: "Zoo lorem ipsum dolor dim sum...",
+                description: "Skansen is the first open-air museum and zoo in Sweden and is located on the island Djurgården.",
                 price: "160 SEK",
-                duration: 60,
-                temp_rec: 16,
-                lat: 12.8926,
-                lng: 54.5654,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&675999",
+                duration: 240,
+                temp_rec: 18,
+                lat: 59.3270426,
+                lng: 18.1037456,
+                img: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Skansen_Entr%C3%A9_2015a.jpg",
                 tag: "amusement"
             },
             {
@@ -109,20 +109,20 @@ exports.get = function (done) {
             {
                 id: "ad229547-d541-41f9-9f5f-e6dd371a3fb3",
                 title: "Djuret",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                img: "http://thecatapi.com/api/images/get?format=src&type=png"
+                description: "Smart, vaulted restaurant with a menu focused on red meat, plus cured meats & European cheeses.",
+                img: "http://ng.se/sites/default/files/Djuret.jpg"
             },
             {
                 id: "43984e8c-8e32-48a8-9812-9363f58130ed",
                 title: "A.G",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                img: "http://thecatapi.com/api/images/get?format=src&type=png"
+                description: "Cool restaurant with its own dry-aging room for a range of cuts of steak, plus non-meat options.",
+                img: "https://s3-media2.fl.yelpcdn.com/bphoto/jkVrftf_vj0Kc8Fx7spZfQ/348s.jpg"
             },
             {
                 id: "d30dafb5-8ee5-47f8-96e1-0a35da80d8f3",
                 title: "Urban Deli",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                img: "http://thecatapi.com/api/images/get?format=src&type=png"
+                description: "The popular restaurant concept Urban Deli has expanded with a roof top bar at Sveavägen. At the 9th floor you find the green art park. Go for the food, the drinks, ...",
+                img: "http://thatsup.se/content/img/article/14/mar/f1888863dac9489ef2f7dbb1cf047d32.jpg"
             }
         ]
     })
