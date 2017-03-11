@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.helpers.DataHelper;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -16,20 +15,11 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!userSignedIn()) {
-            setContentView(R.layout.activity_start);
-            initViews();
-            setupCallbacks();
-        }
-    }
 
-    private boolean userSignedIn() {
-        String personNumber = DataHelper.getUserPersonNumber();
-        if (personNumber != null && personNumber.length() == 10) {
-            startMainActivity();
-            return true;
-        }
-        return false;
+        setContentView(R.layout.activity_start);
+        initViews();
+        setupCallbacks();
+
     }
 
     private void setupCallbacks() {
@@ -39,14 +29,6 @@ public class StartActivity extends AppCompatActivity {
                 startMainActivity();
             }
         });
-    }
-
-    private boolean checkIfInputIsCorrect(String personNumber, String firstName, String surname) {
-        boolean success = true;
-
-        // add more checks..
-
-        return success;
     }
 
     private void startMainActivity() {
