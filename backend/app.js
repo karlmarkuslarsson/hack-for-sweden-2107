@@ -40,49 +40,57 @@ function must(req, res, key, name) {
 }
 
 // all?currency=USD&date=2017-01-01
-app.get('/all', function (req, res) {
+app.get('/practical', function (req, res) {
     const currency = must(req, res, "currency", "currency USD, NOK, DKK, ...");
-    const date = req.query.date;
-    const out = {
-        practical: [
-            {
-                type: "phrase",
-                phrases: [
-                    "Hello -> Hej",
-                    "Bye -> Hejdå"
-                ]
-            },
-            {
-                type: "holiday",
-                weekday: "sunday",
-                date: "2017-01-02",
-                name: "Juldagen"
-            },
-            {
-                type: "holiday",
-                weekday: "saturday",
-                date: "2017-01-01",
-                name: "Julafton"
-            },
-            {
-                type: "currency",
-                text: "1 " + currency + " = 42 SEK"
-            }
-        ],
-        todo: [
-            {
-                type: "event",
-                date: (date || "0000-00-00"),
-                title: "Concert 1"
-            },
-            {
-                type: "event",
-                date: "2017-02-03",
-                title: "Concert 2"
-            }
-        ]
-    };
+    const out = [
+        {
+            type: "phrase",
+            phrases: [
+                "Hello -> Hej",
+                "Bye -> Hejdå"
+            ]
+        },
+        {
+            type: "holiday",
+            weekday: "sunday",
+            date: "2017-01-02",
+            name: "Juldagen"
+        },
+        {
+            type: "holiday",
+            weekday: "saturday",
+            date: "2017-01-01",
+            name: "Julafton"
+        },
+        {
+            type: "currency",
+            text: "1 " + currency + " = 42 SEK"
+        }
+    ];
+    res.send(out);
+});
 
+app.get('/todo', function (req, res) {
+    const date = req.query.date;
+    const out = [
+        {
+            type: "event",
+            date: (date || "0000-00-00"),
+            title: "Concert 1"
+        },
+        {
+            type: "event",
+            date: "2017-02-03",
+            title: "Concert 2"
+        }
+    ];
+    res.send(out);
+});
+
+app.get('/all', function (req, res) {
+    const out = {
+        text: "stuff.."
+    };
     res.send(out);
 });
 
