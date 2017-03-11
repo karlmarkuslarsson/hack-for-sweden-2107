@@ -1,6 +1,8 @@
 package sweden.hack.userinfo.network;
 
 
+import com.google.gson.GsonBuilder;
+
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -9,16 +11,19 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
+import sweden.hack.userinfo.models.CardComponent;
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.phrases.Phrases;
 import sweden.hack.userinfo.models.population.Population;
+import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
 import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
 import sweden.hack.userinfo.network.interfaces.HolidayInterface;
 import sweden.hack.userinfo.network.interfaces.IncomeInterface;
 import sweden.hack.userinfo.network.interfaces.PhrasesInterface;
 import sweden.hack.userinfo.network.interfaces.PopulationInterface;
+import sweden.hack.userinfo.network.interfaces.PracticalInfoInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
 
 /**
@@ -33,6 +38,8 @@ public class HackOfSwedenApi {
     private CurrencyInterface mCurrencyApi;
     private HolidayInterface mHolidayApi;
     private PhrasesInterface mPhrasesApi;
+
+    private PracticalInfoInterface mPracticalInfoApi;
 
     public static HackOfSwedenApi sharedInstance() {
 
@@ -60,9 +67,12 @@ public class HackOfSwedenApi {
 
         OkHttpClient client = builder.build();
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(CardComponent.class, new CardComponentTypeAdapter());
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://188.166.26.118:3000")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
                 .client(client)
                 .build();
 
@@ -71,6 +81,8 @@ public class HackOfSwedenApi {
         mCurrencyApi = retrofit.create(CurrencyInterface.class);
         mHolidayApi = retrofit.create(HolidayInterface.class);
         mPhrasesApi = retrofit.create(PhrasesInterface.class);
+
+        mPracticalInfoApi = retrofit.create(PracticalInfoInterface.class);
     }
 
     public void getPopulation(final Callback<List<Population>> callbackListener) {
@@ -97,6 +109,11 @@ public class HackOfSwedenApi {
 
     public void getPhrases(Callback<Phrases> callback) {
         Call<Phrases> call = mPhrasesApi.getPhrases();
+        new CallRequest<>(call, callback).execute();
+    }
+
+    public void getPracticalInfo(Callback<List<CardComponent>> callback, String currency) {
+        Call<List<CardComponent>> call = mPracticalInfoApi.getPracticalInfo(currency);
         new CallRequest<>(call, callback).execute();
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
+import sweden.hack.userinfo.models.DefaultData;
 import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.Callback;
@@ -18,14 +19,17 @@ import timber.log.Timber;
 
 public class AboutFragment extends BaseFragment {
 
+
     @Override
     protected void reloadData() {
         mAdapter.reset();
+
         addPopulationCard();
         addIncomeCard();
         // network requests...
         mSwipeRefreshLayout.setRefreshing(false);
     }
+
 
     @Override
     protected MainCardListener getListener() {

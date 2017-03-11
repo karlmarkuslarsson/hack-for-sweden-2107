@@ -11,7 +11,6 @@ import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
-import sweden.hack.userinfo.viewholders.main.GenderViewHolder;
 import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
 import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
 import sweden.hack.userinfo.viewholders.main.InternetViewHolder;

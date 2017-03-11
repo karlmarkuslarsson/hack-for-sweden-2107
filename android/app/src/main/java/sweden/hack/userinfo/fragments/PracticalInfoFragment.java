@@ -3,9 +3,13 @@ package sweden.hack.userinfo.fragments;
 import android.location.Location;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+import java.util.Timer;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
+import sweden.hack.userinfo.models.CardComponent;
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.phrases.Phrases;
@@ -20,6 +24,7 @@ import sweden.hack.userinfo.objects.main.HolidaysCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
+import timber.log.Timber;
 
 public class PracticalInfoFragment extends BaseFragment {
 
@@ -27,58 +32,57 @@ public class PracticalInfoFragment extends BaseFragment {
     protected void reloadData() {
         mAdapter.reset();
         //addSLCard();
-        addCurrencyCard();
-        addInternetCard();
-        addHolidaysCard();
-        addPhrasesCard();
+        getAllData();
+
+//        addInternetCard();
+
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void getAllData() {
+        HackOfSwedenApi.sharedInstance().getPracticalInfo(new Callback<List<CardComponent>>() {
+
+            @Override
+            public void onSuccess(@NonNull APIResponse<List<CardComponent>> response) {
+                for (CardComponent cards : response.getContent()) {
+                    if (cards.getType() != null) {
+                        switch (cards.getType()) {
+                            case CURRENCY:
+                                addCurrencyCard((Currency) cards);
+                                break;
+                            case HOLIDAYS:
+                                addHolidaysCard((Holidays) cards);
+                                break;
+                            case PHRASE:
+                                addPhrasesCard((Phrases) cards);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<List<CardComponent>> response) {
+                Timber.d(response.toString());
+            }
+        }, "USD");
     }
 
     private void addInternetCard() {
         mAdapter.addCard(new InternetCard());
     }
 
-    private void addCurrencyCard() {
-        HackOfSwedenApi.sharedInstance().getCurrency("USD", "1", "SEK", new Callback<Currency>() {
-            @Override
-            public void onSuccess(@NonNull APIResponse<Currency> response) {
-                mAdapter.addCard(new CurrencyCard(response.getContent()));
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Currency> response) {
-
-            }
-        });
+    private void addCurrencyCard(Currency practicalInfo) {
+        mAdapter.addCard(new CurrencyCard(practicalInfo));
     }
 
-    private void addHolidaysCard(){
-        HackOfSwedenApi.sharedInstance().getHolidays("20170101", new Callback<Holidays>() {
+    private void addHolidaysCard(Holidays holidays) {
+        mAdapter.addCard(new HolidaysCard(holidays));
 
-            @Override
-            public void onSuccess(@NonNull APIResponse<Holidays> response) {
-                mAdapter.addCard(new HolidaysCard(response.getContent()));
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Holidays> response) {
-
-            }
-        });
     }
 
-    private void addPhrasesCard() {
-        HackOfSwedenApi.sharedInstance().getPhrases(new Callback<Phrases>(){
-
-           @Override
-           public void onSuccess(@NonNull APIResponse<Phrases> response) {
-               mAdapter.addCard(new PhrasesCard(response.getContent()));
-           }
-           @Override
-           public void onFailure(@NonNull APIResponse<Phrases> response) {
-               mAdapter.addCard(new PhrasesCard(response.getContent()));
-           }
-        });
+    private void addPhrasesCard(Phrases phrases) {
+        mAdapter.addCard(new PhrasesCard(phrases));
     }
 
     @Override

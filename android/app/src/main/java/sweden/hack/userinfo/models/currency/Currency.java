@@ -2,9 +2,11 @@ package sweden.hack.userinfo.models.currency;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Currency {
+import sweden.hack.userinfo.models.CardComponent;
 
-    @SerializedName("value")
+public class Currency extends CardComponent {
+
+    @SerializedName("text")
     private String mValue;
 
     public String getValue() {

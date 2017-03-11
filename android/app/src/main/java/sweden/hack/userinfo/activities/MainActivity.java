@@ -16,6 +16,10 @@ import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainViewPagerAdapter;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
+import sweden.hack.userinfo.models.DefaultData;
+import sweden.hack.userinfo.network.Callback;
+import sweden.hack.userinfo.network.HackOfSwedenApi;
+import sweden.hack.userinfo.network.response.APIResponse;
 
 public class MainActivity extends AppCompatActivity {
 
