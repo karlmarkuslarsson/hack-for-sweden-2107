@@ -7,7 +7,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 
-import sweden.hack.userinfo.Cache;
+import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.listeners.GPSLocationListener;
 
@@ -23,9 +23,9 @@ public class LocationHelper {
     private static final long MIN_TIME = 20000; //ms
     private static final float MIN_DISTANCE = 20;
 
-    private final Cache mCache;
+    private final Storage mCache;
 
-    public LocationHelper(Cache cache) {
+    public LocationHelper(Storage cache) {
         mCache = cache;
     }
 
@@ -69,11 +69,11 @@ public class LocationHelper {
         Location gpsLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (networkLocation == null) {
             if (gpsLocation != null) {
-                mCache.saveLocation(gpsLocation);
+                mCache.setLocation(gpsLocation);
             }
         } else {
             if (gpsLocation == null) {
-                mCache.saveLocation(networkLocation);
+                mCache.setLocation(networkLocation);
             } else {
                 Location bestLocation;
                 if (gpsLocation.getAccuracy() <= networkLocation.getAccuracy()) {
@@ -81,7 +81,7 @@ public class LocationHelper {
                 } else {
                     bestLocation = networkLocation;
                 }
-                mCache.saveLocation(bestLocation);
+                mCache.setLocation(bestLocation);
             }
         }
     }

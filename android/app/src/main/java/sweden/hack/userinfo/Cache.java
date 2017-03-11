@@ -2,18 +2,20 @@ package sweden.hack.userinfo;
 
 import android.location.Location;
 
-public class Cache {
+import org.joda.time.LocalDate;
 
-    private static Cache sSharedInstance;
-    private String mUserFirstName;
-    private String mUserLastName;
+public class Cache implements Storage {
+
+    private static Storage sSharedInstance;
+
     private Location mLocation;
-    private String mPersonNumber;
+    private LocalDate mTripDate;
+    private boolean mHasStarted;
 
     private Cache() {
     }
 
-    public static Cache sharedInstance() {
+    public static Storage sharedInstance() {
         synchronized (Cache.class) {
             if (sSharedInstance == null) {
                 sSharedInstance = new Cache();
@@ -22,36 +24,33 @@ public class Cache {
         return sSharedInstance;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        mUserFirstName = userFirstName;
-    }
-
-    public String getUserFirstName() {
-        return mUserFirstName;
-    }
-
-    public void setUserLastName(String userLastName) {
-        mUserLastName = userLastName;
-    }
-
-    public String getUserLastName() {
-        return mUserLastName;
-    }
-
-    public void saveLocation(Location location) {
+    @Override
+    public void setLocation(Location location) {
         mLocation = location;
     }
 
+    @Override
     public Location getLocation() {
         return mLocation;
     }
 
-    public void setUserPersonNumber(String personNumber) {
-        mPersonNumber = personNumber;
+    @Override
+    public LocalDate getTripDate() {
+        return mTripDate;
     }
 
-    public String getPersonNumber() {
-        return mPersonNumber;
+    @Override
+    public void setTripDate(LocalDate mTripDate) {
+        this.mTripDate = mTripDate;
     }
 
+    @Override
+    public void hasStarted(boolean hasStarted) {
+        mHasStarted = hasStarted;
+    }
+
+    @Override
+    public boolean hasStarted() {
+        return mHasStarted;
+    }
 }
