@@ -14,6 +14,12 @@
         <item name="colorAccent">@color/pinkAccent</item>
     </style>
 
+    <style name="TransparentTheme" parent="PinkTheme">
+        <item name="colorPrimary">@color/pinkPrimary</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="colorAccent">@color/pinkAccent</item>
+    </style>
+
     <style name="card_base_layout">
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
@@ -30,4 +36,5 @@
     </style>
 
 
+    <color name="transparent">#00000000</color>
 </resources>

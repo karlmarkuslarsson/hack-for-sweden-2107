@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import sweden.hack.userinfo.R;
@@ -19,6 +20,7 @@ public class StartActivity extends AppCompatActivity {
         if (!userSignedIn()) {
             setContentView(R.layout.activity_start);
             initViews();
+            setStatusBarTranslucent();
             setupCallbacks();
         }
     }
@@ -53,6 +55,10 @@ public class StartActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void setStatusBarTranslucent() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     private void initViews() {

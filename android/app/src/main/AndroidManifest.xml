@@ -20,6 +20,7 @@
 
         <activity
             android:name=".activities.StartActivity"
+            android:theme="@style/TransparentTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
