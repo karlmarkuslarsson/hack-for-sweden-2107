@@ -35,6 +35,15 @@
         <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
+    <style name="card_trip_layout">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
 
     <color name="transparent">#00000000</color>
 </resources>

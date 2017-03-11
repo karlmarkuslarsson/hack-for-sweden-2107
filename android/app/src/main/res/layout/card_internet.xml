@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Internet:"
+            android:textColor="@color/pinkPrimaryDark"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/pinkPrimaryDark"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_internet"
