@@ -293,6 +293,20 @@ exports.get = function (done) {
                 img: "http://mallofscandinavia.se/-/media/Unibail/Country~o~SE/MallofScandinavia/Centrumbilder/Accessbild.ashx",
                 tag: "shopping"
             }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Vasa Museum",
+                description: "See the warship from 17th century  ",
+                price: "0 SEK",
+                duration: 60,
+                temp_rec: 130,
+                lat: 59.3280233,
+                lng: 18.0913964,
+                img: "http://hg2.com/wp-content/uploads/2015/07/stockholm-culture-vasamuseeta.jpg",
+                tag: "museum"
+            }
+
 
 
         ],
