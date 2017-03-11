@@ -51,16 +51,19 @@ app.get('/practical', function (req, res) {
             ]
         },
         {
-            type: "holiday",
-            weekday: "sunday",
-            date: "2017-01-02",
-            name: "Juldagen"
-        },
-        {
-            type: "holiday",
-            weekday: "saturday",
-            date: "2017-01-01",
-            name: "Julafton"
+            type: "holidays",
+            holidays: [
+                {
+                    weekday: "sunday",
+                    date: "2017-01-02",
+                    name: "Juldagen"
+                },
+                {
+                    weekday: "saturday",
+                    date: "2017-01-01",
+                    name: "Julafton"
+                }
+            ]
         },
         {
             type: "currency",
@@ -93,34 +96,6 @@ app.get('/all', function (req, res) {
     };
     res.send(out);
 });
-
-
-// from_currency= from_value to_currency
-app.get('/currency', function (req, res) {
-    let out = {};
-    const query = req.query;
-    out['value'] = "1 USD = 42 SEK";
-    out['to_currency'] = must(req, res, "to_currency", "currency");
-    out['from_value'] = must(req, res, "from_value", "number");
-    out['from_currency'] = must(req, res, "from_currency", "currency");
-    res.send(out);
-});
-
-// date=20170101
-app.get('/holidays', function (req, res) {
-    let out = {};
-    out['date'] = must(req, res, "date", "Date");
-    out['holidays'] = [
-        {
-            date: "20171031",
-            date_text: "31 oktober",
-            name: "Halloween 2017",
-            weekday: "Måndag"
-        }
-    ];
-    res.send(out);
-});
-
 
 app.listen(PORT, function () {
   console.log('App started on port', PORT);
