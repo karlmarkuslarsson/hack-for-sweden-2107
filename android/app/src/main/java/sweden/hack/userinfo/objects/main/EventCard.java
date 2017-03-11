@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.Event;
+import sweden.hack.userinfo.models.todo.Event;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 /**
