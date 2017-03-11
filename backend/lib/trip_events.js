@@ -147,8 +147,20 @@ exports.get = function (done) {
                 temp_rec: -5,
                 lat: 59.2904721,
                 lng: 18.1598473,
-                img: "hhttp://www.proletaren.se/sites/default/files/styles/article_images_thumb/public/2_web_olof_palme.jpg?itok=P77RMT4B",
+                img: "http://www.friluftsframjandet.se/Temp/akt_webb_skridskogrupp-js-1239286981.jpg",
                 tag: "spot"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "kayak",
+                description: "A nice way to see Stockholm in the summer, rent a kayak and enjoy a trip",
+                price: "200 SEK",
+                duration: 120,
+                temp_rec: 20,
+                lat: 59.3200098,
+                lng: 18.0291653,
+                img: "https://s3-media1.fl.yelpcdn.com/bphoto/BCju8NQ8i9vBz3jp46uMRg/o.jpg",
+                tag: "adventure"
             }
         ],
         restaurants: [
