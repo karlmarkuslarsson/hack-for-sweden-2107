@@ -4,6 +4,11 @@ import android.location.Location;
 
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
+
+import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.objects.TripPath;
+
 public class Cache implements Storage {
 
     private static Storage sSharedInstance;
@@ -11,6 +16,8 @@ public class Cache implements Storage {
     private Location mLocation;
     private LocalDate mTripDate;
     private boolean mHasStarted;
+    private MyTrip mMyTrip;
+    private ArrayList<TripPath> mTripPaths;
 
     private Cache() {
     }
@@ -52,5 +59,23 @@ public class Cache implements Storage {
     @Override
     public boolean hasStarted() {
         return mHasStarted;
+    }
+
+    public void setMyTrip(MyTrip myTrip) {
+        mMyTrip = myTrip;
+    }
+
+    @Override
+    public ArrayList<TripPath> getTripPaths() {
+        return mTripPaths;
+    }
+
+    @Override
+    public void setTripPaths(ArrayList<TripPath> tripPaths) {
+        mTripPaths = tripPaths;
+    }
+
+    public MyTrip getMyTrip() {
+        return mMyTrip;
     }
 }

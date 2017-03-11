@@ -28,4 +28,5 @@ public class Constants {
     @SuppressWarnings("LongLine")
     public static final String SMHI_BASE_URL = "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/";
 
+    public static final String TRIP_PATHS = "prefTripPath";
 }

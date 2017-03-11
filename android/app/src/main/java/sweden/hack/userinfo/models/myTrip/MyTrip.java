@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import sweden.hack.userinfo.models.CardComponent;
-import sweden.hack.userinfo.models.todo.Event;
 
 public class MyTrip extends CardComponent {
 
@@ -24,5 +23,12 @@ public class MyTrip extends CardComponent {
     }
 
 
+    public MyTripRestaurant getRestaurant(String id) {
+        return null;
+    }
+
+    public MyTripEvent getEvent(String id) {
+        return null;
+    }
 }
 

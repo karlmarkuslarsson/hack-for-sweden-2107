@@ -4,6 +4,11 @@ import android.location.Location;
 
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
+
+import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.objects.TripPath;
+
 public interface Storage {
 
     void setLocation(Location location);
@@ -17,4 +22,12 @@ public interface Storage {
     void hasStarted(boolean hasStarted);
 
     boolean hasStarted();
+
+    MyTrip getMyTrip();
+
+    void setMyTrip(MyTrip content);
+
+    ArrayList<TripPath> getTripPaths();
+
+    void setTripPaths(ArrayList<TripPath> tripPaths);
 }
