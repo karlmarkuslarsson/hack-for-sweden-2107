@@ -90,10 +90,23 @@ app.get('/todo', function (req, res) {
     res.send(out);
 });
 
+app.get('/about', function (req, res) {
+    const out = [
+        {
+            type: "event",
+            date: "0000-00-00",
+            title: "Concert 1"
+        }
+    ];
+    res.send(out);
+});
+
 app.get('/all', function (req, res) {
-    const out = {
-        text: "stuff.."
-    };
+    const out = [
+        {
+            text: "stuff.."
+        }
+    ];
     res.send(out);
 });
 
