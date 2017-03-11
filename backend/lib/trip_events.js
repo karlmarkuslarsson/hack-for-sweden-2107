@@ -133,7 +133,7 @@ exports.get = function (done) {
                 title: "ABBA: The Museum",
                 description: "ABBA The Museum is an interactive exhibition about the pop-group ABBA that opened in Stockholm, Sweden in May 2013",
                 price: "195 SEK",
-                duration: 40,
+                duration: 60,
                 temp_rec: 0,
                 lat: 59.3249222,
                 lng: 18.0943349,
@@ -150,6 +150,18 @@ exports.get = function (done) {
                 lat: 59.3260466,
                 lng: 18.0824992,
                 img: "http://img.timeinc.net/time/asia/magazine/2009/0720/stockholm_04.jpg",
+                tag: "museum"
+            },
+            {
+                id: "ff4023da-8a60-4ecc-b0f1-1a2e0e217ac1",
+                title: "Swedish National Museum of Science and Technology",
+                description: "Interactive science & technology museum with family-friendly exhibits, a library & archives.",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3325049,
+                lng: 18.116777,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Tekniska_museet_2008b.jpg/250px-Tekniska_museet_2008b.jpg",
                 tag: "museum"
             },
 
