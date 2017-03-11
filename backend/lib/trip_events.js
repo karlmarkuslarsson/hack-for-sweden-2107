@@ -195,7 +195,7 @@ exports.get = function (done) {
                 lng: 18.0291653,
                 img: "https://s3-media1.fl.yelpcdn.com/bphoto/BCju8NQ8i9vBz3jp46uMRg/o.jpg",
                 tag: "adventure"
-            }
+            },
             {
                 id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
                 title: "boat sightseeing",
@@ -206,6 +206,18 @@ exports.get = function (done) {
                 lat: 59.3322116,
                 lng: 18.0748544,
                 img: "http://www.stromma.se/link/0f9e3c74afa0443fb467fb820179a664.aspx?id=1906&epslanguage=sv",
+                tag: "sightseeing"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Rooftop Tour",
+                description: "See Stockholm from the roof top",
+                price: "745 SEK",
+                duration: 90,
+                temp_rec: 15,
+                lat: 59.3253499,
+                lng: 18.0673271,
+                img: "http://images.visitstockholm.com/40/381/40381d24-349a-4e18-b7c0-2dcbc0b9dd4b/rectangle_big_retina.jpg",
                 tag: "sightseeing"
             }
 
