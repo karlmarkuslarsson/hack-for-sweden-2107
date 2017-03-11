@@ -70,15 +70,15 @@ exports.get = function (done) {
             },
             {
                 id: "ee2d7df5-8d05-4666-bcb0-916a76370851",
-                title: "supportress smacking",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "80 SEK",
-                duration: 160,
+                title: "Junibacken",
+                description: "Astrid Lindgren musem for kids",
+                price: "160 SEK",
+                duration: 180,
                 temp_rec: 14,
-                lat: 13.3919,
-                lng: 53.1857,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&4eccd0",
-                tag: "amusement"
+                lat: 59.3295295,
+                lng: 18.0896431,
+                img: "http://c8.alamy.com/comp/FEEFX7/house-of-pippi-longstocking-in-junibacken-childrens-museum-stockholm-FEEFX7.jpg",
+                tag: "museum"
             },
             {
                 id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
@@ -89,7 +89,7 @@ exports.get = function (done) {
                 temp_rec: 10,
                 lat: 59.3315207,
                 lng: 18.0695279,
-                img: "https://www.google.se/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjb08eBsc_SAhUoD5oKHa7nDyMQjRwIBw&url=http%3A%2F%2Fwww.palmemordet.se%2F&psig=AFQjCNEeTEUhOXy_3VpVEZw5vJXQN0PKiQ&ust=1489353689482539",
+                img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQMvTWUczXbQsRrGHEHuJgJYTqsdJnWSlHkhuXNjt5vODKrLssn8g",
                 tag: "adventure"
             },
             {
