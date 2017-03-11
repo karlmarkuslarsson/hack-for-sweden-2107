@@ -1,5 +1,7 @@
 .ssh/
 .vagrant/
+.cache/
+
 .env
 
 **/node_modules

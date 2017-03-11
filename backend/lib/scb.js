@@ -1,4 +1,8 @@
 const request = require('request');
+const cachedRequest = require('cached-request')(request);
+
+/* Set cache dir */
+cachedRequest.setCacheDirectory(".cache/");
 
 function as_keyvalue(data) {
     const cols = data.columns
@@ -34,7 +38,7 @@ function as_keyvalue_resp(done) {
 }
 
 exports.get = function (url, request_data, done) {
-    request({
+    cachedRequest({
         url: url,
         method: "POST",
         json: request_data

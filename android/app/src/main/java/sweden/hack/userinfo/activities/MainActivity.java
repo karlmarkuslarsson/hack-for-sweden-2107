@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logout() {
         DataHelper.setUserPersonNumber(null);
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
         finish();
     }

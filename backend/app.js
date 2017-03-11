@@ -34,6 +34,18 @@ app.get('/', function (req, res) {
     res.send(content.join(''))
 });
 
+
+app.get('/currency', function (req, res) {
+    let out = {};
+    const query = req.query;
+    out['value'] = "1 USD = 42 SEK";
+    out['to_currency'] = "SEK";
+    out['from_value'] = query.from_value;
+    out['from_currency'] = query.from_currency;
+    res.send(out);
+});
+
+
 app.listen(PORT, function () {
   console.log('App started on port', PORT);
   console.log(`http://localhost:${PORT}/`);
