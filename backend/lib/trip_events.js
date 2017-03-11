@@ -9,7 +9,7 @@ exports.get = function (done) {
     done(null, {
         events: [
             {
-                id: "87db67f6-6e36-47a4-9a92-6700d38e491d",
+                id: "7a883642-77e7-41fd-a87b-29b5fd00a58d",
                 title: "Skansen",
                 description: "Skansen is the first open-air museum and zoo in Sweden and is located on the island Djurgården.",
                 price: "160 SEK",
@@ -21,7 +21,7 @@ exports.get = function (done) {
                 tag: "amusement"
             },
             {
-                id: "0868501f-dca1-47e2-9a19-eb7090dc0508",
+                id: "088193f3-660f-4216-a148-c386062d462e",
                 title: "Drottningholm Palace",
                 description: "Well-preserved royal residence, with a Chinese Pavilion pleasure palace, theater & gardens.",
                 price: "0 SEK",
@@ -33,7 +33,7 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "20d0d8f0-4da4-47df-a67e-73fd77e3b3fc",
+                id: "c608e88a-0efb-47a0-9488-64e2551e523d",
                 title: "Stockholm Palace",
                 description: "Stockholm Palace or The Royal Palace is the official residence and major royal palace of the Swedish monarch. Stockholm Palace is located on Stadsholmen, in Gamla stan.",
                 price: "0 SEK",
@@ -45,7 +45,7 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "c645ab72-4030-4e71-aac7-bd6606ed94cd",
+                id: "78fb6fe9-8ece-48b5-8963-3ddd4e9ba9f6",
                 title: "Gröna Lund",
                 description: "Seasonal amusement park with roller coasters & thrill rides, competitive games & live concerts.",
                 price: "120 SEK",
@@ -57,7 +57,7 @@ exports.get = function (done) {
                 tag: "amusement"
             },
             {
-                id: "b17bd76b-8e81-44f6-a737-d6112566e725",
+                id: "28c6c315-636d-425a-b45c-2a6ebd3158ab",
                 title: "Hammarbybacken",
                 description: "Ski slope and in the summer a really nice viewpoint in the middle of the town",
                 price: "0 SEK",
@@ -65,11 +65,11 @@ exports.get = function (done) {
                 temp_rec: 0,
                 lat: 59.301238,
                 lng: 18.10926,
-                img: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Hammarbybacken_january_2012.jpg",
+                img: "http://media.swedentips.se/2016/01/hammarbybacken_stockholm-696x521.jpg",
                 tag: "Adventure"
             },
             {
-                id: "ee2d7df5-8d05-4666-bcb0-916a76370851",
+                id: "da83c50f-1f79-4c54-8c3b-0bcee13fa3fd",
                 title: "Junibacken",
                 description: "Astrid Lindgren musem for kids",
                 price: "160 SEK",
@@ -81,7 +81,7 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "",
+                id: "e675a4d7-6267-4ea0-ba99-d210a27011b8",
                 title: "Gamla Stan",
                 description: "Gamla stan, until 1980 officially Staden mellan broarna, is the old town of Stockholm, Sweden. Gamla stan consists primarily of the island Stadsholmen.",
                 price: "0 SEK",
@@ -93,7 +93,7 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "ee2d7df5-8d05-4666-bcb0-916a76370851",
+                id: "cd4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
                 title: "Stadshuset",
                 description: "Stockholm City Hall is the building of the Municipal Council for the City of Stockholm in Sweden. It stands on the eastern tip of Kungsholmen island, next to Riddarfjärden's northern shore and facing the islands of Riddarholmen and Södermalm.",
                 price: "80 SEK",
@@ -105,7 +105,51 @@ exports.get = function (done) {
                 tag: "amusement"
             },
             {
-                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                title: "Globen",
+                description: "Ericsson Globe is an indoor arena located in Stockholm Globe City, Johanneshov district of Stockholm, Sweden. The Ericsson Globe is the largest hemispherical building on Earth and took two and a half years to build.",
+                price: "0 SEK",
+                duration: 30,
+                temp_rec: 10,
+                lat: 59.2935725,
+                lng: 18.0835501,
+                img: "https://upload.wikimedia.org/wikipedia/commons/6/62/Globen_Stockholm_February_2007.jpg",
+                tag: "architecture"
+            },
+            {
+                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                title: "Fotografiska",
+                description: "Fotografiska is a centre for contemporary photography in Stockholm, Sweden that opened on 21 May 2010.",
+                price: "120 SEK",
+                duration: 90,
+                temp_rec: 0,
+                lat: 59.3178415,
+                lng: 18.0859104,
+                img: "https://www.jimmynelson.com/media/images/vara-tjanster-fotografiska.jpg",
+                tag: "museum"
+            },
+            {
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217aa1",
+                title: "ABBA: The Museum",
+                description: "ABBA The Museum is an interactive exhibition about the pop-group ABBA that opened in Stockholm, Sweden in May 2013",
+                price: "195 SEK",
+                duration: 40,
+                temp_rec: 0,
+                lat: 59.3249222,
+                lng: 18.0943349,
+                img: "https://www.thelocal.se/userdata/images/1439479566_Abba.jpg",
+                tag: "museum"
+            },
+
+
+
+
+
+
+
+
+            {
+                id: "b04b4120-6d8e-41e5-9633-ff97414a20bb",
                 title: "Boat trip to Vaxholm",
                 description: "Take the boat to Waxholm to discover the archipelago",
                 price: "140 SEK",
@@ -113,11 +157,11 @@ exports.get = function (done) {
                 temp_rec: 10,
                 lat: 59.3315207,
                 lng: 18.0695279,
-                img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQMvTWUczXbQsRrGHEHuJgJYTqsdJnWSlHkhuXNjt5vODKrLssn8g",
+                img: "http://www.stromma.se/globalassets/sweden/stockholm/product_slideshows/excursions/day_trips/vaxholm/01_skb_vaxholm_1240x858.jpg?preset=slidetour",
                 tag: "adventure"
             },
             {
-                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                id: "5fc8fbfb-2219-47eb-942e-792481d180fb",
                 title: "Olof Palme Memorial",
                 description: "Swedens prime minister Olof Palme was murdered here 1986",
                 price: "0 SEK",
@@ -125,25 +169,74 @@ exports.get = function (done) {
                 temp_rec: 0,
                 lat: 59.336481,
                 lng: 18.062538,
-                img: "https://www.google.se/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjb08eBsc_SAhUoD5oKHa7nDyMQjRwIBw&url=http%3A%2F%2Fwww.palmemordet.se%2F&psig=AFQjCNEeTEUhOXy_3VpVEZw5vJXQN0PKiQ&ust=1489353689482539",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Olof_Palme_place_of_death.jpg/1280px-Olof_Palme_place_of_death.jpg",
                 tag: "spot"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Ice-skate",
+                description: "A nice way to see Stockholm in the winter, rent skates and enjoy a trip",
+                price: "160 SEK",
+                duration: 120,
+                temp_rec: -5,
+                lat: 59.2904721,
+                lng: 18.1598473,
+                img: "http://www.friluftsframjandet.se/Temp/akt_webb_skridskogrupp-js-1239286981.jpg",
+                tag: "spot"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "kayak",
+                description: "A nice way to see Stockholm in the summer, rent a kayak and enjoy a trip",
+                price: "200 SEK",
+                duration: 120,
+                temp_rec: 20,
+                lat: 59.3200098,
+                lng: 18.0291653,
+                img: "https://s3-media1.fl.yelpcdn.com/bphoto/BCju8NQ8i9vBz3jp46uMRg/o.jpg",
+                tag: "adventure"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "boat sightseeing",
+                description: "A nice way to see Stockholm in the summer is to take a hop-on-hop-off boat trip",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 15,
+                lat: 59.3322116,
+                lng: 18.0748544,
+                img: "http://www.stromma.se/globalassets/sweden/stockholm/product_slideshows/sightseeing/boat/hopon_hopoff/01_ott_boat_1240x858.jpg",
+                tag: "sightseeing"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Rooftop Tour",
+                description: "See Stockholm from the roof top",
+                price: "745 SEK",
+                duration: 90,
+                temp_rec: 15,
+                lat: 59.3253499,
+                lng: 18.0673271,
+                img: "http://images.visitstockholm.com/40/381/40381d24-349a-4e18-b7c0-2dcbc0b9dd4b/rectangle_big_retina.jpg",
+                tag: "sightseeing"
             }
+
         ],
         restaurants: [
             {
-                id: "ad229547-d541-41f9-9f5f-e6dd371a3fb3",
+                id: "09e8aaba-e368-427f-8e11-12e05d3f0caf",
                 title: "Djuret",
                 description: "Smart, vaulted restaurant with a menu focused on red meat, plus cured meats & European cheeses.",
                 img: "http://ng.se/sites/default/files/Djuret.jpg"
             },
             {
-                id: "43984e8c-8e32-48a8-9812-9363f58130ed",
+                id: "5103922f-d0d4-4616-b718-e97618663e5e",
                 title: "A.G",
                 description: "Cool restaurant with its own dry-aging room for a range of cuts of steak, plus non-meat options.",
                 img: "https://s3-media2.fl.yelpcdn.com/bphoto/jkVrftf_vj0Kc8Fx7spZfQ/348s.jpg"
             },
             {
-                id: "d30dafb5-8ee5-47f8-96e1-0a35da80d8f3",
+                id: "325abc99-c36d-472e-b402-1f4d9e030571",
                 title: "Urban Deli",
                 description: "The popular restaurant concept Urban Deli has expanded with a roof top bar at Sveavägen. At the 9th floor you find the green art park. Go for the food, the drinks, ...",
                 img: "http://thatsup.se/content/img/article/14/mar/f1888863dac9489ef2f7dbb1cf047d32.jpg"
