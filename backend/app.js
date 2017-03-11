@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const events = require('./lib/events');
+const trip_events = require('./lib/trip_events');
 const sql = require('./lib/sql');
 const apis = ['befolk', 'inkomst', 'internet'];
 
@@ -39,6 +40,12 @@ function must(req, res, key, name) {
     const value = req.query[key];
     return value ? value : res.send(`Missing param '${key}', provide a ${name}!`);
 }
+
+app.get('/trip', function (req, res) {
+    trip_events.get(function (err, data) {
+        res.send(data);
+    });
+});
 
 // all?currency=USD&date=2017-01-01
 app.get('/practical', function (req, res) {
