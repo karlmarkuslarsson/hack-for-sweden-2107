@@ -11,4 +11,13 @@
     <string name="main_tab_today">Today</string>
     <string name="main_tab_near">Near</string>
     <string name="main_tab_about_me">About me</string>
+
+
+    <string name="transportation_bus">Bus</string>
+    <string name="transportation_metro">Metro</string>
+    <string name="transportaion_train">Train</string>
+    <string name="transportaion_tram">Tram</string>
+    <string name="transportaion_ship">Ship</string>
+    <string name="transportaion_unknown">Unknown</string>
+
 </resources>
