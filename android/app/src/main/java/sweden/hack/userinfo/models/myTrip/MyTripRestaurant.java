@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by sosv on 11/03/17.
  */
 
-class MyTripRestaurant {
+public class MyTripRestaurant {
     @SerializedName("title")
     private String mTitle;
 
