@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/city_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -13,53 +14,42 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
+        <TextView
+            android:text="Welcome to Stockholm"
+            android:textColor="#e4ba00"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <android.support.design.widget.TextInputLayout
+            android:background="@color/cardview_light_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/activity_login_first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/login_first_name"
-                android:imeOptions="actionNext"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/activity_login_surname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/login_surname"
-                android:imeOptions="actionNext"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
+            <EditText xmlns:tools="http://schemas.android.com/tools"
+                tools:text="20170323"
                 android:id="@+id/activity_login_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="YYMMDD-XXXX"
+                android:hint="YYYYMMDD"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="10" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/activity_login_button"
+            android:id="@+id/activity_start_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:textSize="30sp"
+            android:padding="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="@string/button_login" />
+            android:text="@string/button_start" />
 
     </LinearLayout>
 </ScrollView>
