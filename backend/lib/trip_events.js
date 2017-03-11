@@ -340,6 +340,12 @@ exports.get = function (done) {
                 title: "Surfers",
                 description: "Surfers are like a Kinder egg - a kitsch tavern seemingly devoted digestible surfarkäk but serves delicious food from the innermost and most spicy China.",
                 img: "https://images-2.svd.se/v2/images/3e0c269d-4c92-45da-9f0a-9d2b24421f9a?fit=crop&h=417&q=70&w=625&s=df9a31ef0ec942d1da05ccd7a156bf9c5c6dd0fc"
+            },
+            {
+                id: "09e8aaba-e368-427f-8e11-12e05d3f0caf",
+                title: "Meatballs for the People",
+                description: "The classic Swedish meatball. The shop offers 14 kinds of meatballs made of ingredients like elk, beef and salmon.",
+                img: "http://static.thatsup.co/content/img/place/m/e/meatballs-for-the-people-5.jpg"
             }
         ]
     })
