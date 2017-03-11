@@ -139,6 +139,18 @@ exports.get = function (done) {
                 lng: 18.062538,
                 img: "hhttp://www.proletaren.se/sites/default/files/styles/article_images_thumb/public/2_web_olof_palme.jpg?itok=P77RMT4B",
                 tag: "spot"
+            },
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Ice-skate",
+                description: "A nice way to see Stockholm in the winter, rent skates and enjoy a trip",
+                price: "160 SEK",
+                duration: 120,
+                temp_rec: -5,
+                lat: 59.2904721,
+                lng: 18.1598473,
+                img: "hhttp://www.proletaren.se/sites/default/files/styles/article_images_thumb/public/2_web_olof_palme.jpg?itok=P77RMT4B",
+                tag: "spot"
             }
         ],
         restaurants: [
