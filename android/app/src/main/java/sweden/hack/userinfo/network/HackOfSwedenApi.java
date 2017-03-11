@@ -15,6 +15,7 @@ import sweden.hack.userinfo.models.CardComponent;
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.income.Income;
+import sweden.hack.userinfo.models.myTrip.MyTrip;
 import sweden.hack.userinfo.models.phrases.Phrases;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
@@ -121,4 +122,11 @@ public class HackOfSwedenApi {
         Call<List<CardComponent>> call = mAllApi.getTodoList(from, to);
         new CallRequest<>(call, callback).execute();
     }
+
+    public void getTripList(Callback<MyTrip> callback) {
+        Call<MyTrip> call = mAllApi.getTripList();
+        new CallRequest<>(call, callback).execute();
+    }
+
+
 }
