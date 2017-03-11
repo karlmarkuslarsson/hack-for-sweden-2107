@@ -10,7 +10,7 @@ public class MyTripEvent {
     @SerializedName("description")
     private String mDescription;
 
-    @SerializedName("image")
+    @SerializedName("img")
     private String mImage;
 
     @SerializedName("duration")
@@ -19,22 +19,17 @@ public class MyTripEvent {
     @SerializedName("price")
     private Integer mPrice;
 
-    @SerializedName("latitude")
+    @SerializedName("lat")
     private Float mLatitude;
 
-    @SerializedName("longitude")
+    @SerializedName("lng")
     private Float mLongitude;
 
     @SerializedName("photo")
     private Boolean mPhoto;
 
-    public String getImage() {
-        return mImage;
-    }
-
-    public void setImage(String mImage) {
-        this.mImage = mImage;
-    }
+    @SerializedName("tag")
+    private String mTag;
 
     public String getTitle() {
         return mTitle;
@@ -50,6 +45,14 @@ public class MyTripEvent {
 
     public void setDescription(String mDescription) {
         this.mDescription = mDescription;
+    }
+
+    public String getImage() {
+        return mImage;
+    }
+
+    public void setImage(String mImage) {
+        this.mImage = mImage;
     }
 
     public Integer getDuration() {
@@ -90,5 +93,13 @@ public class MyTripEvent {
 
     public void setPhoto(Boolean mPhoto) {
         this.mPhoto = mPhoto;
+    }
+
+    public String getTag() {
+        return mTag;
+    }
+
+    public void setTag(String mTag) {
+        this.mTag = mTag;
     }
 }
