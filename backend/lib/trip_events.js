@@ -128,7 +128,18 @@ exports.get = function (done) {
                 img: "https://www.jimmynelson.com/media/images/vara-tjanster-fotografiska.jpg",
                 tag: "museum"
             },
-
+            {
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217aa1",
+                title: "ABBA: The Museum",
+                description: "ABBA The Museum is an interactive exhibition about the pop-group ABBA that opened in Stockholm, Sweden in May 2013",
+                price: "195 SEK",
+                duration: 40,
+                temp_rec: 0,
+                lat: 59.3249222,
+                lng: 18.0943349,
+                img: "https://www.thelocal.se/userdata/images/1439479566_Abba.jpg",
+                tag: "museum"
+            },
 
 
 
