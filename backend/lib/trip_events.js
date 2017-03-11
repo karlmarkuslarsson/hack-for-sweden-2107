@@ -334,6 +334,12 @@ exports.get = function (done) {
                 title: "Ling Long",
                 description: "Ling Long pays homage to modern Asian cuisine with emphasis on quality Nordic ingredients. The restaurant is predominantly inspired the Sichuan province in China but also fuses influences from Bali and Singapore.",
                 img: "http://static.thatsup.co/content/img/place/l/i/ling-long-9.jpg"
+            },
+            {
+                id: "325abc00-c36d-472e-b402-1f4d9e040571",
+                title: "Surfers",
+                description: "Surfers are like a Kinder egg - a kitsch tavern seemingly devoted digestible surfarkäk but serves delicious food from the innermost and most spicy China.",
+                img: "https://images-2.svd.se/v2/images/3e0c269d-4c92-45da-9f0a-9d2b24421f9a?fit=crop&h=417&q=70&w=625&s=df9a31ef0ec942d1da05ccd7a156bf9c5c6dd0fc"
             }
         ]
     })
