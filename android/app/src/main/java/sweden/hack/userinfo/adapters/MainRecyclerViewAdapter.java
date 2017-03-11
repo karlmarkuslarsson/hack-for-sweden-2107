@@ -14,6 +14,7 @@ import sweden.hack.userinfo.viewholders.main.GenderViewHolder;
 import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
 import sweden.hack.userinfo.viewholders.main.MainViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
+import sweden.hack.userinfo.viewholders.main.WeatherViewHolder;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
@@ -41,6 +42,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new PopulationViewHolder(inflater.inflate(R.layout.card_population, parent, false));
             case MainCard.TYPE_INCOME:
                 return new IncomeViewHolder(inflater.inflate(R.layout.card_income, parent, false));
+            case MainCard.TYPE_WEATHER:
+                return new WeatherViewHolder(inflater.inflate(R.layout.card_weather, parent, false));
         }
         return null;
     }
