@@ -22,27 +22,27 @@ exports.get = function (done) {
             },
             {
                 id: "0868501f-dca1-47e2-9a19-eb7090dc0508",
-                title: "subfusiform Kieffer",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "58 SEK",
-                duration: 160,
-                temp_rec: 17,
-                lat: 13.0579,
-                lng: 54.1089,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&cbbdff",
-                tag: "amusement"
+                title: "Drottningholm Palace",
+                description: "Well-preserved royal residence, with a Chinese Pavilion pleasure palace, theater & gardens.",
+                price: "0 SEK",
+                duration: 60,
+                temp_rec: 18,
+                lat: 59.3216935,
+                lng: 17.8846313,
+                img: "https://i.ytimg.com/vi/4B1eAabkr74/maxresdefault.jpg",
+                tag: "museum"
             },
             {
                 id: "20d0d8f0-4da4-47df-a67e-73fd77e3b3fc",
-                title: "granospherite mountebankly",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "3 SEK",
+                title: "Stockholm Palace",
+                description: "Stockholm Palace or The Royal Palace is the official residence and major royal palace of the Swedish monarch. Stockholm Palace is located on Stadsholmen, in Gamla stan.",
+                price: "0 SEK",
                 duration: 160,
                 temp_rec: 9,
-                lat: 13.7504,
-                lng: 54.2794,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&26868f",
-                tag: "amusement"
+                lat: 59.3268215,
+                lng: 18.0717194,
+                img: "http://www.nordstjernan.com/resizer/resizer.php?w=700&i=image-15096.jpg",
+                tag: "museum"
             },
             {
                 id: "c645ab72-4030-4e71-aac7-bd6606ed94cd",
