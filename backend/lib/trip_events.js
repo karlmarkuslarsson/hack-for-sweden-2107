@@ -105,6 +105,19 @@ exports.get = function (done) {
                 tag: "amusement"
             },
 
+            {
+                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                title: "Globen",
+                description: "Ericsson Globe is an indoor arena located in Stockholm Globe City, Johanneshov district of Stockholm, Sweden. The Ericsson Globe is the largest hemispherical building on Earth and took two and a half years to build.",
+                price: "0 SEK",
+                duration: 30,
+                temp_rec: 10,
+                lat: 59.2935725,
+                lng: 18.0835501,
+                img: "https://upload.wikimedia.org/wikipedia/commons/6/62/Globen_Stockholm_February_2007.jpg",
+                tag: "architecture"
+            },
+
 
 
 
