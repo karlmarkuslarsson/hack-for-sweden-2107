@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class MyTripRestaurant {
+
+    @SerializedName("id")
+    private String mId;
+
     @SerializedName("title")
     private String mTitle;
 
@@ -15,6 +19,14 @@ public class MyTripRestaurant {
 
     @SerializedName("img")
     private String mImage;
+
+    public String getId() {
+        return mId;
+    }
+
+    public void setId(String mId) {
+        this.mId = mId;
+    }
 
     public String getTitle() {
         return mTitle;
