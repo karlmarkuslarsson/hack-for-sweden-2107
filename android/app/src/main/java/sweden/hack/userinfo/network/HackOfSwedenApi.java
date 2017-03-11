@@ -117,8 +117,8 @@ public class HackOfSwedenApi {
         new CallRequest<>(call, callback).execute();
     }
 
-    public void getTodoList(Callback<List<CardComponent>> callback, String date) {
-        Call<List<CardComponent>> call = mAllApi.getTodoList(date);
+    public void getTodoList(Callback<List<CardComponent>> callback, String from, String to) {
+        Call<List<CardComponent>> call = mAllApi.getTodoList(from, to);
         new CallRequest<>(call, callback).execute();
     }
 }

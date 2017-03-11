@@ -1,14 +1,10 @@
-package sweden.hack.userinfo.models;
+package sweden.hack.userinfo.models.todo;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by sosv on 11/03/17.
- */
+public class Event {
 
-public class Event extends CardComponent {
-
-    @SerializedName("date")
+    @SerializedName("start_time")
     private String mDate;
 
     @SerializedName("title")
