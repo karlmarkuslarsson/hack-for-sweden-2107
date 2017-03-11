@@ -10,14 +10,14 @@ public class TripCalculator {
         ArrayList<TripPath> trips = new ArrayList<>();
         for (int i = 0; i < days; i++) {
             TripPath tripPath = new TripPath();
-            for(int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++) {
                 tripPath.add(tripData.getEvents().get(j));
             }
             tripPath.addTransfer();
-            for(int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++) {
                 tripPath.add(tripData.getRestaurants().get(j));
             }
-
+            trips.add(tripPath);
         }
         return trips;
     }

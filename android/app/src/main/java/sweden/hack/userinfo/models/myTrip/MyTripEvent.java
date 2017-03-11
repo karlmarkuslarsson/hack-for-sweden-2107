@@ -20,7 +20,7 @@ public class MyTripEvent {
     private Integer mDuration;
 
     @SerializedName("price")
-    private Integer mPrice;
+    private String mPrice;
 
     @SerializedName("lat")
     private Float mLatitude;
@@ -74,11 +74,11 @@ public class MyTripEvent {
         this.mDuration = mDuration;
     }
 
-    public Integer getPrice() {
+    public String getPrice() {
         return mPrice;
     }
 
-    public void setPrice(Integer mPrice) {
+    public void setPrice(String mPrice) {
         this.mPrice = mPrice;
     }
 

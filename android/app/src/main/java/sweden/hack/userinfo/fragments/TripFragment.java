@@ -50,7 +50,6 @@ public class TripFragment extends Fragment {
         initViews();
         setupViews();
         initData();
-        loadData();
         return mRoot;
     }
 
@@ -108,7 +107,7 @@ public class TripFragment extends Fragment {
     }
 
     private void addTripCards() {
-        if (mTripPath == null) {
+        if (mTripPath == null || mTripPath.size() == 0) {
             mTripPath = TripCalculator.calculateTrips(mMyTripData, mDays);
             mDataHelper.setTripPaths(mTripPath);
         }

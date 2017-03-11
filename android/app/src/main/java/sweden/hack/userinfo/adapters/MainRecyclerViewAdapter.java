@@ -21,6 +21,7 @@ import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
 import sweden.hack.userinfo.viewholders.main.TripFoodPlaceViewHolder;
+import sweden.hack.userinfo.viewholders.main.TripPlaceViewHolder;
 import sweden.hack.userinfo.viewholders.main.TripTransportationViewHolder;
 import sweden.hack.userinfo.viewholders.main.WeatherViewHolder;
 
@@ -65,7 +66,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
             case MainCard.TYPE_SL_AIRPORT_TRIP:
                 return new SLAirportTripViewHolder(inflater.inflate(R.layout.card_sl_airport_trip, parent, false));
             case MainCard.TYPE_TRIP_PLACE:
-                return new TripFoodPlaceViewHolder(inflater.inflate(R.layout.card_trip_place, parent, false));
+                return new TripPlaceViewHolder(inflater.inflate(R.layout.card_trip_place, parent, false));
             case MainCard.TYPE_TRIP_FOOD:
                 return new TripFoodPlaceViewHolder(inflater.inflate(R.layout.card_trip_food, parent, false));
             case MainCard.TYPE_TRIP_TRANSPORTATION:
