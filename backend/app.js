@@ -47,6 +47,39 @@ app.get('/trip', function (req, res) {
     });
 });
 
+
+app.get('/trip-debug', function (req, res) {
+    trip_events.get(function (err, data) {
+        const eventsHtml = data.events.map(evt => {
+            return [
+                "<div>",
+                "<table>",
+                "<tr>",
+                "<td>",
+                `<img height='150' width='150' src='${evt.img}' />`,
+                "</td>",
+                "<td>",
+                `<h3>${evt.title}</h3>`,
+                `<p>${evt.description}</p>`,
+                "</td>",
+                "</tr>",
+                "</table>",
+                "</div>"
+            ].join('');
+        });
+
+
+        const content = [
+            '<html>',
+            '<h1>Events</h1>',
+            eventsHtml.join(''),
+            '</html>'
+        ];
+        res.send(content.join(''))
+
+    });
+});
+
 // all?currency=USD&date=2017-01-01
 app.get('/practical', function (req, res) {
     const currency = must(req, res, "currency", "currency USD, NOK, DKK, ...");

@@ -58,26 +58,26 @@ exports.get = function (done) {
             },
             {
                 id: "b17bd76b-8e81-44f6-a737-d6112566e725",
-                title: "or hadrome",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "91 SEK",
-                duration: 160,
+                title: "Gamla Stan",
+                description: "Gamla stan, until 1980 officially Staden mellan broarna, is the old town of Stockholm, Sweden. Gamla stan consists primarily of the island Stadsholmen.",
+                price: "0 SEK",
+                duration: 90,
                 temp_rec: 0,
-                lat: 13.6561,
-                lng: 54.948,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&d42e99",
-                tag: "amusement"
+                lat: 59.3250832,
+                lng: 18.0668169,
+                img: "http://totallystockholm.se/wp-content/uploads/2013/09/GAMLASTAN.jpg",
+                tag: "museum"
             },
             {
                 id: "ee2d7df5-8d05-4666-bcb0-916a76370851",
-                title: "supportress smacking",
-                description: "Zoo lorem ipsum dolor dim sum...",
+                title: "Stadshuset",
+                description: "Stockholm City Hall is the building of the Municipal Council for the City of Stockholm in Sweden. It stands on the eastern tip of Kungsholmen island, next to Riddarfjärden's northern shore and facing the islands of Riddarholmen and Södermalm.",
                 price: "80 SEK",
                 duration: 160,
                 temp_rec: 14,
                 lat: 13.3919,
                 lng: 53.1857,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&4eccd0",
+                img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Stockholms_stadshus_september_2011.jpg",
                 tag: "amusement"
             },
             {
@@ -105,7 +105,7 @@ exports.get = function (done) {
                 tag: "spot"
             }
         ],
-        resturants: [
+        restaurants: [
             {
                 id: "ad229547-d541-41f9-9f5f-e6dd371a3fb3",
                 title: "Djuret",
