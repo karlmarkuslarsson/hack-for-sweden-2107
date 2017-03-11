@@ -220,6 +220,20 @@ exports.get = function (done) {
                 img: "http://images.visitstockholm.com/40/381/40381d24-349a-4e18-b7c0-2dcbc0b9dd4b/rectangle_big_retina.jpg",
                 tag: "sightseeing"
             }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Gondolen",
+                description: "See Stockholm from one of Stockholms best viewpoints",
+                price: "0 SEK",
+                duration: 45,
+                temp_rec: 5,
+                lat: 59.3196123
+                lng: 18.0731519,
+                img: "https://cdn.theculturetrip.com/images/56-3928702-14400733267e6d5ecfb96244c49c7c5c32bc2f3137.jpg",
+                tag: "sightseeing"
+            }
+
 
         ],
         restaurants: [
