@@ -1,14 +1,14 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.myTrip.MyTripRestaurant;
+import sweden.hack.userinfo.models.myTrip.MyTripEvent;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class TripPlaceCard extends MainCard {
 
-    private final MyTripRestaurant mTripRestaurant;
+    private final MyTripEvent mTripEvent;
 
-    public TripPlaceCard (MyTripRestaurant tripRestaurant) {
-        mTripRestaurant = tripRestaurant;
+    public TripPlaceCard (MyTripEvent tripRestaurant) {
+        mTripEvent = tripRestaurant;
     }
 
     @Override
@@ -16,7 +16,7 @@ public class TripPlaceCard extends MainCard {
         return MainCard.TYPE_TRIP_PLACE;
     }
 
-    public MyTripRestaurant getTripRestaurant() {
-        return mTripRestaurant;
+    public MyTripEvent getTripEvent() {
+        return mTripEvent;
     }
 }

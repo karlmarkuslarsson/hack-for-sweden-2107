@@ -26,9 +26,10 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
 
     @Override
     public void init(TripPlaceCard card, MainCardListener listener) {
-        String imageUrl = null;
+        mTitle.setText(card.getTripEvent().getTitle());
+        mDescription.setText(card.getTripEvent().getDescription());
         Glide.with(itemView.getContext())
-                .load(imageUrl)
+                .load(card.getTripEvent().getImage())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(mImage);
