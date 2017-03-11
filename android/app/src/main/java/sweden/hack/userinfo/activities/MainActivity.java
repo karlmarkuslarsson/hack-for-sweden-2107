@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private MainViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabBar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
+        setSupportActionBar(mToolbar);
         setupViewPager();
     }
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         mViewPager = (ViewPager) findViewById(R.id.activity_main_view_pager);
         mTabBar = (TabLayout) findViewById(R.id.activity_main_tab_layout);
+        mToolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
     }
 
     @Override

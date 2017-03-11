@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="PinkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="PinkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/pinkPrimary</item>
         <item name="colorPrimaryDark">@color/pinkPrimaryDark</item>
         <item name="colorAccent">@color/pinkAccent</item>
