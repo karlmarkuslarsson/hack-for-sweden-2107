@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/when_are_you_going_yyyy_mm_dd"
                     android:imeOptions="actionDone"
-                    android:inputType="number"
+                    android:inputType="date"
                     android:maxLength="10"
                     tools:text="20170323" />
             </android.support.design.widget.TextInputLayout>
