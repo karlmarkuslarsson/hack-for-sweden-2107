@@ -80,6 +80,7 @@ public class DataHelper implements Storage {
         storage.hasStarted(false);
         storage.setTripDate(null);
         storage.setLocation(null);
+        storage.setTripPaths(null);
     }
 
     @Override
@@ -87,7 +88,8 @@ public class DataHelper implements Storage {
         ArrayList<TripPath> tripPaths = Cache.sharedInstance().getTripPaths();
         if (tripPaths == null) {
             String paths = SharedPrefsHelper.sharedInstance().getPreference(Constants.TRIP_PATHS, (String) null);
-            Type listType = new TypeToken<ArrayList<TripPath>>(){}.getType();
+            Type listType = new TypeToken<ArrayList<TripPath>>() {
+            }.getType();
             tripPaths = new Gson().fromJson(paths, listType);
         }
         return tripPaths;

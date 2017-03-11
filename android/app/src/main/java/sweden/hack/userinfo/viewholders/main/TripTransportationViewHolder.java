@@ -9,12 +9,10 @@ import sweden.hack.userinfo.objects.main.TripTransportationCard;
 
 public class TripTransportationViewHolder extends MainViewHolder<TripTransportationCard> {
 
-    private final TextView mTransportationType;
     private final TextView mTransportationTime;
 
     public TripTransportationViewHolder(View itemView) {
         super(itemView);
-        mTransportationType = (TextView) itemView.findViewById(R.id.transportation_type);
         mTransportationTime = (TextView) itemView.findViewById(R.id.transportation_time);
     }
 

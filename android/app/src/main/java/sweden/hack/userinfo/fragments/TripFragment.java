@@ -20,6 +20,8 @@ import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.TripCalculator;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.models.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.myTrip.MyTripRestaurant;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
@@ -115,12 +117,32 @@ public class TripFragment extends Fragment {
         for (TripPath tripPath : mTripPath) {
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
                 TripObject currentTrip = tripPath.getObjectList().get(i);
+                if (currentTrip == null) {
+                    mDataHelper.setTripPaths(null);
+                    mTripPath = null;
+                    reloadData();
+                    return;
+                }
                 switch (currentTrip.getTripObjectType()) {
                     case RESTAURANT:
-                        mAdapter.addCard(new TripFoodCard(mMyTripData.getRestaurant(currentTrip.getId())));
+                        MyTripRestaurant restaurant = mMyTripData.getRestaurant(currentTrip.getId());
+                        if (restaurant == null) {
+                            mDataHelper.setTripPaths(null);
+                            mTripPath = null;
+                            reloadData();
+                            return;
+                        }
+                        mAdapter.addCard(new TripFoodCard(restaurant));
                         break;
                     case EVENT:
-                        mAdapter.addCard(new TripPlaceCard(mMyTripData.getEvent(currentTrip.getId())));
+                        MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
+                        if (event == null) {
+                            mDataHelper.setTripPaths(null);
+                            mTripPath = null;
+                            reloadData();
+                            return;
+                        }
+                        mAdapter.addCard(new TripPlaceCard(event));
                         break;
                     case TRANSFER:
                         mAdapter.addCard(new TripTransportationCard());
