@@ -13,11 +13,7 @@ import android.widget.TextView;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.helpers.DataHelper;
 
-/**
- * Created by sosv on 04/03/17.
- */
-
-public class LoginActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
     private Button mLoginButton;
     private EditText mPersonNumberField;
     private EditText mFirstNameField;
