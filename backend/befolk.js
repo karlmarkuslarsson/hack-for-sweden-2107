@@ -1,4 +1,4 @@
-var scb = require('./scb');
+var scb = require('./lib/scb');
 
 var form_data = function () {
     return {

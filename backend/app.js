@@ -1,6 +1,9 @@
+"use strict";
+
 const express = require('express');
 const app = express();
 
+const sql = require('./lib/sql');
 const apis = ['befolk', 'inkomst', 'internet'];
 
 const PORT = process.env.NODE_PORT || 3000;
@@ -9,7 +12,7 @@ apis.forEach(function (name) {
     const api = require(`./${name}`);
     app.get('/' + name, function(req, res) {
         api.get(function(err, data) {
-            res.send(data);
+            sql.magic(req.query.query, res.send(data));
         });
     });
     console.log(`Registering api '${name}' on GET /${name}`);
