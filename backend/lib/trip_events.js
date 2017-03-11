@@ -104,7 +104,6 @@ exports.get = function (done) {
                 img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Stockholms_stadshus_september_2011.jpg",
                 tag: "amusement"
             },
-
             {
                 id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
                 title: "Globen",
@@ -117,7 +116,18 @@ exports.get = function (done) {
                 img: "https://upload.wikimedia.org/wikipedia/commons/6/62/Globen_Stockholm_February_2007.jpg",
                 tag: "architecture"
             },
-
+            {
+                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                title: "Fotografiska",
+                description: "Fotografiska is a centre for contemporary photography in Stockholm, Sweden that opened on 21 May 2010.",
+                price: "120 SEK",
+                duration: 90,
+                temp_rec: 0,
+                lat: 59.3178415,
+                lng: 18.0859104,
+                img: "https://www.jimmynelson.com/media/images/vara-tjanster-fotografiska.jpg",
+                tag: "museum"
+            },
 
 
 
