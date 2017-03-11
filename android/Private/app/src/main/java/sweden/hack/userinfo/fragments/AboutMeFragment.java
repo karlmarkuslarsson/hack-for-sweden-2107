@@ -114,8 +114,8 @@ public class AboutMeFragment extends Fragment {
     }
 
     private void initViews() {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mRoot.findViewById(R.id.activity_main_swipe_to_refresh);
-        mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.activity_main_recycler_view);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mRoot.findViewById(R.id.fragment_main_swipe_to_refresh);
+        mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.fragment_main_recycler_view);
     }
 
 }
