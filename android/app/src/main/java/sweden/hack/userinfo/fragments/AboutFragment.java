@@ -18,7 +18,7 @@ import sweden.hack.userinfo.objects.main.PopulationCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import timber.log.Timber;
 
-public class AboutMeFragment extends BaseFragment {
+public class AboutFragment extends BaseFragment {
 
     @Override
     protected void reloadData() {

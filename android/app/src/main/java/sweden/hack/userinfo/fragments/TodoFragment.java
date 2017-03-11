@@ -15,7 +15,7 @@ import sweden.hack.userinfo.network.smhi.SMHIApi;
 import sweden.hack.userinfo.objects.main.WeatherCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
-public class TodayFragment extends BaseFragment {
+public class TodoFragment extends BaseFragment {
 
     @Override
     protected void reloadData() {

@@ -13,7 +13,7 @@ import sweden.hack.userinfo.network.sl.SLApi;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
-public class NearFragment extends BaseFragment {
+public class PracticalInfoFragment extends BaseFragment {
 
     @Override
     protected void reloadData() {
