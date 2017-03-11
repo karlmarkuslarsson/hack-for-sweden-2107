@@ -24,7 +24,7 @@ public class SLApi {
 
     private static SLApi sSharedInstance;
 
-    public SLApi() {
+    private SLApi() {
         init();
     }
 
