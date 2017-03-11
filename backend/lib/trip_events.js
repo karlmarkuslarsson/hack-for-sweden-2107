@@ -58,15 +58,15 @@ exports.get = function (done) {
             },
             {
                 id: "b17bd76b-8e81-44f6-a737-d6112566e725",
-                title: "or hadrome",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "91 SEK",
-                duration: 160,
+                title: "Hammarbybacken",
+                description: "Ski slope and in the summer a really nice viewpoint in the middle of the town",
+                price: "0 SEK",
+                duration: 90,
                 temp_rec: 0,
-                lat: 13.6561,
-                lng: 54.948,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&d42e99",
-                tag: "amusement"
+                lat: 59.301238,
+                lng: 18.10926,
+                img: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Hammarbybacken_january_2012.jpg",
+                tag: "Adventure"
             },
             {
                 id: "ee2d7df5-8d05-4666-bcb0-916a76370851",
