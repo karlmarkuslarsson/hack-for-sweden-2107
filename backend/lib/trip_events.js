@@ -105,7 +105,7 @@ exports.get = function (done) {
                 tag: "amusement"
             },
             {
-                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                id: "ea4066da-8a60-4e5c-b0f1-1a2e0e217bb1",
                 title: "Globen",
                 description: "Ericsson Globe is an indoor arena located in Stockholm Globe City, Johanneshov district of Stockholm, Sweden. The Ericsson Globe is the largest hemispherical building on Earth and took two and a half years to build.",
                 price: "0 SEK",
@@ -117,7 +117,7 @@ exports.get = function (done) {
                 tag: "architecture"
             },
             {
-                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217aa1",
+                id: "ff4066da-8a60-4e5c-b0f1-1a2e0e217ba1",
                 title: "Fotografiska",
                 description: "Fotografiska is a centre for contemporary photography in Stockholm, Sweden that opened on 21 May 2010.",
                 price: "120 SEK",
@@ -129,7 +129,7 @@ exports.get = function (done) {
                 tag: "museum"
             },
             {
-                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217aa1",
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217ab1",
                 title: "ABBA: The Museum",
                 description: "ABBA The Museum is an interactive exhibition about the pop-group ABBA that opened in Stockholm, Sweden in May 2013",
                 price: "195 SEK",
@@ -140,7 +140,18 @@ exports.get = function (done) {
                 img: "https://www.thelocal.se/userdata/images/1439479566_Abba.jpg",
                 tag: "museum"
             },
-
+            {
+                id: "ff4066da-8a60-4ecc-b0f1-1a2e0e217ac1",
+                title: "Moderna Museet",
+                description: "Moderna Museet, Stockholm, Sweden, is a state museum for modern and contemporary art located on the island of Skeppsholmen in central Stockholm, opened in 1958.",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3260466,
+                lng: 18.0824992,
+                img: "http://img.timeinc.net/time/asia/magazine/2009/0720/stockholm_04.jpg",
+                tag: "museum"
+            },
 
 
 
