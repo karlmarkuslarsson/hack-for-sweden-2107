@@ -104,6 +104,18 @@ exports.get = function (done) {
                 img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Stockholms_stadshus_september_2011.jpg",
                 tag: "amusement"
             },
+
+
+
+
+
+
+
+
+
+
+
+
             {
                 id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
                 title: "Boat trip to Vaxholm",
