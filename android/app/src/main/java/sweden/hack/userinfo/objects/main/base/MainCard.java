@@ -16,6 +16,7 @@ public abstract class MainCard {
     public static final int TYPE_PHRASES = 9;
     public static final int TYPE_EVENT = 10;
     public static final int TYPE_SL_AIRPORT_TRIP = 11;
+    public static final int TYPE_TRIP_PLACE = 12;
 
     public abstract int getViewType();
 }
