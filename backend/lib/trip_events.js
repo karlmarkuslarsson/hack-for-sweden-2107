@@ -46,14 +46,14 @@ exports.get = function (done) {
             },
             {
                 id: "c645ab72-4030-4e71-aac7-bd6606ed94cd",
-                title: "wronger blepharohematidrosis",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "88 SEK",
-                duration: 160,
-                temp_rec: 12,
-                lat: 12.9248,
-                lng: 53.4786,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&088846",
+                title: "Gröna Lund",
+                description: "Seasonal amusement park with roller coasters & thrill rides, competitive games & live concerts.",
+                price: "120 SEK",
+                duration: 240,
+                temp_rec: 20,
+                lat: 59.3233564,
+                lng: 18.094196,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Gr%C3%B6na_Lund_2016-07.jpg/250px-Gr%C3%B6na_Lund_2016-07.jpg",
                 tag: "amusement"
             },
             {
