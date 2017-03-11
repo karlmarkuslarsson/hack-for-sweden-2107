@@ -11,6 +11,7 @@ import sweden.hack.userinfo.Constants;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.Departures;
 import sweden.hack.userinfo.models.sl.Deviations;
+import sweden.hack.userinfo.models.sl.SLTrip;
 import sweden.hack.userinfo.models.sl.SearchStation;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.request.CallRequest;
@@ -98,6 +99,20 @@ public class SLApi {
 
         Call<SearchStation> call = mApi.searchPlace(
                 Constants.SL_PLACE_SEARCH_KEY, search, maxResults, true);
+
+        new CallRequest<>(call, callbackListener).execute();
+    }
+
+    public void getTrip(String originLat,
+                        String originLng,
+                        String originName,
+                        String destLat,
+                        String destLng,
+                        String destName,
+                        final Callback<SLTrip> callbackListener) {
+
+        Call<SLTrip> call = mApi.getTrip(
+                Constants.SL_PLANNER, originLat, originLng, originName, destLat, destLng, destName);
 
         new CallRequest<>(call, callbackListener).execute();
     }

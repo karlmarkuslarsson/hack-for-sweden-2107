@@ -10,6 +10,7 @@ import java.util.List;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.base.MainCard;
+import sweden.hack.userinfo.viewholders.SLAirportTripViewHolder;
 import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
 import sweden.hack.userinfo.viewholders.main.EventViewHolder;
 import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
@@ -59,6 +60,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new PhrasesViewHolder(inflater.inflate(R.layout.card_phrases, parent, false));
             case MainCard.TYPE_EVENT:
                 return new EventViewHolder(inflater.inflate(R.layout.card_event, parent, false));
+            case MainCard.TYPE_SL_AIRPORT_TRIP:
+                return new SLAirportTripViewHolder(inflater.inflate(R.layout.card_sl_airport_trip, parent, false));
         }
         return null;
     }

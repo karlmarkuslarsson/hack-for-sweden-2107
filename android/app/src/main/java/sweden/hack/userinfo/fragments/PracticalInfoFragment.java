@@ -4,9 +4,9 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 
 import java.util.List;
-import java.util.Timer;
 
 import sweden.hack.userinfo.Cache;
+import sweden.hack.userinfo.Constants;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.CardComponent;
@@ -14,6 +14,7 @@ import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.phrases.Phrases;
 import sweden.hack.userinfo.models.sl.ClosestStations;
+import sweden.hack.userinfo.models.sl.SLTrip;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
@@ -22,6 +23,7 @@ import sweden.hack.userinfo.objects.CurrencyCard;
 import sweden.hack.userinfo.objects.InternetCard;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
+import sweden.hack.userinfo.objects.main.SLAirportCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import timber.log.Timber;
@@ -33,6 +35,7 @@ public class PracticalInfoFragment extends BaseFragment {
         mAdapter.reset();
         //addSLCard();
         getAllData();
+        addSLAirportCard();
 
 //        addInternetCard();
 
@@ -93,6 +96,28 @@ public class PracticalInfoFragment extends BaseFragment {
 
             }
         };
+    }
+
+    private void addSLAirportCard() {
+        SLApi.sharedInstance().getTrip(
+                Constants.ARLANDA_LAT,
+                Constants.ARLANDA_LNG,
+                "arlanda",
+                Constants.CENTRALEN_LAT,
+                Constants.CENTRALEN_LNG,
+                "centralen",
+                new Callback<SLTrip>() {
+                    @Override
+                    public void onSuccess(@NonNull APIResponse<SLTrip> response) {
+                        SLTrip trip = response.getContent();
+                        mAdapter.addCard(new SLAirportCard(trip));
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull APIResponse<SLTrip> response) {
+
+                    }
+                });
     }
 
     private void addSLCard() {

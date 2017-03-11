@@ -6,6 +6,7 @@ import retrofit2.http.Query;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.Departures;
 import sweden.hack.userinfo.models.sl.Deviations;
+import sweden.hack.userinfo.models.sl.SLTrip;
 import sweden.hack.userinfo.models.sl.SearchStation;
 
 public interface SLInterface {
@@ -42,4 +43,15 @@ public interface SLInterface {
             @Query("searchstring") String searchString,
             @Query("maxresults") int maxResults,
             @Query("StationsOnly") boolean stationsOnly);
+
+    @GET("TravelplannerV2/trip.json")
+    Call<SLTrip> getTrip(
+            @Query("key") String key,
+            @Query("originCoordLat") String originLat,
+            @Query("originCoordLong") String originLng,
+            @Query("originCoordName") String originName,
+            @Query("destCoordLat") String destLat,
+            @Query("destCoordLong") String destLng,
+            @Query("destCoordName") String destName);
+
 }
