@@ -55,7 +55,7 @@ public class TodoFragment extends BaseFragment {
             public void onFailure(@NonNull APIResponse<List<CardComponent>> response) {
                 Timber.d(response.toString());
             }
-        }, "USD");
+        }, "2017-01-01");
     }
 
     private void addEventCard(Event card) {
