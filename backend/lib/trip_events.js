@@ -353,6 +353,13 @@ exports.get = function (done) {
                 description: "Burger and Lobster: serving wild live lobster and corn fed Nebraskan beef burgers since 2011. ",
                 img: "http://www.stockholmfoodie.com/wp-content/uploads/2015/06/img_35681.jpg"
             }
+            ,
+            {
+                id: "09e8aaba-e368-427f-8e11-12e05d3f0caf",
+                title: "Gute Grill",
+                description: "Steakhouse and barbecue restaurant",
+                img: "http://stockholmfood.alltomstockholm.se/wp-content/uploads/sites/3/2015/10/DSCF6677.jpg"
+            }
         ]
     })
 };
