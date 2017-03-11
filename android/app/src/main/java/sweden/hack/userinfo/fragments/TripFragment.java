@@ -80,6 +80,7 @@ public class TripFragment extends Fragment {
     }
 
     private void reloadData() {
+        mAdapter.reset();
         mUpdateDataOnLoad = true;
         loadData();
     }
