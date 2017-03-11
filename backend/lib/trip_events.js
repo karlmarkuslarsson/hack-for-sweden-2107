@@ -175,6 +175,19 @@ exports.get = function (done) {
                 img: "https://s3-media1.fl.yelpcdn.com/bphoto/BCju8NQ8i9vBz3jp46uMRg/o.jpg",
                 tag: "adventure"
             }
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "boat sightseeing",
+                description: "A nice way to see Stockholm in the summer is to take a hop-on-hop-off boat trip",
+                price: "150 SEK",
+                duration: 60,
+                temp_rec: 15,
+                lat: 59.3322116,
+                lng: 18.0748544,
+                img: "http://www.stromma.se/link/0f9e3c74afa0443fb467fb820179a664.aspx?id=1906&epslanguage=sv",
+                tag: "sightseeing"
+            }
+
         ],
         restaurants: [
             {
