@@ -4,6 +4,7 @@
     <string name="button_start">Start</string>
     <string name="name_length_error">Can´t be empty</string>
 
+    <string name="main_tab_trip">Trip</string>
     <string name="main_tab_practical_info">Practical info</string>
     <string name="main_tab_todo">Todo</string>
     <string name="main_tab_about">About</string>
