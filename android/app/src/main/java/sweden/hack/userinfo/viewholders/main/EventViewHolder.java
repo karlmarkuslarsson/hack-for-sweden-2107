@@ -24,6 +24,6 @@ public class EventViewHolder extends MainViewHolder<EventCard> {
     @Override
     public void init(EventCard card, MainCardListener listener) {
         mTextTitle.setText(card.getEvent().getTitle());
-        mTextDate.setText(card.getEvent().getDate());
+        mTextDate.setText(card.getEvent().getDescription());
     }
 }
