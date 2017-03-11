@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/karlmarkuslarsson/hack-for-sweden-2107",
   "dependencies": {
+    "alasql": "^0.3.7",
     "express": "^4.15.0",
     "request": "^2.80.0"
   }
