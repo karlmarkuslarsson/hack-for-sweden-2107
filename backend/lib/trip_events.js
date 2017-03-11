@@ -244,6 +244,19 @@ exports.get = function (done) {
                 img: "https://cdn.theculturetrip.com/images/56-3928702-14400733267e6d5ecfb96244c49c7c5c32bc2f3137.jpg",
                 tag: "sightseeing"
             }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Gärdet",
+                description: "All Stockholmers favourite parks to visit on weekends",
+                price: "0 SEK",
+                duration: 60,
+                temp_rec: 20,
+                lat: 59.3424934,
+                lng: 18.0812583,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG/500px-Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG",
+                tag: "nature"
+            }
 
 
         ],
