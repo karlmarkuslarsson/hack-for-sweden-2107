@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import sweden.hack.userinfo.models.CardComponent;
+import sweden.hack.userinfo.models.myTrip.MyTrip;
 
 public interface PracticalInfoInterface {
 
@@ -14,4 +15,7 @@ public interface PracticalInfoInterface {
 
     @GET("/todo")
     Call<List<CardComponent>> getTodoList(@Query("date") String from, @Query("to") String to);
+
+    @GET("/trip")
+    Call<MyTrip> getTripList();
 }
