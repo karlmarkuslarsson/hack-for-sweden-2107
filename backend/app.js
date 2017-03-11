@@ -85,7 +85,7 @@ app.get('/todo', function (req, res) {
                 events: resp.events.event.map(evt => {
                     return {
                         title: evt.title,
-                        description: evt.description.trim(),
+                        description: evt.description ? evt.description.trim() : null,
                         image: evt.image ? evt.image.url : null
                     }
                 })

@@ -4,14 +4,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class Event {
 
-    @SerializedName("start_time")
-    private String mDate;
+    @SerializedName("image")
+    private String mImage;
+
+    @SerializedName("description")
+    private String mDescription;
 
     @SerializedName("title")
     private String mTitle;
 
-    public String getDate() {
-        return mDate;
+    public String getImage() {
+        return mImage;
+    }
+
+    public String getDescription() {
+        return mDescription;
     }
 
     public String getTitle() {
