@@ -99,8 +99,8 @@ exports.get = function (done) {
                 price: "80 SEK",
                 duration: 160,
                 temp_rec: 14,
-                lat: 13.3919,
-                lng: 53.1857,
+                lat: 59.3274506,
+                lng: 18.0543456,
                 img: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Stockholms_stadshus_september_2011.jpg",
                 tag: "amusement"
             },
