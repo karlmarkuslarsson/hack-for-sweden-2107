@@ -18,6 +18,6 @@ public class TripTransportationViewHolder extends MainViewHolder<TripTransportat
 
     @Override
     public void init(TripTransportationCard card, MainCardListener listener) {
-
+        mTransportationTime.setText(card.getTransportTime());
     }
 }

@@ -132,7 +132,7 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        mAdapter.addCard(new TripFoodCard(restaurant));
+                        mAdapter.addCard(new TripFoodCard(restaurant, "13.00"));
                         break;
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
@@ -142,10 +142,10 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        mAdapter.addCard(new TripPlaceCard(event));
+                        mAdapter.addCard(new TripPlaceCard(event, "11.00"));
                         break;
                     case TRANSFER:
-                        mAdapter.addCard(new TripTransportationCard());
+                        mAdapter.addCard(new TripTransportationCard("10 min"));
                         break;
                 }
             }

@@ -15,18 +15,24 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripFoodCard> {
     private final ImageView mImage;
     private final TextView mTitle;
     private final TextView mDescription;
+    private final TextView mTag;
+    private final TextView mStartTime;
 
     public TripFoodPlaceViewHolder(View itemView) {
         super(itemView);
         mImage = (ImageView) itemView.findViewById(R.id.image);
         mTitle = (TextView) itemView.findViewById(R.id.title);
         mDescription = (TextView) itemView.findViewById(R.id.description);
+        mTag = (TextView) itemView.findViewById(R.id.tag);
+        mStartTime = (TextView) itemView.findViewById(R.id.start_time);
     }
 
     @Override
     public void init(TripFoodCard card, MainCardListener listener) {
         mTitle.setText(card.getTripRestaurant().getTitle());
         mDescription.setText(card.getTripRestaurant().getDescription());
+        mTag.setText("restaurant");
+        mStartTime.setText(card.getStartTime());
         Glide.with(itemView.getContext())
                 .load(card.getTripRestaurant().getImage())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)

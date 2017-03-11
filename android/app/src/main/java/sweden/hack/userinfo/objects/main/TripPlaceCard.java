@@ -6,8 +6,10 @@ import sweden.hack.userinfo.objects.main.base.MainCard;
 public class TripPlaceCard extends MainCard {
 
     private final MyTripEvent mTripEvent;
+    private String mStartTime;
 
-    public TripPlaceCard (MyTripEvent tripRestaurant) {
+    public TripPlaceCard(MyTripEvent tripRestaurant, String startTime) {
+        mStartTime = startTime;
         mTripEvent = tripRestaurant;
     }
 
@@ -18,5 +20,9 @@ public class TripPlaceCard extends MainCard {
 
     public MyTripEvent getTripEvent() {
         return mTripEvent;
+    }
+
+    public String getStartTime() {
+        return mStartTime;
     }
 }
