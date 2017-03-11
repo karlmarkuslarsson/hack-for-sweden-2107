@@ -59,7 +59,6 @@ public class StartActivity extends AppCompatActivity {
             }
         } else {
             onValidDate(null);
-            startMainActivity();
         }
     }
 
