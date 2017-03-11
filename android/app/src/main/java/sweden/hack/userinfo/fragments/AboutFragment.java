@@ -5,14 +5,12 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 import sweden.hack.userinfo.fragments.base.BaseFragment;
-import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
-import sweden.hack.userinfo.objects.main.GenderCard;
 import sweden.hack.userinfo.objects.main.IncomeCard;
 import sweden.hack.userinfo.objects.main.PopulationCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
@@ -23,7 +21,6 @@ public class AboutFragment extends BaseFragment {
     @Override
     protected void reloadData() {
         mAdapter.reset();
-        addGenderCard();
         addPopulationCard();
         addIncomeCard();
         // network requests...
@@ -70,10 +67,6 @@ public class AboutFragment extends BaseFragment {
 
             }
         });
-    }
-
-    private void addGenderCard() {
-        mAdapter.addCard(new GenderCard(DataHelper.getUserPersonNumber()));
     }
 
 }

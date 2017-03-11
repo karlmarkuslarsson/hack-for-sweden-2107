@@ -41,8 +41,6 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         // Create view holder associated with the view type.
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case MainCard.TYPE_GENDER:
-                return new GenderViewHolder(inflater.inflate(R.layout.card_gender, parent, false));
             case MainCard.TYPE_POPULATION:
                 return new PopulationViewHolder(inflater.inflate(R.layout.card_population, parent, false));
             case MainCard.TYPE_INCOME:

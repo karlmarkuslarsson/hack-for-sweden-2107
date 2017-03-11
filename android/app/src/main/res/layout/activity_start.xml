@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/city_bg"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:fitsSystemWindows="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:text="Welcome to Stockholm"
+            android:textColor="#e4ba00"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background">
+
+            <EditText xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_login_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="YYYYMMDD"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="10"
+                tools:text="20170323" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/activity_start_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="20dp"
+            android:text="@string/button_start"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+</ScrollView>
