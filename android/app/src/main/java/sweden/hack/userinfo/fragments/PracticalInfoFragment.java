@@ -6,10 +6,14 @@ import android.support.annotation.NonNull;
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
+import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.network.Callback;
+import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
 import sweden.hack.userinfo.network.sl.SLApi;
+import sweden.hack.userinfo.objects.CurrencyCard;
+import sweden.hack.userinfo.objects.InternetCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
@@ -18,8 +22,28 @@ public class PracticalInfoFragment extends BaseFragment {
     @Override
     protected void reloadData() {
         mAdapter.reset();
-        addSLCard();
+        //addSLCard();
+        addCurrencyCard();
+        addInternetCard();
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void addInternetCard() {
+        mAdapter.addCard(new InternetCard());
+    }
+
+    private void addCurrencyCard() {
+        HackOfSwedenApi.sharedInstance().getCurrency("USD", "1", "SEK", new Callback<Currency>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<Currency> response) {
+                mAdapter.addCard(new CurrencyCard(response.getContent()));
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<Currency> response) {
+
+            }
+        });
     }
 
     @Override

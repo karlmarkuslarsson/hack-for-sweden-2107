@@ -9,8 +9,10 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
+import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.population.Population;
+import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
 import sweden.hack.userinfo.network.interfaces.IncomeInterface;
 import sweden.hack.userinfo.network.interfaces.PopulationInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
@@ -24,6 +26,7 @@ public class HackOfSwedenApi {
     private static HackOfSwedenApi sSharedInstance;
     private PopulationInterface mPopulationApi;
     private IncomeInterface mIncomeApi;
+    private CurrencyInterface mCurrencyApi;
 
     public static HackOfSwedenApi sharedInstance() {
 
@@ -59,6 +62,7 @@ public class HackOfSwedenApi {
 
         mPopulationApi = retrofit.create(PopulationInterface.class);
         mIncomeApi = retrofit.create(IncomeInterface.class);
+        mCurrencyApi = retrofit.create(CurrencyInterface.class);
     }
 
     public void getPopulation(final Callback<List<Population>> callbackListener) {
@@ -70,5 +74,11 @@ public class HackOfSwedenApi {
     public void getIncome(final Callback<List<Income>> callbackListener) {
         Call<List<Income>> call = mIncomeApi.getIncome();
         new CallRequest<>(call, callbackListener).execute();
+    }
+
+    public void getCurrency(String fromCurrency, String value, String toCurrency, final Callback<Currency> callbackListener) {
+        Call<Currency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
+        new CallRequest<>(call, callbackListener).execute();
+
     }
 }

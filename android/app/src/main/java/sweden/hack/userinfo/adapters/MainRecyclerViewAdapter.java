@@ -10,8 +10,10 @@ import java.util.List;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.base.MainCard;
+import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
 import sweden.hack.userinfo.viewholders.main.GenderViewHolder;
 import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
+import sweden.hack.userinfo.viewholders.main.InternetViewHolder;
 import sweden.hack.userinfo.viewholders.main.MainViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
@@ -47,6 +49,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new WeatherViewHolder(inflater.inflate(R.layout.card_weather, parent, false));
             case MainCard.TYPE_SL_CLOSEST_STATIONS:
                 return new SLClosestStationsViewHolder(inflater.inflate(R.layout.card_sl_closest_stations, parent, false));
+            case MainCard.TYPE_CURRENCY:
+                return new CurrencyViewHolder(inflater.inflate(R.layout.card_currency, parent, false));
+            case MainCard.TYPE_INTERNET:
+                return new InternetViewHolder(inflater.inflate(R.layout.card_internet, parent, false));
         }
         return null;
     }
