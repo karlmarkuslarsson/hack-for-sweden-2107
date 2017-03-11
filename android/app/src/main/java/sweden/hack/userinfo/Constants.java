@@ -1,9 +1,9 @@
 package sweden.hack.userinfo;
 
 public class Constants {
-    public static final String USER_PERSON_NUMER = "prefPersonNumber";
-    public static final String USER_FIRST_NAME = "prefFirstName";
-    public static final String USER_SURNAME = "prefSurname";
+
+    public static final String USER_TRIP_DATE = "prefTripDate";
+    public static final String USER_HAS_STARTED = "prefHasStarted";
 
     // SL - API
     public static final String SL_BASE_URL = "http://api.sl.se/api2/";

@@ -16,4 +16,6 @@ public interface PracticalInfoInterface {
     @GET("/practical")
     Call<List<CardComponent>> getPracticalInfo(@Query("currency") String currency);
 
+    @GET("/todo")
+    Call<List<CardComponent>> getTodoList(@Query("date") String date);
 }

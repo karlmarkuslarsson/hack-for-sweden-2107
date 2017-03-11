@@ -14,6 +14,7 @@ public abstract class MainCard {
     public static final int TYPE_INTERNET = 7;
     public static final int TYPE_HOLIDAYS = 8;
     public static final int TYPE_PHRASES = 9;
+    public static final int TYPE_EVENT = 10;
 
     public abstract int getViewType();
 }

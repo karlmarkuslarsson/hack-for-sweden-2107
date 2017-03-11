@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Userinfo</string>
+    <string name="app_name">Welcome to STKHLM</string>
+
     <string name="button_start">Start</string>
     <string name="name_length_error">Can´t be empty</string>
+
     <string name="main_tab_practical_info">Practical info</string>
     <string name="main_tab_todo">Todo</string>
     <string name="main_tab_about">About</string>
@@ -13,5 +15,7 @@
     <string name="transportaion_tram">Tram</string>
     <string name="transportaion_ship">Ship</string>
     <string name="transportaion_unknown">Unknown</string>
+    <string name="when_are_you_going_yyyy_mm_dd">When are you going? (yyyy-mm-dd)</string>
+    <string name="input_invalid_date">Please use format YYYY-MM-DD</string>
 
 </resources>

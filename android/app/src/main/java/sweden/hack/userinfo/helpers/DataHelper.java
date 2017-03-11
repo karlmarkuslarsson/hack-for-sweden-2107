@@ -1,30 +1,66 @@
 package sweden.hack.userinfo.helpers;
 
+import android.location.Location;
+
+import org.joda.time.LocalDate;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.Storage;
 
-public class DataHelper {
-    public static void setUserPersonNumber(String personNumber) {
-        Cache.sharedInstance().setUserPersonNumber(personNumber);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_PERSON_NUMER, personNumber);
+public class DataHelper implements Storage {
+
+    @Override
+    public void setLocation(Location location) {
+        throw new RuntimeException("Not implemented!");
     }
 
-    public static void setFirstName(String firstName) {
-        Cache.sharedInstance().setUserFirstName(firstName);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_FIRST_NAME, firstName);
+    @Override
+    public Location getLocation() {
+        throw new RuntimeException("Not implemented!");
     }
 
-    public static void setSurname(String surname) {
-        Cache.sharedInstance().setUserLastName(surname);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_SURNAME, surname);
+    @Override
+    public LocalDate getTripDate() {
+        LocalDate date = Cache.sharedInstance().getTripDate();
+        return date == null
+                ? tryReadDate(SharedPrefsHelper.sharedInstance()
+                    .getPreference(Constants.USER_TRIP_DATE, ""))
+                : date;
     }
 
-    public static String getUserPersonNumber() {
-        String userPersonNumber = Cache.sharedInstance().getPersonNumber();
-        if (userPersonNumber == null) {
-            userPersonNumber = SharedPrefsHelper.sharedInstance()
-                    .getPreference(Constants.USER_PERSON_NUMER, (String) null);
+    private static LocalDate tryReadDate(String date) {
+        try {
+            return LocalDate.parse(date);
+        } catch (IllegalArgumentException e) {
+            return null;
         }
-        return userPersonNumber;
+    }
+
+    @Override
+    public void setTripDate(LocalDate tripDate) {
+        Cache.sharedInstance().setTripDate(tripDate);
+        SharedPrefsHelper.sharedInstance()
+                .setPreference(Constants.USER_TRIP_DATE, tripDate.toString());
+    }
+
+    @Override
+    public void hasStarted(boolean hasStarted) {
+        Cache.sharedInstance().hasStarted(hasStarted);
+        SharedPrefsHelper.sharedInstance()
+                .getPreference(Constants.USER_HAS_STARTED, false);
+    }
+
+    @Override
+    public boolean hasStarted() {
+        return false;
+    }
+
+    public static void clear() {
+        SharedPrefsHelper.sharedInstance().clearAllPreferences();
+        Storage storage = Cache.sharedInstance();
+        storage.hasStarted(false);
+        storage.setTripDate(null);
+        storage.setLocation(null);
     }
 }

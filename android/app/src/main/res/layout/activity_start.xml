@@ -32,10 +32,10 @@
             android:background="@color/cardview_light_background">
 
             <EditText xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/activity_login_input"
+                android:id="@+id/activity_start_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="YYYYMMDD"
+                android:hint="@string/when_are_you_going_yyyy_mm_dd"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="10"

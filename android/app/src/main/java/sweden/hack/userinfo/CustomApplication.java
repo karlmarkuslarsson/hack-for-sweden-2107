@@ -10,7 +10,7 @@ public class CustomApplication extends Application {
 
     private static CustomApplication sSharedInstance;
 
-    private Cache mCache;
+    private Storage mCache;
 
     public CustomApplication() {
     }

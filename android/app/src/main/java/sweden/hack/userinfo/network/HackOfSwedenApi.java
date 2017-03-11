@@ -39,7 +39,7 @@ public class HackOfSwedenApi {
     private HolidayInterface mHolidayApi;
     private PhrasesInterface mPhrasesApi;
 
-    private PracticalInfoInterface mPracticalInfoApi;
+    private PracticalInfoInterface mAllApi;
 
     public static HackOfSwedenApi sharedInstance() {
 
@@ -82,7 +82,7 @@ public class HackOfSwedenApi {
         mHolidayApi = retrofit.create(HolidayInterface.class);
         mPhrasesApi = retrofit.create(PhrasesInterface.class);
 
-        mPracticalInfoApi = retrofit.create(PracticalInfoInterface.class);
+        mAllApi = retrofit.create(PracticalInfoInterface.class);
     }
 
     public void getPopulation(final Callback<List<Population>> callbackListener) {
@@ -113,7 +113,12 @@ public class HackOfSwedenApi {
     }
 
     public void getPracticalInfo(Callback<List<CardComponent>> callback, String currency) {
-        Call<List<CardComponent>> call = mPracticalInfoApi.getPracticalInfo(currency);
+        Call<List<CardComponent>> call = mAllApi.getPracticalInfo(currency);
+        new CallRequest<>(call, callback).execute();
+    }
+
+    public void getTodoList(Callback<List<CardComponent>> callback, String date) {
+        Call<List<CardComponent>> call = mAllApi.getTodoList(date);
         new CallRequest<>(call, callback).execute();
     }
 }

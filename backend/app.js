@@ -40,79 +40,62 @@ function must(req, res, key, name) {
 }
 
 // all?currency=USD&date=2017-01-01
-app.get('/all', function (req, res) {
+app.get('/practical', function (req, res) {
     const currency = must(req, res, "currency", "currency USD, NOK, DKK, ...");
-    const date = req.query.date;
-    const out = {
-        practical: [
-            {
-                type: "phrase",
-                phrases: [
-                    "Hello -> Hej",
-                    "Bye -> Hejdå"
-                ]
-            },
-            {
-                type: "holiday",
-                weekday: "sunday",
-                date: "2017-01-02",
-                name: "Juldagen"
-            },
-            {
-                type: "holiday",
-                weekday: "saturday",
-                date: "2017-01-01",
-                name: "Julafton"
-            },
-            {
-                type: "currency",
-                text: "1 " + currency + " = 42 SEK"
-            }
-        ],
-        todo: [
-            {
-                type: "event",
-                date: (date || "0000-00-00"),
-                title: "Concert 1"
-            },
-            {
-                type: "event",
-                date: "2017-02-03",
-                title: "Concert 2"
-            }
-        ]
-    };
-
-    res.send(out);
-});
-
-
-// from_currency= from_value to_currency
-app.get('/currency', function (req, res) {
-    let out = {};
-    const query = req.query;
-    out['value'] = "1 USD = 42 SEK";
-    out['to_currency'] = must(req, res, "to_currency", "currency");
-    out['from_value'] = must(req, res, "from_value", "number");
-    out['from_currency'] = must(req, res, "from_currency", "currency");
-    res.send(out);
-});
-
-// date=20170101
-app.get('/holidays', function (req, res) {
-    let out = {};
-    out['date'] = must(req, res, "date", "Date");
-    out['holidays'] = [
+    const out = [
         {
-            date: "20171031",
-            date_text: "31 oktober",
-            name: "Halloween 2017",
-            weekday: "Måndag"
+            type: "phrase",
+            phrases: [
+                "Hello -> Hej",
+                "Bye -> Hejdå"
+            ]
+        },
+        {
+            type: "holidays",
+            holidays: [
+                {
+                    weekday: "sunday",
+                    date: "2017-01-02",
+                    name: "Juldagen"
+                },
+                {
+                    weekday: "saturday",
+                    date: "2017-01-01",
+                    name: "Julafton"
+                }
+            ]
+        },
+        {
+            type: "currency",
+            text: "1 " + currency + " = 42 SEK"
         }
     ];
     res.send(out);
 });
 
+app.get('/todo', function (req, res) {
+    const date = req.query.date;
+    const out = [
+        {
+            type: "event",
+            date: (date || "0000-00-00"),
+            title: "Concert 1"
+        },
+        {
+            type: "event",
+            date: "2017-02-03",
+            title: "Concert 2"
+        }
+    ];
+    res.send(out);
+});
+
+app.get('/all', function (req, res) {
+    const out = {
+        text: "stuff.."
+    };
+    res.send(out);
+});
 
 app.listen(PORT, function () {
   console.log('App started on port', PORT);
