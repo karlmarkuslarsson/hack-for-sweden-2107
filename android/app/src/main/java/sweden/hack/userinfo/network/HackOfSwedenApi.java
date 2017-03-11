@@ -10,10 +10,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.models.currency.Currency;
+import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.income.Income;
+import sweden.hack.userinfo.models.phrases.Phrases;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
+import sweden.hack.userinfo.network.interfaces.HolidayInterface;
 import sweden.hack.userinfo.network.interfaces.IncomeInterface;
+import sweden.hack.userinfo.network.interfaces.PhrasesInterface;
 import sweden.hack.userinfo.network.interfaces.PopulationInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
 
@@ -27,6 +31,8 @@ public class HackOfSwedenApi {
     private PopulationInterface mPopulationApi;
     private IncomeInterface mIncomeApi;
     private CurrencyInterface mCurrencyApi;
+    private HolidayInterface mHolidayApi;
+    private PhrasesInterface mPhrasesApi;
 
     public static HackOfSwedenApi sharedInstance() {
 
@@ -55,7 +61,7 @@ public class HackOfSwedenApi {
         OkHttpClient client = builder.build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://hack-for-sweden.filiplindqvist.com:3000")
+                .baseUrl("http://188.166.26.118:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
@@ -63,6 +69,8 @@ public class HackOfSwedenApi {
         mPopulationApi = retrofit.create(PopulationInterface.class);
         mIncomeApi = retrofit.create(IncomeInterface.class);
         mCurrencyApi = retrofit.create(CurrencyInterface.class);
+        mHolidayApi = retrofit.create(HolidayInterface.class);
+        mPhrasesApi = retrofit.create(PhrasesInterface.class);
     }
 
     public void getPopulation(final Callback<List<Population>> callbackListener) {
@@ -80,5 +88,15 @@ public class HackOfSwedenApi {
         Call<Currency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
         new CallRequest<>(call, callbackListener).execute();
 
+    }
+
+    public void getHolidays(String date, Callback<Holidays> callback) {
+        Call<Holidays> call = mHolidayApi.getHolidays(date);
+        new CallRequest<>(call, callback).execute();
+    }
+
+    public void getPhrases(Callback<Phrases> callback) {
+        Call<Phrases> call = mPhrasesApi.getPhrases();
+        new CallRequest<>(call, callback).execute();
     }
 }

@@ -12,6 +12,8 @@ public abstract class MainCard {
     public static final int TYPE_SL_CLOSEST_STATIONS = 5;
     public static final int TYPE_CURRENCY = 6;
     public static final int TYPE_INTERNET = 7;
+    public static final int TYPE_HOLIDAYS = 8;
+    public static final int TYPE_PHRASES = 9;
 
     public abstract int getViewType();
 }

@@ -12,9 +12,11 @@ import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
 import sweden.hack.userinfo.viewholders.main.GenderViewHolder;
+import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
 import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
 import sweden.hack.userinfo.viewholders.main.InternetViewHolder;
 import sweden.hack.userinfo.viewholders.main.MainViewHolder;
+import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
 import sweden.hack.userinfo.viewholders.main.WeatherViewHolder;
@@ -53,6 +55,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new CurrencyViewHolder(inflater.inflate(R.layout.card_currency, parent, false));
             case MainCard.TYPE_INTERNET:
                 return new InternetViewHolder(inflater.inflate(R.layout.card_internet, parent, false));
+            case MainCard.TYPE_HOLIDAYS:
+                return new HolidaysViewHolder(inflater.inflate(R.layout.card_holidays, parent, false));
+            case MainCard.TYPE_PHRASES:
+                return new PhrasesViewHolder(inflater.inflate(R.layout.card_phrases, parent, false));
         }
         return null;
     }
