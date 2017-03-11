@@ -92,6 +92,7 @@ public class TripFragment extends Fragment {
         HackOfSwedenApi.sharedInstance().getTripList(new Callback<MyTrip>() {
             @Override
             public void onSuccess(@NonNull APIResponse<MyTrip> response) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 Cache.sharedInstance().setMyTrip(response.getContent());
                 mMyTripData = response.getContent();
                 if (mUpdateDataOnLoad) {
