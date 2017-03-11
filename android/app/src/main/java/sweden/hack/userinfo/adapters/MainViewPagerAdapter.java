@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.fragments.AboutMeFragment;
+import sweden.hack.userinfo.fragments.NearFragment;
+import sweden.hack.userinfo.fragments.TodayFragment;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public MainViewPagerAdapter(FragmentManager fm) {
@@ -23,10 +25,10 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment;
         switch (position) {
             case 0:
-                fragment = new AboutMeFragment();
+                fragment = new TodayFragment();
                 break;
             case 1:
-                fragment = new AboutMeFragment();
+                fragment = new NearFragment();
                 break;
             case 2:
             default:
