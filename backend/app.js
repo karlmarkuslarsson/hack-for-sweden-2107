@@ -69,11 +69,30 @@ app.get('/trip-debug', function (req, res) {
             ].join('');
         });
 
+        const restaurantsHtml = data.restaurants.map(evt => {
+            return [
+                "<div>",
+                "<table>",
+                "<tr>",
+                "<td>",
+                `<img height='150' width='150' src='${evt.img}' />`,
+                "</td>",
+                "<td>",
+                `<h3>${evt.title}</h3>`,
+                `<p>${evt.description}</p>`,
+                "</td>",
+                "</tr>",
+                "</table>",
+                "</div>"
+            ].join('');
+        });
 
         const content = [
             '<html>',
             '<h1>Events</h1>',
             eventsHtml.join(''),
+            '<h1>Restaurants</h1>',
+            restaurantsHtml.join(''),
             '</html>'
         ];
         res.send(content.join(''))
