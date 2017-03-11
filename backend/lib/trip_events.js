@@ -65,7 +65,7 @@ exports.get = function (done) {
                 temp_rec: 0,
                 lat: 59.301238,
                 lng: 18.10926,
-                img: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Hammarbybacken_january_2012.jpg",
+                img: "http://media.swedentips.se/2016/01/hammarbybacken_stockholm-696x521.jpg",
                 tag: "Adventure"
             },
             {
@@ -169,7 +169,7 @@ exports.get = function (done) {
                 temp_rec: 0,
                 lat: 59.336481,
                 lng: 18.062538,
-                img: "hhttp://www.proletaren.se/sites/default/files/styles/article_images_thumb/public/2_web_olof_palme.jpg?itok=P77RMT4B",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Olof_Palme_place_of_death.jpg/1280px-Olof_Palme_place_of_death.jpg",
                 tag: "spot"
             },
             {
@@ -205,7 +205,7 @@ exports.get = function (done) {
                 temp_rec: 15,
                 lat: 59.3322116,
                 lng: 18.0748544,
-                img: "http://www.stromma.se/link/0f9e3c74afa0443fb467fb820179a664.aspx?id=1906&epslanguage=sv",
+                img: "http://www.stromma.se/globalassets/sweden/stockholm/product_slideshows/sightseeing/boat/hopon_hopoff/01_ott_boat_1240x858.jpg",
                 tag: "sightseeing"
             },
             {
