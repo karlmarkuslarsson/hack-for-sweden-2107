@@ -164,7 +164,18 @@ exports.get = function (done) {
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Tekniska_museet_2008b.jpg/250px-Tekniska_museet_2008b.jpg",
                 tag: "museum"
             },
-
+            {
+                id: "ff4023da-8a60-4ecc-baf1-1a2e0e217ac1",
+                title: "Kaknästornet (Tower)",
+                description: "155m-high TV tower with an observation deck, 28th floor restaurant, 30th floor cafe-bar & gift shop.",
+                price: "70 SEK",
+                duration: 60,
+                temp_rec: 0,
+                lat: 59.3350448,
+                lng: 18.1246041,
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Kakn%C3%A4stornet_2008x.jpg/250px-Kakn%C3%A4stornet_2008x.jpg",
+                tag: "architecture"
+            },
 
 
 
