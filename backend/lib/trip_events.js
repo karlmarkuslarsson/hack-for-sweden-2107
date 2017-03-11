@@ -125,7 +125,7 @@ exports.get = function (done) {
                 temp_rec: 10,
                 lat: 59.3315207,
                 lng: 18.0695279,
-                img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQMvTWUczXbQsRrGHEHuJgJYTqsdJnWSlHkhuXNjt5vODKrLssn8g",
+                img: "http://www.stromma.se/globalassets/sweden/stockholm/product_slideshows/excursions/day_trips/vaxholm/01_skb_vaxholm_1240x858.jpg?preset=slidetour",
                 tag: "adventure"
             },
             {
@@ -137,7 +137,7 @@ exports.get = function (done) {
                 temp_rec: 0,
                 lat: 59.336481,
                 lng: 18.062538,
-                img: "https://www.google.se/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjb08eBsc_SAhUoD5oKHa7nDyMQjRwIBw&url=http%3A%2F%2Fwww.palmemordet.se%2F&psig=AFQjCNEeTEUhOXy_3VpVEZw5vJXQN0PKiQ&ust=1489353689482539",
+                img: "hhttp://www.proletaren.se/sites/default/files/styles/article_images_thumb/public/2_web_olof_palme.jpg?itok=P77RMT4B",
                 tag: "spot"
             }
         ],
