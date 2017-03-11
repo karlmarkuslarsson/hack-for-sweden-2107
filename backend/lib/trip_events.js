@@ -314,6 +314,12 @@ exports.get = function (done) {
                 title: "Urban Deli",
                 description: "The popular restaurant concept Urban Deli has expanded with a roof top bar at Sveavägen. At the 9th floor you find the green art park. Go for the food, the drinks, ...",
                 img: "http://thatsup.se/content/img/article/14/mar/f1888863dac9489ef2f7dbb1cf047d32.jpg"
+            },
+            {
+                id: "325abc99-c36d-472e-b402-1f4d9e040571",
+                title: "Ling Long",
+                description: "Ling Long pays homage to modern Asian cuisine with emphasis on quality Nordic ingredients. The restaurant is predominantly inspired the Sichuan province in China but also fuses influences from Bali and Singapore.",
+                img: "http://static.thatsup.co/content/img/place/l/i/ling-long-9.jpg"
             }
         ]
     })
