@@ -8,4 +8,7 @@
     <string name="login_first_name">First name</string>
     <string name="login_surname">Surname</string>
     <string name="name_length_error">Can´t be empty</string>
+    <string name="main_tab_today">Today</string>
+    <string name="main_tab_near">Near</string>
+    <string name="main_tab_about_me">About me</string>
 </resources>
