@@ -257,6 +257,19 @@ exports.get = function (done) {
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG/500px-Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG",
                 tag: "nature"
             }
+            ,
+            {
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Mallis",
+                description: "Scandinavias biggest shopping centers",
+                price: "0 SEK",
+                duration: 90,
+                temp_rec: 0,
+                lat: 59.3701864,
+                lng: 18.0033383,
+                img: "http://mallofscandinavia.se/-/media/Unibail/Country~o~SE/MallofScandinavia/Centrumbilder/Accessbild.ashx",
+                tag: "shopping"
+            }
 
 
         ],
