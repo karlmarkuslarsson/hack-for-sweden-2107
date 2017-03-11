@@ -81,28 +81,28 @@ exports.get = function (done) {
                 tag: "amusement"
             },
             {
-                id: "c5265da8-e3ee-459c-a236-9b9523fd6de2",
-                title: "peeress oligotokous",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "80 SEK",
-                duration: 160,
-                temp_rec: 1,
-                lat: 12.8682,
-                lng: 54.3725,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&feca5a",
-                tag: "amusement"
+                id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
+                title: "Boat trip to Vaxholm",
+                description: "Take the boat to Waxholm to discover the archipelago",
+                price: "140 SEK",
+                duration: 240,
+                temp_rec: 10,
+                lat: 59.3315207,
+                lng: 18.0695279,
+                img: "https://www.google.se/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjb08eBsc_SAhUoD5oKHa7nDyMQjRwIBw&url=http%3A%2F%2Fwww.palmemordet.se%2F&psig=AFQjCNEeTEUhOXy_3VpVEZw5vJXQN0PKiQ&ust=1489353689482539",
+                tag: "adventure"
             },
             {
                 id: "9d8a01f0-fc12-4d07-b237-5ba41495be1b",
-                title: "separateness monopodially",
-                description: "Zoo lorem ipsum dolor dim sum...",
-                price: "7 SEK",
-                duration:160,
-                temp_rec: 8,
-                lat: 13.2205,
-                lng: 54.7925,
-                img: "http://thecatapi.com/api/images/get?format=src&type=png&d5e9df",
-                tag: "amusement"
+                title: "Olof Palme Memorial",
+                description: "Swedens prime minister Olof Palme was murdered here 1986",
+                price: "0 SEK",
+                duration: 10,
+                temp_rec: 0,
+                lat: 59.336481,
+                lng: 18.062538,
+                img: "https://www.google.se/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjb08eBsc_SAhUoD5oKHa7nDyMQjRwIBw&url=http%3A%2F%2Fwww.palmemordet.se%2F&psig=AFQjCNEeTEUhOXy_3VpVEZw5vJXQN0PKiQ&ust=1489353689482539",
+                tag: "spot"
             }
         ],
         resturants: [
