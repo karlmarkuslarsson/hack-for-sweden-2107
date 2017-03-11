@@ -86,15 +86,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.main_menu_logout:
-                logout();
+            case R.id.main_menu_restart:
+                restart();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void logout() {
-        DataHelper.setUserPersonNumber(null);
+    private void restart() {
+        DataHelper.clear();
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
         finish();

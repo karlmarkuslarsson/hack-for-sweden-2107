@@ -4,7 +4,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-import sweden.hack.userinfo.Cache;
+import sweden.hack.userinfo.Storage;
 import timber.log.Timber;
 
 
@@ -14,9 +14,9 @@ import timber.log.Timber;
 
 public class GPSLocationListener implements LocationListener {
 
-    private final Cache mCache;
+    private final Storage mCache;
 
-    public GPSLocationListener(Cache cache) {
+    public GPSLocationListener(Storage cache) {
         mCache = cache;
     }
 
@@ -24,7 +24,7 @@ public class GPSLocationListener implements LocationListener {
     public void onLocationChanged(Location location) {
         Timber.d("New location: %s", location);
         if (location != null && location.getAccuracy() <= 100) {
-            mCache.saveLocation(location);
+            mCache.setLocation(location);
         }
     }
 
