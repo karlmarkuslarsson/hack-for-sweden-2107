@@ -346,6 +346,12 @@ exports.get = function (done) {
                 title: "Meatballs for the People",
                 description: "The classic Swedish meatball. The shop offers 14 kinds of meatballs made of ingredients like elk, beef and salmon.",
                 img: "http://static.thatsup.co/content/img/place/m/e/meatballs-for-the-people-5.jpg"
+            },
+            {
+                id: "325abc00-c36d-472e-b402-1e4d9e040571",
+                title: "Burgers & Lobsters",
+                description: "Burger and Lobster: serving wild live lobster and corn fed Nebraskan beef burgers since 2011. ",
+                img: "http://www.stockholmfoodie.com/wp-content/uploads/2015/06/img_35681.jpg"
             }
         ]
     })
