@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 
+const events = require('./lib/events');
 const sql = require('./lib/sql');
 const apis = ['befolk', 'inkomst', 'internet'];
 
@@ -74,20 +75,24 @@ app.get('/practical', function (req, res) {
 });
 
 app.get('/todo', function (req, res) {
-    const date = req.query.date;
-    const out = [
-        {
-            type: "event",
-            date: (date || "0000-00-00"),
-            title: "Concert 1"
-        },
-        {
-            type: "event",
-            date: "2017-02-03",
-            title: "Concert 2"
-        }
-    ];
-    res.send(out);
+    const to = req.query.to;
+    const from = req.query.from;
+
+    events.get(to, from, function (err, resp) {
+        res.send([
+            {
+                type: "events",
+                events: resp.events.event.map(evt => {
+                    return {
+                        title: evt.title,
+                        description: evt.description.trim(),
+                        image: evt.image ? evt.image.url : null
+                    }
+                })
+            }
+        ]);
+    });
+
 });
 
 app.get('/about', function (req, res) {
