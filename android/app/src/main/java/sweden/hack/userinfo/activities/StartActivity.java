@@ -13,8 +13,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
+import sweden.hack.userinfo.helpers.DataHelper;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Cache.sharedInstance().hasStarted()) {
+        if (DataHelper.hasStarted()) {
             startMainActivity();
             return;
         }
@@ -67,8 +67,8 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void onValidDate(LocalDate localDate) {
-        Cache.sharedInstance().setTripDate(localDate);
-        Cache.sharedInstance().hasStarted(true);
+        DataHelper.setTripDate(localDate);
+        DataHelper.hasStarted(true);
         startMainActivity();
     }
 
