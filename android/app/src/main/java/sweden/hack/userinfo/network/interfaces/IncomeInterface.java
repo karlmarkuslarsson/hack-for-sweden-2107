@@ -8,6 +8,6 @@ import sweden.hack.userinfo.models.income.Income;
 
 public interface IncomeInterface {
 
-    @GET("inkomst")
+    @GET("scb/inkomst")
     Call<List<Income>> getIncome();
 }

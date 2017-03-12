@@ -12,7 +12,7 @@ const PORT = process.env.NODE_PORT || 3000;
 
 apis.forEach(function (name) {
     const api = require(`./${name}`);
-    app.get('/' + name, function(req, res) {
+    app.get('/scb/' + name, function(req, res) {
         api.get(function(err, data) {
             sql.magic(req.query.query, res.send(data));
         });
