@@ -39,14 +39,25 @@ public class EventViewHolder extends MainViewHolder<EventCard> {
                 )
         );
         String description = card.getEvent().getDescription();
-        mTextDescription.setText(Html.fromHtml(
-                description == null ? "" : description
-        ));
+        if (description != null && !description.isEmpty()) {
+            mTextDescription.setVisibility(View.VISIBLE);
+            mTextDescription.setText(Html.fromHtml(
+                    description == null ? "" : description
+            ));
+        } else {
+            mTextDescription.setVisibility(View.GONE);
+        }
 
         String location = card.getEvent().getLocation();
-        mTextLocation.setText(Html.fromHtml(
-                location == null ? "" : location
-        ));
+        if (location != null && !location.isEmpty()) {
+            mTextLocation.setVisibility(View.VISIBLE);
+            mTextLocation.setText(Html.fromHtml(
+                    location == null ? "" : location
+            ));
+        } else {
+            mTextLocation.setVisibility(View.GONE);
+        }
+
         if (mImage != null) {
             mImage.setVisibility(View.VISIBLE);
             Glide.with(itemView.getContext())
