@@ -120,7 +120,7 @@ public class LocationHelper {
     }
 
     public static float getKilometerDistance(MyTripLatLng e1, MyTripLatLng e2) {
-        return getMeterDistance(e1, e2) / 1000.0f;
+        return ((float) getMeterDistance(e1, e2)) / 1000.0f;
     }
 
     public static int getMeterDistance(MyTripLatLng e1, MyTripLatLng e2) {
