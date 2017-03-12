@@ -209,9 +209,9 @@ public class TripFragment extends Fragment {
         }
         float kilometer = LocationHelper.getKilometerDistance(preTrip, nextTrip);
         if (kilometer < 10) {
-            return (int) (kilometer * 5);
+            return (int) (kilometer * 5 * 2);
         } else {
-            return (int) (kilometer * 2);
+            return (int) (kilometer * 2 * 2);
         }
     }
 
