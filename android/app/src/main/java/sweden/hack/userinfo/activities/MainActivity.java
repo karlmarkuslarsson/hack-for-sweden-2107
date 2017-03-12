@@ -1,9 +1,13 @@
 package sweden.hack.userinfo.activities;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.RemoteInput;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        sendNotification();
         setupViews();
         mLocationHelper = new LocationHelper(Cache.sharedInstance());
     }
@@ -94,6 +99,44 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void sendNotification() {
+        String KEY_TEXT_REPLY = "key_text_reply";
+        String replyLabel = "replay";
+        RemoteInput remoteInput = new RemoteInput.Builder(KEY_TEXT_REPLY)
+                .setLabel(replyLabel)
+                .build();
+
+        NotificationCompat.Action action =
+                new NotificationCompat.Action.Builder(0, "Okay", null)
+                        .addRemoteInput(remoteInput)
+                        .build();
+        NotificationCompat.Action action2 =
+                new NotificationCompat.Action.Builder(0,
+                        "Bad", null)
+                        .addRemoteInput(remoteInput)
+                        .build();
+        NotificationCompat.Action action3 =
+                new NotificationCompat.Action.Builder(0,
+                        "Awesome!", null)
+                        .addRemoteInput(remoteInput)
+                        .build();
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_ic_trans_arrow)
+                        .setContentTitle("How did you enjoy \"Skansen\"?")
+                        .addAction(action2)
+                        .addAction(action)
+                        .addAction(action3);
+
+
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+        mNotificationManager.notify(1, mBuilder.build());
     }
 
 }
