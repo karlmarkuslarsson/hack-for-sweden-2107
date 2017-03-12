@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
@@ -116,6 +117,8 @@ public class TripFragment extends Fragment {
             mDataHelper.setTripPaths(mTripPath);
         }
         for (TripPath tripPath : mTripPath) {
+            int startTime = 0;
+            int restaurantCounter = 0;
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
                 TripObject currentTrip = tripPath.getObjectList().get(i);
                 if (currentTrip == null) {
@@ -133,7 +136,13 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        mAdapter.addCard(new TripFoodCard(restaurant, "13.00"));
+                        mAdapter.addCard(new TripFoodCard(restaurant, getTimeFromTenOClock(startTime)));
+                        if (restaurantCounter == 0) {
+                            startTime += 60;
+                        } else {
+                            startTime += 120;
+                        }
+                        restaurantCounter++;
                         break;
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
@@ -143,16 +152,28 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        mAdapter.addCard(new TripPlaceCard(event, "11.00"));
+                        mAdapter.addCard(new TripPlaceCard(event, getTimeFromTenOClock(startTime)));
+                        startTime += event.getDuration();
                         break;
                     case TRANSFER:
                         if (i != tripPath.getObjectList().size() - 1) {
+                            startTime += 10;
                             mAdapter.addCard(new TripTransportationCard("10 min"));
                         }
                         break;
                 }
             }
         }
+    }
+
+    private String getTimeFromTenOClock(int startTime) {
+        int h = 10;
+        int min = 0;
+        int hours = startTime / 60;
+        int mins = startTime - hours * 60;
+        h += hours;
+        min += mins;
+        return String.format(Locale.US, "%02d:%02d", h, min);
     }
 
     protected MainCardListener getListener() {
