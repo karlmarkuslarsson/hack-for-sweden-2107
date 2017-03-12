@@ -334,7 +334,7 @@ public class LoaderActivity extends AppCompatActivity {
                 view.onPause();
                 startMainActivity();
             }
-        }, 5000);
+        }, 8000);
     }
 
     private void startMainActivity() {
