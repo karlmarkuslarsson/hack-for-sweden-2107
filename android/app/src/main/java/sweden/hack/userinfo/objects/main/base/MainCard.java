@@ -19,6 +19,7 @@ public abstract class MainCard {
     public static final int TYPE_TRIP_PLACE = 12;
     public static final int TYPE_TRIP_FOOD = 13;
     public static final int TYPE_TRIP_TRANSPORTATION = 14;
+    public static final int TYPE_NEXT_DAY_DIVIDER = 15;
 
     public abstract int getViewType();
 }

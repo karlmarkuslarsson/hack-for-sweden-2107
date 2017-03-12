@@ -20,6 +20,7 @@ import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
 import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
 import sweden.hack.userinfo.viewholders.main.InternetViewHolder;
 import sweden.hack.userinfo.viewholders.main.MainViewHolder;
+import sweden.hack.userinfo.viewholders.main.NextDayViewHolder;
 import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
@@ -76,6 +77,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new TripFoodPlaceViewHolder(inflater.inflate(R.layout.card_trip_food, parent, false));
             case MainCard.TYPE_TRIP_TRANSPORTATION:
                 return new TripTransportationViewHolder(inflater.inflate(R.layout.card_trip_transport, parent, false));
+            case MainCard.TYPE_NEXT_DAY_DIVIDER:
+                return new NextDayViewHolder(inflater.inflate(R.layout.card_next_day, parent, false));
         }
         return null;
     }

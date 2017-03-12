@@ -31,6 +31,7 @@ import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
 import sweden.hack.userinfo.objects.TripObject;
 import sweden.hack.userinfo.objects.TripPath;
+import sweden.hack.userinfo.objects.main.NextDayDivider;
 import sweden.hack.userinfo.objects.main.TripFoodCard;
 import sweden.hack.userinfo.objects.main.TripPlaceCard;
 import sweden.hack.userinfo.objects.main.TripTransportationCard;
@@ -45,7 +46,7 @@ public class TripFragment extends Fragment {
     private ArrayList<TripPath> mTripPath;
     private boolean mUpdateDataOnLoad;
     private MyTrip mMyTripData;
-    private int mDays = 1;
+    private int mDays = 3;
     private DataHelper mDataHelper;
 
     @Nullable
@@ -119,7 +120,12 @@ public class TripFragment extends Fragment {
             mTripPath = TripCalculator.calculateTrips(mMyTripData, mDays);
             mDataHelper.setTripPaths(mTripPath);
         }
+        int counter = 0;
         for (TripPath tripPath : mTripPath) {
+            if (mDays > 0) {
+                addDividerCard(counter);
+            }
+            counter++;
             int startTime = 0;
             int restaurantCounter = 0;
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
@@ -171,6 +177,10 @@ public class TripFragment extends Fragment {
                 }
             }
         }
+    }
+
+    private void addDividerCard(int counter) {
+        mAdapter.addCard(new NextDayDivider(counter));
     }
 
     private int addTransportation(MyTrip mMyTripData, TripObject preObject, TripObject nextObject) {
