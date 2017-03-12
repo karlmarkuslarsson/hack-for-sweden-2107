@@ -4,6 +4,7 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 
 import java.util.List;
+import java.util.Locale;
 
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
@@ -15,16 +16,19 @@ import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.phrases.Phrases;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.SLTrip;
+import sweden.hack.userinfo.models.smhi.Weather;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
 import sweden.hack.userinfo.network.sl.SLApi;
+import sweden.hack.userinfo.network.smhi.SMHIApi;
 import sweden.hack.userinfo.objects.CurrencyCard;
 import sweden.hack.userinfo.objects.InternetCard;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 import sweden.hack.userinfo.objects.main.SLAirportCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
+import sweden.hack.userinfo.objects.main.WeatherCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import timber.log.Timber;
 
@@ -36,7 +40,7 @@ public class PracticalInfoFragment extends BaseFragment {
         //addSLCard();
         getAllData();
         addSLAirportCard();
-
+        addWeatherCard();
 //        addInternetCard();
 
         mSwipeRefreshLayout.setRefreshing(false);
@@ -137,6 +141,30 @@ public class PracticalInfoFragment extends BaseFragment {
 
                         @Override
                         public void onFailure(@NonNull APIResponse<ClosestStations> response) {
+
+                        }
+                    });
+        }
+    }
+
+    private void addWeatherCard() {
+        Location location = Cache.sharedInstance().getLocation();
+        if (location != null) {
+            String lat = String.format(Locale.US, "%.2f", location.getLatitude());
+            String lon = String.format(Locale.US, "%.2f", location.getLongitude());
+            SMHIApi.sharedInstance().getWeatherForLatLng(
+                    String.valueOf(lat),
+                    String.valueOf(lon),
+                    new Callback<Weather>() {
+                        @Override
+                        public void onSuccess(@NonNull APIResponse<Weather> response) {
+
+                            Weather weather = response.getContent();
+                            mAdapter.addCard(new WeatherCard(weather));
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull APIResponse<Weather> response) {
 
                         }
                     });
