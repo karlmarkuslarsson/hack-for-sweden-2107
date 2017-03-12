@@ -7,9 +7,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 
-import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.CustomApplication;
+import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.listeners.GPSLocationListener;
+import sweden.hack.userinfo.models.myTrip.MyTripEvent;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -116,6 +117,31 @@ public class LocationHelper {
 
                 break;
         }
+    }
+
+    public static float getKilometerDistance(MyTripEvent e1, MyTripEvent e2) {
+        return getMeterDistance(e1, e2) / 1000.0f;
+    }
+
+    public static int getMeterDistance(MyTripEvent e1, MyTripEvent e2) {
+        return getMeterDistance(
+                e1.getLatitude(),
+                e1.getLongitude(),
+                e2.getLatitude(),
+                e2.getLongitude()
+        );
+    }
+
+    public static int getMeterDistance(float fromLat, float fromLng, float toLat, float toLng) {
+        Location loc1 = new Location("");
+        loc1.setLatitude(fromLat);
+        loc1.setLongitude(fromLng);
+
+        Location loc2 = new Location("");
+        loc2.setLatitude(toLat);
+        loc2.setLongitude(toLng);
+
+        return (int) loc1.distanceTo(loc2);
     }
 
 }

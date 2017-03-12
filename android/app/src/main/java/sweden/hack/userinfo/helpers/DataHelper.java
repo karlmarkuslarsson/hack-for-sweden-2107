@@ -16,20 +16,17 @@ import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.models.myTrip.MyTrip;
 import sweden.hack.userinfo.objects.TripPath;
 
-public class DataHelper implements Storage {
+public class DataHelper {
 
-    @Override
-    public void setLocation(Location location) {
+    public static void setLocation(Location location) {
         throw new RuntimeException("Not implemented!");
     }
 
-    @Override
-    public Location getLocation() {
+    public static Location getLocation() {
         throw new RuntimeException("Not implemented!");
     }
 
-    @Override
-    public LocalDate getTripDate() {
+    public static LocalDate getTripDate() {
         LocalDate date = Cache.sharedInstance().getTripDate();
         return date == null
                 ? tryReadDate(SharedPrefsHelper.sharedInstance()
@@ -45,32 +42,29 @@ public class DataHelper implements Storage {
         }
     }
 
-    @Override
-    public void setTripDate(LocalDate tripDate) {
+    public static void setTripDate(LocalDate tripDate) {
         Cache.sharedInstance().setTripDate(tripDate);
         SharedPrefsHelper.sharedInstance()
-                .setPreference(Constants.USER_TRIP_DATE, tripDate.toString());
+                .setPreference(Constants.USER_TRIP_DATE,
+                        tripDate != null ? tripDate.toString("yyyy-MM-dd") : null);
     }
 
-    @Override
-    public void hasStarted(boolean hasStarted) {
+    public static void hasStarted(boolean hasStarted) {
         Cache.sharedInstance().hasStarted(hasStarted);
         SharedPrefsHelper.sharedInstance()
+                .setPreference(Constants.USER_HAS_STARTED, hasStarted);
+    }
+
+    public static boolean hasStarted() {
+        return Cache.sharedInstance().hasStarted() || SharedPrefsHelper.sharedInstance()
                 .getPreference(Constants.USER_HAS_STARTED, false);
     }
 
-    @Override
-    public boolean hasStarted() {
-        return false;
-    }
-
-    @Override
-    public MyTrip getMyTrip() {
+    public static MyTrip getMyTrip() {
         return null;
     }
 
-    @Override
-    public void setMyTrip(MyTrip content) {
+    public static void setMyTrip(MyTrip content) {
 
     }
 
@@ -83,8 +77,7 @@ public class DataHelper implements Storage {
         storage.setTripPaths(null);
     }
 
-    @Override
-    public ArrayList<TripPath> getTripPaths() {
+    public static ArrayList<TripPath> getTripPaths() {
         ArrayList<TripPath> tripPaths = Cache.sharedInstance().getTripPaths();
         if (tripPaths == null) {
             String paths = SharedPrefsHelper.sharedInstance().getPreference(Constants.TRIP_PATHS, (String) null);
@@ -95,8 +88,7 @@ public class DataHelper implements Storage {
         return tripPaths;
     }
 
-    @Override
-    public void setTripPaths(ArrayList<TripPath> tripPaths) {
+    public static void setTripPaths(ArrayList<TripPath> tripPaths) {
         Cache.sharedInstance().setTripPaths(tripPaths);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
     }
