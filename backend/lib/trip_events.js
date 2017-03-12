@@ -247,8 +247,7 @@ exports.get = function (done) {
                 lng: 18.0673271,
                 img: "http://images.visitstockholm.com/40/381/40381d24-349a-4e18-b7c0-2dcbc0b9dd4b/rectangle_big_retina.jpg",
                 tag: "sightseeing"
-            }
-            ,
+            },
             {
                 id: "eb5b3f2c-84c8-4c3c-8609-8bdd8f630f8e",
                 title: "Gondolen",
@@ -260,8 +259,7 @@ exports.get = function (done) {
                 lng: 18.0731519,
                 img: "https://cdn.theculturetrip.com/images/56-3928702-14400733267e6d5ecfb96244c49c7c5c32bc2f3137.jpg",
                 tag: "sightseeing"
-            }
-            ,
+            },
             {
                 id: "828745b5-ec18-478f-a4fc-12cb758c94c6",
                 title: "Gärdet",
@@ -273,8 +271,7 @@ exports.get = function (done) {
                 lng: 18.0812583,
                 img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG/500px-Starr%C3%A4ngen%2C_G%C3%A4rdet.JPG",
                 tag: "nature"
-            }
-            ,
+            },
             {
                 id: "bcb720e4-080a-47df-8501-c0f6b3757496",
                 title: "Mallis",
@@ -286,8 +283,7 @@ exports.get = function (done) {
                 lng: 18.0033383,
                 img: "http://mallofscandinavia.se/-/media/Unibail/Country~o~SE/MallofScandinavia/Centrumbilder/Accessbild.ashx",
                 tag: "shopping"
-            }
-            ,
+            },
             {
                 id: "a2d51025-7d38-4277-9266-4624b3870ec3",
                 title: "Vasa Museum",
@@ -314,43 +310,56 @@ exports.get = function (done) {
             {
                 id: "062d994e-89f5-4315-bd20-7df2f53b4190",
                 title: "A.G",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "Cool restaurant with its own dry-aging room for a range of cuts of steak, plus non-meat options.",
                 img: "https://s3-media2.fl.yelpcdn.com/bphoto/jkVrftf_vj0Kc8Fx7spZfQ/348s.jpg"
             },
             {
                 id: "f3a5671d-fade-4e8a-9a61-d867654679d3",
                 title: "Urban Deli",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "The popular restaurant concept Urban Deli has expanded with a roof top bar at Sveavägen. At the 9th floor you find the green art park. Go for the food, the drinks, ...",
                 img: "http://thatsup.se/content/img/article/14/mar/f1888863dac9489ef2f7dbb1cf047d32.jpg"
             },
             {
                 id: "5c7535cf-24a8-4989-ab9b-e38f1ba82689",
                 title: "Ling Long",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "Ling Long pays homage to modern Asian cuisine with emphasis on quality Nordic ingredients. The restaurant is predominantly inspired the Sichuan province in China but also fuses influences from Bali and Singapore.",
                 img: "http://static.thatsup.co/content/img/place/l/i/ling-long-9.jpg"
             },
             {
                 id: "df44515f-57b0-4112-a332-9c6f0d4e9bba",
                 title: "Surfers",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "Surfers are like a Kinder egg - a kitsch tavern seemingly devoted digestible surfarkäk but serves delicious food from the innermost and most spicy China.",
                 img: "https://images-2.svd.se/v2/images/3e0c269d-4c92-45da-9f0a-9d2b24421f9a?fit=crop&h=417&q=70&w=625&s=df9a31ef0ec942d1da05ccd7a156bf9c5c6dd0fc"
             },
             {
                 id: "9d66de91-25ff-4776-8b70-e30725d233de",
                 title: "Meatballs for the People",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "The classic Swedish meatball. The shop offers 14 kinds of meatballs made of ingredients like elk, beef and salmon.",
                 img: "http://static.thatsup.co/content/img/place/m/e/meatballs-for-the-people-5.jpg"
             },
             {
                 id: "d9c4074e-4cdb-4f41-8978-4a63e8ee5859",
                 title: "Burgers & Lobsters",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "Burger and Lobster: serving wild live lobster and corn fed Nebraskan beef burgers since 2011. ",
                 img: "http://www.stockholmfoodie.com/wp-content/uploads/2015/06/img_35681.jpg"
-            }
-            ,
+            },
             {
                 id: "e3397903-ffd9-4f12-abdf-fed38823add9",
                 title: "Gute Grill",
+                lat: 59.3268215,
+                lng: 18.0717194,
                 description: "Steakhouse and barbecue restaurant",
                 img: "http://stockholmfood.alltomstockholm.se/wp-content/uploads/sites/3/2015/10/DSCF6677.jpg"
             }
