@@ -30,4 +30,8 @@ public interface Storage {
     ArrayList<TripPath> getTripPaths();
 
     void setTripPaths(ArrayList<TripPath> tripPaths);
+
+    void setTripDays(int days);
+
+    int getDays();
 }

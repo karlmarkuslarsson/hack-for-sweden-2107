@@ -92,4 +92,15 @@ public class DataHelper {
         Cache.sharedInstance().setTripPaths(tripPaths);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
     }
+
+    public static void setTripDays(int days) {
+        Cache.sharedInstance().setTripDays(days);
+        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_TRIP_DAYS, days);
+    }
+
+    public int getTripDays() {
+        int days = Cache.sharedInstance().getDays();
+        return days != 0 ? days : SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_TRIP_DAYS, 2);
+
+    }
 }

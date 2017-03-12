@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Welcome to STKHLM</string>
 
-    <string name="button_start">Start</string>
+    <string name="button_start">Create trip!</string>
     <string name="name_length_error">Can´t be empty</string>
 
     <string name="main_tab_trip">Trip</string>

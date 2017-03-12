@@ -18,6 +18,7 @@ public class Cache implements Storage {
     private boolean mHasStarted;
     private MyTrip mMyTrip;
     private ArrayList<TripPath> mTripPaths;
+    private int mDays;
 
     private Cache() {
     }
@@ -75,7 +76,17 @@ public class Cache implements Storage {
         mTripPaths = tripPaths;
     }
 
+    @Override
+    public void setTripDays(int days) {
+        mDays = days;
+    }
+
     public MyTrip getMyTrip() {
         return mMyTrip;
+    }
+
+    @Override
+    public int getDays() {
+        return mDays;
     }
 }

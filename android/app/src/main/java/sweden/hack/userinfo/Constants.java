@@ -4,6 +4,7 @@ public class Constants {
 
     public static final String USER_TRIP_DATE = "prefTripDate";
     public static final String USER_HAS_STARTED = "prefHasStarted";
+    public static final String USER_TRIP_DAYS = "prefTripDays";
 
     // SL - API
     public static final String SL_BASE_URL = "http://api.sl.se/api2/";

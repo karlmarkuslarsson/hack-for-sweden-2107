@@ -46,7 +46,7 @@ public class TripFragment extends Fragment {
     private ArrayList<TripPath> mTripPath;
     private boolean mUpdateDataOnLoad;
     private MyTrip mMyTripData;
-    private int mDays = 3;
+    private int mDays;
     private DataHelper mDataHelper;
 
     @Nullable
@@ -54,6 +54,7 @@ public class TripFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_trip, container, false);
         mDataHelper = new DataHelper();
+        mDays = mDataHelper.getTripDays();
         initViews();
         setupViews();
         initData();

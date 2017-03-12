@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -20,6 +22,7 @@ public class StartActivity extends AppCompatActivity {
 
     private Button mStartButton;
     private EditText mDateField;
+    private Spinner mSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +35,18 @@ public class StartActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_start);
         initViews();
+        setupViews();
         setStatusBarTranslucent();
         setupCallbacks();
 
+    }
+
+    private void setupViews() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.days, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        mSpinner.setSelection(1, false);
     }
 
     private void setupCallbacks() {
@@ -68,6 +80,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void onValidDate(LocalDate localDate) {
         DataHelper.setTripDate(localDate);
+        DataHelper.setTripDays(mSpinner.getSelectedItemPosition() + 1);
         DataHelper.hasStarted(true);
         startMainActivity();
     }
@@ -85,6 +98,7 @@ public class StartActivity extends AppCompatActivity {
     private void initViews() {
         mStartButton = (Button) findViewById(R.id.activity_start_button);
         mDateField = (EditText) findViewById(R.id.activity_start_input);
+        mSpinner = (Spinner) findViewById(R.id.days_spinner);
     }
 
 }
