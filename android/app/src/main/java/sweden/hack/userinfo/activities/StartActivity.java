@@ -29,7 +29,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (DataHelper.hasStarted()) {
-            startMainActivity();
+            startLoadActivity();
             return;
         }
 
@@ -82,11 +82,11 @@ public class StartActivity extends AppCompatActivity {
         DataHelper.setTripDate(localDate);
         DataHelper.setTripDays(mSpinner.getSelectedItemPosition() + 1);
         DataHelper.hasStarted(true);
-        startMainActivity();
+        startLoadActivity();
     }
 
-    private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    private void startLoadActivity() {
+        Intent intent = new Intent(this, LoaderActivity.class);
         startActivity(intent);
         finish();
     }
