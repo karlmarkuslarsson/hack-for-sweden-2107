@@ -13,6 +13,7 @@ import sweden.hack.userinfo.models.CardComponent;
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
 import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.SLTrip;
 import sweden.hack.userinfo.models.smhi.Weather;
@@ -26,6 +27,7 @@ import sweden.hack.userinfo.objects.main.CurrencyCard;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
 import sweden.hack.userinfo.objects.main.InternetCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
+import sweden.hack.userinfo.objects.main.PopulationCard;
 import sweden.hack.userinfo.objects.main.SLAirportCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
 import sweden.hack.userinfo.objects.main.WeatherCard;
@@ -43,6 +45,7 @@ public class PracticalInfoFragment extends BaseFragment {
         addWeatherCard();
         addAirPortCard();
 //        addInternetCard();
+        addPopulationCard();
 
         mSwipeRefreshLayout.setRefreshing(false);
     }
@@ -179,5 +182,20 @@ public class PracticalInfoFragment extends BaseFragment {
                         }
                     });
         }
+    }
+
+    private void addPopulationCard() {
+        HackOfSwedenApi.sharedInstance().getPopulation(new Callback<List<Population>>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<List<Population>> response) {
+                List<Population> populations = response.getContent();
+                mAdapter.addCard(new PopulationCard(populations));
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<List<Population>> response) {
+
+            }
+        });
     }
 }

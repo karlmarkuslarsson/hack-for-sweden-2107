@@ -20,10 +20,6 @@ public class PopulationViewHolder extends MainViewHolder<PopulationCard> {
     @Override
     public void init(PopulationCard card, MainCardListener listener) {
         Population pop1 = card.getPopulations().get(0);
-        Population pop2 = card.getPopulations().get(1);
-        mTextView.setText(String.format("Pop: %s, year: %s", pop1.getPopulation(), pop1.getYear()) + "\n" +
-                String.format("Pop: %s, year: %s", pop2.getPopulation(), pop2.getYear())
-        );
-        listener.onCardClick(card);
+        mTextView.setText(String.format("%s %s %s (%s)", pop1.getPopulation().substring(0, 1), pop1.getPopulation().substring(1, 4), pop1.getPopulation().substring(4, pop1.getPopulation().length()), pop1.getYear()));
     }
 }
