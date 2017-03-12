@@ -57,6 +57,5 @@ public abstract class BaseFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) mRoot.findViewById(R.id.fragment_main_swipe_to_refresh);
         mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.fragment_main_recycler_view);
     }
-
 }
 
