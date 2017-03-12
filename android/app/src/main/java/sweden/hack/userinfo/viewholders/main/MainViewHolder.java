@@ -11,4 +11,8 @@ public abstract class MainViewHolder<T> extends RecyclerView.ViewHolder {
     }
 
     public abstract void init(T card, MainCardListener listener);
+
+    public void clearAnimation() {
+        itemView.clearAnimation();
+    }
 }

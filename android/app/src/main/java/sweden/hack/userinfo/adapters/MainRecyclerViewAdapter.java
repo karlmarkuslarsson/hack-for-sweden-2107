@@ -2,7 +2,10 @@ package sweden.hack.userinfo.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
 
     private final MainCardListener mListener;
     private List<MainCard> mCards;
+    private int mLastPosition = -1;
+
 
     public MainRecyclerViewAdapter(MainCardListener listener) {
         mCards = new ArrayList<>();
@@ -78,6 +83,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
     @Override
     public void onBindViewHolder(MainViewHolder holder, int position) {
         holder.init(mCards.get(position), mListener);
+        addCardAnimation(holder.itemView, position);
     }
 
     @Override
@@ -91,7 +97,22 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
     }
 
     public void reset() {
+        mLastPosition = -1;
         mCards.clear();
         notifyDataSetChanged();
+    }
+
+    private void addCardAnimation(View view, int position) {
+        if (position > mLastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(view.getContext(), android.R.anim.slide_in_left);
+            view.startAnimation(animation);
+            mLastPosition = position;
+        }
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(MainViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.clearAnimation();
     }
 }
