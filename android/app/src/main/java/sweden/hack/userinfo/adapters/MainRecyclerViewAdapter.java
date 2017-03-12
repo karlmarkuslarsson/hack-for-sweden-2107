@@ -13,7 +13,7 @@ import java.util.List;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.base.MainCard;
-import sweden.hack.userinfo.viewholders.SLAirportTripViewHolder;
+import sweden.hack.userinfo.viewholders.main.AirportViewHolder;
 import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
 import sweden.hack.userinfo.viewholders.main.EventViewHolder;
 import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
@@ -23,6 +23,7 @@ import sweden.hack.userinfo.viewholders.main.MainViewHolder;
 import sweden.hack.userinfo.viewholders.main.NextDayViewHolder;
 import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
 import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
+import sweden.hack.userinfo.viewholders.main.SLAirportTripViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
 import sweden.hack.userinfo.viewholders.main.TripFoodPlaceViewHolder;
 import sweden.hack.userinfo.viewholders.main.TripPlaceViewHolder;
@@ -77,6 +78,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new TripFoodPlaceViewHolder(inflater.inflate(R.layout.card_trip_food, parent, false));
             case MainCard.TYPE_TRIP_TRANSPORTATION:
                 return new TripTransportationViewHolder(inflater.inflate(R.layout.card_trip_transport, parent, false));
+            case MainCard.TYPE_AIRPORT:
+                return new AirportViewHolder(inflater.inflate(R.layout.card_airport, parent, false));
             case MainCard.TYPE_NEXT_DAY_DIVIDER:
                 return new NextDayViewHolder(inflater.inflate(R.layout.card_next_day, parent, false));
         }

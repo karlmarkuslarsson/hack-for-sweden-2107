@@ -3,10 +3,6 @@ package sweden.hack.userinfo.objects.main;
 import sweden.hack.userinfo.models.todo.Event;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
-/**
- * Created by sosv on 11/03/17.
- */
-
 public class EventCard extends MainCard {
     private final Event mEvent;
 

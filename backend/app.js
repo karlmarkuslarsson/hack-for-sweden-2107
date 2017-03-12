@@ -129,7 +129,7 @@ app.get('/practical', function (req, res) {
         },
         {
             type: "currency",
-            text: "1 " + currency + " = 42 SEK"
+            text: "1 " + currency + " = 10 SEK"
         }
     ];
     res.send(out);
