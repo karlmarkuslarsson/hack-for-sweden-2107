@@ -50,7 +50,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 titleId = R.string.main_tab_events;
                 break;
             case 2:
-                titleId = R.string.main_tab_practical_info;
+                titleId = R.string.main_tab_travle_guide;
                 break;
             default:
                 throw new RuntimeException("TWF");

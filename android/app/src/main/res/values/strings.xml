@@ -4,10 +4,9 @@
     <string name="button_start">Create trip!</string>
     <string name="name_length_error">Can´t be empty</string>
 
-    <string name="main_tab_trip">Trip</string>
-    <string name="main_tab_practical_info">Practical info</string>
-    <string name="main_tab_events">Events</string>
-    <string name="main_tab_about">About</string>
+    <string name="main_tab_trip">My Trip</string>
+    <string name="main_tab_travle_guide">Travel guide</string>
+    <string name="main_tab_events">Local Events</string>
 
 
     <string name="transportation_bus">Bus</string>

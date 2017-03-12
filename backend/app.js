@@ -108,8 +108,14 @@ app.get('/practical', function (req, res) {
         {
             type: "phrase",
             phrases: [
-                "Hello -> Hej",
-                "Bye -> Hejdå"
+                {
+                   eng: "hello",
+                   swe: "hej"
+                },
+                {
+                   eng: "bye",
+                   swe: "hejdå"
+                }
             ]
         },
         {
