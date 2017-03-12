@@ -161,8 +161,8 @@ public class PracticalInfoFragment extends BaseFragment {
     private void addWeatherCard() {
         Location location = Cache.sharedInstance().getLocation();
         if (location != null) {
-            String lat = String.format(Locale.US, "%.2f", location.getLatitude());
-            String lon = String.format(Locale.US, "%.2f", location.getLongitude());
+            String lat = String.format(Locale.US, "%.2f", Constants.CENTRALEN_LAT);
+            String lon = String.format(Locale.US, "%.2f", Constants.CENTRALEN_LNG);
             SMHIApi.sharedInstance().getWeatherForLatLng(
                     String.valueOf(lat),
                     String.valueOf(lon),
