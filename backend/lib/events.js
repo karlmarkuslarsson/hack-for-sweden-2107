@@ -6,7 +6,7 @@ cachedRequest.setCacheDirectory(".cache/");
 
 /*  */
 exports.get = function (to, from, done) {
-    const dateRange = (to && form) ? to + "-" + from : false;
+    const dateRange = (to && from) ? to + "-" + from : false;
     const dateParam = dateRange || "Future";
     const url = [
         "http://api.eventful.com",

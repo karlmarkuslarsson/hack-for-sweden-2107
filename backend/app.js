@@ -166,7 +166,10 @@ app.get('/todo', function (req, res) {
                     return {
                         title: evt.title,
                         description: evt.description ? evt.description.trim() : null,
-                        image: evt.image ? evt.image.url : null
+                        image: evt.image ? evt.image.url : null,
+                        start_time: evt.start_time,
+                        url: evt.url,
+                        location: evt.venue_name
                     }
                 })
             }

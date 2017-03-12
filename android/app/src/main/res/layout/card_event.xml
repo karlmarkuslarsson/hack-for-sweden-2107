@@ -11,16 +11,16 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_marginTop="4dp"
                 android:layout_width="64dp"
                 android:layout_height="48dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
                 android:scaleType="centerCrop"
                 tools:background="@color/cardview_dark_background" />
 
@@ -28,17 +28,29 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/image"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="Title" />
+                tools:text="Title"
+                android:layout_toRightOf="@+id/image"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="Location"
+                android:layout_below="@+id/title"
+
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/image" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_toRightOf="@id/image"
+                android:layout_below="@id/location"
+                android:layout_toEndOf="@+id/image"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:textSize="14sp"
