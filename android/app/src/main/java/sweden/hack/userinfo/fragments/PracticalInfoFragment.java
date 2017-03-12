@@ -4,7 +4,6 @@ import android.location.Location;
 import android.support.annotation.NonNull;
 
 import java.util.List;
-import java.util.Locale;
 
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
@@ -24,8 +23,8 @@ import sweden.hack.userinfo.network.sl.SLApi;
 import sweden.hack.userinfo.network.smhi.SMHIApi;
 import sweden.hack.userinfo.objects.main.AirportCard;
 import sweden.hack.userinfo.objects.main.CurrencyCard;
-import sweden.hack.userinfo.objects.main.InternetCard;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
+import sweden.hack.userinfo.objects.main.InternetCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 import sweden.hack.userinfo.objects.main.SLAirportCard;
 import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
@@ -40,7 +39,7 @@ public class PracticalInfoFragment extends BaseFragment {
         mAdapter.reset();
         //addSLCard();
         getAllData();
-        addSLAirportCard();
+        //addSLAirportCard();
         addWeatherCard();
         addAirPortCard();
 //        addInternetCard();
@@ -161,8 +160,8 @@ public class PracticalInfoFragment extends BaseFragment {
     private void addWeatherCard() {
         Location location = Cache.sharedInstance().getLocation();
         if (location != null) {
-            String lat = String.format(Locale.US, "%.2f", Constants.CENTRALEN_LAT);
-            String lon = String.format(Locale.US, "%.2f", Constants.CENTRALEN_LNG);
+            String lat = Constants.CENTRALEN_LAT;
+            String lon = Constants.CENTRALEN_LNG;
             SMHIApi.sharedInstance().getWeatherForLatLng(
                     String.valueOf(lat),
                     String.valueOf(lon),

@@ -17,8 +17,8 @@ public class Constants {
     public static final String ARLANDA_LNG = "17.929258";
 
     // Centralen lat/lng
-    public static final String CENTRALEN_LAT = "59.330822";
-    public static final String CENTRALEN_LNG = "18.057082";
+    public static final String CENTRALEN_LAT = "59.33";
+    public static final String CENTRALEN_LNG = "18.06";
 
 
     // change to hack for sweden key if we´re going to use this..
