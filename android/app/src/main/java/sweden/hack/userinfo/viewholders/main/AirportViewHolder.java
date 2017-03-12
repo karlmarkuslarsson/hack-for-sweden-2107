@@ -1,5 +1,6 @@
 package sweden.hack.userinfo.viewholders.main;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -8,28 +9,31 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.List;
+
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.AirportCard;
 
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
-    private final ViewGroup mLine1;
-    private final ViewGroup mLine2;
-    private final ViewGroup mLine3;
+    private final ViewGroup mContent;
 
     public AirportViewHolder(View root) {
         super(root);
-        mLine1 = (ViewGroup) root.findViewById(R.id.line1);
-        mLine2 = (ViewGroup) root.findViewById(R.id.line2);
-        mLine3 = (ViewGroup) root.findViewById(R.id.line3);
+        mContent = (ViewGroup) root.findViewById(R.id.content);
     }
 
     @Override
     public void init(AirportCard card, MainCardListener listener) {
-        setInfo(card.getAlternatives().get(0), mLine1);
-        setInfo(card.getAlternatives().get(1), mLine2);
-        setInfo(card.getAlternatives().get(2), mLine3);
+        LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
+        List<AirportCard.Alternative> alternatives = card.getAlternatives();
+        mContent.removeAllViews();
+        for (AirportCard.Alternative alternative : alternatives) {
+            View view = inflater.inflate(R.layout.card_airport_part, mContent, false);
+            setInfo(alternative, ViewGroup.class.cast(view));
+            mContent.addView(view);
+        }
     }
 
     private void setInfo(AirportCard.Alternative line, ViewGroup root) {

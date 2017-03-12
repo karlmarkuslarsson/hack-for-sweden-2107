@@ -124,6 +124,11 @@ app.get('/practical', function (req, res) {
                     weekday: "saturday",
                     date: "2017-01-01",
                     name: "Julafton"
+                },
+                {
+                    weekday: "friday",
+                    date: "2017-06-01",
+                    name: "Midsommar"
                 }
             ]
         },

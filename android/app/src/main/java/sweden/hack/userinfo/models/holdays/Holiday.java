@@ -7,9 +7,6 @@ public class Holiday {
     @SerializedName("date")
     private String mDate;
 
-    @SerializedName("date_text")
-    private String mDateText;
-
     @SerializedName("name")
     private String mName;
 
@@ -22,10 +19,6 @@ public class Holiday {
 
     public String getName() {
         return mName;
-    }
-
-    public String getDateText() {
-        return mDateText;
     }
 
     public String getDate() {
