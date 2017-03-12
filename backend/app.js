@@ -115,6 +115,14 @@ app.get('/practical', function (req, res) {
                 {
                    eng: "bye",
                    swe: "hejdå"
+                },
+                {
+                   eng: "thanks",
+                   swe: "tack"
+                },
+                {
+                   eng: "good",
+                   swe: "bra"
                 }
             ]
         },
