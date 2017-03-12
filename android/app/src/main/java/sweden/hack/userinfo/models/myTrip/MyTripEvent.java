@@ -2,7 +2,7 @@ package sweden.hack.userinfo.models.myTrip;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MyTripEvent {
+public class MyTripEvent extends MyTripLatLng {
 
     @SerializedName("id")
     private String mId;
@@ -82,7 +82,8 @@ public class MyTripEvent {
         this.mPrice = mPrice;
     }
 
-    public Float getLatitude() {
+    @Override
+    public float getLatitude() {
         return mLatitude;
     }
 
@@ -90,7 +91,8 @@ public class MyTripEvent {
         this.mLatitude = mLatitude;
     }
 
-    public Float getLongitude() {
+    @Override
+    public float getLongitude() {
         return mLongitude;
     }
 

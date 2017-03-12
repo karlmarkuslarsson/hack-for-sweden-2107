@@ -18,10 +18,12 @@ import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
 import sweden.hack.userinfo.helpers.DataHelper;
+import sweden.hack.userinfo.helpers.LocationHelper;
 import sweden.hack.userinfo.helpers.TripCalculator;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.myTrip.MyTrip;
 import sweden.hack.userinfo.models.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.myTrip.MyTripLatLng;
 import sweden.hack.userinfo.models.myTrip.MyTripRestaurant;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
@@ -157,12 +159,44 @@ public class TripFragment extends Fragment {
                         break;
                     case TRANSFER:
                         if (i != tripPath.getObjectList().size() - 1) {
-                            startTime += 10;
-                            mAdapter.addCard(new TripTransportationCard("10 min"));
+                            int transportationTime = addTransportation(mMyTripData,
+                                    tripPath.getObjectList().get(i - 1),
+                                    tripPath.getObjectList().get(i + 1));
+
+                            mAdapter.addCard(new TripTransportationCard(transportationTime + " min"));
+                            startTime += transportationTime;
                         }
                         break;
                 }
             }
+        }
+    }
+
+    private int addTransportation(MyTrip mMyTripData, TripObject preObject, TripObject nextObject) {
+        MyTripLatLng preTrip = null;
+        MyTripLatLng nextTrip = null;
+        switch (preObject.getTripObjectType()) {
+            case RESTAURANT:
+                preTrip = mMyTripData.getRestaurant(preObject.getId());
+                break;
+            case EVENT:
+                preTrip = mMyTripData.getEvent(preObject.getId());
+                break;
+        }
+
+        switch (nextObject.getTripObjectType()) {
+            case RESTAURANT:
+                nextTrip = mMyTripData.getRestaurant(nextObject.getId());
+                break;
+            case EVENT:
+                nextTrip = mMyTripData.getEvent(nextObject.getId());
+                break;
+        }
+        float kilometer = LocationHelper.getKilometerDistance(preTrip, nextTrip);
+        if (kilometer < 10) {
+            return (int) kilometer * 5;
+        } else {
+            return (int) kilometer * 2;
         }
     }
 

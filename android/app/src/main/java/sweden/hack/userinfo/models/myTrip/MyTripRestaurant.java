@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by sosv on 11/03/17.
  */
 
-public class MyTripRestaurant {
+public class MyTripRestaurant extends MyTripLatLng {
 
     @SerializedName("id")
     private String mId;
@@ -19,6 +19,12 @@ public class MyTripRestaurant {
 
     @SerializedName("img")
     private String mImage;
+
+    @SerializedName("lat")
+    private Float mLatitude;
+
+    @SerializedName("lng")
+    private Float mLongitude;
 
     public String getId() {
         return mId;
@@ -50,5 +56,15 @@ public class MyTripRestaurant {
 
     public void setImage(String mImage) {
         this.mImage = mImage;
+    }
+
+    @Override
+    public float getLatitude() {
+        return mLatitude;
+    }
+
+    @Override
+    public float getLongitude() {
+        return mLongitude;
     }
 }

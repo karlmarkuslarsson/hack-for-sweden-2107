@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.listeners.GPSLocationListener;
-import sweden.hack.userinfo.models.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.myTrip.MyTripLatLng;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -119,11 +119,11 @@ public class LocationHelper {
         }
     }
 
-    public static float getKilometerDistance(MyTripEvent e1, MyTripEvent e2) {
+    public static float getKilometerDistance(MyTripLatLng e1, MyTripLatLng e2) {
         return getMeterDistance(e1, e2) / 1000.0f;
     }
 
-    public static int getMeterDistance(MyTripEvent e1, MyTripEvent e2) {
+    public static int getMeterDistance(MyTripLatLng e1, MyTripLatLng e2) {
         return getMeterDistance(
                 e1.getLatitude(),
                 e1.getLongitude(),
