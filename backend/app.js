@@ -77,6 +77,7 @@ app.get('/trip-debug', function (req, res) {
                 "<td>",
                 `<img height='150' width='150' src='${evt.img}' />`,
                 "</td>",
+                `<td><img src='https://maps.googleapis.com/maps/api/staticmap?center=${evt.lat},${evt.lng}&markers=size:mid%7Ccolor:red%7C${evt.lat},${evt.lng}&zoom=13&size=150x150&maptype=roadmap&key=AIzaSyDwdPGDfMfoezcfjtgDiFmmEYJn7N43rl0' /></td>`,
                 "<td>",
                 `<h3>${evt.title}</h3>`,
                 `<p>${evt.description}</p>`,
