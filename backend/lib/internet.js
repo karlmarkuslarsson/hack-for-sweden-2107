@@ -1,6 +1,6 @@
-var scb = require('./lib/scb');
+const scb = require('./scb');
 
-var form_data = function () {
+const form_data = function () {
     return {
         "query": [
             {

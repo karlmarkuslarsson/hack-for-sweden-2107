@@ -5,20 +5,10 @@ const app = express();
 
 const events = require('./lib/events');
 const trip_events = require('./lib/trip_events');
-const sql = require('./lib/sql');
-const apis = ['befolk', 'inkomst', 'internet'];
 
 const PORT = process.env.NODE_PORT || 3000;
 
-apis.forEach(function (name) {
-    const api = require(`./${name}`);
-    app.get('/scb/' + name, function(req, res) {
-        api.get(function(err, data) {
-            sql.magic(req.query.query, res.send(data));
-        });
-    });
-    console.log(`Registering api '${name}' on GET /${name}`);
-});
+require('./lib/scb').init(app);
 
 app.get('/', function (req, res) {
     const links = apis.map(s => {

@@ -1,5 +1,6 @@
 const request = require('request');
 const cachedRequest = require('cached-request')(request);
+const sql = require('./sql');
 
 /* Set cache dir */
 cachedRequest.setCacheDirectory(".cache/");
@@ -13,7 +14,8 @@ function as_keyvalue(data) {
                 .replace(/ /g, "_")
             );
 
-    const values = data.data
+    return data
+        .data
         .map(cell => cell.key.concat(cell.values))
         .map(function (cell) {
             return cell.map(function (v, i) { return [cols[i], v]; });
@@ -25,8 +27,6 @@ function as_keyvalue(data) {
             });
             return a;
         });
-
-    return values;
 }
 
 function as_keyvalue_resp(done) {
@@ -37,6 +37,20 @@ function as_keyvalue_resp(done) {
     }
 }
 
+const apis = ['befolk', 'inkomst', 'internet'];
+
+exports.init = function (app) {
+    apis.forEach(function (name) {
+        const api = require(`./${name}`);
+        app.get('/scb/' + name, function(req, res) {
+            api.get(function(err, data) {
+                sql.magic(req.query.query, res.send(data));
+            });
+        });
+        console.log(`Registering api '${name}' on GET /${name}`);
+    });
+};
+
 exports.get = function (url, request_data, done) {
     cachedRequest({
         url: url,
@@ -44,3 +58,6 @@ exports.get = function (url, request_data, done) {
         json: request_data
     }, as_keyvalue_resp(done));
 };
+
+
+
