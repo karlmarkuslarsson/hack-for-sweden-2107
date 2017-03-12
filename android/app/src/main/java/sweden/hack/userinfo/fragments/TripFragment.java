@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Locale;
 
 import sweden.hack.userinfo.Cache;
@@ -158,7 +159,7 @@ public class TripFragment extends Fragment {
                         startTime += event.getDuration();
                         break;
                     case TRANSFER:
-                        if (i != tripPath.getObjectList().size() - 1) {
+                        if (i != tripPath.getObjectList().size() - 1 && i > 0) {
                             int transportationTime = addTransportation(mMyTripData,
                                     tripPath.getObjectList().get(i - 1),
                                     tripPath.getObjectList().get(i + 1));
@@ -214,9 +215,86 @@ public class TripFragment extends Fragment {
         return new MainCardListener() {
             @Override
             public void onCardClick(MainCard card) {
+            }
 
+            @Override
+            public void dismissCard(MainCard card) {
+                replaceCard(card);
             }
         };
+    }
+
+    private void replaceCard(MainCard card) {
+        if (card instanceof TripFoodCard) {
+            for (TripPath path : mTripPath) {
+                Iterator<TripObject> itr = path.getObjectList().iterator();
+
+                while (itr.hasNext()) {
+                    TripObject object = itr.next();
+                    if (object.getId() != null && object.getId().equals(((TripFoodCard) card).getTripRestaurant().getId())) {
+                        itr.remove();  // TODO: insert new card here
+                        break;
+                    }
+                }
+            }
+            for (MyTripRestaurant restaurant : mMyTripData.getRestaurants()) {
+                if (!restaurant.getId().equals(((TripFoodCard) card).getTripRestaurant().getId())) {
+                    if (!hasRestaurant(restaurant)) {
+                        changeCard(card, new TripFoodCard(restaurant, ((TripFoodCard) card).getStartTime()));
+                        return;
+                    }
+                }
+            }
+
+        } else {
+            for (TripPath path : mTripPath) {
+                Iterator<TripObject> itr = path.getObjectList().iterator();
+
+                while (itr.hasNext()) {
+                    TripObject object = itr.next();
+                    if (object.getId() != null && object.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {
+                        itr.remove();
+                        break;
+                    }
+                }
+            }
+            for (MyTripEvent event : mMyTripData.getEvents()) {
+                if (!event.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {// && event.getDuration() <= ((TripPlaceCard) card).getTripEvent().getDuration()) {
+                    if (!hasEvent(event)) {
+                        changeCard(card, new TripPlaceCard(event, ((TripPlaceCard) card).getStartTime()));
+                        return;
+                    }
+                }
+            }
+
+        }
+        mAdapter.removeCard(card);
+    }
+
+    private boolean hasEvent(MyTripEvent event) {
+        for (TripPath path : mTripPath) {
+            for (TripObject object : path.getObjectList()) {
+                if (object.getId() != null && object.getId().equals(event.getId())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void changeCard(MainCard oldCard, MainCard newCard) {
+        mAdapter.changeCard(oldCard, newCard);
+    }
+
+    private boolean hasRestaurant(MyTripRestaurant restaurant) {
+        for (TripPath path : mTripPath) {
+            for (TripObject object : path.getObjectList()) {
+                if (object.getId() != null && object.getId().equals(restaurant.getId())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void initViews() {

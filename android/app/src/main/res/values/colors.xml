@@ -17,4 +17,5 @@
     <color name="sl_light_green">#dffae2</color>
     <color name="sl_light_red">#fadfdf</color>
     <color name="sl_light_blue">#d3deea</color>
+    <color name="card_dismissed">#a0515151</color>
 </resources>

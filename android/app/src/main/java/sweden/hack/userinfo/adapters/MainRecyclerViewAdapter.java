@@ -115,4 +115,17 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         super.onViewDetachedFromWindow(holder);
         holder.clearAnimation();
     }
+
+    public void removeCard(MainCard card) {
+        int pos = mCards.indexOf(card);
+        mCards.remove(card);
+        notifyItemRemoved(pos);
+    }
+
+    public void changeCard(MainCard oldCard, MainCard newCard) {
+        int pos = mCards.indexOf(oldCard);
+        mCards.add(pos, newCard);
+        mCards.remove(oldCard);
+        notifyItemChanged(pos);
+    }
 }

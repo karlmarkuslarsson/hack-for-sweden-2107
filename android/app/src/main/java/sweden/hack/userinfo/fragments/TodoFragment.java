@@ -100,6 +100,11 @@ public class TodoFragment extends BaseFragment {
             public void onCardClick(MainCard card) {
 
             }
+
+            @Override
+            public void dismissCard(MainCard card) {
+
+            }
         };
     }
 

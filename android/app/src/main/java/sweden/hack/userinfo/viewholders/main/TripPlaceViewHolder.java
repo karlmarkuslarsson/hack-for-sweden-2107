@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import sweden.hack.userinfo.AnimationUtils;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
 import sweden.hack.userinfo.listeners.MainCardListener;
@@ -24,7 +25,11 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     private final TextView mTag;
     private final TextView mStartTime;
     private final TextView mEventInfo;
+    private final View mDissmissBackground;
+    private final View mDissmissYes;
+    private final View mDissmissNo;
     private TripPlaceCard mCard;
+    private MainCardListener mListener;
 
     public TripPlaceViewHolder(View itemView) {
         super(itemView);
@@ -34,11 +39,16 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         mStartTime = (TextView) itemView.findViewById(R.id.start_time);
         mDescription = (TextView) itemView.findViewById(R.id.description);
         mEventInfo = (TextView) itemView.findViewById(R.id.event_info);
+        mDissmissBackground = itemView.findViewById(R.id.dismiss_background);
+        mDissmissYes = itemView.findViewById(R.id.dismiss_yes);
+        mDissmissNo = itemView.findViewById(R.id.dismiss_no);
     }
 
     @Override
-    public void init(TripPlaceCard card, MainCardListener listener) {
+    public void init(TripPlaceCard card, final MainCardListener listener) {
+        removeDismissView();
         mCard = card;
+        mListener = listener;
         mTitle.setText(card.getTripEvent().getTitle());
         mDescription.setText(card.getTripEvent().getDescription());
         mTag.setText(card.getTripEvent().getTag());
@@ -49,6 +59,34 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(mImage);
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setDismissView();
+                return true;
+            }
+        });
+    }
+
+    private void setDismissView() {
+        AnimationUtils.fadeIn(mDissmissBackground, 500);
+        mDissmissYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.dismissCard(mCard);
+            }
+        });
+
+        mDissmissNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeDismissView();
+            }
+        });
+    }
+
+    private void removeDismissView() {
+        mDissmissBackground.setVisibility(View.GONE);
     }
 
     private void setEventInfo() {
