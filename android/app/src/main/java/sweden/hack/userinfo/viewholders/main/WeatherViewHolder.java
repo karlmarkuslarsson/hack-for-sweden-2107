@@ -6,6 +6,7 @@ import android.widget.TextView;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.smhi.Parameter;
+import sweden.hack.userinfo.models.smhi.WeatherPoint;
 import sweden.hack.userinfo.objects.main.WeatherCard;
 
 public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
@@ -19,8 +20,8 @@ public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
     @Override
     public void init(WeatherCard card, MainCardListener listener) {
 
-        for (Parameter parameter :
-                card.getWeather().getTimeSeries().get(0).getParameters()) {
+        WeatherPoint weatherPoint = card.getWeather().getTimeSeries().get(0);
+        for (Parameter parameter : weatherPoint.getParameters()) {
             if (parameter.getName() != null) {
                 switch (parameter.getName()) {
                     case AIR_PRESSURE:
