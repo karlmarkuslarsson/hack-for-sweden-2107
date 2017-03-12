@@ -13,7 +13,7 @@ public interface PracticalInfoInterface {
     @GET("/practical")
     Call<List<CardComponent>> getPracticalInfo(@Query("currency") String currency);
 
-    @GET("/events")
+    @GET("/todo")
     Call<List<CardComponent>> getTodoList(@Query("date") String from, @Query("to") String to);
 
     @GET("/trip")

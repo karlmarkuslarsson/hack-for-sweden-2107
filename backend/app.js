@@ -148,7 +148,7 @@ app.get('/practical', function (req, res) {
     res.send(out);
 });
 
-app.get('/events', function (req, res) {
+app.get('/todo', function (req, res) {
     const to = req.query.to;
     const from = req.query.from;
 
