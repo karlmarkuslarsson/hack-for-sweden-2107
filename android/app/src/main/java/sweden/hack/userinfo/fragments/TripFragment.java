@@ -145,12 +145,15 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        mAdapter.addCard(new TripFoodCard(restaurant, getTimeFromTenOClock(startTime)));
+                        int duration;
                         if (restaurantCounter == 0) {
-                            startTime += 60;
+                            duration = 60;
                         } else {
-                            startTime += 120;
+                            duration = 120;
                         }
+                        mAdapter.addCard(new TripFoodCard(restaurant, getTimeFromTenOClock(startTime), duration));
+
+                        startTime += duration;
                         restaurantCounter++;
                         break;
                     case EVENT:
@@ -250,7 +253,7 @@ public class TripFragment extends Fragment {
             for (MyTripRestaurant restaurant : mMyTripData.getRestaurants()) {
                 if (!restaurant.getId().equals(((TripFoodCard) card).getTripRestaurant().getId())) {
                     if (!hasRestaurant(restaurant)) {
-                        changeCard(card, new TripFoodCard(restaurant, ((TripFoodCard) card).getStartTime()));
+                        changeCard(card, new TripFoodCard(restaurant, ((TripFoodCard) card).getStartTime(), ((TripFoodCard) card).getDuration()));
                         return;
                     }
                 }

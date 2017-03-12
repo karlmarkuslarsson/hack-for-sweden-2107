@@ -6,11 +6,13 @@ import sweden.hack.userinfo.objects.main.base.MainCard;
 public class TripFoodCard extends MainCard {
 
     private final MyTripRestaurant mTripRestaurant;
+    private final int mDuration;
     private String mStartTime;
 
-    public TripFoodCard(MyTripRestaurant tripEvent, String startTime) {
+    public TripFoodCard(MyTripRestaurant tripEvent, String startTime, int duration) {
         mTripRestaurant = tripEvent;
         mStartTime = startTime;
+        mDuration = duration;
     }
 
     @Override
@@ -24,5 +26,9 @@ public class TripFoodCard extends MainCard {
 
     public String getStartTime() {
         return mStartTime;
+    }
+
+    public int getDuration() {
+        return mDuration;
     }
 }
