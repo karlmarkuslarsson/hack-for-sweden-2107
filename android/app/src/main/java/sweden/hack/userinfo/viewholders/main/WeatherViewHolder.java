@@ -12,11 +12,13 @@ import sweden.hack.userinfo.objects.main.WeatherCard;
 public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
     private final TextView mWeatherNowText;
     private final TextView mHumidity;
+    private final TextView mWindSpeed;
 
     public WeatherViewHolder(View itemView) {
         super(itemView);
         mWeatherNowText = (TextView) itemView.findViewById(R.id.text_weather_now);
         mHumidity = (TextView) itemView.findViewById(R.id.text_humidity);
+        mWindSpeed = (TextView) itemView.findViewById(R.id.text_wind);
     }
 
     @Override
@@ -36,6 +38,7 @@ public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
                     case WIND_DIRECTION:
                         break;
                     case WIND_SPEED:
+                        mWindSpeed.setText(String.valueOf(parameter.getValue()) + " m/s");
                         break;
                     case RELATIVE_HUMIDITY:
                         mHumidity.setText(parameter.getValue() + " %");
