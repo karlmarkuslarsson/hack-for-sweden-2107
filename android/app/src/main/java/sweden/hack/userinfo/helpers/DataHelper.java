@@ -77,7 +77,7 @@ public class DataHelper {
         storage.setTripPaths(null);
     }
 
-    public static ArrayList<TripPath> getTripPaths() {
+    public ArrayList<TripPath> getTripPaths() {
         ArrayList<TripPath> tripPaths = Cache.sharedInstance().getTripPaths();
         if (tripPaths == null) {
             String paths = SharedPrefsHelper.sharedInstance().getPreference(Constants.TRIP_PATHS, (String) null);
@@ -88,7 +88,7 @@ public class DataHelper {
         return tripPaths;
     }
 
-    public static void setTripPaths(ArrayList<TripPath> tripPaths) {
+    public void setTripPaths(ArrayList<TripPath> tripPaths) {
         Cache.sharedInstance().setTripPaths(tripPaths);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
     }

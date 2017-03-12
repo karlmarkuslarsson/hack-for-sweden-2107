@@ -146,7 +146,9 @@ public class TripFragment extends Fragment {
                         mAdapter.addCard(new TripPlaceCard(event, "11.00"));
                         break;
                     case TRANSFER:
-                        mAdapter.addCard(new TripTransportationCard("10 min"));
+                        if (i != tripPath.getObjectList().size() - 1) {
+                            mAdapter.addCard(new TripTransportationCard("10 min"));
+                        }
                         break;
                 }
             }
