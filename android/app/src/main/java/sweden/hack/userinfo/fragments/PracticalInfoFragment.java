@@ -22,8 +22,9 @@ import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
 import sweden.hack.userinfo.network.sl.SLApi;
 import sweden.hack.userinfo.network.smhi.SMHIApi;
-import sweden.hack.userinfo.objects.CurrencyCard;
-import sweden.hack.userinfo.objects.InternetCard;
+import sweden.hack.userinfo.objects.main.AirportCard;
+import sweden.hack.userinfo.objects.main.CurrencyCard;
+import sweden.hack.userinfo.objects.main.InternetCard;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 import sweden.hack.userinfo.objects.main.SLAirportCard;
@@ -41,9 +42,14 @@ public class PracticalInfoFragment extends BaseFragment {
         getAllData();
         addSLAirportCard();
         addWeatherCard();
+        addAirPortCard();
 //        addInternetCard();
 
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void addAirPortCard() {
+        mAdapter.addCard(new AirportCard());
     }
 
     private void getAllData() {

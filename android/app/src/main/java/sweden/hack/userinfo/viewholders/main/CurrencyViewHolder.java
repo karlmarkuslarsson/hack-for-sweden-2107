@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.CurrencyCard;
+import sweden.hack.userinfo.objects.main.CurrencyCard;
 
 public class CurrencyViewHolder extends MainViewHolder<CurrencyCard> {
 

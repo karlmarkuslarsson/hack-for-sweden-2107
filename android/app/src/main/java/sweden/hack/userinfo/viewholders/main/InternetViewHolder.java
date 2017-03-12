@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.InternetCard;
+import sweden.hack.userinfo.objects.main.InternetCard;
 
 public class InternetViewHolder extends MainViewHolder<InternetCard> {
     private final TextView mTextInternet;

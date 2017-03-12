@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.fragments.PracticalInfoFragment;
-import sweden.hack.userinfo.fragments.TodoFragment;
+import sweden.hack.userinfo.fragments.EventFragment;
 import sweden.hack.userinfo.fragments.TripFragment;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
@@ -28,7 +28,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 fragment = new TripFragment();
                 break;
             case 1:
-                fragment = new TodoFragment();
+                fragment = new EventFragment();
                 break;
             case 2:
                 fragment = new PracticalInfoFragment();

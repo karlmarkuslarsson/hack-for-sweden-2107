@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.objects;
+package sweden.hack.userinfo.objects.main;
 
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.objects.main.base.MainCard;

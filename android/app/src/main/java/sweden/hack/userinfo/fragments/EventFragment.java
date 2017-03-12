@@ -19,7 +19,7 @@ import sweden.hack.userinfo.objects.main.EventCard;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 import timber.log.Timber;
 
-public class TodoFragment extends BaseFragment {
+public class EventFragment extends BaseFragment {
 
     @Override
     protected void reloadData() {
