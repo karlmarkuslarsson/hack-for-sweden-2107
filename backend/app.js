@@ -1,5 +1,6 @@
 "use strict";
 
+const fs = require('fs');
 const express = require('express');
 const app = express();
 
@@ -9,6 +10,11 @@ const trip_events = require('./lib/trip_events');
 const PORT = process.env.NODE_PORT || 3000;
 
 require('./lib/scb').init(app);
+
+const apis = [
+    'scb/befolk', 'scb/inkomst', 'scb/internet',
+    'trip', 'trip-debug', 'practical', 'todo'
+];
 
 app.get('/', function (req, res) {
     const links = apis.map(s => {
@@ -37,8 +43,16 @@ app.get('/trip', function (req, res) {
     });
 });
 
+const ENV = {};
+fs.readFileSync('.env', 'utf8')
+    .split(/\n/)
+    .map(s => s.split(/=/))
+    .forEach((kv) => {
+        ENV[kv[0]] = kv[1];
+    });
+
 function map(lat, lng) {
-    const key = "AIzaSyDwdPGDfMfoezcfjtgDiFmmEYJn7N43rl0";
+    const key = ENV["MAPS_KEY"];
     return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&markers=size:mid%7Ccolor:red%7C${lat},${lng}&zoom=13&size=150x150&maptype=roadmap&key=${key}`
 }
 
