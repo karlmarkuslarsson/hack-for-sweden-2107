@@ -86,7 +86,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void startLoadActivity() {
-        Intent intent = new Intent(this, LoaderActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
