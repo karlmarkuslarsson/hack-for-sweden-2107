@@ -1,0 +1,128 @@
+{
+  "currencies": [
+    {
+      "country": "Country . AUD",
+      "name": "AUD"
+    },
+    {
+      "country": "Country . BGN",
+      "name": "BGN"
+    },
+    {
+      "country": "Country . BRL",
+      "name": "BRL"
+    },
+    {
+      "country": "Country . CAD",
+      "name": "CAD"
+    },
+    {
+      "country": "Country . CHF",
+      "name": "CHF"
+    },
+    {
+      "country": "Country . CNY",
+      "name": "CNY"
+    },
+    {
+      "country": "Country . CZK",
+      "name": "CZK"
+    },
+    {
+      "country": "Country . DKK",
+      "name": "DKK"
+    },
+    {
+      "country": "Country . GBP",
+      "name": "GBP"
+    },
+    {
+      "country": "Country . HKD",
+      "name": "HKD"
+    },
+    {
+      "country": "Country . HRK",
+      "name": "HRK"
+    },
+    {
+      "country": "Country . HUF",
+      "name": "HUF"
+    },
+    {
+      "country": "Country . IDR",
+      "name": "IDR"
+    },
+    {
+      "country": "Country . ILS",
+      "name": "ILS"
+    },
+    {
+      "country": "Country . INR",
+      "name": "INR"
+    },
+    {
+      "country": "Country . JPY",
+      "name": "JPY"
+    },
+    {
+      "country": "Country . KRW",
+      "name": "KRW"
+    },
+    {
+      "country": "Country . MXN",
+      "name": "MXN"
+    },
+    {
+      "country": "Country . MYR",
+      "name": "MYR"
+    },
+    {
+      "country": "Country . NOK",
+      "name": "NOK"
+    },
+    {
+      "country": "Country . NZD",
+      "name": "NZD"
+    },
+    {
+      "country": "Country . PHP",
+      "name": "PHP"
+    },
+    {
+      "country": "Country . PLN",
+      "name": "PLN"
+    },
+    {
+      "country": "Country . RON",
+      "name": "RON"
+    },
+    {
+      "country": "Country . RUB",
+      "name": "RUB"
+    },
+    {
+      "country": "Country . SEK",
+      "name": "SEK"
+    },
+    {
+      "country": "Country . SGD",
+      "name": "SGD"
+    },
+    {
+      "country": "Country . THB",
+      "name": "THB"
+    },
+    {
+      "country": "Country . TRY",
+      "name": "TRY"
+    },
+    {
+      "country": "Country . USD",
+      "name": "USD"
+    },
+    {
+      "country": "Country . ZAR",
+      "name": "ZAR"
+    }
+  ]
+}

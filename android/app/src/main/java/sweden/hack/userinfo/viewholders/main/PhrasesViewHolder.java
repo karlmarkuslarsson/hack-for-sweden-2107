@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.phrases.Phrase;
+import sweden.hack.userinfo.models.cards.phrases.Phrase;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 
 public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {

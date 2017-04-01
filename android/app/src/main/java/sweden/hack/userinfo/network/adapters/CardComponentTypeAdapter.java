@@ -10,7 +10,7 @@ import com.google.gson.JsonPrimitive;
 import java.lang.reflect.Type;
 
 import sweden.hack.userinfo.enums.ComponentCardType;
-import sweden.hack.userinfo.models.CardComponent;
+import sweden.hack.userinfo.models.cards.CardComponent;
 import sweden.hack.userinfo.models.NoneComponent;
 
 /**

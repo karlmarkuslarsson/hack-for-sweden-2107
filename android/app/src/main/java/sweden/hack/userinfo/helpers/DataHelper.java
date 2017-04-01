@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
 import sweden.hack.userinfo.Storage;
-import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.objects.TripPath;
 
 public class DataHelper {

@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.holdays.Holidays;
+import sweden.hack.userinfo.models.cards.holdays.Holidays;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class HolidaysCard extends MainCard {

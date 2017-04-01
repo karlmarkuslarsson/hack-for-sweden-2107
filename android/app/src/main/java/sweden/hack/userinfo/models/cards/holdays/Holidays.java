@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.models.holdays;
+package sweden.hack.userinfo.models.cards.holdays;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import sweden.hack.userinfo.models.CardComponent;
+import sweden.hack.userinfo.models.cards.CardComponent;
 
 public class Holidays extends CardComponent {
 

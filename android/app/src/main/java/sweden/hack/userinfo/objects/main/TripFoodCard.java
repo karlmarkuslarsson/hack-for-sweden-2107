@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.myTrip.MyTripRestaurant;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripRestaurant;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class TripFoodCard extends MainCard {

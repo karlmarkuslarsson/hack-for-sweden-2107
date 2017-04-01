@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.cards.phrases.Phrases;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class PhrasesCard extends MainCard {

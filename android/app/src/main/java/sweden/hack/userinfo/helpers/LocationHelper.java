@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.listeners.GPSLocationListener;
-import sweden.hack.userinfo.models.myTrip.MyTripLatLng;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;

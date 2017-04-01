@@ -18,12 +18,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.models.CardComponent;
-import sweden.hack.userinfo.models.currency.Currency;
-import sweden.hack.userinfo.models.holdays.Holidays;
+import sweden.hack.userinfo.models.cards.CardComponent;
+import sweden.hack.userinfo.models.cards.CurrentCurrency;
+import sweden.hack.userinfo.models.cards.holdays.Holidays;
+import sweden.hack.userinfo.models.currency.Currencies;
 import sweden.hack.userinfo.models.income.Income;
-import sweden.hack.userinfo.models.myTrip.MyTrip;
-import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
+import sweden.hack.userinfo.models.cards.phrases.Phrases;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
 import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
@@ -38,10 +39,11 @@ import sweden.hack.userinfo.network.response.APIResponse;
 /**
  * Created by Markus on 2016-11-12.
  */
-
 public class HackOfSwedenApi {
 
+    private static final String BASE_URL = "http://188.166.26.118:3000";
     private static HackOfSwedenApi sSharedInstance;
+
     private PopulationInterface mPopulationApi;
     private IncomeInterface mIncomeApi;
     private CurrencyInterface mCurrencyApi;
@@ -82,7 +84,7 @@ public class HackOfSwedenApi {
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://188.166.26.118:3000")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(mGson))
                 .client(client)
                 .build();
@@ -107,8 +109,8 @@ public class HackOfSwedenApi {
         new CallRequest<>(call, callbackListener).execute();
     }
 
-    public void getCurrency(String fromCurrency, String value, String toCurrency, final Callback<Currency> callbackListener) {
-        Call<Currency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
+    public void getCurrency(String fromCurrency, String value, String toCurrency, final Callback<CurrentCurrency> callbackListener) {
+        Call<CurrentCurrency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
         new CallRequest<>(call, callbackListener).execute();
     }
 
@@ -133,16 +135,22 @@ public class HackOfSwedenApi {
     }
 
     public void getTripList(Callback<MyTrip> callback) {
-        AssetManager assets = CustomApplication.sharedInstance().getAssets();
+        readJSONFile(callback, "events.json", mGson, MyTrip.class);
+    }
 
+    public void getCurrencies(Callback<Currencies> callback) {
+        readJSONFile(callback, "currencies.json", mGson, Currencies.class);
+    }
+
+    private static <T> void readJSONFile(Callback<T> callback, String fileName, Gson mGson, Class<T> clz) {
+        AssetManager assets = CustomApplication.sharedInstance().getAssets();
         try {
-            InputStream inputStream = assets.open("events.json");
+            InputStream inputStream = assets.open(fileName);
             InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-            MyTrip myTrip = mGson.fromJson(streamReader, MyTrip.class);
+            T myTrip = mGson.fromJson(streamReader, clz);
             callback.onSuccess(new APIResponse<>(myTrip, 200));
         } catch (IOException e) {
-            callback.onFailure(new APIResponse<MyTrip>(e));
-
+            callback.onFailure(new APIResponse<T>(e));
         }
     }
 
