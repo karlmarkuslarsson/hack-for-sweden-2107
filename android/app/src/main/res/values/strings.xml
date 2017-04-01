@@ -15,7 +15,7 @@
     <string name="transportaion_tram">Tram</string>
     <string name="transportaion_ship">Ship</string>
     <string name="transportaion_unknown">Unknown</string>
-    <string name="when_are_you_going_yyyy_mm_dd">When are you going? (yyyy-mm-dd)</string>
+    <string name="when_are_you_going_yyyy_mm_dd">When are you going?</string>
     <string name="input_invalid_date">Please use format YYYY-MM-DD</string>
 
 </resources>

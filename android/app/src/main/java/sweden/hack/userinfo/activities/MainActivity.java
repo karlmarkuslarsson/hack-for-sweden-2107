@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
-        mNotificationManager.notify(1, mBuilder.build());
+        //mNotificationManager.notify(1, mBuilder.build());
     }
 
 }
