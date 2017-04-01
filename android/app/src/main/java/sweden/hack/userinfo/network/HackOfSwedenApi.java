@@ -1,8 +1,14 @@
 package sweden.hack.userinfo.network;
 
 
+import android.content.res.AssetManager;
+
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -11,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
+import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.models.CardComponent;
 import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.models.holdays.Holidays;
@@ -26,6 +33,7 @@ import sweden.hack.userinfo.network.interfaces.PhrasesInterface;
 import sweden.hack.userinfo.network.interfaces.PopulationInterface;
 import sweden.hack.userinfo.network.interfaces.PracticalInfoInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
+import sweden.hack.userinfo.network.response.APIResponse;
 
 /**
  * Created by Markus on 2016-11-12.
@@ -41,6 +49,7 @@ public class HackOfSwedenApi {
     private PhrasesInterface mPhrasesApi;
 
     private PracticalInfoInterface mAllApi;
+    private Gson mGson;
 
     public static HackOfSwedenApi sharedInstance() {
 
@@ -68,12 +77,13 @@ public class HackOfSwedenApi {
 
         OkHttpClient client = builder.build();
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(CardComponent.class, new CardComponentTypeAdapter());
+        mGson = new GsonBuilder()
+                .registerTypeAdapter(CardComponent.class, new CardComponentTypeAdapter())
+                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://188.166.26.118:3000")
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .addConverterFactory(GsonConverterFactory.create(mGson))
                 .client(client)
                 .build();
 
@@ -100,7 +110,6 @@ public class HackOfSwedenApi {
     public void getCurrency(String fromCurrency, String value, String toCurrency, final Callback<Currency> callbackListener) {
         Call<Currency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
         new CallRequest<>(call, callbackListener).execute();
-
     }
 
     public void getHolidays(String date, Callback<Holidays> callback) {
@@ -124,9 +133,17 @@ public class HackOfSwedenApi {
     }
 
     public void getTripList(Callback<MyTrip> callback) {
-        Call<MyTrip> call = mAllApi.getTripList();
-        new CallRequest<>(call, callback).execute();
-    }
+        AssetManager assets = CustomApplication.sharedInstance().getAssets();
 
+        try {
+            InputStream inputStream = assets.open("events.json");
+            InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+            MyTrip myTrip = mGson.fromJson(streamReader, MyTrip.class);
+            callback.onSuccess(new APIResponse<>(myTrip, 200));
+        } catch (IOException e) {
+            callback.onFailure(new APIResponse<MyTrip>(e));
+
+        }
+    }
 
 }
