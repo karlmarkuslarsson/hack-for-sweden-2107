@@ -11,6 +11,7 @@ import android.support.v4.app.RemoteInput;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainViewPagerAdapter;
+import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         sendNotification();
         setupViews();
         mLocationHelper = new LocationHelper(Cache.sharedInstance());
+
+        String currency = CurrencyHelper.getCurrency(this);
+        Log.e("",currency);
     }
 
     private void setupViews() {

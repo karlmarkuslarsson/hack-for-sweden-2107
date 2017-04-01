@@ -6,11 +6,15 @@ import android.content.res.AssetManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.concurrent.Callable;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DefaultObserver;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -21,10 +25,11 @@ import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.models.cards.CardComponent;
 import sweden.hack.userinfo.models.cards.CurrentCurrency;
 import sweden.hack.userinfo.models.cards.holdays.Holidays;
-import sweden.hack.userinfo.models.currency.Currencies;
-import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.models.cards.phrases.Phrases;
+import sweden.hack.userinfo.models.currency.CountryMap;
+import sweden.hack.userinfo.models.currency.Currencies;
+import sweden.hack.userinfo.models.income.Income;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
 import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
@@ -142,16 +147,35 @@ public class HackOfSwedenApi {
         readJSONFile(callback, "currencies.json", mGson, Currencies.class);
     }
 
-    private static <T> void readJSONFile(Callback<T> callback, String fileName, Gson mGson, Class<T> clz) {
-        AssetManager assets = CustomApplication.sharedInstance().getAssets();
-        try {
-            InputStream inputStream = assets.open(fileName);
-            InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-            T myTrip = mGson.fromJson(streamReader, clz);
-            callback.onSuccess(new APIResponse<>(myTrip, 200));
-        } catch (IOException e) {
-            callback.onFailure(new APIResponse<T>(e));
-        }
+    public void getCountryMap(Callback<CountryMap> callback) {
+        readJSONFile(callback, "county_number_mapping.json", mGson, CountryMap.class);
     }
 
+    private static <T> void readJSONFile(final Callback<T> callback, final String fileName, final Gson mGson, final Class<T> clz) {
+        Observable.fromCallable(new Callable<T>() {
+            @Override
+            public T call() throws Exception {
+                AssetManager assets = CustomApplication.sharedInstance().getAssets();
+                InputStream inputStream = assets.open(fileName);
+                InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+                return mGson.fromJson(streamReader, clz);
+            }
+        })
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new DefaultObserver<T>() {
+            @Override
+            public void onNext(T value) {
+                callback.onSuccess(new APIResponse<>(value, 200));
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                callback.onFailure(new APIResponse<T>(e));
+            }
+
+            @Override
+            public void onComplete() {}
+        });
+    }
 }
