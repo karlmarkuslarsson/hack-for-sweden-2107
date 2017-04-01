@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dialog_default_margin"
+        android:layout_marginRight="@dimen/dialog_default_margin"
+        android:layout_marginTop="@dimen/dialog_default_margin"
+        android:text="How long do you stay?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dialog_default_title_size" />
+
+    <TextView
+        android:id="@+id/dialog_one_day"
+        style="@style/dialog_single_line_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:text="1 day" />
+
+    <TextView
+        android:id="@+id/dialog_two_days"
+        style="@style/dialog_single_line_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2 days" />
+
+    <TextView
+        android:id="@+id/dialog_three_days"
+        style="@style/dialog_single_line_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:text="3 days" />
+
+</LinearLayout>

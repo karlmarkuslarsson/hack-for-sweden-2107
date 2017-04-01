@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
@@ -26,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
 
     private Button mStartButton;
     private TextView mDateField;
-    private Spinner mSpinner;
+    private TextView mLengthField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +44,56 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.days, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        mSpinner.setSelection(1, false);
+
+        mLengthField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLengthDialog();
+            }
+        });
+
         mDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
+    }
+
+    private void showLengthDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_length);
+        dialog.findViewById(R.id.dialog_one_day).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDays(1);
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.dialog_two_days).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDays(2);
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.dialog_three_days).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDays(3);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    private void setDays(int days) {
+        if (days == 1) {
+            mLengthField.setText("1 day");
+        } else {
+            mLengthField.setText(String.format("%d days", days));
+        }
     }
 
     private void showDatePickerDialog() {
@@ -119,7 +156,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void onValidDate(LocalDate localDate) {
         DataHelper.setTripDate(localDate);
-        DataHelper.setTripDays(mSpinner.getSelectedItemPosition() + 1);
+        DataHelper.setTripDays(Integer.parseInt(String.valueOf(mLengthField.getText().charAt(0))));
         DataHelper.hasStarted(true);
         startLoadActivity();
     }
@@ -137,7 +174,7 @@ public class StartActivity extends AppCompatActivity {
     private void initViews() {
         mStartButton = (Button) findViewById(R.id.activity_start_button);
         mDateField = (TextView) findViewById(R.id.activity_start_input);
-        mSpinner = (Spinner) findViewById(R.id.days_spinner);
+        mLengthField = (TextView) findViewById(R.id.activity_start_length);
     }
 
 }
