@@ -1,14 +1,14 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.currency.Currency;
+import sweden.hack.userinfo.models.cards.CurrentCurrency;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class CurrencyCard extends MainCard {
 
-    private final Currency mCurrency;
+    private final CurrentCurrency mCurrentCurrency;
 
-    public CurrencyCard(Currency currency) {
-        mCurrency = currency;
+    public CurrencyCard(CurrentCurrency currentCurrency) {
+        mCurrentCurrency = currentCurrency;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class CurrencyCard extends MainCard {
     }
 
     public String getCurrencyString() {
-        return mCurrency.getValue();
+        return mCurrentCurrency.getValue();
     }
 
 }

@@ -1,24 +1,20 @@
 "use strict";
 
+const fs = require('fs');
 const express = require('express');
 const app = express();
 
 const events = require('./lib/events');
 const trip_events = require('./lib/trip_events');
-const sql = require('./lib/sql');
-const apis = ['befolk', 'inkomst', 'internet'];
 
 const PORT = process.env.NODE_PORT || 3000;
 
-apis.forEach(function (name) {
-    const api = require(`./${name}`);
-    app.get('/' + name, function(req, res) {
-        api.get(function(err, data) {
-            sql.magic(req.query.query, res.send(data));
-        });
-    });
-    console.log(`Registering api '${name}' on GET /${name}`);
-});
+require('./lib/scb').init(app);
+
+const apis = [
+    'scb/befolk', 'scb/inkomst', 'scb/internet',
+    'trip', 'trip-debug', 'practical', 'todo'
+];
 
 app.get('/', function (req, res) {
     const links = apis.map(s => {
@@ -47,6 +43,18 @@ app.get('/trip', function (req, res) {
     });
 });
 
+const ENV = {};
+fs.readFileSync('.env', 'utf8')
+    .split(/\n/)
+    .map(s => s.split(/=/))
+    .forEach((kv) => {
+        ENV[kv[0]] = kv[1];
+    });
+
+function map(lat, lng) {
+    const key = ENV["MAPS_KEY"];
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&markers=size:mid%7Ccolor:red%7C${lat},${lng}&zoom=13&size=150x150&maptype=roadmap&key=${key}`
+}
 
 app.get('/trip-debug', function (req, res) {
     trip_events.get(function (err, data) {
@@ -58,7 +66,7 @@ app.get('/trip-debug', function (req, res) {
                 "<td>",
                 `<img height='150' width='150' src='${evt.img}' />`,
                 "</td>",
-                `<td><img src='https://maps.googleapis.com/maps/api/staticmap?center=${evt.lat},${evt.lng}&markers=size:mid%7Ccolor:red%7C${evt.lat},${evt.lng}&zoom=13&size=150x150&maptype=roadmap&key=AIzaSyDwdPGDfMfoezcfjtgDiFmmEYJn7N43rl0' /></td>`,
+                `<td><img src='${map(evt.lat, evt.lng)}' /></td>`,
                 "<td>",
                 `<h3>${evt.title}</h3>`,
                 `<p>${evt.description}</p>`,
@@ -77,7 +85,7 @@ app.get('/trip-debug', function (req, res) {
                 "<td>",
                 `<img height='150' width='150' src='${evt.img}' />`,
                 "</td>",
-                `<td><img src='https://maps.googleapis.com/maps/api/staticmap?center=${evt.lat},${evt.lng}&markers=size:mid%7Ccolor:red%7C${evt.lat},${evt.lng}&zoom=13&size=150x150&maptype=roadmap&key=AIzaSyDwdPGDfMfoezcfjtgDiFmmEYJn7N43rl0' /></td>`,
+                `<td><img src='${map(evt.lat, evt.lng)}' /></td>`,
                 "<td>",
                 `<h3>${evt.title}</h3>`,
                 `<p>${evt.description}</p>`,
@@ -176,26 +184,6 @@ app.get('/todo', function (req, res) {
         ]);
     });
 
-});
-
-app.get('/about', function (req, res) {
-    const out = [
-        {
-            type: "event",
-            date: "0000-00-00",
-            title: "Concert 1"
-        }
-    ];
-    res.send(out);
-});
-
-app.get('/all', function (req, res) {
-    const out = [
-        {
-            text: "stuff.."
-        }
-    ];
-    res.send(out);
 });
 
 app.listen(PORT, function () {

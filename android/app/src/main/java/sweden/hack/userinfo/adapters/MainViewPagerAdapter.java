@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.fragments.PracticalInfoFragment;
-import sweden.hack.userinfo.fragments.EventFragment;
 import sweden.hack.userinfo.fragments.TripFragment;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
@@ -17,7 +16,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -28,9 +27,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 fragment = new TripFragment();
                 break;
             case 1:
-                fragment = new EventFragment();
-                break;
-            case 2:
                 fragment = new PracticalInfoFragment();
                 break;
             default:
@@ -47,9 +43,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 titleId = R.string.main_tab_trip;
                 break;
             case 1:
-                titleId = R.string.main_tab_events;
-                break;
-            case 2:
                 titleId = R.string.main_tab_travle_guide;
                 break;
             default:

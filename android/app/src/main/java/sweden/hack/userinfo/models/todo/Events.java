@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import sweden.hack.userinfo.models.CardComponent;
+import sweden.hack.userinfo.models.cards.CardComponent;
 
 public class Events extends CardComponent {
 

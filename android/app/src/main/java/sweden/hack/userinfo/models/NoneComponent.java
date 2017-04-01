@@ -1,8 +1,5 @@
 package sweden.hack.userinfo.models;
 
-/**
- * Created by sosv on 11/03/17.
- */
+import sweden.hack.userinfo.models.cards.CardComponent;
 
-public class NoneComponent extends CardComponent{
-}
+public class NoneComponent extends CardComponent {}

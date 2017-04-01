@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.holdays;
+package sweden.hack.userinfo.models.cards.holdays;
 
 import com.google.gson.annotations.SerializedName;
 

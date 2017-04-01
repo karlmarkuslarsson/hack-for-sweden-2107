@@ -6,7 +6,7 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
-import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.objects.TripPath;
 
 public class Cache implements Storage {

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import sweden.hack.userinfo.enums.TripObjectType;
-import sweden.hack.userinfo.models.myTrip.MyTripEvent;
-import sweden.hack.userinfo.models.myTrip.MyTripRestaurant;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripRestaurant;
 
 public class TripPath implements Serializable {
     private ArrayList<TripObject> objectList;

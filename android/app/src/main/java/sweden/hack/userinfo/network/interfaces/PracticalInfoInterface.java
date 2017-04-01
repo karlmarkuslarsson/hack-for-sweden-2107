@@ -5,8 +5,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import sweden.hack.userinfo.models.CardComponent;
-import sweden.hack.userinfo.models.myTrip.MyTrip;
+import sweden.hack.userinfo.models.cards.CardComponent;
+import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 
 public interface PracticalInfoInterface {
 

@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.objects.main;
 
-import sweden.hack.userinfo.models.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
 import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class TripPlaceCard extends MainCard {

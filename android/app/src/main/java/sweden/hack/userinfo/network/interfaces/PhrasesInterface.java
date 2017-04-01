@@ -2,7 +2,7 @@ package sweden.hack.userinfo.network.interfaces;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.cards.phrases.Phrases;
 
 public interface PhrasesInterface {
 

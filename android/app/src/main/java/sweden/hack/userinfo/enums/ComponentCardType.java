@@ -2,9 +2,9 @@ package sweden.hack.userinfo.enums;
 
 import com.google.gson.annotations.SerializedName;
 
-import sweden.hack.userinfo.models.currency.Currency;
-import sweden.hack.userinfo.models.holdays.Holidays;
-import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.cards.CurrentCurrency;
+import sweden.hack.userinfo.models.cards.holdays.Holidays;
+import sweden.hack.userinfo.models.cards.phrases.Phrases;
 import sweden.hack.userinfo.models.todo.Events;
 
 /**
@@ -13,7 +13,7 @@ import sweden.hack.userinfo.models.todo.Events;
 
 public enum ComponentCardType {
     @SerializedName("currency")
-    CURRENCY("currency", Currency.class),
+    CURRENCY("currency", CurrentCurrency.class),
 
     @SerializedName("holidays")
     HOLIDAYS("holidays", Holidays.class),

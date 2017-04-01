@@ -10,7 +10,7 @@ import java.util.List;
 
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.holdays.Holiday;
+import sweden.hack.userinfo.models.cards.holdays.Holiday;
 import sweden.hack.userinfo.objects.main.HolidaysCard;
 
 public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {

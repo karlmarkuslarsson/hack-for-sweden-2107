@@ -9,10 +9,10 @@ import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.CardComponent;
-import sweden.hack.userinfo.models.currency.Currency;
-import sweden.hack.userinfo.models.holdays.Holidays;
-import sweden.hack.userinfo.models.phrases.Phrases;
+import sweden.hack.userinfo.models.cards.CardComponent;
+import sweden.hack.userinfo.models.cards.CurrentCurrency;
+import sweden.hack.userinfo.models.cards.holdays.Holidays;
+import sweden.hack.userinfo.models.cards.phrases.Phrases;
 import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.SLTrip;
@@ -63,7 +63,7 @@ public class PracticalInfoFragment extends BaseFragment {
                     if (cards.getType() != null) {
                         switch (cards.getType()) {
                             case CURRENCY:
-                                addCurrencyCard((Currency) cards);
+                                addCurrencyCard((CurrentCurrency) cards);
                                 break;
                             case HOLIDAYS:
                                 addHolidaysCard((Holidays) cards);
@@ -87,7 +87,7 @@ public class PracticalInfoFragment extends BaseFragment {
         mAdapter.addCard(new InternetCard());
     }
 
-    private void addCurrencyCard(Currency practicalInfo) {
+    private void addCurrencyCard(CurrentCurrency practicalInfo) {
         mAdapter.addCard(new CurrencyCard(practicalInfo));
     }
 
