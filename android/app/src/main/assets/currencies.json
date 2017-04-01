@@ -1,127 +1,127 @@
 {
   "currencies": [
     {
-      "country": "Country . AUD",
+      "country": "Australia . AUD",
       "name": "AUD"
     },
     {
-      "country": "Country . BGN",
+      "country": "Bulgaria . BGN",
       "name": "BGN"
     },
     {
-      "country": "Country . BRL",
+      "country": "Brazil . BRL",
       "name": "BRL"
     },
     {
-      "country": "Country . CAD",
+      "country": "Canada . CAD",
       "name": "CAD"
     },
     {
-      "country": "Country . CHF",
+      "country": "Switzerland . CHF",
       "name": "CHF"
     },
     {
-      "country": "Country . CNY",
+      "country": "China . CNY",
       "name": "CNY"
     },
     {
-      "country": "Country . CZK",
+      "country": "Czech . CZK",
       "name": "CZK"
     },
     {
-      "country": "Country . DKK",
+      "country": "Denmark . DKK",
       "name": "DKK"
     },
     {
-      "country": "Country . GBP",
+      "country": "Britain . GBP",
       "name": "GBP"
     },
     {
-      "country": "Country . HKD",
+      "country": "Hong Kong . HKD",
       "name": "HKD"
     },
     {
-      "country": "Country . HRK",
+      "country": "Croatia . HRK",
       "name": "HRK"
     },
     {
-      "country": "Country . HUF",
+      "country": "Hungary . HUF",
       "name": "HUF"
     },
     {
-      "country": "Country . IDR",
+      "country": "Indonesia . IDR",
       "name": "IDR"
     },
     {
-      "country": "Country . ILS",
+      "country": "Israel . ILS",
       "name": "ILS"
     },
     {
-      "country": "Country . INR",
+      "country": "India . INR",
       "name": "INR"
     },
     {
-      "country": "Country . JPY",
+      "country": "Japan . JPY",
       "name": "JPY"
     },
     {
-      "country": "Country . KRW",
+      "country": "South Korea . KRW",
       "name": "KRW"
     },
     {
-      "country": "Country . MXN",
+      "country": "Mexico . MXN",
       "name": "MXN"
     },
     {
-      "country": "Country . MYR",
+      "country": "Malaysian . MYR",
       "name": "MYR"
     },
     {
-      "country": "Country . NOK",
+      "country": "Norway . NOK",
       "name": "NOK"
     },
     {
-      "country": "Country . NZD",
+      "country": "New Zealand . NZD",
       "name": "NZD"
     },
     {
-      "country": "Country . PHP",
+      "country": "Philippines . PHP",
       "name": "PHP"
     },
     {
-      "country": "Country . PLN",
+      "country": "Poland . PLN",
       "name": "PLN"
     },
     {
-      "country": "Country . RON",
+      "country": "Romania . RON",
       "name": "RON"
     },
     {
-      "country": "Country . RUB",
+      "country": "Russia . RUB",
       "name": "RUB"
     },
     {
-      "country": "Country . SEK",
+      "country": "Sweden . SEK",
       "name": "SEK"
     },
     {
-      "country": "Country . SGD",
+      "country": "Singapore . SGD",
       "name": "SGD"
     },
     {
-      "country": "Country . THB",
+      "country": "Thailand . THB",
       "name": "THB"
     },
     {
-      "country": "Country . TRY",
+      "country": "Turkey . TRY",
       "name": "TRY"
     },
     {
-      "country": "Country . USD",
+      "country": "USA . USD",
       "name": "USD"
     },
     {
-      "country": "Country . ZAR",
+      "country": "South Africa . ZAR",
       "name": "ZAR"
     }
   ]
