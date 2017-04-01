@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
@@ -25,6 +27,7 @@ public class StartActivity extends AppCompatActivity {
     private Button mStartButton;
     private TextView mDateField;
     private TextView mLengthField;
+    private TextView mCurrencyField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,34 @@ public class StartActivity extends AppCompatActivity {
                 showDatePickerDialog();
             }
         });
+
+        mCurrencyField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showCurrencyDialog();
+            }
+        });
+    }
+
+    private void showCurrencyDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_currency);
+        RadioGroup container = (RadioGroup) dialog.findViewById(R.id.dialog_currency_container);
+
+        int sideMargin = (int) getResources().getDimension(R.dimen.dialog_default_margin);
+        for (int i = 0; i < 3; i++) {
+            RadioButton button = new RadioButton(this);
+            container.addView(button);
+
+            RadioGroup.LayoutParams params = (RadioGroup.LayoutParams) button.getLayoutParams();
+            params.width = RadioGroup.LayoutParams.MATCH_PARENT;
+            params.leftMargin = sideMargin;
+            params.rightMargin = sideMargin;
+
+            button.setText("Button " + i);
+        }
+
+        dialog.show();
     }
 
     private void showLengthDialog() {
@@ -108,6 +139,12 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 setDate(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });
@@ -175,6 +212,7 @@ public class StartActivity extends AppCompatActivity {
         mStartButton = (Button) findViewById(R.id.activity_start_button);
         mDateField = (TextView) findViewById(R.id.activity_start_input);
         mLengthField = (TextView) findViewById(R.id.activity_start_length);
+        mCurrencyField = (TextView) findViewById(R.id.activity_start_currency);
     }
 
 }

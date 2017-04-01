@@ -21,4 +21,5 @@
     <color name="black_shadow">#000000</color>
     <color name="cardview_half_trans">#DDFFFFFF</color>
     <color name="black">#000000</color>
+    <color name="divider">#1e000000</color>
 </resources>
