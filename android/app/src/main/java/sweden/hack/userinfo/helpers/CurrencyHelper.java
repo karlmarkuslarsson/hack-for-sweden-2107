@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
+import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
+
 /**
  * Created by Filip Lindqvist on 2017-04-02.
  * License: not determined
@@ -15,6 +17,7 @@ import java.util.TreeMap;
 public class CurrencyHelper {
 
     final static Map<String, String> COUNTRY_CODES;
+    public static final String DEFAULT_CURRENCY = "EUR";
 
     static {
         Map<String, String> map = new TreeMap<>();
@@ -266,7 +269,7 @@ public class CurrencyHelper {
     }
 
 
-    public static String getCurrency(Context c ) {
+    public static String getCurrency(Context c) {
         final TelephonyManager tm = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);
         String iso = tm.getSimCountryIso();
         for (Map.Entry<String, String> entry : COUNTRY_CODES.entrySet()) {
@@ -275,6 +278,21 @@ public class CurrencyHelper {
             }
         }
         return "";
+    }
+
+    public static int convertToSelectedCurrency(float amountInSEK) {
+        DataHelper dataHelper = new DataHelper();
+        String currency = dataHelper.getCurrency();
+        ExchangeRates exchangeRates = dataHelper.getExchangeRates();
+        if (exchangeRates != null && exchangeRates.mRates != null) {
+            float exchangeRate = exchangeRates.mRates.getExchangeRate(currency);
+            if (exchangeRate != -1) {
+                return Math.round(amountInSEK * exchangeRate);
+            }
+        }
+
+        return -1;
+
     }
 
 }

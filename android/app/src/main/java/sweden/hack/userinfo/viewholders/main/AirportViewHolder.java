@@ -15,17 +15,22 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
+import java.util.Locale;
 
 import sweden.hack.userinfo.R;
+import sweden.hack.userinfo.helpers.CurrencyHelper;
+import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.AirportCard;
 
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
     private final ViewGroup mContent;
+    private final DataHelper mDataHelper;
 
     public AirportViewHolder(View root) {
         super(root);
+        mDataHelper = new DataHelper();
         mContent = (ViewGroup) root.findViewById(R.id.content);
     }
 
@@ -42,9 +47,16 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     }
 
     private void setInfo(AirportCard.Alternative line, ViewGroup root) {
+        int cost = line.getCost();
+        int transformedCost = CurrencyHelper.convertToSelectedCurrency(cost);
+        if (transformedCost == -1) {
+            setText(root.findViewById(R.id.text3), cost + " SEK");
+        } else {
+            setText(root.findViewById(R.id.text3), String.format(Locale.US, "%d %s", transformedCost, mDataHelper.getCurrency()));
+        }
+
         setText(root.findViewById(R.id.text1), line.getTitle());
         setText(root.findViewById(R.id.text2), line.getTime());
-        setText(root.findViewById(R.id.text3), line.getCost());
         ImageView imageView = (ImageView) root.findViewById(R.id.image);
 
         Glide.with(itemView.getContext())

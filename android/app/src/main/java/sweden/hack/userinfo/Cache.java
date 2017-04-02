@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
+import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.objects.TripPath;
 
 public class Cache implements Storage {
@@ -19,6 +20,8 @@ public class Cache implements Storage {
     private MyTrip mMyTrip;
     private ArrayList<TripPath> mTripPaths;
     private int mDays;
+    private String mCurrency;
+    private ExchangeRates mExchangeRates;
 
     private Cache() {
     }
@@ -89,4 +92,25 @@ public class Cache implements Storage {
     public int getDays() {
         return mDays;
     }
+
+    @Override
+    public void setCurrency(String currency) {
+        mCurrency = currency;
+    }
+
+    @Override
+    public String getCurrency() {
+        return mCurrency;
+    }
+
+    @Override
+    public void setExchangeRates(ExchangeRates exchangeRates) {
+        mExchangeRates = exchangeRates;
+    }
+
+    @Override
+    public ExchangeRates getExchangeRates() {
+        return mExchangeRates;
+    }
+
 }

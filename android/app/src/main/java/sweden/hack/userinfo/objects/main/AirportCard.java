@@ -18,14 +18,14 @@ public class AirportCard extends MainCard {
 
     public List<Alternative> getAlternatives() {
         return Arrays.asList(
-            new Alternative("Arlanda Express", ICON_TRAIN, "20min", "16 USD"),
-            new Alternative("Airport Shuttle", ICON_BUSS, "40min", "11 USD"),
-            new Alternative("Taxi", ICON_TAXI, "30min", "55 USD")
+            new Alternative("Arlanda Express", ICON_TRAIN, "20min", 280),
+            new Alternative("Airport Shuttle", ICON_BUSS, "40min", 100),
+            new Alternative("Taxi", ICON_TAXI, "30min", 500)
         );
     }
 
     public static class Alternative {
-        Alternative(String title, String img, String time, String cost) {
+        Alternative(String title, String img, String time, int cost) {
             this.title = title;
             this.img = img;
             this.time = time;
@@ -35,7 +35,7 @@ public class AirportCard extends MainCard {
         private String title;
         private String img;
         private String time;
-        private String cost;
+        private int cost;
 
         public String getTitle() {
             return title;
@@ -49,7 +49,7 @@ public class AirportCard extends MainCard {
             return time;
         }
 
-        public String getCost() {
+        public int getCost() {
             return cost;
         }
     }

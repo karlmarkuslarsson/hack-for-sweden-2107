@@ -1,5 +1,6 @@
 package sweden.hack.userinfo.helpers;
 
+import android.content.res.AssetManager;
 import android.location.Location;
 
 import com.google.gson.Gson;
@@ -7,14 +8,19 @@ import com.google.gson.reflect.TypeToken;
 
 import org.joda.time.LocalDate;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.Storage;
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
+import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.objects.TripPath;
+import timber.log.Timber;
 
 public class DataHelper {
 
@@ -28,10 +34,12 @@ public class DataHelper {
 
     public static LocalDate getTripDate() {
         LocalDate date = Cache.sharedInstance().getTripDate();
-        return date == null
-                ? tryReadDate(SharedPrefsHelper.sharedInstance()
-                .getPreference(Constants.USER_TRIP_DATE, ""))
-                : date;
+        if (date == null) {
+            date = tryReadDate(SharedPrefsHelper.sharedInstance()
+                    .getPreference(Constants.USER_TRIP_DATE, ""));
+            Cache.sharedInstance().setTripDate(date);
+        }
+        return date;
     }
 
     private static LocalDate tryReadDate(String date) {
@@ -84,6 +92,7 @@ public class DataHelper {
             Type listType = new TypeToken<ArrayList<TripPath>>() {
             }.getType();
             tripPaths = new Gson().fromJson(paths, listType);
+            Cache.sharedInstance().setTripPaths(tripPaths);
         }
         return tripPaths;
     }
@@ -100,7 +109,53 @@ public class DataHelper {
 
     public int getTripDays() {
         int days = Cache.sharedInstance().getDays();
-        return days != 0 ? days : SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_TRIP_DAYS, 2);
-
+        if (days == 0) {
+            days = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_TRIP_DAYS, 2);
+            Cache.sharedInstance().setTripDays(days);
+        }
+        return days;
     }
+
+    public static void setCurrency(String currency) {
+        Cache.sharedInstance().setCurrency(currency);
+        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_CURRENCY, currency);
+    }
+
+    public String getCurrency() {
+        String currency = Cache.sharedInstance().getCurrency();
+        if (currency == null) {
+            currency = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_CURRENCY, CurrencyHelper.DEFAULT_CURRENCY);
+            Cache.sharedInstance().setCurrency(currency);
+        }
+        return currency;
+    }
+
+    public void setExchangeRates(ExchangeRates exchangeRates) {
+        Cache.sharedInstance().setExchangeRates(exchangeRates);
+        SharedPrefsHelper.sharedInstance().setPreference(Constants.CACHED_EXCHANGE_RATES, new Gson().toJson(exchangeRates));
+    }
+
+    public ExchangeRates getExchangeRates() {
+        ExchangeRates exchangeRates = Cache.sharedInstance().getExchangeRates();
+        if (exchangeRates == null) {
+            String exchangeRateString = SharedPrefsHelper.sharedInstance().getPreference(Constants.CACHED_EXCHANGE_RATES, (String) null);
+            if (exchangeRateString == null) {
+                try {
+                    AssetManager assets = CustomApplication.sharedInstance().getAssets();
+                    InputStream inputStream = null;
+                    inputStream = assets.open("exchange_rates.json");
+                    InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+                    exchangeRates = new Gson().fromJson(streamReader, ExchangeRates.class);
+                } catch (Exception e) {
+                    Timber.e(e);
+                    return null;
+                }
+            } else {
+                exchangeRates = new Gson().fromJson(exchangeRateString, ExchangeRates.class);
+            }
+            Cache.sharedInstance().setExchangeRates(exchangeRates);
+        }
+        return exchangeRates;
+    }
+
 }

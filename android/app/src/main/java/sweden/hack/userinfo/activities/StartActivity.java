@@ -276,7 +276,9 @@ public class StartActivity extends AppCompatActivity {
     private void onValidDate(LocalDate localDate) {
         DataHelper.setTripDate(localDate);
         DataHelper.setTripDays(Integer.parseInt(String.valueOf(mLengthField.getText().charAt(0))));
+        DataHelper.setCurrency(mCurrencyField.getText().toString());
         DataHelper.hasStarted(true);
+
         startLoadActivity();
     }
 

@@ -5,6 +5,7 @@ public class Constants {
     public static final String USER_TRIP_DATE = "prefTripDate";
     public static final String USER_HAS_STARTED = "prefHasStarted";
     public static final String USER_TRIP_DAYS = "prefTripDays";
+    public static final String USER_CURRENCY = "prefCurrency";
 
     // SL - API
     public static final String SL_BASE_URL = "http://api.sl.se/api2/";
@@ -30,4 +31,6 @@ public class Constants {
     public static final String SMHI_BASE_URL = "http://opendata-download-metfcst.smhi.se/api/category/pmp2g/version/2/geotype/point/";
 
     public static final String TRIP_PATHS = "prefTripPath";
+    public static final String EXCHANGE_RATES_URL = "http://api.fixer.io/";
+    public static final String CACHED_EXCHANGE_RATES = "prefExchangeRates";
 }

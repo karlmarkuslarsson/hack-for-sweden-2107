@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
+import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.objects.TripPath;
 
 public interface Storage {
@@ -34,4 +35,12 @@ public interface Storage {
     void setTripDays(int days);
 
     int getDays();
+
+    void setCurrency(String currency);
+
+    String getCurrency();
+
+    void setExchangeRates(ExchangeRates exchangeRates);
+
+    ExchangeRates getExchangeRates();
 }
