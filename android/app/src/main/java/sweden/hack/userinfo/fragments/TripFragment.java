@@ -220,6 +220,7 @@ public class TripFragment extends Fragment {
         int mins = startTime - hours * 60;
         h += hours;
         min += mins;
+        h = h % 24;
         return String.format(Locale.US, "%02d:%02d", h, min);
     }
 
