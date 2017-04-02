@@ -43,10 +43,10 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     }
 
     private void setInfo(AirportCard.Alternative line, ViewGroup root) {
-        int cost = line.getCost();
-        setText(root.findViewById(R.id.text3), CurrencyHelper.convertToSelectedCurrencyCurrencyString(cost));
         setText(root.findViewById(R.id.text1), line.getTitle());
         setText(root.findViewById(R.id.text2), line.getTime());
+        setText(root.findViewById(R.id.text3),
+                CurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost()));
         ImageView imageView = (ImageView) root.findViewById(R.id.image);
 
         Glide.with(itemView.getContext())
