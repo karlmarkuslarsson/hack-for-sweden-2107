@@ -255,12 +255,11 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void checkDateValid() {
-        String text = mDateField.getText().toString();
+        String text = mDateField.getText().toString().trim();
         if (!text.isEmpty()) {
             try {
                 DateTimeFormatter fmt = DateTimeFormat.forPattern(DATE_FORMAT);
-                String value = text.toString().trim();
-                LocalDate date = fmt.parseLocalDate(value);
+                LocalDate date = fmt.parseLocalDate(text);
                 onValidDate(date);
             } catch (IllegalArgumentException e) {
                 onInvalidDate(getString(R.string.input_invalid_date));
