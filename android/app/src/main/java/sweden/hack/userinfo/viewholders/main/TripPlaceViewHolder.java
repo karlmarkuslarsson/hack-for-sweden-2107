@@ -1,6 +1,8 @@
 package sweden.hack.userinfo.viewholders.main;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -11,11 +13,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import sweden.hack.userinfo.AnimationUtils;
+import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
 import sweden.hack.userinfo.listeners.MainCardListener;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
 import sweden.hack.userinfo.objects.main.TripPlaceCard;
 
 public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
@@ -66,6 +77,12 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
                 return true;
             }
         });
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTripPlaceDialog();
+            }
+        });
     }
 
     private void setDismissView() {
@@ -105,5 +122,51 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
                 firstLength + durationTitle.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
+    }
+
+    private void showTripPlaceDialog() {
+        final MyTripEvent tripEvent = mCard.getTripEvent();
+        final Dialog dialog = new Dialog(itemView.getContext());
+        dialog.setContentView(R.layout.dialog_trip_place);
+        TextView title = (TextView) dialog.findViewById(R.id.title);
+        TextView description = (TextView) dialog.findViewById(R.id.description);
+        ImageView image = (ImageView) dialog.findViewById(R.id.image);
+
+        title.setText(tripEvent.getTitle());
+        description.setText(tripEvent.getDescription());
+
+        Glide.with(dialog.getContext())
+                .load(tripEvent.getImage())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .crossFade()
+                .into(image);
+
+        final MapView mapView = (MapView) dialog.findViewById(R.id.dialog_map);
+
+        mapView.onCreate(null);
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(final GoogleMap googleMap) {
+                MapsInitializer.initialize(CustomApplication.sharedInstance());
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                LatLng latLng = new LatLng(tripEvent.getLatitude(), tripEvent.getLongitude());
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                MarkerOptions markerOption = new MarkerOptions().position(latLng);
+                //googleMap.addMarker(markerOption);
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(13));
+                googleMap.getUiSettings().setMapToolbarEnabled(false);
+
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        googleMap.clear();
+                        googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+                    }
+                });
+            }
+        });
+
+        dialog.show();
+
     }
 }
