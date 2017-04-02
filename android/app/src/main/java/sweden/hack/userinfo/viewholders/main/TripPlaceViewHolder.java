@@ -21,10 +21,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Locale;
+
 import sweden.hack.userinfo.AnimationUtils;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
+import sweden.hack.userinfo.helpers.CurrencyHelper;
+import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
 import sweden.hack.userinfo.objects.main.TripPlaceCard;
@@ -110,7 +114,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         StringBuilder sb = new StringBuilder();
         String priceTitle = "Price: ";
         sb.append(priceTitle);
-        sb.append(mCard.getTripEvent().getPrice());
+        sb.append(getPriceString());
         String durationTitle = "  Duration: ";
         sb.append(durationTitle);
         sb.append(TimeUtils.getTime(mCard.getTripEvent().getDuration()));
@@ -122,6 +126,21 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
                 firstLength + durationTitle.length(),
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
+    }
+
+    private String getPriceString() {
+        try {
+            int price = Integer.parseInt(mCard.getTripEvent().getPrice());
+            int transformedPrice = CurrencyHelper.convertToSelectedCurrency(price);
+            if (transformedPrice != -1) {
+                return String.format(Locale.US, "%d %s", transformedPrice, new DataHelper().getCurrency());
+            } else {
+                return String.format(Locale.US, "%d %s", price, "SEK");
+            }
+        } catch (Exception e) {
+            return mCard.getTripEvent().getPrice();
+        }
+
     }
 
     private void showTripPlaceDialog() {
