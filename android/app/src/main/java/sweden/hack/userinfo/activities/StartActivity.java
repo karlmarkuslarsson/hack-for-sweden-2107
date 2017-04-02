@@ -3,6 +3,7 @@ package sweden.hack.userinfo.activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
@@ -17,8 +19,16 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.List;
+
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.helpers.DataHelper;
+import sweden.hack.userinfo.models.currency.Currencies;
+import sweden.hack.userinfo.models.currency.Currency;
+import sweden.hack.userinfo.network.Callback;
+import sweden.hack.userinfo.network.HackOfSwedenApi;
+import sweden.hack.userinfo.network.response.APIResponse;
+import sweden.hack.userinfo.utils.AppUtils;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -28,6 +38,7 @@ public class StartActivity extends AppCompatActivity {
     private TextView mDateField;
     private TextView mLengthField;
     private TextView mCurrencyField;
+    private List<Currency> mCurrencyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +49,28 @@ public class StartActivity extends AppCompatActivity {
             return;
         }
 
+        getCurrencies();
+
         setContentView(R.layout.activity_start);
         initViews();
         setupViews();
         setStatusBarTranslucent();
         setupCallbacks();
 
+    }
+
+    private void getCurrencies() {
+        HackOfSwedenApi.sharedInstance().getCurrencies(new Callback<Currencies>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<Currencies> response) {
+                mCurrencyList = response.getContent().getValue();
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<Currencies> response) {
+
+            }
+        });
     }
 
     private void setupViews() {
@@ -73,22 +100,74 @@ public class StartActivity extends AppCompatActivity {
     private void showCurrencyDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_currency);
-        RadioGroup container = (RadioGroup) dialog.findViewById(R.id.dialog_currency_container);
-
+        final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.dialog_currency_container);
         int sideMargin = (int) getResources().getDimension(R.dimen.dialog_default_margin);
-        for (int i = 0; i < 3; i++) {
-            RadioButton button = new RadioButton(this);
-            container.addView(button);
-
+        int marginBetweenElements = AppUtils.dpToPx(10);
+        for (int i = 0; i < mCurrencyList.size(); i++) {
+            RadioButton button = new RadioButton(StartActivity.this);
+            button.setPadding(
+                    button.getPaddingLeft(),
+                    marginBetweenElements,
+                    button.getPaddingRight(),
+                    marginBetweenElements);
+            radioGroup.addView(button);
             RadioGroup.LayoutParams params = (RadioGroup.LayoutParams) button.getLayoutParams();
             params.width = RadioGroup.LayoutParams.MATCH_PARENT;
             params.leftMargin = sideMargin;
             params.rightMargin = sideMargin;
-
-            button.setText("Button " + i);
+            if (mCurrencyList.get(i).getName().contains(mCurrencyField.getText().toString())) {
+                button.setChecked(true);
+            }
+            button.setText(mCurrencyList.get(i).getCountry());
         }
+        dialog.findViewById(R.id.dialog_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                View radioButton = radioGroup.findViewById(radioButtonID);
+                int index = radioGroup.indexOfChild(radioButton);
+                setCurrency(mCurrencyList.get(index));
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        final View upperDivider = dialog.findViewById(R.id.dialog_upper_divider);
+        upperDivider.setVisibility(View.INVISIBLE);
+        final View lowerDivider = dialog.findViewById(R.id.dialog_lower_divider);
+        dialog.findViewById(R.id.dialog_scrollview)
+                .setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                        if (0 == scrollY) {
+                            // top reached
+                            upperDivider.setVisibility(View.INVISIBLE);
+                        } else {
+                            upperDivider.setVisibility(View.VISIBLE);
 
+                        }
+
+                        ScrollView scrollView = (ScrollView) v;
+                        View view = scrollView.getChildAt(scrollView.getChildCount() - 1);
+                        int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
+
+                        if (diff == 0) {
+                            // bottom reached
+                            lowerDivider.setVisibility(View.INVISIBLE);
+                        } else {
+                            lowerDivider.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
         dialog.show();
+    }
+
+    private void setCurrency(Currency currency) {
+        mCurrencyField.setText(currency.getName());
     }
 
     private void showLengthDialog() {

@@ -15,15 +15,16 @@
         android:textSize="@dimen/dialog_default_title_size" />
 
     <View
+        android:id="@+id/dialog_upper_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/dialog_default_margin"
         android:layout_marginRight="@dimen/dialog_default_margin"
         android:layout_marginTop="10dp"
         android:background="@color/divider" />
 
     <ScrollView
+        android:id="@+id/dialog_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -36,12 +37,12 @@
     </ScrollView>
 
     <View
+        android:id="@+id/dialog_lower_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/dialog_default_margin"
         android:layout_marginRight="@dimen/dialog_default_margin"
-        android:layout_marginTop="10dp"
         android:background="@color/divider" />
 
     <include layout="@layout/dialog_cancel_ok" />

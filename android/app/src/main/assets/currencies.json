@@ -1,6 +1,18 @@
 {
   "currencies": [
     {
+      "country": "Europa . EUR",
+      "name": "EUR"
+    },
+    {
+      "country": "Sweden . SEK",
+      "name": "SEK"
+    },
+    {
+      "country": "USA . USD",
+      "name": "USD"
+    },
+    {
       "country": "Australia . AUD",
       "name": "AUD"
     },
@@ -101,10 +113,6 @@
       "name": "RUB"
     },
     {
-      "country": "Sweden . SEK",
-      "name": "SEK"
-    },
-    {
       "country": "Singapore . SGD",
       "name": "SGD"
     },
@@ -115,10 +123,6 @@
     {
       "country": "Turkey . TRY",
       "name": "TRY"
-    },
-    {
-      "country": "USA . USD",
-      "name": "USD"
     },
     {
       "country": "South Africa . ZAR",

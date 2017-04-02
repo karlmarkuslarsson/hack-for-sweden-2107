@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
-                android:text="Dollar" />
+                android:text="SEK" />
         </android.support.v7.widget.CardView>
 
         <Button
