@@ -4,6 +4,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -294,4 +295,12 @@ public class CurrencyHelper {
 
     }
 
+    public static String convertToSelectedCurrencyCurrencyString(int priceInSek) {
+        int transformedPrice = CurrencyHelper.convertToSelectedCurrency(priceInSek);
+        if (transformedPrice != -1) {
+            return String.format(Locale.US, "%d %s", transformedPrice, DataHelper.getCurrency());
+        } else {
+            return String.format(Locale.US, "%d %s", priceInSek, "SEK");
+        }
+    }
 }
