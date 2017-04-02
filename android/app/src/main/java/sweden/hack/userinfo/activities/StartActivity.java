@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -28,10 +29,10 @@ import sweden.hack.userinfo.models.currency.Currency;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
 import sweden.hack.userinfo.network.response.APIResponse;
-import sweden.hack.userinfo.utils.AppUtils;
 
 public class StartActivity extends AppCompatActivity {
 
+    private static final int MAX_NUMBER_OF_DAYS = 3;
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private Button mStartButton;
@@ -101,24 +102,14 @@ public class StartActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_currency);
         final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.dialog_currency_container);
-        int sideMargin = (int) getResources().getDimension(R.dimen.dialog_default_margin);
-        int marginBetweenElements = AppUtils.dpToPx(10);
+        LayoutInflater inflater = LayoutInflater.from(this);
         for (int i = 0; i < mCurrencyList.size(); i++) {
-            RadioButton button = new RadioButton(StartActivity.this);
-            button.setPadding(
-                    button.getPaddingLeft(),
-                    marginBetweenElements,
-                    button.getPaddingRight(),
-                    marginBetweenElements);
-            radioGroup.addView(button);
-            RadioGroup.LayoutParams params = (RadioGroup.LayoutParams) button.getLayoutParams();
-            params.width = RadioGroup.LayoutParams.MATCH_PARENT;
-            params.leftMargin = sideMargin;
-            params.rightMargin = sideMargin;
+            RadioButton radioButton = (RadioButton) inflater.inflate(R.layout.dialog_radio_button_row, radioGroup, false);
+            radioGroup.addView(radioButton);
             if (mCurrencyList.get(i).getName().contains(mCurrencyField.getText().toString())) {
-                button.setChecked(true);
+                radioButton.setChecked(true);
             }
-            button.setText(mCurrencyList.get(i).getCountry());
+            radioButton.setText(mCurrencyList.get(i).getCountry());
         }
         dialog.findViewById(R.id.dialog_ok).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,24 +164,37 @@ public class StartActivity extends AppCompatActivity {
     private void showLengthDialog() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_length);
-        dialog.findViewById(R.id.dialog_one_day).setOnClickListener(new View.OnClickListener() {
+        final RadioGroup radioGroup = (RadioGroup) dialog.findViewById(R.id.dialog_length_container);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        for (int i = 0; i < MAX_NUMBER_OF_DAYS; i++) {
+            RadioButton radioButton = (RadioButton) inflater.inflate(R.layout.dialog_radio_button_row, radioGroup, false);
+            radioGroup.addView(radioButton);
+
+            if (i == 0) {
+                radioButton.setText("1 day");
+            } else {
+                radioButton.setText(String.format("%d days", i + 1));
+            }
+
+            if (mLengthField.getText().toString().contains(String.valueOf(i + 1))) {
+                radioButton.setChecked(true);
+            }
+        }
+
+        dialog.findViewById(R.id.dialog_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDays(1);
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                View radioButton = radioGroup.findViewById(radioButtonID);
+                int index = radioGroup.indexOfChild(radioButton);
+                setDays(index + 1);
                 dialog.dismiss();
             }
         });
-        dialog.findViewById(R.id.dialog_two_days).setOnClickListener(new View.OnClickListener() {
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDays(2);
-                dialog.dismiss();
-            }
-        });
-        dialog.findViewById(R.id.dialog_three_days).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDays(3);
                 dialog.dismiss();
             }
         });
