@@ -16,9 +16,6 @@ public class CustomApplication extends Application {
 
     private static CustomApplication sSharedInstance;
 
-    private Storage mCache;
-    private DataHelper mDataHelper;
-
     public CustomApplication() {
     }
 
@@ -36,17 +33,16 @@ public class CustomApplication extends Application {
         Timber.plant(new Timber.DebugTree());
         sSharedInstance = this;
         JodaTimeAndroid.init(this);
-        mCache = Cache.sharedInstance();
+        Cache.init();
         initConfiguration();
     }
 
     private void initConfiguration() {
-        mDataHelper = new DataHelper();
         ExchangeRatesApi.sharedInstance().getExchangeRates(new Callback<ExchangeRates>() {
             @Override
             public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
                 if (response.isSuccessful()) {
-                    mDataHelper.setExchangeRates(response.getContent());
+                    DataHelper.setExchangeRates(response.getContent());
                 }
             }
 

@@ -47,14 +47,12 @@ public class TripFragment extends Fragment {
     private boolean mUpdateDataOnLoad;
     private MyTrip mMyTripData;
     private int mDays;
-    private DataHelper mDataHelper;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_trip, container, false);
-        mDataHelper = new DataHelper();
-        mDays = mDataHelper.getTripDays();
+        mDays = DataHelper.getTripDays();
         initViews();
         setupViews();
         initData();
@@ -62,7 +60,7 @@ public class TripFragment extends Fragment {
     }
 
     private void initData() {
-        mTripPath = mDataHelper.getTripPaths();
+        mTripPath = DataHelper.getTripPaths();
         mUpdateDataOnLoad = true;
         if (mTripPath != null) {
             mMyTripData = Cache.sharedInstance().getMyTrip();
@@ -119,7 +117,7 @@ public class TripFragment extends Fragment {
     private void addTripCards() {
         if (mTripPath == null || mTripPath.size() == 0) {
             mTripPath = TripCalculator.calculateTrips(mMyTripData, mDays);
-            mDataHelper.setTripPaths(mTripPath);
+            DataHelper.setTripPaths(mTripPath);
         }
         int counter = 0;
         for (TripPath tripPath : mTripPath) {
@@ -132,7 +130,7 @@ public class TripFragment extends Fragment {
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
                 TripObject currentTrip = tripPath.getObjectList().get(i);
                 if (currentTrip == null) {
-                    mDataHelper.setTripPaths(null);
+                    DataHelper.setTripPaths(null);
                     mTripPath = null;
                     reloadData();
                     return;
@@ -141,7 +139,7 @@ public class TripFragment extends Fragment {
                     case RESTAURANT:
                         MyTripRestaurant restaurant = mMyTripData.getRestaurant(currentTrip.getId());
                         if (restaurant == null) {
-                            mDataHelper.setTripPaths(null);
+                            DataHelper.setTripPaths(null);
                             mTripPath = null;
                             reloadData();
                             return;
@@ -160,7 +158,7 @@ public class TripFragment extends Fragment {
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
                         if (event == null) {
-                            mDataHelper.setTripPaths(null);
+                            DataHelper.setTripPaths(null);
                             mTripPath = null;
                             reloadData();
                             return;

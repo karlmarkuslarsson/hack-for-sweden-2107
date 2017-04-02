@@ -281,9 +281,8 @@ public class CurrencyHelper {
     }
 
     public static int convertToSelectedCurrency(float amountInSEK) {
-        DataHelper dataHelper = new DataHelper();
-        String currency = dataHelper.getCurrency();
-        ExchangeRates exchangeRates = dataHelper.getExchangeRates();
+        String currency = DataHelper.getCurrency();
+        ExchangeRates exchangeRates = DataHelper.getExchangeRates();
         if (exchangeRates != null && exchangeRates.mRates != null) {
             float exchangeRate = exchangeRates.mRates.getExchangeRate(currency);
             if (exchangeRate != -1) {

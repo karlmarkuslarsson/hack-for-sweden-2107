@@ -26,11 +26,9 @@ import sweden.hack.userinfo.objects.main.AirportCard;
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
     private final ViewGroup mContent;
-    private final DataHelper mDataHelper;
 
     public AirportViewHolder(View root) {
         super(root);
-        mDataHelper = new DataHelper();
         mContent = (ViewGroup) root.findViewById(R.id.content);
     }
 
@@ -52,7 +50,7 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
         if (transformedCost == -1) {
             setText(root.findViewById(R.id.text3), cost + " SEK");
         } else {
-            setText(root.findViewById(R.id.text3), String.format(Locale.US, "%d %s", transformedCost, mDataHelper.getCurrency()));
+            setText(root.findViewById(R.id.text3), String.format(Locale.US, "%d %s", transformedCost, DataHelper.getCurrency()));
         }
 
         setText(root.findViewById(R.id.text1), line.getTitle());

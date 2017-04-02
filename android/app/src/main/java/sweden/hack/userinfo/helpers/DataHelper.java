@@ -85,7 +85,7 @@ public class DataHelper {
         storage.setTripPaths(null);
     }
 
-    public ArrayList<TripPath> getTripPaths() {
+    public static ArrayList<TripPath> getTripPaths() {
         ArrayList<TripPath> tripPaths = Cache.sharedInstance().getTripPaths();
         if (tripPaths == null) {
             String paths = SharedPrefsHelper.sharedInstance().getPreference(Constants.TRIP_PATHS, (String) null);
@@ -97,7 +97,7 @@ public class DataHelper {
         return tripPaths;
     }
 
-    public void setTripPaths(ArrayList<TripPath> tripPaths) {
+    public static void setTripPaths(ArrayList<TripPath> tripPaths) {
         Cache.sharedInstance().setTripPaths(tripPaths);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
     }
@@ -107,7 +107,7 @@ public class DataHelper {
         SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_TRIP_DAYS, days);
     }
 
-    public int getTripDays() {
+    public static int getTripDays() {
         int days = Cache.sharedInstance().getDays();
         if (days == 0) {
             days = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_TRIP_DAYS, 2);
@@ -121,7 +121,7 @@ public class DataHelper {
         SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_CURRENCY, currency);
     }
 
-    public String getCurrency() {
+    public static String getCurrency() {
         String currency = Cache.sharedInstance().getCurrency();
         if (currency == null) {
             currency = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_CURRENCY, CurrencyHelper.DEFAULT_CURRENCY);
@@ -130,12 +130,12 @@ public class DataHelper {
         return currency;
     }
 
-    public void setExchangeRates(ExchangeRates exchangeRates) {
+    public static void setExchangeRates(ExchangeRates exchangeRates) {
         Cache.sharedInstance().setExchangeRates(exchangeRates);
         SharedPrefsHelper.sharedInstance().setPreference(Constants.CACHED_EXCHANGE_RATES, new Gson().toJson(exchangeRates));
     }
 
-    public ExchangeRates getExchangeRates() {
+    public static ExchangeRates getExchangeRates() {
         ExchangeRates exchangeRates = Cache.sharedInstance().getExchangeRates();
         if (exchangeRates == null) {
             String exchangeRateString = SharedPrefsHelper.sharedInstance().getPreference(Constants.CACHED_EXCHANGE_RATES, (String) null);

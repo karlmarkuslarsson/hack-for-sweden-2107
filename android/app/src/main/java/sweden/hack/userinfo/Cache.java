@@ -113,4 +113,7 @@ public class Cache implements Storage {
         return mExchangeRates;
     }
 
+    public static void init() {
+        Cache.sharedInstance();
+    }
 }

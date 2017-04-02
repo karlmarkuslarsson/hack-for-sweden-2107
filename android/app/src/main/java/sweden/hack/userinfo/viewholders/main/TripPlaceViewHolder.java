@@ -133,7 +133,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
             int price = Integer.parseInt(mCard.getTripEvent().getPrice());
             int transformedPrice = CurrencyHelper.convertToSelectedCurrency(price);
             if (transformedPrice != -1) {
-                return String.format(Locale.US, "%d %s", transformedPrice, new DataHelper().getCurrency());
+                return String.format(Locale.US, "%d %s", transformedPrice, DataHelper.getCurrency());
             } else {
                 return String.format(Locale.US, "%d %s", price, "SEK");
             }
