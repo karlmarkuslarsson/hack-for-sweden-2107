@@ -28,6 +28,9 @@ public class CustomApplication extends Application {
     @Inject
     DataHelper mDataHelper;
 
+    @Inject
+    ExchangeRatesApi mExchangeRatesApi;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -48,7 +51,7 @@ public class CustomApplication extends Application {
     }
 
     private void initConfiguration() {
-        ExchangeRatesApi.sharedInstance().getExchangeRates(new Callback<ExchangeRates>() {
+        mExchangeRatesApi.getExchangeRates(new Callback<ExchangeRates>() {
             @Override
             public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
                 if (response.isSuccessful()) {

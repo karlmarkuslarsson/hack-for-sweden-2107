@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
+import sweden.hack.userinfo.network.exchangerates.ExchangeRatesApi;
 import sweden.hack.userinfo.network.sl.SLApi;
 import sweden.hack.userinfo.network.smhi.SMHIApi;
 
@@ -33,6 +34,12 @@ public class NetworkModule {
     @Singleton
     HackOfSwedenApi provideHFSApi() {
         return new HackOfSwedenApi(mHomeApplication.getAppComponent());
+    }
+
+    @Provides
+    @Singleton
+    ExchangeRatesApi provideExchangeRatesApi() {
+        return new ExchangeRatesApi(mHomeApplication.getAppComponent());
     }
 
 }

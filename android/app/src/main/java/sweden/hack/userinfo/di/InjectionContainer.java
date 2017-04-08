@@ -15,6 +15,7 @@ import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
 import sweden.hack.userinfo.helpers.SharedPrefsHelper;
 import sweden.hack.userinfo.network.HackOfSwedenApi;
+import sweden.hack.userinfo.network.exchangerates.ExchangeRatesApi;
 import sweden.hack.userinfo.network.sl.SLApi;
 import sweden.hack.userinfo.network.smhi.SMHIApi;
 import sweden.hack.userinfo.viewholders.main.AirportViewHolder;
@@ -70,5 +71,7 @@ public interface InjectionContainer {
     void inject(TripPlaceViewHolder object);
 
     void inject(EventDialog object);
+
+    void inject(ExchangeRatesApi object);
 
 }

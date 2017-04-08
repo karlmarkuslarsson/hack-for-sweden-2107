@@ -6,6 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.request.CallRequest;
@@ -14,21 +15,9 @@ public class ExchangeRatesApi {
 
     private ExchangeRatesInterface mApi;
 
-    private static ExchangeRatesApi sSharedInstance;
-
-    private ExchangeRatesApi() {
+    public ExchangeRatesApi(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
         init();
-    }
-
-    public static ExchangeRatesApi sharedInstance() {
-
-        synchronized (ExchangeRatesApi.class) {
-            if (sSharedInstance == null) {
-                sSharedInstance = new ExchangeRatesApi();
-            }
-        }
-
-        return sSharedInstance;
     }
 
     public void getExchangeRates(Callback<ExchangeRates> callback) {
