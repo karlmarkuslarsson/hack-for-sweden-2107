@@ -26,6 +26,8 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int OFF_SCREEN_PAGES = 3;
+
     private MainViewPagerAdapter mAdapter;
 
     @BindView(R.id.activity_main_view_pager)
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager() {
         mAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), getApplicationContext());
         mViewPager.setAdapter(mAdapter);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(OFF_SCREEN_PAGES);
         mTabBar.setupWithViewPager(mViewPager);
     }
 
