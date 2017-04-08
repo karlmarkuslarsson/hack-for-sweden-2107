@@ -1,24 +1,15 @@
 package sweden.hack.userinfo.viewholders.main;
 
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.graphics.Typeface;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,10 +17,11 @@ import sweden.hack.userinfo.AnimationUtils;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
 import sweden.hack.userinfo.di.DaggerUtils;
+import sweden.hack.userinfo.dialogs.EventDialog;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
 import sweden.hack.userinfo.objects.main.TripPlaceCard;
+import sweden.hack.userinfo.utils.SpannableUtils;
 
 public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     private final ImageView mImage;
@@ -113,22 +105,12 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     }
 
     private void setEventInfo() {
-        StringBuilder sb = new StringBuilder();
-        String priceTitle = "Price: ";
-        sb.append(priceTitle);
-        String priceString = getPriceString();
-        sb.append(priceString);
-        String durationTitle = "  Duration: ";
-        sb.append(durationTitle);
-        sb.append(TimeUtils.getTime(mCard.getTripEvent().getDuration()));
-        SpannableString spannableString = new SpannableString(sb.toString());
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, priceTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        int firstLength = priceTitle.length() + String.valueOf(priceString).length();
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD),
-                firstLength,
-                firstLength + durationTitle.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
+        List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
+        titleValueList.add(new SpannableUtils.TitleValue("Price", getPriceString()));
+        titleValueList.add(new SpannableUtils.TitleValue("Duration",
+                TimeUtils.getTime(mCard.getTripEvent().getDuration())));
+        mEventInfo.setText(SpannableUtils.boldTitle(
+                titleValueList, SpannableUtils.SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
     }
 
     private String getPriceString() {
@@ -142,47 +124,8 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     }
 
     private void showTripPlaceDialog() {
-        final MyTripEvent tripEvent = mCard.getTripEvent();
-        final Dialog dialog = new Dialog(itemView.getContext());
-        dialog.setContentView(R.layout.dialog_trip_place);
-        TextView title = (TextView) dialog.findViewById(R.id.title);
-        TextView description = (TextView) dialog.findViewById(R.id.description);
-        ImageView image = (ImageView) dialog.findViewById(R.id.image);
-
-        title.setText(tripEvent.getTitle());
-        description.setText(tripEvent.getDescription());
-
-        Glide.with(dialog.getContext())
-                .load(tripEvent.getImage())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
-                .into(image);
-
-        final MapView mapView = (MapView) dialog.findViewById(R.id.dialog_map);
-
-        mapView.onCreate(null);
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(final GoogleMap googleMap) {
-                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                LatLng latLng = new LatLng(tripEvent.getLatitude(), tripEvent.getLongitude());
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                MarkerOptions markerOption = new MarkerOptions().position(latLng);
-                //googleMap.addMarker(markerOption);
-                googleMap.moveCamera(CameraUpdateFactory.zoomTo(13));
-                googleMap.getUiSettings().setMapToolbarEnabled(false);
-
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        googleMap.clear();
-                        googleMap.setMapType(GoogleMap.MAP_TYPE_NONE);
-                    }
-                });
-            }
-        });
-
+        final EventDialog dialog = new EventDialog(itemView.getContext(), mCard.getTripEvent());
         dialog.show();
-
     }
+
 }

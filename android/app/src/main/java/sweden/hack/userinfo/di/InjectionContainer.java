@@ -6,6 +6,7 @@ import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.activities.MainActivity;
 import sweden.hack.userinfo.activities.StartActivity;
+import sweden.hack.userinfo.dialogs.EventDialog;
 import sweden.hack.userinfo.fragments.AboutFragment;
 import sweden.hack.userinfo.fragments.PracticalInfoFragment;
 import sweden.hack.userinfo.fragments.TripFragment;
@@ -67,5 +68,7 @@ public interface InjectionContainer {
     void inject(AirportViewHolder object);
 
     void inject(TripPlaceViewHolder object);
+
+    void inject(EventDialog object);
 
 }

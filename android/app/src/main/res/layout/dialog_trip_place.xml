@@ -6,33 +6,22 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <FrameLayout
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/dialog_map"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="130dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        map:liteMode="true"
+        map:mapType="normal" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop" />
-
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/dialog_map"
-            android:layout_width="100dp"
-            android:layout_height="65dp"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:elevation="4dp"
-            map:liteMode="true"
-            map:mapType="normal" />
-    </FrameLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -45,15 +34,35 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:textSize="25sp"
+                android:textColor="@color/dark_grey"
                 android:textStyle="bold"
                 tools:text="Skansen" />
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="128dp"
+                android:layout_height="72dp"
+                android:layout_below="@id/title"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/image"
+                android:layout_toRightOf="@id/image" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image"
+                android:layout_marginTop="5dp" />
+        </RelativeLayout>
     </ScrollView>
 
 </LinearLayout>

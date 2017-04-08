@@ -22,4 +22,5 @@
     <color name="cardview_half_trans">#DDFFFFFF</color>
     <color name="black">#000000</color>
     <color name="divider">#1e000000</color>
+    <color name="dark_grey">#222222</color>
 </resources>
