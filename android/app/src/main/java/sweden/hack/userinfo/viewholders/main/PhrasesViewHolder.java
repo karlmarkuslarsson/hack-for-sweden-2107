@@ -5,17 +5,21 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.cards.phrases.Phrase;
 import sweden.hack.userinfo.objects.main.PhrasesCard;
 
 public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {
-    private final LinearLayout mContent;
+
+    @BindView(R.id.content)
+    LinearLayout mContent;
 
     public PhrasesViewHolder(View root) {
         super(root);
-        mContent = (LinearLayout) itemView.findViewById(R.id.content);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
@@ -45,4 +49,5 @@ public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {
         eng.setText(phrase.getEng());
         linearLayout.addView(view);
     }
+
 }

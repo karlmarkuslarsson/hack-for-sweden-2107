@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.cards.holdays.Holiday;
@@ -15,11 +17,12 @@ import sweden.hack.userinfo.objects.main.HolidaysCard;
 
 public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
 
-    private final ViewGroup mContent;
+    @BindView(R.id.content)
+    ViewGroup mContent;
 
     public HolidaysViewHolder(View root) {
         super(root);
-        mContent = (ViewGroup) root.findViewById(R.id.content);
+        ButterKnife.bind(this, root);
     }
 
     @Override
@@ -49,4 +52,5 @@ public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
         TextView.class.cast(view.findViewById(R.id.text3)).setText(holiday.getDate());
         linearLayout.addView(view);
     }
+
 }

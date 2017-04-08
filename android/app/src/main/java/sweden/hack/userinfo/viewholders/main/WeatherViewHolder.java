@@ -3,6 +3,8 @@ package sweden.hack.userinfo.viewholders.main;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.smhi.Parameter;
@@ -10,15 +12,19 @@ import sweden.hack.userinfo.models.smhi.WeatherPoint;
 import sweden.hack.userinfo.objects.main.WeatherCard;
 
 public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
-    private final TextView mWeatherNowText;
-    private final TextView mHumidity;
-    private final TextView mWindSpeed;
+
+    @BindView(R.id.text_weather_now)
+    TextView mWeatherNowText;
+
+    @BindView(R.id.text_humidity)
+    TextView mHumidity;
+
+    @BindView(R.id.text_wind)
+    TextView mWindSpeed;
 
     public WeatherViewHolder(View itemView) {
         super(itemView);
-        mWeatherNowText = (TextView) itemView.findViewById(R.id.text_weather_now);
-        mHumidity = (TextView) itemView.findViewById(R.id.text_humidity);
-        mWindSpeed = (TextView) itemView.findViewById(R.id.text_wind);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
@@ -73,4 +79,5 @@ public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
             }
         }
     }
+
 }

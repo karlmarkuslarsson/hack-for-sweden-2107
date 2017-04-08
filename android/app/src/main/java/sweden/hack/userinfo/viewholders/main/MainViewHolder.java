@@ -6,6 +6,7 @@ import android.view.View;
 import sweden.hack.userinfo.listeners.MainCardListener;
 
 public abstract class MainViewHolder<T> extends RecyclerView.ViewHolder {
+
     public MainViewHolder(View itemView) {
         super(itemView);
     }
@@ -15,4 +16,5 @@ public abstract class MainViewHolder<T> extends RecyclerView.ViewHolder {
     public void clearAnimation() {
         itemView.clearAnimation();
     }
+
 }

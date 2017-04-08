@@ -18,6 +18,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
@@ -26,7 +28,8 @@ import sweden.hack.userinfo.objects.main.AirportCard;
 
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
-    private final ViewGroup mContent;
+    @BindView(R.id.content)
+    ViewGroup mContent;
 
     @Inject
     CurrencyHelper mCurrencyHelper;
@@ -34,7 +37,7 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     public AirportViewHolder(View root) {
         super(root);
         DaggerUtils.getComponent(root.getContext()).inject(this);
-        mContent = (ViewGroup) root.findViewById(R.id.content);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
