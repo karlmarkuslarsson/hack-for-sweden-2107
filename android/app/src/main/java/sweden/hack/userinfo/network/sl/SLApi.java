@@ -1,6 +1,8 @@
 package sweden.hack.userinfo.network.sl;
 
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -8,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.sl.ClosestStations;
 import sweden.hack.userinfo.models.sl.Departures;
 import sweden.hack.userinfo.models.sl.Deviations;
@@ -23,21 +26,10 @@ public class SLApi {
 
     private SLInterface mApi;
 
-    private static SLApi sSharedInstance;
-
-    private SLApi() {
+    @Inject
+    public SLApi(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
         init();
-    }
-
-    public static SLApi sharedInstance() {
-
-        synchronized (SLApi.class) {
-            if (sSharedInstance == null) {
-                sSharedInstance = new SLApi();
-            }
-        }
-
-        return sSharedInstance;
     }
 
     private void init() {

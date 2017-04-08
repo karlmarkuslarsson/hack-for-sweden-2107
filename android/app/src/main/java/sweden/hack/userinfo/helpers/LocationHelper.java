@@ -7,8 +7,10 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.Storage;
+import javax.inject.Inject;
+
+import sweden.hack.userinfo.Cache;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.listeners.GPSLocationListener;
 import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
 
@@ -24,10 +26,15 @@ public class LocationHelper {
     private static final long MIN_TIME = 20000; //ms
     private static final float MIN_DISTANCE = 20;
 
-    private final Storage mCache;
+    @Inject
+    Cache mCache;
 
-    public LocationHelper(Storage cache) {
-        mCache = cache;
+    @Inject
+    Context mContext;
+
+    @Inject
+    public LocationHelper(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
     }
 
     private GPSLocationListener mLocationListener;
@@ -53,8 +60,7 @@ public class LocationHelper {
     @SuppressWarnings("MissingPermission")
     private void setupGPSManager() {
         mLocationListener = new GPSLocationListener(mCache);
-        mLocationManager = (LocationManager) CustomApplication.sharedInstance()
-                .getSystemService(Context.LOCATION_SERVICE);
+        mLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         mLocationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 MIN_TIME,

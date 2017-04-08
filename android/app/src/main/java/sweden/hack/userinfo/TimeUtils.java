@@ -2,7 +2,7 @@ package sweden.hack.userinfo;
 
 public class TimeUtils {
     public static String getTime(Integer duration) {
-        int dur = duration.intValue();
+        int dur = duration;
         int hours = dur / 60;
         dur = dur - hours * 60;
         String result = "";

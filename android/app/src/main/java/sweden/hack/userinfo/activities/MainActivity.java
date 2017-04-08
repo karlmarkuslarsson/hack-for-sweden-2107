@@ -16,33 +16,43 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainViewPagerAdapter;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LocationHelper mLocationHelper;
-
     private MainViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabBar;
     private Toolbar mToolbar;
 
+    @Inject
+    Cache mCache;
+
+    @Inject
+    DataHelper mDataHelper;
+
+    @Inject
+    LocationHelper mLocationHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DaggerUtils.getComponent(this).inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
         sendNotification();
         setupViews();
-        mLocationHelper = new LocationHelper(Cache.sharedInstance());
 
         String currency = CurrencyHelper.getCurrency(this);
-        Log.e("",currency);
+        Log.e("", currency);
     }
 
     private void setupViews() {
@@ -51,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager() {
-        mAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        mAdapter = new MainViewPagerAdapter(getSupportFragmentManager(), getApplicationContext());
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(3);
         mTabBar.setupWithViewPager(mViewPager);
@@ -100,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restart() {
-        DataHelper.clear();
+        mDataHelper.clear();
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
         finish();
@@ -135,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                         .addAction(action2)
                         .addAction(action)
                         .addAction(action3);
-
 
 
         NotificationManager mNotificationManager =

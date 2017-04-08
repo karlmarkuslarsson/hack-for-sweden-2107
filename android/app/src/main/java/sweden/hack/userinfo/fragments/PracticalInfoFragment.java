@@ -1,12 +1,17 @@
 package sweden.hack.userinfo.fragments;
 
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.cards.CardComponent;
@@ -36,6 +41,24 @@ import timber.log.Timber;
 
 public class PracticalInfoFragment extends BaseFragment {
 
+    @Inject
+    SLApi mSLApi;
+
+    @Inject
+    SMHIApi mSMHIApi;
+
+    @Inject
+    HackOfSwedenApi mHackOfSwedenApi;
+
+    @Inject
+    Cache mCache;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerUtils.getComponent(getContext()).inject(this);
+    }
+
     @Override
     protected void reloadData() {
         mAdapter.reset();
@@ -55,7 +78,7 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void getAllData() {
-        HackOfSwedenApi.sharedInstance().getPracticalInfo(new Callback<List<CardComponent>>() {
+        mHackOfSwedenApi.getPracticalInfo(new Callback<List<CardComponent>>() {
 
             @Override
             public void onSuccess(@NonNull APIResponse<List<CardComponent>> response) {
@@ -116,7 +139,7 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void addSLAirportCard() {
-        SLApi.sharedInstance().getTrip(
+        mSLApi.getTrip(
                 Constants.ARLANDA_LAT,
                 Constants.ARLANDA_LNG,
                 "arlanda",
@@ -138,9 +161,9 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void addSLCard() {
-        Location location = Cache.sharedInstance().getLocation();
+        Location location = mCache.getLocation();
         if (location != null) {
-            SLApi.sharedInstance().getClosestStations(
+            mSLApi.getClosestStations(
                     location.getLatitude(),
                     location.getLongitude(),
                     10,
@@ -161,11 +184,11 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void addWeatherCard() {
-        Location location = Cache.sharedInstance().getLocation();
+        Location location = mCache.getLocation();
         if (location != null) {
             String lat = Constants.CENTRALEN_LAT;
             String lon = Constants.CENTRALEN_LNG;
-            SMHIApi.sharedInstance().getWeatherForLatLng(
+            mSMHIApi.getWeatherForLatLng(
                     String.valueOf(lat),
                     String.valueOf(lon),
                     new Callback<Weather>() {
@@ -185,7 +208,7 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void addPopulationCard() {
-        HackOfSwedenApi.sharedInstance().getPopulation(new Callback<List<Population>>() {
+        mHackOfSwedenApi.getPopulation(new Callback<List<Population>>() {
             @Override
             public void onSuccess(@NonNull APIResponse<List<Population>> response) {
                 List<Population> populations = response.getContent();

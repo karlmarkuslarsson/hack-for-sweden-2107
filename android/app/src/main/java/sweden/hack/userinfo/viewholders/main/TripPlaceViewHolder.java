@@ -21,10 +21,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.AnimationUtils;
-import sweden.hack.userinfo.CustomApplication;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
@@ -43,8 +45,12 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     private TripPlaceCard mCard;
     private MainCardListener mListener;
 
+    @Inject
+    CurrencyHelper mCurrencyHelper;
+
     public TripPlaceViewHolder(View itemView) {
         super(itemView);
+        DaggerUtils.getComponent(itemView.getContext()).inject(this);
         mImage = (ImageView) itemView.findViewById(R.id.image);
         mTitle = (TextView) itemView.findViewById(R.id.title);
         mTag = (TextView) itemView.findViewById(R.id.tag);
@@ -130,7 +136,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         String priceInSek = mCard.getTripEvent().getPrice();
         try {
             int price = Integer.parseInt(priceInSek);
-            return CurrencyHelper.convertToSelectedCurrencyCurrencyString(price);
+            return mCurrencyHelper.convertToSelectedCurrencyCurrencyString(price);
         } catch (Exception e) {
             return priceInSek;
         }
@@ -159,7 +165,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
-                MapsInitializer.initialize(CustomApplication.sharedInstance());
+                MapsInitializer.initialize(itemView.getContext());
                 googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                 LatLng latLng = new LatLng(tripEvent.getLatitude(), tripEvent.getLongitude());
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));

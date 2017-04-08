@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
 import sweden.hack.userinfo.helpers.TripCalculator;
@@ -48,11 +51,26 @@ public class TripFragment extends Fragment {
     private MyTrip mMyTripData;
     private int mDays;
 
+    @Inject
+    Cache mCache;
+
+    @Inject
+    DataHelper mDataHelper;
+
+    @Inject
+    HackOfSwedenApi mHackOfSwedenApi;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerUtils.getComponent(getContext()).inject(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_trip, container, false);
-        mDays = DataHelper.getTripDays();
+        mDays = mDataHelper.getTripDays();
         initViews();
         setupViews();
         initData();
@@ -60,10 +78,10 @@ public class TripFragment extends Fragment {
     }
 
     private void initData() {
-        mTripPath = DataHelper.getTripPaths();
+        mTripPath = mDataHelper.getTripPaths();
         mUpdateDataOnLoad = true;
         if (mTripPath != null) {
-            mMyTripData = Cache.sharedInstance().getMyTrip();
+            mMyTripData = mCache.getMyTrip();
             if (mMyTripData != null) {
                 mUpdateDataOnLoad = false;
                 addTripCards();
@@ -96,11 +114,11 @@ public class TripFragment extends Fragment {
     }
 
     protected void loadData() {
-        HackOfSwedenApi.sharedInstance().getTripList(new Callback<MyTrip>() {
+        mHackOfSwedenApi.getTripList(new Callback<MyTrip>() {
             @Override
             public void onSuccess(@NonNull APIResponse<MyTrip> response) {
                 mSwipeRefreshLayout.setRefreshing(false);
-                Cache.sharedInstance().setMyTrip(response.getContent());
+                mCache.setMyTrip(response.getContent());
                 mMyTripData = response.getContent();
                 if (mUpdateDataOnLoad) {
                     addTripCards();
@@ -117,7 +135,7 @@ public class TripFragment extends Fragment {
     private void addTripCards() {
         if (mTripPath == null || mTripPath.size() == 0) {
             mTripPath = TripCalculator.calculateTrips(mMyTripData, mDays);
-            DataHelper.setTripPaths(mTripPath);
+            mDataHelper.setTripPaths(mTripPath);
         }
         int counter = 0;
         for (TripPath tripPath : mTripPath) {
@@ -130,7 +148,7 @@ public class TripFragment extends Fragment {
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
                 TripObject currentTrip = tripPath.getObjectList().get(i);
                 if (currentTrip == null) {
-                    DataHelper.setTripPaths(null);
+                    mDataHelper.setTripPaths(null);
                     mTripPath = null;
                     reloadData();
                     return;
@@ -139,7 +157,7 @@ public class TripFragment extends Fragment {
                     case RESTAURANT:
                         MyTripRestaurant restaurant = mMyTripData.getRestaurant(currentTrip.getId());
                         if (restaurant == null) {
-                            DataHelper.setTripPaths(null);
+                            mDataHelper.setTripPaths(null);
                             mTripPath = null;
                             reloadData();
                             return;
@@ -158,7 +176,7 @@ public class TripFragment extends Fragment {
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
                         if (event == null) {
-                            DataHelper.setTripPaths(null);
+                            mDataHelper.setTripPaths(null);
                             mTripPath = null;
                             reloadData();
                             return;

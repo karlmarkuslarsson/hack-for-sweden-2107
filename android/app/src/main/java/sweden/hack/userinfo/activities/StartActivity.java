@@ -22,7 +22,10 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.R;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.models.currency.Currencies;
 import sweden.hack.userinfo.models.currency.Currency;
@@ -41,11 +44,18 @@ public class StartActivity extends AppCompatActivity {
     private TextView mCurrencyField;
     private List<Currency> mCurrencyList;
 
+    @Inject
+    DataHelper mDataHelper;
+
+    @Inject
+    HackOfSwedenApi mHackOfSwedenApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DaggerUtils.getComponent(this).inject(this);
         super.onCreate(savedInstanceState);
 
-        if (DataHelper.hasStarted()) {
+        if (mDataHelper.hasStarted()) {
             startLoadActivity();
             return;
         }
@@ -61,7 +71,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void getCurrencies() {
-        HackOfSwedenApi.sharedInstance().getCurrencies(new Callback<Currencies>() {
+        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
             @Override
             public void onSuccess(@NonNull APIResponse<Currencies> response) {
                 mCurrencyList = response.getContent().getValue();
@@ -274,10 +284,10 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void onValidDate(LocalDate localDate) {
-        DataHelper.setTripDate(localDate);
-        DataHelper.setTripDays(Integer.parseInt(String.valueOf(mLengthField.getText().charAt(0))));
-        DataHelper.setCurrency(mCurrencyField.getText().toString());
-        DataHelper.hasStarted(true);
+        mDataHelper.setTripDate(localDate);
+        mDataHelper.setTripDays(Integer.parseInt(String.valueOf(mLengthField.getText().charAt(0))));
+        mDataHelper.setCurrency(mCurrencyField.getText().toString());
+        mDataHelper.hasStarted(true);
 
         startLoadActivity();
     }

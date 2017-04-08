@@ -6,13 +6,14 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.objects.TripPath;
 
 public class Cache implements Storage {
-
-    private static Storage sSharedInstance;
 
     private Location mLocation;
     private LocalDate mTripDate;
@@ -23,16 +24,9 @@ public class Cache implements Storage {
     private String mCurrency;
     private ExchangeRates mExchangeRates;
 
-    private Cache() {
-    }
-
-    public static Storage sharedInstance() {
-        synchronized (Cache.class) {
-            if (sSharedInstance == null) {
-                sSharedInstance = new Cache();
-            }
-        }
-        return sSharedInstance;
+    @Inject
+    public Cache(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
     }
 
     @Override
@@ -113,7 +107,4 @@ public class Cache implements Storage {
         return mExchangeRates;
     }
 
-    public static void init() {
-        Cache.sharedInstance();
-    }
 }

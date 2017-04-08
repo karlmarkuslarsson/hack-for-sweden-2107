@@ -16,7 +16,10 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.R;
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.AirportCard;
@@ -25,8 +28,12 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
     private final ViewGroup mContent;
 
+    @Inject
+    CurrencyHelper mCurrencyHelper;
+
     public AirportViewHolder(View root) {
         super(root);
+        DaggerUtils.getComponent(root.getContext()).inject(this);
         mContent = (ViewGroup) root.findViewById(R.id.content);
     }
 
@@ -46,7 +53,7 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
         setText(root.findViewById(R.id.text1), line.getTitle());
         setText(root.findViewById(R.id.text2), line.getTime());
         setText(root.findViewById(R.id.text3),
-                CurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost()));
+                mCurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost()));
         ImageView imageView = (ImageView) root.findViewById(R.id.image);
 
         Glide.with(itemView.getContext())

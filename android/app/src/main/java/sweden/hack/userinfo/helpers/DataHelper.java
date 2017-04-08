@@ -1,5 +1,6 @@
 package sweden.hack.userinfo.helpers;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.location.Location;
 
@@ -13,10 +14,11 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.Constants;
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.Storage;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.objects.TripPath;
@@ -24,25 +26,37 @@ import timber.log.Timber;
 
 public class DataHelper {
 
+    @Inject
+    Cache mCache;
+
+    @Inject
+    Context mContext;
+
+    @Inject
+    SharedPrefsHelper mSharedPrefsHelper;
+
+    public DataHelper(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
+    }
+
     public static void setLocation(Location location) {
         throw new RuntimeException("Not implemented!");
     }
 
-    public static Location getLocation() {
+    public Location getLocation() {
         throw new RuntimeException("Not implemented!");
     }
 
-    public static LocalDate getTripDate() {
-        LocalDate date = Cache.sharedInstance().getTripDate();
+    public LocalDate getTripDate() {
+        LocalDate date = mCache.getTripDate();
         if (date == null) {
-            date = tryReadDate(SharedPrefsHelper.sharedInstance()
-                    .getPreference(Constants.USER_TRIP_DATE, ""));
-            Cache.sharedInstance().setTripDate(date);
+            date = tryReadDate(mSharedPrefsHelper.getPreference(Constants.USER_TRIP_DATE, ""));
+            mCache.setTripDate(date);
         }
         return date;
     }
 
-    private static LocalDate tryReadDate(String date) {
+    private LocalDate tryReadDate(String date) {
         try {
             return LocalDate.parse(date);
         } catch (IllegalArgumentException e) {
@@ -50,21 +64,19 @@ public class DataHelper {
         }
     }
 
-    public static void setTripDate(LocalDate tripDate) {
-        Cache.sharedInstance().setTripDate(tripDate);
-        SharedPrefsHelper.sharedInstance()
-                .setPreference(Constants.USER_TRIP_DATE,
-                        tripDate != null ? tripDate.toString("yyyy-MM-dd") : null);
+    public void setTripDate(LocalDate tripDate) {
+        mCache.setTripDate(tripDate);
+        mSharedPrefsHelper.setPreference(Constants.USER_TRIP_DATE,
+                tripDate != null ? tripDate.toString("yyyy-MM-dd") : null);
     }
 
-    public static void hasStarted(boolean hasStarted) {
-        Cache.sharedInstance().hasStarted(hasStarted);
-        SharedPrefsHelper.sharedInstance()
-                .setPreference(Constants.USER_HAS_STARTED, hasStarted);
+    public void hasStarted(boolean hasStarted) {
+        mCache.hasStarted(hasStarted);
+        mSharedPrefsHelper.setPreference(Constants.USER_HAS_STARTED, hasStarted);
     }
 
-    public static boolean hasStarted() {
-        return Cache.sharedInstance().hasStarted() || SharedPrefsHelper.sharedInstance()
+    public boolean hasStarted() {
+        return mCache.hasStarted() || mSharedPrefsHelper
                 .getPreference(Constants.USER_HAS_STARTED, false);
     }
 
@@ -76,72 +88,74 @@ public class DataHelper {
 
     }
 
-    public static void clear() {
-        SharedPrefsHelper.sharedInstance().clearAllPreferences();
-        Storage storage = Cache.sharedInstance();
-        storage.hasStarted(false);
-        storage.setTripDate(null);
-        storage.setLocation(null);
-        storage.setTripPaths(null);
+    public void clear() {
+        mSharedPrefsHelper.clearAllPreferences();
+        mCache.hasStarted(false);
+        mCache.setTripDate(null);
+        mCache.setLocation(null);
+        mCache.setTripPaths(null);
     }
 
-    public static ArrayList<TripPath> getTripPaths() {
-        ArrayList<TripPath> tripPaths = Cache.sharedInstance().getTripPaths();
+    public ArrayList<TripPath> getTripPaths() {
+        ArrayList<TripPath> tripPaths = mCache.getTripPaths();
         if (tripPaths == null) {
-            String paths = SharedPrefsHelper.sharedInstance().getPreference(Constants.TRIP_PATHS, (String) null);
+            String paths = mSharedPrefsHelper.getPreference(Constants.TRIP_PATHS, (String) null);
             Type listType = new TypeToken<ArrayList<TripPath>>() {
             }.getType();
             tripPaths = new Gson().fromJson(paths, listType);
-            Cache.sharedInstance().setTripPaths(tripPaths);
+            mCache.setTripPaths(tripPaths);
         }
         return tripPaths;
     }
 
-    public static void setTripPaths(ArrayList<TripPath> tripPaths) {
-        Cache.sharedInstance().setTripPaths(tripPaths);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
+    public void setTripPaths(ArrayList<TripPath> tripPaths) {
+        mCache.setTripPaths(tripPaths);
+        mSharedPrefsHelper.setPreference(Constants.TRIP_PATHS, new Gson().toJson(tripPaths));
     }
 
-    public static void setTripDays(int days) {
-        Cache.sharedInstance().setTripDays(days);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_TRIP_DAYS, days);
+    public void setTripDays(int days) {
+        mCache.setTripDays(days);
+        mSharedPrefsHelper.setPreference(Constants.USER_TRIP_DAYS, days);
     }
 
-    public static int getTripDays() {
-        int days = Cache.sharedInstance().getDays();
+    public int getTripDays() {
+        int days = mCache.getDays();
         if (days == 0) {
-            days = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_TRIP_DAYS, 2);
-            Cache.sharedInstance().setTripDays(days);
+            days = mSharedPrefsHelper.getPreference(Constants.USER_TRIP_DAYS, 2);
+            mCache.setTripDays(days);
         }
         return days;
     }
 
-    public static void setCurrency(String currency) {
-        Cache.sharedInstance().setCurrency(currency);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.USER_CURRENCY, currency);
+    public void setCurrency(String currency) {
+        mCache.setCurrency(currency);
+        mSharedPrefsHelper.setPreference(Constants.USER_CURRENCY, currency);
     }
 
-    public static String getCurrency() {
-        String currency = Cache.sharedInstance().getCurrency();
+    public String getCurrency() {
+        String currency = mCache.getCurrency();
         if (currency == null) {
-            currency = SharedPrefsHelper.sharedInstance().getPreference(Constants.USER_CURRENCY, CurrencyHelper.DEFAULT_CURRENCY);
-            Cache.sharedInstance().setCurrency(currency);
+            currency = mSharedPrefsHelper
+                    .getPreference(Constants.USER_CURRENCY, CurrencyHelper.DEFAULT_CURRENCY);
+            mCache.setCurrency(currency);
         }
         return currency;
     }
 
-    public static void setExchangeRates(ExchangeRates exchangeRates) {
-        Cache.sharedInstance().setExchangeRates(exchangeRates);
-        SharedPrefsHelper.sharedInstance().setPreference(Constants.CACHED_EXCHANGE_RATES, new Gson().toJson(exchangeRates));
+    public void setExchangeRates(ExchangeRates exchangeRates) {
+        mCache.setExchangeRates(exchangeRates);
+        mSharedPrefsHelper.setPreference(Constants.CACHED_EXCHANGE_RATES, new Gson()
+                .toJson(exchangeRates));
     }
 
-    public static ExchangeRates getExchangeRates() {
-        ExchangeRates exchangeRates = Cache.sharedInstance().getExchangeRates();
+    public ExchangeRates getExchangeRates() {
+        ExchangeRates exchangeRates = mCache.getExchangeRates();
         if (exchangeRates == null) {
-            String exchangeRateString = SharedPrefsHelper.sharedInstance().getPreference(Constants.CACHED_EXCHANGE_RATES, (String) null);
+            String exchangeRateString = mSharedPrefsHelper
+                    .getPreference(Constants.CACHED_EXCHANGE_RATES, (String) null);
             if (exchangeRateString == null) {
                 try {
-                    AssetManager assets = CustomApplication.sharedInstance().getAssets();
+                    AssetManager assets = mContext.getAssets();
                     InputStream inputStream = null;
                     inputStream = assets.open("exchange_rates.json");
                     InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
@@ -153,7 +167,7 @@ public class DataHelper {
             } else {
                 exchangeRates = new Gson().fromJson(exchangeRateString, ExchangeRates.class);
             }
-            Cache.sharedInstance().setExchangeRates(exchangeRates);
+            mCache.setExchangeRates(exchangeRates);
         }
         return exchangeRates;
     }

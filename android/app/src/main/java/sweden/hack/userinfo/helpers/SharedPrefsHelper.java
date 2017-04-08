@@ -5,11 +5,9 @@ import android.content.SharedPreferences;
 
 import java.util.Set;
 
-import sweden.hack.userinfo.CustomApplication;
+import javax.inject.Inject;
 
-/**
- * Created by markus on 2017-02-02.
- */
+import sweden.hack.userinfo.di.InjectionContainer;
 
 public class SharedPrefsHelper {
 
@@ -17,18 +15,21 @@ public class SharedPrefsHelper {
     private static SharedPrefsHelper sSharedInstance;
     private SharedPreferences mSharedPreferences;
 
-    private SharedPrefsHelper(Context context) {
-        mSharedPreferences = context.getSharedPreferences(
+    @Inject
+    Context mContext;
+
+    @Inject
+    public SharedPrefsHelper(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
+        mSharedPreferences = mContext.getSharedPreferences(
                 SHARED_PREFERENCES_NAME,
                 Context.MODE_PRIVATE);
     }
 
-    public static SharedPrefsHelper sharedInstance() {
-        if (sSharedInstance == null) {
-            sSharedInstance = new SharedPrefsHelper(CustomApplication.sharedInstance());
-        }
-
-        return sSharedInstance;
+    private SharedPrefsHelper(Context context) {
+        mSharedPreferences = context.getSharedPreferences(
+                SHARED_PREFERENCES_NAME,
+                Context.MODE_PRIVATE);
     }
 
     public String getPreference(final String name, final String defaultValue) {

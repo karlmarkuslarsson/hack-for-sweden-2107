@@ -5,6 +5,15 @@ import android.support.annotation.NonNull;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import javax.inject.Inject;
+
+import sweden.hack.userinfo.di.AndroidDaggerModule;
+import sweden.hack.userinfo.di.AppComponent;
+import sweden.hack.userinfo.di.CoreDaggerModule;
+import sweden.hack.userinfo.di.DaggerAppComponent;
+import sweden.hack.userinfo.di.InjectionContainer;
+import sweden.hack.userinfo.di.NetworkModule;
+import sweden.hack.userinfo.di.StorageModule;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 import sweden.hack.userinfo.network.Callback;
@@ -14,27 +23,28 @@ import timber.log.Timber;
 
 public class CustomApplication extends Application {
 
-    private static CustomApplication sSharedInstance;
+    private AppComponent mAppComponent;
 
-    public CustomApplication() {
-    }
-
-    public synchronized static CustomApplication sharedInstance() {
-        if (sSharedInstance == null) {
-            sSharedInstance = new CustomApplication();
-        }
-
-        return sSharedInstance;
-    }
+    @Inject
+    DataHelper mDataHelper;
 
     @Override
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
-        sSharedInstance = this;
+        initDependencyInjection();
         JodaTimeAndroid.init(this);
-        Cache.init();
         initConfiguration();
+    }
+
+    private void initDependencyInjection() {
+        mAppComponent = DaggerAppComponent.builder()
+                .androidDaggerModule(new AndroidDaggerModule(this))
+                .coreDaggerModule(new CoreDaggerModule(this))
+                .storageModule(new StorageModule(this))
+                .networkModule(new NetworkModule(this))
+                .build();
+        mAppComponent.inject(this);
     }
 
     private void initConfiguration() {
@@ -42,7 +52,7 @@ public class CustomApplication extends Application {
             @Override
             public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
                 if (response.isSuccessful()) {
-                    DataHelper.setExchangeRates(response.getContent());
+                    mDataHelper.setExchangeRates(response.getContent());
                 }
             }
 
@@ -51,6 +61,10 @@ public class CustomApplication extends Application {
 
             }
         });
+    }
+
+    public InjectionContainer getAppComponent() {
+        return mAppComponent;
     }
 
 }

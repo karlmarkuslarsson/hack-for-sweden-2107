@@ -1,9 +1,14 @@
 package sweden.hack.userinfo.fragments;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.fragments.base.BaseFragment;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.models.income.Income;
@@ -18,6 +23,14 @@ import timber.log.Timber;
 
 public class AboutFragment extends BaseFragment {
 
+    @Inject
+    HackOfSwedenApi mHackOfSwedenApi;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DaggerUtils.getComponent(getContext()).inject(this);
+    }
 
     @Override
     protected void reloadData() {
@@ -46,7 +59,7 @@ public class AboutFragment extends BaseFragment {
     }
 
     private void addPopulationCard() {
-        HackOfSwedenApi.sharedInstance().getPopulation(new Callback<List<Population>>() {
+        mHackOfSwedenApi.getPopulation(new Callback<List<Population>>() {
             @Override
             public void onSuccess(@NonNull APIResponse<List<Population>> response) {
                 Timber.d("Hejhej %s", response.getContent().size());
@@ -63,7 +76,7 @@ public class AboutFragment extends BaseFragment {
     }
 
     private void addIncomeCard() {
-        HackOfSwedenApi.sharedInstance().getIncome(new Callback<List<Income>>() {
+        mHackOfSwedenApi.getIncome(new Callback<List<Income>>() {
             @Override
             public void onSuccess(@NonNull APIResponse<List<Income>> response) {
                 List<Income> incomes = response.getContent();

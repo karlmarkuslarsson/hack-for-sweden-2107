@@ -1,6 +1,6 @@
 package sweden.hack.userinfo.network;
 
-
+import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
-import sweden.hack.userinfo.CustomApplication;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.cards.CardComponent;
 import sweden.hack.userinfo.models.cards.CurrentCurrency;
 import sweden.hack.userinfo.models.cards.holdays.Holidays;
@@ -41,13 +43,9 @@ import sweden.hack.userinfo.network.interfaces.PracticalInfoInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
 import sweden.hack.userinfo.network.response.APIResponse;
 
-/**
- * Created by Markus on 2016-11-12.
- */
 public class HackOfSwedenApi {
 
     private static final String BASE_URL = "http://188.166.26.118:3000";
-    private static HackOfSwedenApi sSharedInstance;
 
     private PopulationInterface mPopulationApi;
     private IncomeInterface mIncomeApi;
@@ -58,18 +56,11 @@ public class HackOfSwedenApi {
     private PracticalInfoInterface mAllApi;
     private Gson mGson;
 
-    public static HackOfSwedenApi sharedInstance() {
+    @Inject
+    Context mContext;
 
-        synchronized (HackOfSwedenApi.class) {
-            if (sSharedInstance == null) {
-                sSharedInstance = new HackOfSwedenApi();
-            }
-        }
-
-        return sSharedInstance;
-    }
-
-    public HackOfSwedenApi() {
+    public HackOfSwedenApi(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
         init();
     }
 
@@ -151,31 +142,32 @@ public class HackOfSwedenApi {
         readJSONFile(callback, "county_number_mapping.json", mGson, CountryMap.class);
     }
 
-    private static <T> void readJSONFile(final Callback<T> callback, final String fileName, final Gson mGson, final Class<T> clz) {
+    private <T> void readJSONFile(final Callback<T> callback, final String fileName, final Gson mGson, final Class<T> clz) {
         Observable.fromCallable(new Callable<T>() {
             @Override
             public T call() throws Exception {
-                AssetManager assets = CustomApplication.sharedInstance().getAssets();
+                AssetManager assets = mContext.getAssets();
                 InputStream inputStream = assets.open(fileName);
                 InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
                 return mGson.fromJson(streamReader, clz);
             }
         })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new DefaultObserver<T>() {
-            @Override
-            public void onNext(T value) {
-                callback.onSuccess(new APIResponse<>(value, 200));
-            }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<T>() {
+                    @Override
+                    public void onNext(T value) {
+                        callback.onSuccess(new APIResponse<>(value, 200));
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                callback.onFailure(new APIResponse<T>(e));
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onFailure(new APIResponse<T>(e));
+                    }
 
-            @Override
-            public void onComplete() {}
-        });
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 }

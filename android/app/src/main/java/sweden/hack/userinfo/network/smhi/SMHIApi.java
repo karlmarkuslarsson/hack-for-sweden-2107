@@ -1,11 +1,14 @@
 package sweden.hack.userinfo.network.smhi;
 
+import javax.inject.Inject;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.Constants;
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.smhi.Weather;
 import sweden.hack.userinfo.network.Callback;
 import sweden.hack.userinfo.network.request.CallRequest;
@@ -14,21 +17,10 @@ public class SMHIApi {
 
     private SMHIInterface mApi;
 
-    private static SMHIApi sSharedInstance;
-
-    private SMHIApi() {
+    @Inject
+    public SMHIApi(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
         init();
-    }
-
-    public static SMHIApi sharedInstance() {
-
-        synchronized (SMHIApi.class) {
-            if (sSharedInstance == null) {
-                sSharedInstance = new SMHIApi();
-            }
-        }
-
-        return sSharedInstance;
     }
 
     public void getWeatherForLatLng(String lat,

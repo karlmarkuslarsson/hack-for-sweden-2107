@@ -8,6 +8,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.inject.Inject;
+
+import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
 
 /**
@@ -269,6 +272,12 @@ public class CurrencyHelper {
         COUNTRY_CODES = Collections.unmodifiableMap(map);
     }
 
+    @Inject
+    DataHelper mDataHelper;
+
+    public CurrencyHelper(InjectionContainer injectionContainer) {
+        injectionContainer.inject(this);
+    }
 
     public static String getCurrency(Context c) {
         final TelephonyManager tm = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);
@@ -281,9 +290,9 @@ public class CurrencyHelper {
         return "";
     }
 
-    public static int convertToSelectedCurrency(float amountInSEK) {
-        String currency = DataHelper.getCurrency();
-        ExchangeRates exchangeRates = DataHelper.getExchangeRates();
+    public int convertToSelectedCurrency(float amountInSEK) {
+        String currency = mDataHelper.getCurrency();
+        ExchangeRates exchangeRates = mDataHelper.getExchangeRates();
         if (exchangeRates != null && exchangeRates.mRates != null) {
             float exchangeRate = exchangeRates.mRates.getExchangeRate(currency);
             if (exchangeRate != -1) {
@@ -295,10 +304,10 @@ public class CurrencyHelper {
 
     }
 
-    public static String convertToSelectedCurrencyCurrencyString(int priceInSek) {
-        int transformedPrice = CurrencyHelper.convertToSelectedCurrency(priceInSek);
+    public String convertToSelectedCurrencyCurrencyString(int priceInSek) {
+        int transformedPrice = convertToSelectedCurrency(priceInSek);
         if (transformedPrice != -1) {
-            return String.format(Locale.US, "%d %s", transformedPrice, DataHelper.getCurrency());
+            return String.format(Locale.US, "%d %s", transformedPrice, mDataHelper.getCurrency());
         } else {
             return String.format(Locale.US, "%d %s", priceInSek, "SEK");
         }
