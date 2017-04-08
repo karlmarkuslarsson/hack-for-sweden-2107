@@ -1,4 +1,4 @@
-package sweden.hack.userinfo;
+package sweden.hack.userinfo.utils;
 
 import android.view.View;
 import android.view.animation.AlphaAnimation;

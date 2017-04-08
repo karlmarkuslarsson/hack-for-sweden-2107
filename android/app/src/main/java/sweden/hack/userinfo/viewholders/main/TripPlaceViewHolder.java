@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.AnimationUtils;
+import sweden.hack.userinfo.utils.AnimationUtils;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
 import sweden.hack.userinfo.di.DaggerUtils;
