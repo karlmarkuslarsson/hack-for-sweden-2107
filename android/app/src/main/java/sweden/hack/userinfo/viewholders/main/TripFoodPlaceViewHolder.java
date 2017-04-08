@@ -14,7 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.TimeUtils;
+import sweden.hack.userinfo.utils.TimeUtils;
 import sweden.hack.userinfo.dialogs.EventDialog;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.TripFoodCard;

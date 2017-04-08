@@ -25,7 +25,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.TimeUtils;
+import sweden.hack.userinfo.utils.TimeUtils;
 import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
