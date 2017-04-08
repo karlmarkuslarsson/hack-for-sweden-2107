@@ -13,6 +13,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.AnimationUtils;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
@@ -24,15 +26,34 @@ import sweden.hack.userinfo.objects.main.TripPlaceCard;
 import sweden.hack.userinfo.utils.SpannableUtils;
 
 public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
-    private final ImageView mImage;
-    private final TextView mTitle;
-    private final TextView mDescription;
-    private final TextView mTag;
-    private final TextView mStartTime;
-    private final TextView mEventInfo;
-    private final View mDissmissBackground;
-    private final View mDissmissYes;
-    private final View mDissmissNo;
+
+    @BindView(R.id.image)
+    ImageView mImage;
+
+    @BindView(R.id.title)
+    TextView mTitle;
+
+    @BindView(R.id.description)
+    TextView mDescription;
+
+    @BindView(R.id.tag)
+    TextView mTag;
+
+    @BindView(R.id.start_time)
+    TextView mStartTime;
+
+    @BindView(R.id.event_info)
+    TextView mEventInfo;
+
+    @BindView(R.id.dismiss_background)
+    View mDissmissBackground;
+
+    @BindView(R.id.dismiss_yes)
+    View mDissmissYes;
+
+    @BindView(R.id.dismiss_no)
+    View mDissmissNo;
+
     private TripPlaceCard mCard;
     private MainCardListener mListener;
 
@@ -42,15 +63,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     public TripPlaceViewHolder(View itemView) {
         super(itemView);
         DaggerUtils.getComponent(itemView.getContext()).inject(this);
-        mImage = (ImageView) itemView.findViewById(R.id.image);
-        mTitle = (TextView) itemView.findViewById(R.id.title);
-        mTag = (TextView) itemView.findViewById(R.id.tag);
-        mStartTime = (TextView) itemView.findViewById(R.id.start_time);
-        mDescription = (TextView) itemView.findViewById(R.id.description);
-        mEventInfo = (TextView) itemView.findViewById(R.id.event_info);
-        mDissmissBackground = itemView.findViewById(R.id.dismiss_background);
-        mDissmissYes = itemView.findViewById(R.id.dismiss_yes);
-        mDissmissNo = itemView.findViewById(R.id.dismiss_no);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
