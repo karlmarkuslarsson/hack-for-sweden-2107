@@ -279,8 +279,9 @@ public class CurrencyHelper {
         injectionContainer.inject(this);
     }
 
-    public static String getCurrency(Context c) {
-        final TelephonyManager tm = (TelephonyManager) c.getSystemService(Context.TELEPHONY_SERVICE);
+    public static String getCurrency(Context context) {
+        final TelephonyManager tm = (TelephonyManager)
+                context.getSystemService(Context.TELEPHONY_SERVICE);
         String iso = tm.getSimCountryIso();
         for (Map.Entry<String, String> entry : COUNTRY_CODES.entrySet()) {
             if (entry.getValue().equalsIgnoreCase(iso)) {
