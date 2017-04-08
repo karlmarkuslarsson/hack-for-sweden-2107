@@ -11,6 +11,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -63,6 +68,18 @@ public class MainActivity extends AppCompatActivity {
     private void setupViews() {
         setSupportActionBar(mToolbar);
         setupViewPager();
+        initializeDummyMap();
+    }
+
+    private void initializeDummyMap() {
+        MapsInitializer.initialize(this);
+        MapView mapView = new MapView(this);
+        mapView.onCreate(null);
+        mapView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+            }
+        });
     }
 
     private void setupViewPager() {
