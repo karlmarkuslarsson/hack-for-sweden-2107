@@ -10,23 +10,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
 import sweden.hack.userinfo.listeners.MainCardListener;
 
 public abstract class BaseFragment extends Fragment {
 
+    @BindView(R.id.fragment_main_swipe_to_refresh)
+    public SwipeRefreshLayout mSwipeRefreshLayout;
 
-    protected SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
-    protected MainRecyclerViewAdapter mAdapter;
+    @BindView(R.id.fragment_main_recycler_view)
+    public RecyclerView mRecyclerView;
+
     private View mRoot;
+
+    protected MainRecyclerViewAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_main, container, false);
-        initViews();
+        ButterKnife.bind(this, mRoot);
+
         setupViews();
         reloadData();
         return mRoot;
@@ -53,9 +60,5 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract MainCardListener getListener();
 
-    private void initViews() {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mRoot.findViewById(R.id.fragment_main_swipe_to_refresh);
-        mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.fragment_main_recycler_view);
-    }
 }
 

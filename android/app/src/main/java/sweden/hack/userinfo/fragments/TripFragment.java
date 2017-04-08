@@ -17,6 +17,8 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
@@ -42,8 +44,12 @@ import sweden.hack.userinfo.objects.main.base.MainCard;
 
 public class TripFragment extends Fragment {
 
-    protected SwipeRefreshLayout mSwipeRefreshLayout;
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.fragment_main_swipe_to_refresh)
+    public SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @BindView(R.id.fragment_main_recycler_view)
+    public RecyclerView mRecyclerView;
+
     protected MainRecyclerViewAdapter mAdapter;
     private View mRoot;
     private ArrayList<TripPath> mTripPath;
@@ -70,8 +76,9 @@ public class TripFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.fragment_trip, container, false);
+        ButterKnife.bind(this, mRoot);
+
         mDays = mDataHelper.getTripDays();
-        initViews();
         setupViews();
         initData();
         return mRoot;
@@ -326,11 +333,6 @@ public class TripFragment extends Fragment {
             }
         }
         return false;
-    }
-
-    private void initViews() {
-        mSwipeRefreshLayout = (SwipeRefreshLayout) mRoot.findViewById(R.id.fragment_main_swipe_to_refresh);
-        mRecyclerView = (RecyclerView) mRoot.findViewById(R.id.fragment_main_recycler_view);
     }
 
 }
