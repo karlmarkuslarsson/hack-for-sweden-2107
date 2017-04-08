@@ -11,13 +11,14 @@ import android.support.v4.app.RemoteInput;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.Cache;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.adapters.MainViewPagerAdapter;
@@ -25,13 +26,20 @@ import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
 import sweden.hack.userinfo.helpers.DataHelper;
 import sweden.hack.userinfo.helpers.LocationHelper;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
     private MainViewPagerAdapter mAdapter;
-    private ViewPager mViewPager;
-    private TabLayout mTabBar;
-    private Toolbar mToolbar;
+
+    @BindView(R.id.activity_main_view_pager)
+    ViewPager mViewPager;
+
+    @BindView(R.id.activity_main_tab_layout)
+    TabLayout mTabBar;
+
+    @BindView(R.id.activity_main_toolbar)
+    Toolbar mToolbar;
 
     @Inject
     Cache mCache;
@@ -47,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
         DaggerUtils.getComponent(this).inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
+        ButterKnife.bind(this);
         sendNotification();
         setupViews();
 
         String currency = CurrencyHelper.getCurrency(this);
-        Log.e("", currency);
+        Timber.e(currency);
     }
 
     private void setupViews() {
@@ -65,12 +73,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(3);
         mTabBar.setupWithViewPager(mViewPager);
-    }
-
-    private void initViews() {
-        mViewPager = (ViewPager) findViewById(R.id.activity_main_view_pager);
-        mTabBar = (TabLayout) findViewById(R.id.activity_main_tab_layout);
-        mToolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
     }
 
     @Override
