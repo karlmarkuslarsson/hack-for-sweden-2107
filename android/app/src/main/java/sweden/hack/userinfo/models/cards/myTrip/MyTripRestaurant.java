@@ -34,6 +34,7 @@ public class MyTripRestaurant extends MyTripLatLng {
         this.mId = mId;
     }
 
+    @Override
     public String getTitle() {
         return mTitle;
     }
@@ -42,6 +43,7 @@ public class MyTripRestaurant extends MyTripLatLng {
         this.mTitle = mTitle;
     }
 
+    @Override
     public String getDescription() {
         return mDescription;
     }
@@ -50,8 +52,19 @@ public class MyTripRestaurant extends MyTripLatLng {
         this.mDescription = mDescription;
     }
 
+    @Override
     public String getImage() {
         return mImage;
+    }
+
+    @Override
+    public String getPrice() {
+        return null;
+    }
+
+    @Override
+    public Integer getDuration() {
+        return null;
     }
 
     public void setImage(String mImage) {

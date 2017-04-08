@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,12 +28,12 @@ import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
 import sweden.hack.userinfo.di.DaggerUtils;
 import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
+import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
 import sweden.hack.userinfo.utils.SpannableUtils;
 
 public class EventDialog extends Dialog {
 
-    private final MyTripEvent mTripEvent;
+    private final MyTripLatLng mTripEvent;
 
     @BindView(R.id.title)
     TextView mTitle;
@@ -52,7 +53,7 @@ public class EventDialog extends Dialog {
     @Inject
     CurrencyHelper mCurrencyHelper;
 
-    public EventDialog(@NonNull Context context, MyTripEvent tripEvent) {
+    public EventDialog(@NonNull Context context, MyTripLatLng tripEvent) {
         super(context);
         setContentView(R.layout.dialog_trip_place);
         ButterKnife.bind(this);
@@ -100,12 +101,22 @@ public class EventDialog extends Dialog {
     private void putInformation() {
 
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
-        titleValueList.add(new SpannableUtils.TitleValue("Price", getPriceString()));
-        titleValueList.add(new SpannableUtils.TitleValue("Duration",
-                TimeUtils.getTime(mTripEvent.getDuration())));
-        mInformation.setText(SpannableUtils.boldTitle(
-                titleValueList, SpannableUtils.SeparatorType.NEW_LINE),
-                TextView.BufferType.SPANNABLE);
+        String price = getPriceString();
+        if (price != null) {
+            titleValueList.add(new SpannableUtils.TitleValue("Price", getPriceString()));
+        }
+        Integer duration = mTripEvent.getDuration();
+        if (duration != null) {
+            titleValueList.add(new SpannableUtils.TitleValue("Duration",
+                    TimeUtils.getTime(mTripEvent.getDuration())));
+        }
+        if (!titleValueList.isEmpty()) {
+            mInformation.setText(SpannableUtils.boldTitle(
+                    titleValueList, SpannableUtils.SeparatorType.NEW_LINE),
+                    TextView.BufferType.SPANNABLE);
+        } else {
+            mInformation.setVisibility(View.GONE);
+        }
     }
 
     private String getPriceString() {
@@ -121,4 +132,5 @@ public class EventDialog extends Dialog {
     private void setupCallbacks() {
 
     }
+
 }

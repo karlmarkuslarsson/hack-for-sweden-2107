@@ -11,28 +11,39 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import sweden.hack.userinfo.R;
 import sweden.hack.userinfo.TimeUtils;
+import sweden.hack.userinfo.dialogs.EventDialog;
 import sweden.hack.userinfo.listeners.MainCardListener;
 import sweden.hack.userinfo.objects.main.TripFoodCard;
 
 public class TripFoodPlaceViewHolder extends MainViewHolder<TripFoodCard> {
-    private final ImageView mImage;
-    private final TextView mTitle;
-    private final TextView mDescription;
-    private final TextView mTag;
-    private final TextView mStartTime;
-    private final TextView mEventInfo;
+
+    @BindView(R.id.image)
+    ImageView mImage;
+
+    @BindView(R.id.title)
+    TextView mTitle;
+
+    @BindView(R.id.description)
+    TextView mDescription;
+
+    @BindView(R.id.tag)
+    TextView mTag;
+
+    @BindView(R.id.start_time)
+    TextView mStartTime;
+
+    @BindView(R.id.event_info)
+    TextView mEventInfo;
+
     private TripFoodCard mCard;
 
     public TripFoodPlaceViewHolder(View itemView) {
         super(itemView);
-        mImage = (ImageView) itemView.findViewById(R.id.image);
-        mTitle = (TextView) itemView.findViewById(R.id.title);
-        mDescription = (TextView) itemView.findViewById(R.id.description);
-        mTag = (TextView) itemView.findViewById(R.id.tag);
-        mStartTime = (TextView) itemView.findViewById(R.id.start_time);
-        mEventInfo = (TextView) itemView.findViewById(R.id.event_info);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
@@ -49,6 +60,18 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripFoodCard> {
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(mImage);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTripPlaceDialog();
+            }
+        });
+    }
+
+    private void showTripPlaceDialog() {
+        final EventDialog dialog = new EventDialog(itemView.getContext(), mCard.getTripRestaurant());
+        dialog.show();
     }
 
     private void setEventInfo() {
@@ -60,4 +83,5 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripFoodCard> {
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, durationTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
     }
+
 }

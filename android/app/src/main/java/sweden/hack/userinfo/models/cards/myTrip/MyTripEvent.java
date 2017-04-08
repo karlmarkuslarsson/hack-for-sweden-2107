@@ -42,6 +42,7 @@ public class MyTripEvent extends MyTripLatLng {
         this.mId = mId;
     }
 
+    @Override
     public String getTitle() {
         return mTitle;
     }
@@ -50,6 +51,7 @@ public class MyTripEvent extends MyTripLatLng {
         this.mTitle = mTitle;
     }
 
+    @Override
     public String getDescription() {
         return mDescription;
     }
@@ -58,6 +60,7 @@ public class MyTripEvent extends MyTripLatLng {
         this.mDescription = mDescription;
     }
 
+    @Override
     public String getImage() {
         return mImage;
     }
@@ -66,6 +69,7 @@ public class MyTripEvent extends MyTripLatLng {
         this.mImage = mImage;
     }
 
+    @Override
     public Integer getDuration() {
         return mDuration;
     }
@@ -74,6 +78,7 @@ public class MyTripEvent extends MyTripLatLng {
         this.mDuration = mDuration;
     }
 
+    @Override
     public String getPrice() {
         return mPrice;
     }
