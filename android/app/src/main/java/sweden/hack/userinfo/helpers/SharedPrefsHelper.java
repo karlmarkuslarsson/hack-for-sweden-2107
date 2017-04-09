@@ -12,7 +12,6 @@ import sweden.hack.userinfo.di.InjectionContainer;
 public class SharedPrefsHelper {
 
     private static final String SHARED_PREFERENCES_NAME = "sharedPrefs";
-    private static SharedPrefsHelper sSharedInstance;
     private SharedPreferences mSharedPreferences;
 
     @Inject
