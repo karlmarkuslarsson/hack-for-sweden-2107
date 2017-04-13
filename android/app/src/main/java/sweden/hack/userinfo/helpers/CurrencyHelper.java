@@ -302,7 +302,6 @@ public class CurrencyHelper {
         }
 
         return -1;
-
     }
 
     public String convertToSelectedCurrencyCurrencyString(int priceInSek) {
@@ -313,4 +312,5 @@ public class CurrencyHelper {
             return String.format(Locale.US, "%d %s", priceInSek, "SEK");
         }
     }
+
 }

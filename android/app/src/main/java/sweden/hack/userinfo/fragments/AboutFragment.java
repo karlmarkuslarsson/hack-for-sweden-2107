@@ -62,8 +62,6 @@ public class AboutFragment extends BaseFragment {
         mHackOfSwedenApi.getPopulation(new Callback<List<Population>>() {
             @Override
             public void onSuccess(@NonNull APIResponse<List<Population>> response) {
-                Timber.d("Hejhej %s", response.getContent().size());
-
                 List<Population> populations = response.getContent();
                 mAdapter.addCard(new PopulationCard(populations));
             }

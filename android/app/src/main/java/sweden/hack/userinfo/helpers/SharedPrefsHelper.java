@@ -25,12 +25,6 @@ public class SharedPrefsHelper {
                 Context.MODE_PRIVATE);
     }
 
-    private SharedPrefsHelper(Context context) {
-        mSharedPreferences = context.getSharedPreferences(
-                SHARED_PREFERENCES_NAME,
-                Context.MODE_PRIVATE);
-    }
-
     public String getPreference(final String name, final String defaultValue) {
         return mSharedPreferences.getString(name, defaultValue);
     }

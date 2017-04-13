@@ -3,6 +3,7 @@ package sweden.hack.userinfo.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -57,7 +58,7 @@ public class StartActivity extends AppCompatActivity {
     private List<Currency> mCurrencyList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         DaggerUtils.getComponent(this).inject(this);
         super.onCreate(savedInstanceState);
 
@@ -66,14 +67,15 @@ public class StartActivity extends AppCompatActivity {
             return;
         }
 
-        getCurrencies();
-
+        loadInitialData();
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
         setupViews();
-        setStatusBarTranslucent();
         setupCallbacks();
+    }
 
+    private void loadInitialData() {
+        getCurrencies();
     }
 
     private void getCurrencies() {
@@ -91,27 +93,25 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void setupViews() {
-
         mLengthField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLengthDialog();
             }
         });
-
         mDateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
-
         mCurrencyField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCurrencyDialog();
             }
         });
+        setStatusBarTranslucent();
     }
 
     private void showCurrencyDialog() {
