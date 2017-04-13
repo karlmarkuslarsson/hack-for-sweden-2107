@@ -63,7 +63,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         if (mDataHelper.hasStarted()) {
-            startLoadActivity();
+            startMainActivity();
             return;
         }
 
@@ -78,16 +78,11 @@ public class StartActivity extends AppCompatActivity {
         getCurrencies();
     }
 
-    private void getCurrencies() {
-        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
+    private void setupCallbacks() {
+        mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(@NonNull APIResponse<Currencies> response) {
-                mCurrencyList = response.getContent().getValue();
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Currencies> response) {
-
+            public void onClick(View v) {
+                checkDateValid();
             }
         });
     }
@@ -114,6 +109,20 @@ public class StartActivity extends AppCompatActivity {
         setStatusBarTranslucent();
     }
 
+    private void getCurrencies() {
+        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<Currencies> response) {
+                mCurrencyList = response.getContent().getValue();
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<Currencies> response) {
+
+            }
+        });
+    }
+
     private void showCurrencyDialog() {
         final CurrencyDialog dialog = new CurrencyDialog(
                 this,
@@ -122,14 +131,10 @@ public class StartActivity extends AppCompatActivity {
                 new CurrencyDialog.CurrencyDialogListener() {
                     @Override
                     public void onCurrencySelected(Currency currency) {
-                        setCurrency(currency);
+                        mCurrencyField.setText(currency.getName());
                     }
                 });
         dialog.show();
-    }
-
-    private void setCurrency(Currency currency) {
-        mCurrencyField.setText(currency.getName());
     }
 
     private void showLengthDialog() {
@@ -167,15 +172,6 @@ public class StartActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void setupCallbacks() {
-        mStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkDateValid();
-            }
-        });
-    }
-
     private void checkDateValid() {
         String text = mDateField.getText().toString().trim();
         if (!text.isEmpty()) {
@@ -201,10 +197,10 @@ public class StartActivity extends AppCompatActivity {
         mDataHelper.setCurrency(mCurrencyField.getText().toString());
         mDataHelper.hasStarted(true);
 
-        startLoadActivity();
+        startMainActivity();
     }
 
-    private void startLoadActivity() {
+    private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
