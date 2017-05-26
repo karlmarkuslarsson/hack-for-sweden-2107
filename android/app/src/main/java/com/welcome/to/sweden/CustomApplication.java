@@ -3,8 +3,9 @@ package com.welcome.to.sweden;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
+import com.crashlytics.android.Crashlytics;
 
+import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ import com.welcome.to.sweden.di.DaggerAppComponent;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.di.NetworkModule;
 import com.welcome.to.sweden.di.StorageModule;
-import com.welcome.to.sweden.di.TrackingModule;
+import com.welcome.to.sweden.di.FirebaseModule;
 import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.network.Callback;
@@ -38,6 +39,7 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         Timber.plant(new Timber.DebugTree());
         initDependencyInjection();
         JodaTimeAndroid.init(this);
@@ -49,7 +51,7 @@ public class CustomApplication extends Application {
                 .androidDaggerModule(new AndroidDaggerModule(this))
                 .coreDaggerModule(new CoreDaggerModule(this))
                 .storageModule(new StorageModule(this))
-                .trackingModule(new TrackingModule(this))
+                .firebaseModule(new FirebaseModule(this))
                 .networkModule(new NetworkModule(this))
                 .build();
         mAppComponent.inject(this);

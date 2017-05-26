@@ -6,6 +6,6 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {AndroidDaggerModule.class, CoreDaggerModule.class, StorageModule.class,
-        NetworkModule.class, TrackingModule.class})
+        NetworkModule.class, FirebaseModule.class})
 public interface AppComponent extends InjectionContainer {
 }
