@@ -167,7 +167,7 @@ public class TripFragment extends Fragment {
                     return;
                 }
 
-                MainCard mainCard = null;
+                Card mainCard = null;
                 String objectStartTime = getTimeFromTenOClock(startTime);
 
                 switch (currentTrip.getTripObjectType()) {
