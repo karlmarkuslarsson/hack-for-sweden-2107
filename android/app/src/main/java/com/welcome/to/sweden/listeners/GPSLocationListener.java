@@ -8,10 +8,6 @@ import com.welcome.to.sweden.Storage;
 import timber.log.Timber;
 
 
-/**
- * Created by Markus on 2017-01-22.
- */
-
 public class GPSLocationListener implements LocationListener {
 
     private final Storage mCache;
