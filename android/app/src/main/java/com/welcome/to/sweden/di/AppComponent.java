@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import javax.inject.Singleton;
 

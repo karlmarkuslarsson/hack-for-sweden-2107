@@ -1,8 +1,8 @@
-package sweden.hack.userinfo.network;
+package com.welcome.to.sweden.network;
 
 import android.support.annotation.NonNull;
 
-import sweden.hack.userinfo.network.response.APIResponse;
+import com.welcome.to.sweden.network.response.APIResponse;
 
 public interface Callback<T> {
 

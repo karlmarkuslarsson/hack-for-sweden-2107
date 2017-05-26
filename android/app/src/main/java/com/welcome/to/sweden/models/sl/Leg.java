@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.sl;
+package com.welcome.to.sweden.models.sl;
 
 public class Leg {
 

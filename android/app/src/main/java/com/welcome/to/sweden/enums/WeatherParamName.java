@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.enums;
+package com.welcome.to.sweden.enums;
 
 import com.google.gson.annotations.SerializedName;
 

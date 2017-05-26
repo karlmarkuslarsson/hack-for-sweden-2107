@@ -1,4 +1,4 @@
-package sweden.hack.userinfo;
+package com.welcome.to.sweden;
 
 import android.location.Location;
 
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
-import sweden.hack.userinfo.objects.TripPath;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.objects.TripPath;
 
 public class Cache implements Storage {
 

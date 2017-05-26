@@ -1,6 +1,6 @@
-package sweden.hack.userinfo.enums;
+package com.welcome.to.sweden.enums;
 
-import sweden.hack.userinfo.R;
+import com.welcome.to.sweden.R;
 
 public enum LineColor {
 

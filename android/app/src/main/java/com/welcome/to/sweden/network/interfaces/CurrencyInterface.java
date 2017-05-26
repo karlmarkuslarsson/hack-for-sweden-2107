@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.network.interfaces;
+package com.welcome.to.sweden.network.interfaces;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import sweden.hack.userinfo.models.cards.CurrentCurrency;
+import com.welcome.to.sweden.models.cards.CurrentCurrency;
 
 public interface CurrencyInterface {
 

@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.smhi;
+package com.welcome.to.sweden.models.smhi;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import sweden.hack.userinfo.enums.WeatherParamName;
-import sweden.hack.userinfo.enums.WeatherSymbolEnum;
+import com.welcome.to.sweden.enums.WeatherParamName;
+import com.welcome.to.sweden.enums.WeatherSymbolEnum;
 
 public class Parameter implements Serializable {
 

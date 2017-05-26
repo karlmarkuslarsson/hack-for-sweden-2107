@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network.request;
+package com.welcome.to.sweden.network.request;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.response.APIError;
-import sweden.hack.userinfo.network.response.APIResponse;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.response.APIError;
+import com.welcome.to.sweden.network.response.APIResponse;
 
 public class CallRequest<T>
         implements APIRequest<T> {

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="sweden.hack.userinfo.activities.LoaderActivity">
+    tools:context="com.welcome.to.sweden.activities.LoaderActivity">
 
    <WebView
        android:scrollbars="none"

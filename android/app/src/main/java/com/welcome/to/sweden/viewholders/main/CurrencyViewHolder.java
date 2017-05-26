@@ -1,13 +1,13 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.main.CurrencyCard;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.CurrencyCard;
 
 public class CurrencyViewHolder extends MainViewHolder<CurrencyCard> {
 

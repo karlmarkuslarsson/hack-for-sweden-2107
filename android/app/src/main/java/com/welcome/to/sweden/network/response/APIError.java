@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network.response;
+package com.welcome.to.sweden.network.response;
 
 public class APIError extends RuntimeException {
 

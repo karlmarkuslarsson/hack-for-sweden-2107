@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.listeners;
+package com.welcome.to.sweden.listeners;
 
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-import sweden.hack.userinfo.Storage;
+import com.welcome.to.sweden.Storage;
 import timber.log.Timber;
 
 

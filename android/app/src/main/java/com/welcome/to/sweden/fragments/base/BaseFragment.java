@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.fragments.base;
+package com.welcome.to.sweden.fragments.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
-import sweden.hack.userinfo.listeners.MainCardListener;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.adapters.MainRecyclerViewAdapter;
+import com.welcome.to.sweden.listeners.MainCardListener;
 
 public abstract class BaseFragment extends Fragment {
 

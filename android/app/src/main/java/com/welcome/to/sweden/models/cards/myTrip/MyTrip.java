@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.models.cards.myTrip;
+package com.welcome.to.sweden.models.cards.myTrip;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import sweden.hack.userinfo.models.cards.CardComponent;
+import com.welcome.to.sweden.models.cards.CardComponent;
 
 public class MyTrip extends CardComponent {
 

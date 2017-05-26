@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.utils;
+package com.welcome.to.sweden.utils;
 
 public class TimeUtils {
     public static String getTime(Integer duration) {

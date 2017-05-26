@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.sl;
+package com.welcome.to.sweden.models.sl;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import sweden.hack.userinfo.enums.TransportModeEnum;
+import com.welcome.to.sweden.enums.TransportModeEnum;
 
 public class SLRoute implements Comparable<SLRoute> {
 

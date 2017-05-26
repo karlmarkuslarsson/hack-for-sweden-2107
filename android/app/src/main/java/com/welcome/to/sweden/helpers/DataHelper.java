@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.helpers;
+package com.welcome.to.sweden.helpers;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -16,12 +16,12 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.Constants;
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
-import sweden.hack.userinfo.objects.TripPath;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.Constants;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.objects.TripPath;
 import timber.log.Timber;
 
 public class DataHelper {

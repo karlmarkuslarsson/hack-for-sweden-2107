@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.activities;
+package com.welcome.to.sweden.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,17 +20,17 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.dialogs.CurrencyDialog;
-import sweden.hack.userinfo.dialogs.DatePickerDialog;
-import sweden.hack.userinfo.dialogs.LengthDialog;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.models.currency.Currencies;
-import sweden.hack.userinfo.models.currency.Currency;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.network.response.APIResponse;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.dialogs.CurrencyDialog;
+import com.welcome.to.sweden.dialogs.DatePickerDialog;
+import com.welcome.to.sweden.dialogs.LengthDialog;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.models.currency.Currencies;
+import com.welcome.to.sweden.models.currency.Currency;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.response.APIResponse;
 
 public class StartActivity extends AppCompatActivity {
 

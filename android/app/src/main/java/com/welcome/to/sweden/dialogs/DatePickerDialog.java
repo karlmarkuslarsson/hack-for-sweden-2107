@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.dialogs;
+package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,9 +12,9 @@ import org.joda.time.format.DateTimeFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
+import com.welcome.to.sweden.R;
 
-import static sweden.hack.userinfo.activities.StartActivity.DATE_FORMAT;
+import static com.welcome.to.sweden.activities.StartActivity.DATE_FORMAT;
 
 public class DatePickerDialog extends Dialog {
 

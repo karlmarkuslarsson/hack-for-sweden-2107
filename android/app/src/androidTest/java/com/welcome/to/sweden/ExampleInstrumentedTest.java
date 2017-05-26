@@ -1,4 +1,4 @@
-package sweden.hack.userinfo;
+package com.welcome.to.sweden;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("sweden.hack.userinfo", appContext.getPackageName());
+        assertEquals("com.welcome.to.sweden", appContext.getPackageName());
     }
 }

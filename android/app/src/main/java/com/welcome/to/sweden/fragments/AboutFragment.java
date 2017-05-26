@@ -1,15 +1,15 @@
-package sweden.hack.userinfo.fragments;
+package com.welcome.to.sweden.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.fragments.base.BaseFragment;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.fragments.base.BaseFragment;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class AboutFragment extends BaseFragment {
 

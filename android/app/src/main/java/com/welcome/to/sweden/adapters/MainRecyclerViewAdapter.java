@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.adapters;
+package com.welcome.to.sweden.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import android.view.animation.AnimationUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.main.base.MainCard;
-import sweden.hack.userinfo.viewholders.main.AirportViewHolder;
-import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
-import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
-import sweden.hack.userinfo.viewholders.main.InternetViewHolder;
-import sweden.hack.userinfo.viewholders.main.MainViewHolder;
-import sweden.hack.userinfo.viewholders.main.NextDayViewHolder;
-import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
-import sweden.hack.userinfo.viewholders.main.SLAirportTripViewHolder;
-import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
-import sweden.hack.userinfo.viewholders.main.TripFoodPlaceViewHolder;
-import sweden.hack.userinfo.viewholders.main.TripPlaceViewHolder;
-import sweden.hack.userinfo.viewholders.main.TripTransportationViewHolder;
-import sweden.hack.userinfo.viewholders.main.WeatherViewHolder;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.viewholders.main.AirportViewHolder;
+import com.welcome.to.sweden.viewholders.main.CurrencyViewHolder;
+import com.welcome.to.sweden.viewholders.main.HolidaysViewHolder;
+import com.welcome.to.sweden.viewholders.main.InternetViewHolder;
+import com.welcome.to.sweden.viewholders.main.MainViewHolder;
+import com.welcome.to.sweden.viewholders.main.NextDayViewHolder;
+import com.welcome.to.sweden.viewholders.main.PhrasesViewHolder;
+import com.welcome.to.sweden.viewholders.main.SLAirportTripViewHolder;
+import com.welcome.to.sweden.viewholders.main.SLClosestStationsViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripFoodPlaceViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripPlaceViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripTransportationViewHolder;
+import com.welcome.to.sweden.viewholders.main.WeatherViewHolder;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder> {
 

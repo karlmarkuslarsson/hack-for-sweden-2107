@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.view.View;
 
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.main.SLAirportCard;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.SLAirportCard;
 
 public class SLAirportTripViewHolder extends MainViewHolder<SLAirportCard> {
 

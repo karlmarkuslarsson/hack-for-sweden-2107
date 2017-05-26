@@ -1,12 +1,12 @@
-package sweden.hack.userinfo.network.interfaces;
+package com.welcome.to.sweden.network.interfaces;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import sweden.hack.userinfo.models.cards.CardComponent;
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.cards.CardComponent;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
 
 public interface PracticalInfoInterface {
 

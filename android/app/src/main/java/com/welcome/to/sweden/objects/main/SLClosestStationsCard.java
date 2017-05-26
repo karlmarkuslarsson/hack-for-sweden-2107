@@ -1,7 +1,7 @@
-package sweden.hack.userinfo.objects.main;
+package com.welcome.to.sweden.objects.main;
 
-import sweden.hack.userinfo.models.sl.ClosestStations;
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.models.sl.ClosestStations;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class SLClosestStationsCard extends MainCard {
     private final ClosestStations mClosestStations;

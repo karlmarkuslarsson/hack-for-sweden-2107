@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.enums;
+package com.welcome.to.sweden.enums;
 
 import com.google.gson.annotations.SerializedName;
 
-import sweden.hack.userinfo.models.cards.CurrentCurrency;
-import sweden.hack.userinfo.models.cards.holdays.Holidays;
-import sweden.hack.userinfo.models.cards.phrases.Phrases;
+import com.welcome.to.sweden.models.cards.CurrentCurrency;
+import com.welcome.to.sweden.models.cards.holdays.Holidays;
+import com.welcome.to.sweden.models.cards.phrases.Phrases;
 
 public enum ComponentCardType {
     @SerializedName("currency")

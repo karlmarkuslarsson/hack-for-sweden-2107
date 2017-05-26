@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.network.smhi;
+package com.welcome.to.sweden.network.smhi;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import sweden.hack.userinfo.models.smhi.Weather;
+import com.welcome.to.sweden.models.smhi.Weather;
 
 public interface SMHIInterface {
 

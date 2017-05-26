@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.utils;
+package com.welcome.to.sweden.utils;
 
 import android.graphics.Typeface;
 import android.text.SpannableString;

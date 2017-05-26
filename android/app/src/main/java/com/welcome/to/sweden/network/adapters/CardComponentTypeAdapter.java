@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network.adapters;
+package com.welcome.to.sweden.network.adapters;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -9,9 +9,9 @@ import com.google.gson.JsonPrimitive;
 
 import java.lang.reflect.Type;
 
-import sweden.hack.userinfo.enums.ComponentCardType;
-import sweden.hack.userinfo.models.cards.CardComponent;
-import sweden.hack.userinfo.models.NoneComponent;
+import com.welcome.to.sweden.enums.ComponentCardType;
+import com.welcome.to.sweden.models.cards.CardComponent;
+import com.welcome.to.sweden.models.NoneComponent;
 
 /**
  * Created by sosv on 11/03/17.

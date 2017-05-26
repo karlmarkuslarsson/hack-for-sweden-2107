@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.helpers;
+package com.welcome.to.sweden.helpers;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
@@ -10,8 +10,8 @@ import java.util.TreeMap;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 
 /**
  * Created by Filip Lindqvist on 2017-04-02.

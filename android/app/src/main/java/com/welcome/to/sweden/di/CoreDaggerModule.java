@@ -1,12 +1,12 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.helpers.LocationHelper;
+import com.welcome.to.sweden.CustomApplication;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.helpers.LocationHelper;
 
 @Module
 public class CoreDaggerModule {

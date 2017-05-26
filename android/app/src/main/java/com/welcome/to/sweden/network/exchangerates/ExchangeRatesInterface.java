@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.network.exchangerates;
+package com.welcome.to.sweden.network.exchangerates;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 
 public interface ExchangeRatesInterface {
 

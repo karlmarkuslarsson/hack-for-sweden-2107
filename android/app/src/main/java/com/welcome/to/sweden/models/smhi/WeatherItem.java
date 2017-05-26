@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.smhi;
+package com.welcome.to.sweden.models.smhi;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.activities;
+package com.welcome.to.sweden.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,13 +20,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.adapters.MainViewPagerAdapter;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.helpers.LocationHelper;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.adapters.MainViewPagerAdapter;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.helpers.LocationHelper;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {

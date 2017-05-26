@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.dialogs;
+package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -24,12 +24,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.utils.TimeUtils;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
-import sweden.hack.userinfo.utils.SpannableUtils;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.utils.TimeUtils;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.utils.SpannableUtils;
 
 public class EventDialog extends Dialog {
 

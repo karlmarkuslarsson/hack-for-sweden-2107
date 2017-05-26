@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.cards.myTrip;
+package com.welcome.to.sweden.models.cards.myTrip;
 
 import com.google.gson.annotations.SerializedName;
 

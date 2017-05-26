@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import sweden.hack.userinfo.CustomApplication;
+import com.welcome.to.sweden.CustomApplication;
 
 public class DaggerUtils {
 

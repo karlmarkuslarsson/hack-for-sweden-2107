@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.exchangerates;
+package com.welcome.to.sweden.models.exchangerates;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.cards.phrases.Phrase;
-import sweden.hack.userinfo.objects.main.PhrasesCard;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.phrases.Phrase;
+import com.welcome.to.sweden.objects.main.PhrasesCard;
 
 public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {
 

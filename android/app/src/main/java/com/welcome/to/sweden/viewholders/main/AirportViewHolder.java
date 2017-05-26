@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -20,11 +20,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.main.AirportCard;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.AirportCard;
 
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 

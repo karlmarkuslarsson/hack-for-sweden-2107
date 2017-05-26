@@ -1,25 +1,25 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import android.content.Context;
 
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.activities.MainActivity;
-import sweden.hack.userinfo.activities.StartActivity;
-import sweden.hack.userinfo.dialogs.EventDialog;
-import sweden.hack.userinfo.fragments.AboutFragment;
-import sweden.hack.userinfo.fragments.PracticalInfoFragment;
-import sweden.hack.userinfo.fragments.TripFragment;
-import sweden.hack.userinfo.helpers.CurrencyHelper;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.helpers.LocationHelper;
-import sweden.hack.userinfo.helpers.SharedPrefsHelper;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.network.exchangerates.ExchangeRatesApi;
-import sweden.hack.userinfo.network.sl.SLApi;
-import sweden.hack.userinfo.network.smhi.SMHIApi;
-import sweden.hack.userinfo.viewholders.main.AirportViewHolder;
-import sweden.hack.userinfo.viewholders.main.TripPlaceViewHolder;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.CustomApplication;
+import com.welcome.to.sweden.activities.MainActivity;
+import com.welcome.to.sweden.activities.StartActivity;
+import com.welcome.to.sweden.dialogs.EventDialog;
+import com.welcome.to.sweden.fragments.AboutFragment;
+import com.welcome.to.sweden.fragments.PracticalInfoFragment;
+import com.welcome.to.sweden.fragments.TripFragment;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.helpers.LocationHelper;
+import com.welcome.to.sweden.helpers.SharedPrefsHelper;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
+import com.welcome.to.sweden.network.sl.SLApi;
+import com.welcome.to.sweden.network.smhi.SMHIApi;
+import com.welcome.to.sweden.viewholders.main.AirportViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripPlaceViewHolder;
 
 
 /**

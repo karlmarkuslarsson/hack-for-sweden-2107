@@ -1,24 +1,26 @@
-package sweden.hack.userinfo;
+package com.welcome.to.sweden;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.di.AndroidDaggerModule;
-import sweden.hack.userinfo.di.AppComponent;
-import sweden.hack.userinfo.di.CoreDaggerModule;
-import sweden.hack.userinfo.di.DaggerAppComponent;
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.di.NetworkModule;
-import sweden.hack.userinfo.di.StorageModule;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.exchangerates.ExchangeRatesApi;
-import sweden.hack.userinfo.network.response.APIResponse;
+import com.welcome.to.sweden.di.AndroidDaggerModule;
+import com.welcome.to.sweden.di.AppComponent;
+import com.welcome.to.sweden.di.CoreDaggerModule;
+import com.welcome.to.sweden.di.DaggerAppComponent;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.di.NetworkModule;
+import com.welcome.to.sweden.di.StorageModule;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
+import com.welcome.to.sweden.network.response.APIResponse;
 import timber.log.Timber;
 
 public class CustomApplication extends Application {
@@ -31,10 +33,13 @@ public class CustomApplication extends Application {
     @Inject
     ExchangeRatesApi mExchangeRatesApi;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         initDependencyInjection();
         JodaTimeAndroid.init(this);
         initConfiguration();

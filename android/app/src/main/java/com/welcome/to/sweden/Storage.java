@@ -1,4 +1,4 @@
-package sweden.hack.userinfo;
+package com.welcome.to.sweden;
 
 import android.location.Location;
 
@@ -6,9 +6,9 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
-import sweden.hack.userinfo.models.exchangerates.ExchangeRates;
-import sweden.hack.userinfo.objects.TripPath;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.objects.TripPath;
 
 public interface Storage {
 

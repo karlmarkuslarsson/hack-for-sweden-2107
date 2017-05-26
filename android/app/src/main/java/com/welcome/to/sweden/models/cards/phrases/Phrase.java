@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.cards.phrases;
+package com.welcome.to.sweden.models.cards.phrases;
 
 import com.google.gson.annotations.SerializedName;
 

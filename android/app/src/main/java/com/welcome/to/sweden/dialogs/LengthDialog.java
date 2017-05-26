@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.dialogs;
+package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
+import com.welcome.to.sweden.R;
 
 public class LengthDialog extends Dialog {
 

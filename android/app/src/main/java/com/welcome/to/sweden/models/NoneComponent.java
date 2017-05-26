@@ -1,5 +1,5 @@
-package sweden.hack.userinfo.models;
+package com.welcome.to.sweden.models;
 
-import sweden.hack.userinfo.models.cards.CardComponent;
+import com.welcome.to.sweden.models.cards.CardComponent;
 
 public class NoneComponent extends CardComponent {}

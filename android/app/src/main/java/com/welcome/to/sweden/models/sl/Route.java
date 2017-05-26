@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.models.sl;
+package com.welcome.to.sweden.models.sl;
 
 import com.google.gson.annotations.SerializedName;
 
 import org.joda.time.DateTime;
 
-import sweden.hack.userinfo.enums.TransportModeEnum;
+import com.welcome.to.sweden.enums.TransportModeEnum;
 
 
 public class Route {

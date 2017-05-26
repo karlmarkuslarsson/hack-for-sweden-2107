@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.objects.main.base;
+package com.welcome.to.sweden.objects.main.base;
 
 /**
  * All cards mot extend MainCard

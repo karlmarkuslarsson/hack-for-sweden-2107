@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import sweden.hack.userinfo.listeners.MainCardListener;
+import com.welcome.to.sweden.listeners.MainCardListener;
 
 public abstract class MainViewHolder<T> extends RecyclerView.ViewHolder {
 

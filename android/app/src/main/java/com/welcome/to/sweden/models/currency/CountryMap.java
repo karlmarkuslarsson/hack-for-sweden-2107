@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.models.currency;
+package com.welcome.to.sweden.models.currency;
 
 import com.google.gson.annotations.SerializedName;
 

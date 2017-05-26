@@ -1,11 +1,11 @@
-package sweden.hack.userinfo.objects;
+package com.welcome.to.sweden.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import sweden.hack.userinfo.enums.TripObjectType;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripRestaurant;
+import com.welcome.to.sweden.enums.TripObjectType;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripEvent;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
 
 public class TripPath implements Serializable {
     private ArrayList<TripObject> objectList;

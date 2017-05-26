@@ -1,10 +1,10 @@
-package sweden.hack.userinfo.enums;
+package com.welcome.to.sweden.enums;
 
 import android.content.Context;
 
 import com.google.gson.annotations.SerializedName;
 
-import sweden.hack.userinfo.R;
+import com.welcome.to.sweden.R;
 
 
 public enum TransportModeEnum {

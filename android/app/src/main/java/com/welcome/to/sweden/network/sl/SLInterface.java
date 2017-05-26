@@ -1,13 +1,13 @@
-package sweden.hack.userinfo.network.sl;
+package com.welcome.to.sweden.network.sl;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import sweden.hack.userinfo.models.sl.ClosestStations;
-import sweden.hack.userinfo.models.sl.Departures;
-import sweden.hack.userinfo.models.sl.Deviations;
-import sweden.hack.userinfo.models.sl.SLTrip;
-import sweden.hack.userinfo.models.sl.SearchStation;
+import com.welcome.to.sweden.models.sl.ClosestStations;
+import com.welcome.to.sweden.models.sl.Departures;
+import com.welcome.to.sweden.models.sl.Deviations;
+import com.welcome.to.sweden.models.sl.SLTrip;
+import com.welcome.to.sweden.models.sl.SearchStation;
 
 public interface SLInterface {
 

@@ -1,13 +1,13 @@
-package sweden.hack.userinfo.adapters;
+package com.welcome.to.sweden.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.fragments.PracticalInfoFragment;
-import sweden.hack.userinfo.fragments.TripFragment;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.fragments.PracticalInfoFragment;
+import com.welcome.to.sweden.fragments.TripFragment;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
     private final Context mContext;

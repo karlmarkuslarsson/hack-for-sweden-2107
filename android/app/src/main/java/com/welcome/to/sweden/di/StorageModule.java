@@ -1,13 +1,13 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.helpers.SharedPrefsHelper;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.CustomApplication;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.helpers.SharedPrefsHelper;
 
 @Module
 public class StorageModule {

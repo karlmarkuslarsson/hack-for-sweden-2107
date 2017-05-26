@@ -1,4 +1,4 @@
-package sweden.hack.userinfo;
+package com.welcome.to.sweden;
 
 public class Constants {
 

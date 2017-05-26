@@ -1,6 +1,6 @@
-package sweden.hack.userinfo.listeners;
+package com.welcome.to.sweden.listeners;
 
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public interface MainCardListener {
     public void onCardClick(MainCard card);

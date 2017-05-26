@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network;
+package com.welcome.to.sweden.network;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -22,20 +22,20 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import sweden.hack.userinfo.BuildConfig;
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.models.cards.CardComponent;
-import sweden.hack.userinfo.models.cards.holdays.Holidays;
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
-import sweden.hack.userinfo.models.cards.phrases.Phrases;
-import sweden.hack.userinfo.models.currency.CountryMap;
-import sweden.hack.userinfo.models.currency.Currencies;
-import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
-import sweden.hack.userinfo.network.interfaces.HolidayInterface;
-import sweden.hack.userinfo.network.interfaces.PhrasesInterface;
-import sweden.hack.userinfo.network.interfaces.PracticalInfoInterface;
-import sweden.hack.userinfo.network.request.CallRequest;
-import sweden.hack.userinfo.network.response.APIResponse;
+import com.welcome.to.sweden.BuildConfig;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.models.cards.CardComponent;
+import com.welcome.to.sweden.models.cards.holdays.Holidays;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.cards.phrases.Phrases;
+import com.welcome.to.sweden.models.currency.CountryMap;
+import com.welcome.to.sweden.models.currency.Currencies;
+import com.welcome.to.sweden.network.adapters.CardComponentTypeAdapter;
+import com.welcome.to.sweden.network.interfaces.HolidayInterface;
+import com.welcome.to.sweden.network.interfaces.PhrasesInterface;
+import com.welcome.to.sweden.network.interfaces.PracticalInfoInterface;
+import com.welcome.to.sweden.network.request.CallRequest;
+import com.welcome.to.sweden.network.response.APIResponse;
 
 public class HackOfSwedenApi {
 

@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.fragments;
+package com.welcome.to.sweden.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,28 +19,28 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.adapters.MainRecyclerViewAdapter;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.helpers.DataHelper;
-import sweden.hack.userinfo.helpers.LocationHelper;
-import sweden.hack.userinfo.helpers.TripCalculator;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripEvent;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripRestaurant;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.network.response.APIResponse;
-import sweden.hack.userinfo.objects.TripObject;
-import sweden.hack.userinfo.objects.TripPath;
-import sweden.hack.userinfo.objects.main.NextDayDivider;
-import sweden.hack.userinfo.objects.main.TripFoodCard;
-import sweden.hack.userinfo.objects.main.TripPlaceCard;
-import sweden.hack.userinfo.objects.main.TripTransportationCard;
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.adapters.MainRecyclerViewAdapter;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.DataHelper;
+import com.welcome.to.sweden.helpers.LocationHelper;
+import com.welcome.to.sweden.helpers.TripCalculator;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripEvent;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.response.APIResponse;
+import com.welcome.to.sweden.objects.TripObject;
+import com.welcome.to.sweden.objects.TripPath;
+import com.welcome.to.sweden.objects.main.NextDayDivider;
+import com.welcome.to.sweden.objects.main.TripFoodCard;
+import com.welcome.to.sweden.objects.main.TripPlaceCard;
+import com.welcome.to.sweden.objects.main.TripTransportationCard;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class TripFragment extends Fragment {
 

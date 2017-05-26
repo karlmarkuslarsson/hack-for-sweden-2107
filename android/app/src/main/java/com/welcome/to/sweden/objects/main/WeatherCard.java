@@ -1,7 +1,7 @@
-package sweden.hack.userinfo.objects.main;
+package com.welcome.to.sweden.objects.main;
 
-import sweden.hack.userinfo.models.smhi.Weather;
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.models.smhi.Weather;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class WeatherCard extends MainCard {
     private final Weather mWeather;

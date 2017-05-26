@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.dialogs;
+package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,8 +14,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.models.currency.Currency;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.models.currency.Currency;
 
 public class CurrencyDialog extends Dialog {
 

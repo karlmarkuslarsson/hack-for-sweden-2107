@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.helpers;
+package com.welcome.to.sweden.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.di.InjectionContainer;
+import com.welcome.to.sweden.di.InjectionContainer;
 
 public class SharedPrefsHelper {
 

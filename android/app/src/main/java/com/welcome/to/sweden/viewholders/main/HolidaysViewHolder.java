@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +10,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.cards.holdays.Holiday;
-import sweden.hack.userinfo.objects.main.HolidaysCard;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.holdays.Holiday;
+import com.welcome.to.sweden.objects.main.HolidaysCard;
 
 public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
 

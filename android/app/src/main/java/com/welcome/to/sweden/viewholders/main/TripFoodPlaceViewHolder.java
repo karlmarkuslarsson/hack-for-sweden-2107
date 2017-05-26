@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.viewholders.main;
+package com.welcome.to.sweden.viewholders.main;
 
 import android.graphics.Typeface;
 import android.text.SpannableString;
@@ -13,11 +13,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import sweden.hack.userinfo.R;
-import sweden.hack.userinfo.utils.TimeUtils;
-import sweden.hack.userinfo.dialogs.EventDialog;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.objects.main.TripFoodCard;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.utils.TimeUtils;
+import com.welcome.to.sweden.dialogs.EventDialog;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.TripFoodCard;
 
 public class TripFoodPlaceViewHolder extends MainViewHolder<TripFoodCard> {
 

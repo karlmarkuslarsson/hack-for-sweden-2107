@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network.sl;
+package com.welcome.to.sweden.network.sl;
 
 
 import javax.inject.Inject;
@@ -8,16 +8,16 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import sweden.hack.userinfo.BuildConfig;
-import sweden.hack.userinfo.Constants;
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.models.sl.ClosestStations;
-import sweden.hack.userinfo.models.sl.Departures;
-import sweden.hack.userinfo.models.sl.Deviations;
-import sweden.hack.userinfo.models.sl.SLTrip;
-import sweden.hack.userinfo.models.sl.SearchStation;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.request.CallRequest;
+import com.welcome.to.sweden.BuildConfig;
+import com.welcome.to.sweden.Constants;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.models.sl.ClosestStations;
+import com.welcome.to.sweden.models.sl.Departures;
+import com.welcome.to.sweden.models.sl.Deviations;
+import com.welcome.to.sweden.models.sl.SLTrip;
+import com.welcome.to.sweden.models.sl.SearchStation;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.request.CallRequest;
 
 public class SLApi {
 

@@ -1,14 +1,14 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import sweden.hack.userinfo.CustomApplication;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.network.exchangerates.ExchangeRatesApi;
-import sweden.hack.userinfo.network.sl.SLApi;
-import sweden.hack.userinfo.network.smhi.SMHIApi;
+import com.welcome.to.sweden.CustomApplication;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
+import com.welcome.to.sweden.network.sl.SLApi;
+import com.welcome.to.sweden.network.smhi.SMHIApi;
 
 @Module
 public class NetworkModule {

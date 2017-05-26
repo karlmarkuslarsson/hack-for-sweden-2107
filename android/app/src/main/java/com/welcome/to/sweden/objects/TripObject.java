@@ -1,8 +1,8 @@
-package sweden.hack.userinfo.objects;
+package com.welcome.to.sweden.objects;
 
 import java.io.Serializable;
 
-import sweden.hack.userinfo.enums.TripObjectType;
+import com.welcome.to.sweden.enums.TripObjectType;
 
 public class TripObject implements Serializable {
 

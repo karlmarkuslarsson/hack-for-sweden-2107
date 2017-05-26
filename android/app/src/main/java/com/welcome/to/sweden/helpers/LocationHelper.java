@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.helpers;
+package com.welcome.to.sweden.helpers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,10 +9,10 @@ import android.support.v4.app.ActivityCompat;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.di.InjectionContainer;
-import sweden.hack.userinfo.listeners.GPSLocationListener;
-import sweden.hack.userinfo.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.listeners.GPSLocationListener;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;

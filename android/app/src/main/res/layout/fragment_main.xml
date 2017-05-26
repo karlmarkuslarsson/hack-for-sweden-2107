@@ -4,7 +4,7 @@
     android:id="@+id/fragment_main_swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="sweden.hack.userinfo.activities.MainActivity">
+    tools:context="com.welcome.to.sweden.activities.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_main_recycler_view"

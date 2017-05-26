@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.fragments;
+package com.welcome.to.sweden.fragments;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -9,32 +9,32 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import sweden.hack.userinfo.Cache;
-import sweden.hack.userinfo.Constants;
-import sweden.hack.userinfo.di.DaggerUtils;
-import sweden.hack.userinfo.fragments.base.BaseFragment;
-import sweden.hack.userinfo.listeners.MainCardListener;
-import sweden.hack.userinfo.models.cards.CardComponent;
-import sweden.hack.userinfo.models.cards.CurrentCurrency;
-import sweden.hack.userinfo.models.cards.holdays.Holidays;
-import sweden.hack.userinfo.models.cards.phrases.Phrases;
-import sweden.hack.userinfo.models.sl.ClosestStations;
-import sweden.hack.userinfo.models.sl.SLTrip;
-import sweden.hack.userinfo.models.smhi.Weather;
-import sweden.hack.userinfo.network.Callback;
-import sweden.hack.userinfo.network.HackOfSwedenApi;
-import sweden.hack.userinfo.network.response.APIResponse;
-import sweden.hack.userinfo.network.sl.SLApi;
-import sweden.hack.userinfo.network.smhi.SMHIApi;
-import sweden.hack.userinfo.objects.main.AirportCard;
-import sweden.hack.userinfo.objects.main.CurrencyCard;
-import sweden.hack.userinfo.objects.main.HolidaysCard;
-import sweden.hack.userinfo.objects.main.InternetCard;
-import sweden.hack.userinfo.objects.main.PhrasesCard;
-import sweden.hack.userinfo.objects.main.SLAirportCard;
-import sweden.hack.userinfo.objects.main.SLClosestStationsCard;
-import sweden.hack.userinfo.objects.main.WeatherCard;
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.Cache;
+import com.welcome.to.sweden.Constants;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.fragments.base.BaseFragment;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.CardComponent;
+import com.welcome.to.sweden.models.cards.CurrentCurrency;
+import com.welcome.to.sweden.models.cards.holdays.Holidays;
+import com.welcome.to.sweden.models.cards.phrases.Phrases;
+import com.welcome.to.sweden.models.sl.ClosestStations;
+import com.welcome.to.sweden.models.sl.SLTrip;
+import com.welcome.to.sweden.models.smhi.Weather;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.response.APIResponse;
+import com.welcome.to.sweden.network.sl.SLApi;
+import com.welcome.to.sweden.network.smhi.SMHIApi;
+import com.welcome.to.sweden.objects.main.AirportCard;
+import com.welcome.to.sweden.objects.main.CurrencyCard;
+import com.welcome.to.sweden.objects.main.HolidaysCard;
+import com.welcome.to.sweden.objects.main.InternetCard;
+import com.welcome.to.sweden.objects.main.PhrasesCard;
+import com.welcome.to.sweden.objects.main.SLAirportCard;
+import com.welcome.to.sweden.objects.main.SLClosestStationsCard;
+import com.welcome.to.sweden.objects.main.WeatherCard;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 import timber.log.Timber;
 
 public class PracticalInfoFragment extends BaseFragment {

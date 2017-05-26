@@ -1,9 +1,9 @@
-package sweden.hack.userinfo.objects.main;
+package com.welcome.to.sweden.objects.main;
 
 import java.util.Arrays;
 import java.util.List;
 
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class AirportCard extends MainCard {
 

@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.network.request;
+package com.welcome.to.sweden.network.request;
 
 public interface APIRequest<T> {
 

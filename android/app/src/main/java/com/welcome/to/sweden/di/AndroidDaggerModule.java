@@ -1,4 +1,4 @@
-package sweden.hack.userinfo.di;
+package com.welcome.to.sweden.di;
 
 import android.content.Context;
 
@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import sweden.hack.userinfo.CustomApplication;
+import com.welcome.to.sweden.CustomApplication;
 
 @Module
 public class AndroidDaggerModule {

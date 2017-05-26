@@ -1,6 +1,6 @@
-package sweden.hack.userinfo.objects.main;
+package com.welcome.to.sweden.objects.main;
 
-import sweden.hack.userinfo.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class InternetCard extends MainCard {
     @Override
