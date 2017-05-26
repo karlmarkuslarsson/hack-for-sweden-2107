@@ -43,7 +43,7 @@ import com.welcome.to.sweden.objects.main.TripDinnerCard;
 import com.welcome.to.sweden.objects.main.TripLunchCard;
 import com.welcome.to.sweden.objects.main.TripPlaceCard;
 import com.welcome.to.sweden.objects.main.TripTransportationCard;
-import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.Card;
 
 public class TripFragment extends Fragment {
 
@@ -277,17 +277,17 @@ public class TripFragment extends Fragment {
     protected MainCardListener getListener() {
         return new MainCardListener() {
             @Override
-            public void onCardClick(MainCard card) {
+            public void onCardClick(Card card) {
             }
 
             @Override
-            public void dismissCard(MainCard card) {
+            public void dismissCard(Card card) {
                 replaceCard(card);
             }
         };
     }
 
-    private void replaceCard(MainCard card) {
+    private void replaceCard(Card card) {
         if (card instanceof TripDinnerCard) {
             for (TripPath path : mTripPath) {
                 Iterator<TripObject> itr = path.getObjectList().iterator();
@@ -345,7 +345,7 @@ public class TripFragment extends Fragment {
         return false;
     }
 
-    private void changeCard(MainCard oldCard, MainCard newCard) {
+    private void changeCard(Card oldCard, Card newCard) {
         mAdapter.changeCard(oldCard, newCard);
     }
 
