@@ -22,10 +22,6 @@ import com.welcome.to.sweden.viewholders.main.AirportViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripPlaceViewHolder;
 
 
-/**
- * Created by markus on 2017-02-18.
- */
-
 public interface InjectionContainer {
 
     // Activities

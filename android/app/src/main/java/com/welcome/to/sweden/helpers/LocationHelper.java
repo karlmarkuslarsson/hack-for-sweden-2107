@@ -7,19 +7,15 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 
-import javax.inject.Inject;
-
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.listeners.GPSLocationListener;
 import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
 
+import javax.inject.Inject;
+
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
-/**
- * Created by markus on 2017-02-12.
- */
 
 public class LocationHelper {
     private static final int REQUEST_LOCATION = 12;

@@ -13,10 +13,6 @@ import com.welcome.to.sweden.enums.ComponentCardType;
 import com.welcome.to.sweden.models.cards.CardComponent;
 import com.welcome.to.sweden.models.NoneComponent;
 
-/**
- * Created by sosv on 11/03/17.
- */
-
 public class CardComponentTypeAdapter implements JsonDeserializer<CardComponent> {
 
     private static final String TYPE_KEY = "type";

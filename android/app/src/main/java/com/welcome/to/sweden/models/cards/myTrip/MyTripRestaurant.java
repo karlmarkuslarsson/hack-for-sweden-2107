@@ -2,10 +2,6 @@ package com.welcome.to.sweden.models.cards.myTrip;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by sosv on 11/03/17.
- */
-
 public class MyTripRestaurant extends MyTripLatLng {
 
     @SerializedName("id")
