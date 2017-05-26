@@ -46,7 +46,7 @@
   {"name": "Colombia", "number": "+57", "code": "CO"},
   {"name": "Comoros", "number": "+269", "code": "KM"},
   {"name": "Congo", "number": "+242", "code": "CG"},
-  {"name": "Congo, "number": Dem. Rep. of (Zaire)", "number": "+243", "code": "CD"},
+  {"name": "Congo", "number": "+243", "code": "CD"},
   {"name": "Cook Islands", "number": "+682", "code": "CK"},
   {"name": "Costa Rica", "number": "+506", "code": "CR"},
   {"name": "Croatia", "number": "+385", "code": "HR"},
