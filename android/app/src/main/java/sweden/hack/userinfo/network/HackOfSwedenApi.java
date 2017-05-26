@@ -25,20 +25,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import sweden.hack.userinfo.BuildConfig;
 import sweden.hack.userinfo.di.InjectionContainer;
 import sweden.hack.userinfo.models.cards.CardComponent;
-import sweden.hack.userinfo.models.cards.CurrentCurrency;
 import sweden.hack.userinfo.models.cards.holdays.Holidays;
 import sweden.hack.userinfo.models.cards.myTrip.MyTrip;
 import sweden.hack.userinfo.models.cards.phrases.Phrases;
 import sweden.hack.userinfo.models.currency.CountryMap;
 import sweden.hack.userinfo.models.currency.Currencies;
-import sweden.hack.userinfo.models.income.Income;
-import sweden.hack.userinfo.models.population.Population;
 import sweden.hack.userinfo.network.adapters.CardComponentTypeAdapter;
-import sweden.hack.userinfo.network.interfaces.CurrencyInterface;
 import sweden.hack.userinfo.network.interfaces.HolidayInterface;
-import sweden.hack.userinfo.network.interfaces.IncomeInterface;
 import sweden.hack.userinfo.network.interfaces.PhrasesInterface;
-import sweden.hack.userinfo.network.interfaces.PopulationInterface;
 import sweden.hack.userinfo.network.interfaces.PracticalInfoInterface;
 import sweden.hack.userinfo.network.request.CallRequest;
 import sweden.hack.userinfo.network.response.APIResponse;
@@ -47,9 +41,6 @@ public class HackOfSwedenApi {
 
     private static final String BASE_URL = "http://188.166.26.118:3000";
 
-    private PopulationInterface mPopulationApi;
-    private IncomeInterface mIncomeApi;
-    private CurrencyInterface mCurrencyApi;
     private HolidayInterface mHolidayApi;
     private PhrasesInterface mPhrasesApi;
 
@@ -85,29 +76,10 @@ public class HackOfSwedenApi {
                 .client(client)
                 .build();
 
-        mPopulationApi = retrofit.create(PopulationInterface.class);
-        mIncomeApi = retrofit.create(IncomeInterface.class);
-        mCurrencyApi = retrofit.create(CurrencyInterface.class);
         mHolidayApi = retrofit.create(HolidayInterface.class);
         mPhrasesApi = retrofit.create(PhrasesInterface.class);
 
         mAllApi = retrofit.create(PracticalInfoInterface.class);
-    }
-
-    public void getPopulation(final Callback<List<Population>> callbackListener) {
-        Call<List<Population>> call = mPopulationApi.getPopulation();
-
-        new CallRequest<>(call, callbackListener).execute();
-    }
-
-    public void getIncome(final Callback<List<Income>> callbackListener) {
-        Call<List<Income>> call = mIncomeApi.getIncome();
-        new CallRequest<>(call, callbackListener).execute();
-    }
-
-    public void getCurrency(String fromCurrency, String value, String toCurrency, final Callback<CurrentCurrency> callbackListener) {
-        Call<CurrentCurrency> call = mCurrencyApi.getCurrency(fromCurrency, value, toCurrency);
-        new CallRequest<>(call, callbackListener).execute();
     }
 
     public void getHolidays(String date, Callback<Holidays> callback) {
@@ -122,11 +94,6 @@ public class HackOfSwedenApi {
 
     public void getPracticalInfo(Callback<List<CardComponent>> callback, String currency) {
         Call<List<CardComponent>> call = mAllApi.getPracticalInfo(currency);
-        new CallRequest<>(call, callback).execute();
-    }
-
-    public void getTodoList(Callback<List<CardComponent>> callback, String from, String to) {
-        Call<List<CardComponent>> call = mAllApi.getTodoList(from, to);
         new CallRequest<>(call, callback).execute();
     }
 
@@ -152,22 +119,22 @@ public class HackOfSwedenApi {
                 return mGson.fromJson(streamReader, clz);
             }
         })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DefaultObserver<T>() {
-                    @Override
-                    public void onNext(T value) {
-                        callback.onSuccess(new APIResponse<>(value, 200));
-                    }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new DefaultObserver<T>() {
+            @Override
+            public void onNext(T value) {
+                callback.onSuccess(new APIResponse<>(value, 200));
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        callback.onFailure(new APIResponse<T>(e));
-                    }
+            @Override
+            public void onError(Throwable e) {
+                callback.onFailure(new APIResponse<T>(e));
+            }
 
-                    @Override
-                    public void onComplete() {
-                    }
-                });
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 }

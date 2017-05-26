@@ -16,12 +16,10 @@ import sweden.hack.userinfo.objects.main.base.MainCard;
 import sweden.hack.userinfo.viewholders.main.AirportViewHolder;
 import sweden.hack.userinfo.viewholders.main.CurrencyViewHolder;
 import sweden.hack.userinfo.viewholders.main.HolidaysViewHolder;
-import sweden.hack.userinfo.viewholders.main.IncomeViewHolder;
 import sweden.hack.userinfo.viewholders.main.InternetViewHolder;
 import sweden.hack.userinfo.viewholders.main.MainViewHolder;
 import sweden.hack.userinfo.viewholders.main.NextDayViewHolder;
 import sweden.hack.userinfo.viewholders.main.PhrasesViewHolder;
-import sweden.hack.userinfo.viewholders.main.PopulationViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLAirportTripViewHolder;
 import sweden.hack.userinfo.viewholders.main.SLClosestStationsViewHolder;
 import sweden.hack.userinfo.viewholders.main.TripFoodPlaceViewHolder;
@@ -51,10 +49,6 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         // Create view holder associated with the view type.
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case MainCard.TYPE_POPULATION:
-                return new PopulationViewHolder(inflater.inflate(R.layout.card_population, parent, false));
-            case MainCard.TYPE_INCOME:
-                return new IncomeViewHolder(inflater.inflate(R.layout.card_income, parent, false));
             case MainCard.TYPE_WEATHER:
                 return new WeatherViewHolder(inflater.inflate(R.layout.card_weather, parent, false));
             case MainCard.TYPE_SL_CLOSEST_STATIONS:
