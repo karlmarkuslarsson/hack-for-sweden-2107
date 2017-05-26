@@ -24,6 +24,7 @@ import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.adapters.MainRecyclerViewAdapter;
 import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.enums.TripObjectType;
 import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.helpers.LocationHelper;
 import com.welcome.to.sweden.helpers.TripCalculator;
@@ -197,9 +198,7 @@ public class TripFragment extends Fragment {
                         break;
                     case TRANSFER:
                         if (i != tripPath.getObjectList().size() - 1 && i > 0) {
-                            int transportationTime = addTransportation(mMyTripData,
-                                    tripPath.getObjectList().get(i - 1),
-                                    tripPath.getObjectList().get(i + 1));
+                            int transportationTime = addTransportation(mMyTripData, tripPath, i);
 
                             mAdapter.addCard(new TripTransportationCard(transportationTime + " min"));
                             startTime += transportationTime;
@@ -214,22 +213,27 @@ public class TripFragment extends Fragment {
         mAdapter.addCard(new NextDayDivider(counter));
     }
 
-    private int addTransportation(MyTrip mMyTripData, TripObject preObject, TripObject nextObject) {
+    private int addTransportation(MyTrip mMyTripData, TripPath tripPath, int position) {
         MyTripLatLng preTrip = null;
         MyTripLatLng nextTrip = null;
-        boolean isLunch = false;
+
+
+        TripObject preObject = tripPath.getObjectList().get(position - 1);
+        TripObject nextObject = tripPath.getObjectList().get(position + 1);
+
+        if (preObject.getTripObjectType() == TripObjectType.LUNCH) {
+            preObject = tripPath.getObjectList().get(position - 3);
+        }
         switch (preObject.getTripObjectType()) {
             case RESTAURANT:
                 preTrip = mMyTripData.getRestaurant(preObject.getId());
-                break;
-            case LUNCH:
-                isLunch = true;
                 break;
             case EVENT:
                 preTrip = mMyTripData.getEvent(preObject.getId());
                 break;
         }
 
+        boolean isLunch = false;
         switch (nextObject.getTripObjectType()) {
             case RESTAURANT:
                 nextTrip = mMyTripData.getRestaurant(nextObject.getId());
