@@ -34,6 +34,21 @@ public class MyTripEvent extends MyTripLatLng {
     @SerializedName("tag")
     private String mTag;
 
+    @SerializedName("min_temp")
+    private Integer mMinTemp;
+
+    @SerializedName("max_temp")
+    private Integer mMaxTemp;
+
+    // First month it is opened
+    @SerializedName("first_month")
+    private Integer mFirstMonth;
+
+    // Last month it is opened
+    @SerializedName("last_month")
+    private Integer mLastMonth;
+
+
     public String getId() {
         return mId;
     }
@@ -120,4 +135,27 @@ public class MyTripEvent extends MyTripLatLng {
     public void setTag(String mTag) {
         this.mTag = mTag;
     }
+
+    public int getMinTemp() {
+        if (mMinTemp == null) {
+            return -1000;
+        }
+        return mMinTemp;
+    }
+
+    public Integer getMaxTemp() {
+        if (mMaxTemp == null) {
+            return 1000;
+        }
+        return mMaxTemp;
+    }
+
+    public Integer getFirstMonth() {
+        return mFirstMonth;
+    }
+
+    public Integer getLastMonth() {
+        return mLastMonth;
+    }
+
 }
