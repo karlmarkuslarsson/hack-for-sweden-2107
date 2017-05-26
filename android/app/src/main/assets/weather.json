@@ -1,0 +1,14 @@
+{ "stats": [
+  {"month_of_year": 1, "name": "Januari", "high": -1, "low": -5, "water": 3, "sun_hours": 1, "rain_days": 18},
+  {"month_of_year": 2, "name": "Februari", "high": -1, "low": -5, "water": 2, "sun_hours": 2, "rain_days": 14},
+  {"month_of_year": 3, "name": "Mars", "high": 3, "low": -3, "water": 2, "sun_hours": 3, "rain_days": 12},
+  {"month_of_year": 4, "name": "April", "high": 8, "low": 1, "water": 2, "sun_hours": 5, "rain_days": 11},
+  {"month_of_year": 5, "name": "Maj", "high": 15, "low": 6, "water": 5, "sun_hours": 8, "rain_days": 10},
+  {"month_of_year": 6, "name": "Juni", "high": 20, "low": 11, "water": 10, "sun_hours": 9, "rain_days": 10},
+  {"month_of_year": 7, "name": "Juli", "high": 22, "low": 13, "water": 15, "sun_hours": 8, "rain_days": 13},
+  {"month_of_year": 8, "name": "Augusti", "high": 20, "low": 13, "water": 16, "sun_hours": 7, "rain_days": 13},
+  {"month_of_year": 9, "name": "September", "high": 15, "low": 9, "water": 13, "sun_hours": 4, "rain_days": 14},
+  {"month_of_year": 10, "name": "Oktober", "high": 10, "low": 5, "water": 9, "sun_hours": 3, "rain_days": 14},
+  {"month_of_year": 11, "name": "November", "high": 5, "low": 1, "water": 6, "sun_hours": 1, "rain_days": 17},
+  {"month_of_year": 12, "name": "December", "high": 1, "low": -3, "water": 4, "sun_hours": 1, "rain_days": 18}
+]}

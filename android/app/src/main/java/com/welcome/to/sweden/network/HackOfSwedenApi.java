@@ -5,23 +5,6 @@ import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.concurrent.Callable;
-
-import javax.inject.Inject;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DefaultObserver;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import com.welcome.to.sweden.BuildConfig;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.models.cards.CardComponent;
@@ -30,12 +13,30 @@ import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
 import com.welcome.to.sweden.models.cards.phrases.Phrases;
 import com.welcome.to.sweden.models.currency.CountryMap;
 import com.welcome.to.sweden.models.currency.Currencies;
+import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.adapters.CardComponentTypeAdapter;
 import com.welcome.to.sweden.network.interfaces.HolidayInterface;
 import com.welcome.to.sweden.network.interfaces.PhrasesInterface;
 import com.welcome.to.sweden.network.interfaces.PracticalInfoInterface;
 import com.welcome.to.sweden.network.request.CallRequest;
 import com.welcome.to.sweden.network.response.APIResponse;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.observers.DefaultObserver;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HackOfSwedenApi {
 
@@ -49,6 +50,14 @@ public class HackOfSwedenApi {
 
     @Inject
     Context mContext;
+
+    @Inject
+    @Named("main_scheduler")
+    Scheduler mMainScheduler;
+
+    @Inject
+    @Named("io_scheduler")
+    Scheduler mIOScheduler;
 
     public HackOfSwedenApi(InjectionContainer injectionContainer) {
         injectionContainer.inject(this);
@@ -105,6 +114,10 @@ public class HackOfSwedenApi {
         readJSONFile(callback, "currencies.json", mGson, Currencies.class);
     }
 
+    public void getWeatherStats(Callback<WeatherStats> callback) {
+        readJSONFile(callback, "weather.json", mGson, WeatherStats.class);
+    }
+
     public void getCountryMap(Callback<CountryMap> callback) {
         readJSONFile(callback, "county_number_mapping.json", mGson, CountryMap.class);
     }
@@ -119,8 +132,8 @@ public class HackOfSwedenApi {
                 return mGson.fromJson(streamReader, clz);
             }
         })
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(mIOScheduler)
+        .observeOn(mMainScheduler)
         .subscribe(new DefaultObserver<T>() {
             @Override
             public void onNext(T value) {
