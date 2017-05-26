@@ -12,6 +12,7 @@ import org.joda.time.format.DateTimeFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.welcome.to.sweden.R;
 
 import static com.welcome.to.sweden.activities.StartActivity.DATE_FORMAT;
@@ -42,7 +43,12 @@ public class DatePickerDialog extends Dialog {
         mListener = listener;
 
         initViews();
+        setupViews();
         setupCallbacks();
+    }
+
+    private void setupViews() {
+        mDatePicker.setMinDate(System.currentTimeMillis());
     }
 
     private void initViews() {
