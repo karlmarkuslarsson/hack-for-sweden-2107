@@ -17,7 +17,7 @@ public class TripCalculator {
     private static List<TripPart> getDefaultTemplate() {
         List<TripPart> template = new ArrayList<>();
         template.add(new TripPart(TripObjectType.EVENT, 120));
-        template.add(new TripPart(TripObjectType.RESTAURANT, 60));
+        template.add(new TripPart(TripObjectType.LUNCH, 45));
         template.add(new TripPart(TripObjectType.EVENT, 240));
         // add paus
         template.add(new TripPart(TripObjectType.RESTAURANT, 120));
@@ -45,6 +45,11 @@ public class TripCalculator {
                         case RESTAURANT:
                             tripPath.add(restaurants.get(0));
                             restaurants.remove(0);
+                            timeLeft = 0;
+                            tripPath.addTransfer();
+                            break;
+                        case LUNCH:
+                            tripPath.addLunchStop();
                             timeLeft = 0;
                             tripPath.addTransfer();
                             break;

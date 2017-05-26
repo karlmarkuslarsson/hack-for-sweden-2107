@@ -23,6 +23,7 @@ import com.welcome.to.sweden.viewholders.main.PhrasesViewHolder;
 import com.welcome.to.sweden.viewholders.main.SLAirportTripViewHolder;
 import com.welcome.to.sweden.viewholders.main.SLClosestStationsViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripFoodPlaceViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripLunchPlaceViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripPlaceViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripTransportationViewHolder;
 import com.welcome.to.sweden.viewholders.main.WeatherViewHolder;
@@ -67,6 +68,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
                 return new TripPlaceViewHolder(inflater.inflate(R.layout.card_trip_place, parent, false));
             case MainCard.TYPE_TRIP_FOOD:
                 return new TripFoodPlaceViewHolder(inflater.inflate(R.layout.card_trip_food, parent, false));
+            case MainCard.TYPE_TRIP_LUNCH:
+                return new TripLunchPlaceViewHolder(inflater.inflate(R.layout.card_trip_food, parent, false));
             case MainCard.TYPE_TRIP_TRANSPORTATION:
                 return new TripTransportationViewHolder(inflater.inflate(R.layout.card_trip_transport, parent, false));
             case MainCard.TYPE_AIRPORT:

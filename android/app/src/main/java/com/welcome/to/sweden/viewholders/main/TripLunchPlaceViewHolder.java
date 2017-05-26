@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.viewholders.main;
 
+
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -10,17 +11,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.utils.TimeUtils;
 import com.welcome.to.sweden.dialogs.EventDialog;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.objects.main.TripDinnerCard;
+import com.welcome.to.sweden.objects.main.TripLunchCard;
+import com.welcome.to.sweden.utils.TimeUtils;
 
-public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class TripLunchPlaceViewHolder extends MainViewHolder<TripLunchCard> {
     @BindView(R.id.image)
     ImageView mImage;
 
@@ -39,40 +40,34 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
     @BindView(R.id.event_info)
     TextView mEventInfo;
 
-    private TripDinnerCard mCard;
+    private TripLunchCard mCard;
 
-    public TripFoodPlaceViewHolder(View itemView) {
+    public TripLunchPlaceViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
     @Override
-    public void init(TripDinnerCard card, MainCardListener listener) {
+    public void init(TripLunchCard card, MainCardListener listener) {
         mCard = card;
-        mTitle.setText(card.getTripRestaurant().getTitle());
-        mDescription.setText(card.getTripRestaurant().getDescription());
+        mTitle.setText("LUNCH!");
+        mDescription.setText("ÄT");
         mTag.setText("restaurant");
         mStartTime.setText(card.getStartTime());
         setEventInfo();
 
-        Glide.with(itemView.getContext())
-                .load(card.getTripRestaurant().getImage())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
-                .into(mImage);
 
+        /*
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showTripPlaceDialog();
             }
         });
+        */
     }
 
-    private void showTripPlaceDialog() {
-        final EventDialog dialog = new EventDialog(itemView.getContext(), mCard.getTripRestaurant());
-        dialog.show();
-    }
+
 
     private void setEventInfo() {
         StringBuilder sb = new StringBuilder();
@@ -83,5 +78,4 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, durationTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
     }
-
 }

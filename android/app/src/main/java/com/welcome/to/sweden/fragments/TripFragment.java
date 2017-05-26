@@ -19,6 +19,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.adapters.MainRecyclerViewAdapter;
@@ -37,7 +38,8 @@ import com.welcome.to.sweden.network.response.APIResponse;
 import com.welcome.to.sweden.objects.TripObject;
 import com.welcome.to.sweden.objects.TripPath;
 import com.welcome.to.sweden.objects.main.NextDayDivider;
-import com.welcome.to.sweden.objects.main.TripFoodCard;
+import com.welcome.to.sweden.objects.main.TripDinnerCard;
+import com.welcome.to.sweden.objects.main.TripLunchCard;
 import com.welcome.to.sweden.objects.main.TripPlaceCard;
 import com.welcome.to.sweden.objects.main.TripTransportationCard;
 import com.welcome.to.sweden.objects.main.base.MainCard;
@@ -169,16 +171,18 @@ public class TripFragment extends Fragment {
                             reloadData();
                             return;
                         }
-                        int duration;
-                        if (restaurantCounter == 0) {
-                            duration = 60;
-                        } else {
-                            duration = 120;
-                        }
-                        mAdapter.addCard(new TripFoodCard(restaurant, getTimeFromTenOClock(startTime), duration));
+                        int duration = 120;
+
+                        mAdapter.addCard(new TripDinnerCard(restaurant, getTimeFromTenOClock(startTime), duration));
 
                         startTime += duration;
-                        restaurantCounter++;
+                        break;
+                    case LUNCH:
+
+                        int lunchDuration = 45;
+                        mAdapter.addCard(new TripLunchCard(getTimeFromTenOClock(startTime), lunchDuration));
+                        startTime += lunchDuration;
+
                         break;
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
@@ -213,9 +217,13 @@ public class TripFragment extends Fragment {
     private int addTransportation(MyTrip mMyTripData, TripObject preObject, TripObject nextObject) {
         MyTripLatLng preTrip = null;
         MyTripLatLng nextTrip = null;
+        boolean isLunch = false;
         switch (preObject.getTripObjectType()) {
             case RESTAURANT:
                 preTrip = mMyTripData.getRestaurant(preObject.getId());
+                break;
+            case LUNCH:
+                isLunch = true;
                 break;
             case EVENT:
                 preTrip = mMyTripData.getEvent(preObject.getId());
@@ -229,6 +237,12 @@ public class TripFragment extends Fragment {
             case EVENT:
                 nextTrip = mMyTripData.getEvent(nextObject.getId());
                 break;
+            case LUNCH:
+                isLunch = true;
+                break;
+        }
+        if (isLunch) {
+            return 0;
         }
         float kilometer = LocationHelper.getKilometerDistance(preTrip, nextTrip);
         if (kilometer < 10) {
@@ -263,22 +277,22 @@ public class TripFragment extends Fragment {
     }
 
     private void replaceCard(MainCard card) {
-        if (card instanceof TripFoodCard) {
+        if (card instanceof TripDinnerCard) {
             for (TripPath path : mTripPath) {
                 Iterator<TripObject> itr = path.getObjectList().iterator();
 
                 while (itr.hasNext()) {
                     TripObject object = itr.next();
-                    if (object.getId() != null && object.getId().equals(((TripFoodCard) card).getTripRestaurant().getId())) {
+                    if (object.getId() != null && object.getId().equals(((TripDinnerCard) card).getTripRestaurant().getId())) {
                         itr.remove();  // TODO: insert new card here
                         break;
                     }
                 }
             }
             for (MyTripRestaurant restaurant : mMyTripData.getRestaurants()) {
-                if (!restaurant.getId().equals(((TripFoodCard) card).getTripRestaurant().getId())) {
+                if (!restaurant.getId().equals(((TripDinnerCard) card).getTripRestaurant().getId())) {
                     if (!hasRestaurant(restaurant)) {
-                        changeCard(card, new TripFoodCard(restaurant, ((TripFoodCard) card).getStartTime(), ((TripFoodCard) card).getDuration()));
+                        changeCard(card, new TripDinnerCard(restaurant, ((TripDinnerCard) card).getStartTime(), ((TripDinnerCard) card).getDuration()));
                         return;
                     }
                 }

@@ -3,13 +3,13 @@ package com.welcome.to.sweden.objects.main;
 import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
 import com.welcome.to.sweden.objects.main.base.MainCard;
 
-public class TripFoodCard extends MainCard {
+public class TripDinnerCard extends MainCard {
 
     private final MyTripRestaurant mTripRestaurant;
     private final int mDuration;
     private String mStartTime;
 
-    public TripFoodCard(MyTripRestaurant tripEvent, String startTime, int duration) {
+    public TripDinnerCard(MyTripRestaurant tripEvent, String startTime, int duration) {
         mTripRestaurant = tripEvent;
         mStartTime = startTime;
         mDuration = duration;

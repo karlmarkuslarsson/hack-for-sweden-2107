@@ -40,5 +40,6 @@ public class MyTrip extends CardComponent {
         }
         return null;
     }
+
 }
 

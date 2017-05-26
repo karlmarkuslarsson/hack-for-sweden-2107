@@ -30,4 +30,7 @@ public class TripPath implements Serializable {
         objectList.add(new TripObject(TripObjectType.TRANSFER));
     }
 
+    public void addLunchStop() {
+        objectList.add(new TripObject(TripObjectType.LUNCH));
+    }
 }
