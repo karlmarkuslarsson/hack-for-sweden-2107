@@ -1,12 +1,12 @@
 package com.welcome.to.sweden.network;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.welcome.to.sweden.BuildConfig;
 import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.files.JsonFileReader;
+import com.welcome.to.sweden.helpers.HttpInterceptorHelper;
 import com.welcome.to.sweden.models.cards.CardComponent;
 import com.welcome.to.sweden.models.cards.holdays.Holidays;
 import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
@@ -19,21 +19,14 @@ import com.welcome.to.sweden.network.interfaces.HolidayInterface;
 import com.welcome.to.sweden.network.interfaces.PhrasesInterface;
 import com.welcome.to.sweden.network.interfaces.PracticalInfoInterface;
 import com.welcome.to.sweden.network.request.CallRequest;
-import com.welcome.to.sweden.network.response.APIResponse;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import io.reactivex.Observable;
 import io.reactivex.Scheduler;
-import io.reactivex.observers.DefaultObserver;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -44,8 +37,8 @@ public class HackOfSwedenApi {
 
     private HolidayInterface mHolidayApi;
     private PhrasesInterface mPhrasesApi;
-
     private PracticalInfoInterface mAllApi;
+    private JsonFileReader mJsonFileReader;
     private Gson mGson;
 
     @Inject
@@ -66,18 +59,14 @@ public class HackOfSwedenApi {
 
     private void init() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
-            builder.addInterceptor(loggingInterceptor);
-        }
-
+        HttpInterceptorHelper.setup(builder);
         OkHttpClient client = builder.build();
 
         mGson = new GsonBuilder()
                 .registerTypeAdapter(CardComponent.class, new CardComponentTypeAdapter())
                 .create();
+
+        mJsonFileReader = new JsonFileReader(mContext, mGson, mIOScheduler, mMainScheduler);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -87,67 +76,38 @@ public class HackOfSwedenApi {
 
         mHolidayApi = retrofit.create(HolidayInterface.class);
         mPhrasesApi = retrofit.create(PhrasesInterface.class);
-
         mAllApi = retrofit.create(PracticalInfoInterface.class);
     }
 
-    public void getHolidays(String date, Callback<Holidays> callback) {
-        Call<Holidays> call = mHolidayApi.getHolidays(date);
+    private static <T> void call(Call<T> call, Callback<T> callback) {
         new CallRequest<>(call, callback).execute();
+    }
+
+    public void getHolidays(String date, Callback<Holidays> callback) {
+        call(mHolidayApi.getHolidays(date), callback);
     }
 
     public void getPhrases(Callback<Phrases> callback) {
-        Call<Phrases> call = mPhrasesApi.getPhrases();
-        new CallRequest<>(call, callback).execute();
+        call(mPhrasesApi.getPhrases(), callback);
     }
 
     public void getPracticalInfo(Callback<List<CardComponent>> callback, String currency) {
-        Call<List<CardComponent>> call = mAllApi.getPracticalInfo(currency);
-        new CallRequest<>(call, callback).execute();
+        call(mAllApi.getPracticalInfo(currency), callback);
     }
 
     public void getTripList(Callback<MyTrip> callback) {
-        readJSONFile(callback, "events.json", mGson, MyTrip.class);
+        mJsonFileReader.read("events.json", MyTrip.class, callback);
     }
 
     public void getCurrencies(Callback<Currencies> callback) {
-        readJSONFile(callback, "currencies.json", mGson, Currencies.class);
+        mJsonFileReader.read("currencies.json", Currencies.class, callback);
     }
 
     public void getWeatherStats(Callback<WeatherStats> callback) {
-        readJSONFile(callback, "weather.json", mGson, WeatherStats.class);
+        mJsonFileReader.read("weather.json", WeatherStats.class, callback);
     }
 
     public void getCountryMap(Callback<CountryMap> callback) {
-        readJSONFile(callback, "county_number_mapping.json", mGson, CountryMap.class);
-    }
-
-    private <T> void readJSONFile(final Callback<T> callback, final String fileName, final Gson mGson, final Class<T> clz) {
-        Observable.fromCallable(new Callable<T>() {
-            @Override
-            public T call() throws Exception {
-                AssetManager assets = mContext.getAssets();
-                InputStream inputStream = assets.open(fileName);
-                InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-                return mGson.fromJson(streamReader, clz);
-            }
-        })
-        .subscribeOn(mIOScheduler)
-        .observeOn(mMainScheduler)
-        .subscribe(new DefaultObserver<T>() {
-            @Override
-            public void onNext(T value) {
-                callback.onSuccess(new APIResponse<>(value, 200));
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                callback.onFailure(new APIResponse<T>(e));
-            }
-
-            @Override
-            public void onComplete() {
-            }
-        });
+        mJsonFileReader.read("county_number_mapping.json", CountryMap.class, callback);
     }
 }
