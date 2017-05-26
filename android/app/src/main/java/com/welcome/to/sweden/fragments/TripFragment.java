@@ -47,6 +47,9 @@ import com.welcome.to.sweden.objects.main.base.MainCard;
 
 public class TripFragment extends Fragment {
 
+    public static final int TIME_DINNER = 120;
+    public static final int TIME_LUNCH = 45;
+
     @BindView(R.id.fragment_main_swipe_to_refresh)
     public SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -81,15 +84,16 @@ public class TripFragment extends Fragment {
         mRoot = inflater.inflate(R.layout.fragment_trip, container, false);
         ButterKnife.bind(this, mRoot);
 
-        mDays = mDataHelper.getTripDays();
         setupViews();
         initData();
         return mRoot;
     }
 
     private void initData() {
+        mDays = mDataHelper.getTripDays();
         mTripPath = mDataHelper.getTripPaths();
         mUpdateDataOnLoad = true;
+
         if (mTripPath != null) {
             mMyTripData = mCache.getMyTrip();
             if (mMyTripData != null) {
@@ -154,7 +158,6 @@ public class TripFragment extends Fragment {
             }
             counter++;
             int startTime = 0;
-            int restaurantCounter = 0;
             for (int i = 0; i < tripPath.getObjectList().size(); i++) {
                 TripObject currentTrip = tripPath.getObjectList().get(i);
                 if (currentTrip == null) {
@@ -163,50 +166,54 @@ public class TripFragment extends Fragment {
                     reloadData();
                     return;
                 }
+
+                MainCard mainCard = null;
+                String objectStartTime = getTimeFromTenOClock(startTime);
+
                 switch (currentTrip.getTripObjectType()) {
                     case RESTAURANT:
                         MyTripRestaurant restaurant = mMyTripData.getRestaurant(currentTrip.getId());
                         if (restaurant == null) {
-                            mDataHelper.setTripPaths(null);
-                            mTripPath = null;
-                            reloadData();
+                            onBadTripData();
                             return;
                         }
-                        int duration = 120;
-
-                        mAdapter.addCard(new TripDinnerCard(restaurant, getTimeFromTenOClock(startTime), duration));
-
+                        int duration = TIME_DINNER;
+                        mainCard = new TripDinnerCard(restaurant, objectStartTime, duration);
                         startTime += duration;
                         break;
                     case LUNCH:
-
-                        int lunchDuration = 45;
-                        mAdapter.addCard(new TripLunchCard(getTimeFromTenOClock(startTime), lunchDuration));
+                        int lunchDuration = TIME_LUNCH;
+                        mainCard = new TripLunchCard(objectStartTime, lunchDuration);
                         startTime += lunchDuration;
-
                         break;
                     case EVENT:
                         MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
                         if (event == null) {
-                            mDataHelper.setTripPaths(null);
-                            mTripPath = null;
-                            reloadData();
+                            onBadTripData();
                             return;
                         }
-                        mAdapter.addCard(new TripPlaceCard(event, getTimeFromTenOClock(startTime)));
+                        mainCard = new TripPlaceCard(event, objectStartTime);
                         startTime += event.getDuration();
                         break;
                     case TRANSFER:
                         if (i != tripPath.getObjectList().size() - 1 && i > 0) {
                             int transportationTime = addTransportation(mMyTripData, tripPath, i);
-
-                            mAdapter.addCard(new TripTransportationCard(transportationTime + " min"));
+                            mainCard = new TripTransportationCard(transportationTime + " min");
                             startTime += transportationTime;
                         }
                         break;
                 }
+                if (mainCard != null) {
+                    mAdapter.addCard(mainCard);
+                }
             }
         }
+    }
+
+    private void onBadTripData() {
+        mDataHelper.setTripPaths(null);
+        mTripPath = null;
+        reloadData();
     }
 
     private void addDividerCard(int counter) {
