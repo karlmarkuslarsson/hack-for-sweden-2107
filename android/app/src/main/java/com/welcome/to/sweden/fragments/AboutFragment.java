@@ -10,7 +10,7 @@ import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.network.HackOfSwedenApi;
-import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.Card;
 
 public class AboutFragment extends BaseFragment {
 
@@ -36,12 +36,12 @@ public class AboutFragment extends BaseFragment {
     protected MainCardListener getListener() {
         return new MainCardListener() {
             @Override
-            public void onCardClick(MainCard card) {
+            public void onCardClick(Card card) {
 
             }
 
             @Override
-            public void dismissCard(MainCard card) {
+            public void dismissCard(Card card) {
 
             }
         };

@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.objects.main.AirportCard;
 
 import java.util.List;
 
@@ -20,11 +24,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.di.DaggerUtils;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
-import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.AirportCard;
+
+import static com.welcome.to.sweden.utils.ViewUtils.text;
 
 public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
@@ -53,10 +54,10 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     }
 
     private void setInfo(AirportCard.Alternative line, ViewGroup root) {
-        setText(root.findViewById(R.id.text1), line.getTitle());
-        setText(root.findViewById(R.id.text2), line.getTime());
-        setText(root.findViewById(R.id.text3),
-                mCurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost()));
+        text(root.findViewById(R.id.text1), line.getTitle());
+        text(root.findViewById(R.id.text2), line.getTime());
+        String cost = mCurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost());
+        text(root.findViewById(R.id.text3), cost);
         ImageView imageView = (ImageView) root.findViewById(R.id.image);
 
         Glide.with(itemView.getContext())
@@ -79,7 +80,4 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
 
     }
 
-    public void setText(View v, String text) {
-        TextView.class.cast(v).setText(text);
-    }
 }

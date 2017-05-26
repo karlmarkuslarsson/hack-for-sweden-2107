@@ -17,5 +17,8 @@
     <string name="transportaion_unknown">Unknown</string>
     <string name="when_are_you_going_yyyy_mm_dd">When are you going?</string>
     <string name="input_invalid_date">Please use format YYYY-MM-DD</string>
+    <string name="airport_travel_arlanda_express">Arlanda Express</string>
+    <string name="airport_travel_shuttle">Airport Shuttle</string>
+    <string name="airport_travel_taxi">Taxi</string>
 
 </resources>

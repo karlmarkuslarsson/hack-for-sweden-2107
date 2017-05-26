@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.DaggerUtils;
@@ -29,12 +25,16 @@ import com.welcome.to.sweden.network.smhi.SMHIApi;
 import com.welcome.to.sweden.objects.main.AirportCard;
 import com.welcome.to.sweden.objects.main.CurrencyCard;
 import com.welcome.to.sweden.objects.main.HolidaysCard;
-import com.welcome.to.sweden.objects.main.InternetCard;
 import com.welcome.to.sweden.objects.main.PhrasesCard;
 import com.welcome.to.sweden.objects.main.SLAirportCard;
 import com.welcome.to.sweden.objects.main.SLClosestStationsCard;
 import com.welcome.to.sweden.objects.main.WeatherCard;
-import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.Card;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
 import timber.log.Timber;
 
 public class PracticalInfoFragment extends BaseFragment {
@@ -78,20 +78,10 @@ public class PracticalInfoFragment extends BaseFragment {
 
             @Override
             public void onSuccess(@NonNull APIResponse<List<CardComponent>> response) {
-                for (CardComponent cards : response.getContent()) {
-                    if (cards.getType() != null) {
-                        switch (cards.getType()) {
-                            case CURRENCY:
-                                addCurrencyCard((CurrentCurrency) cards);
-                                break;
-                            case HOLIDAYS:
-                                addHolidaysCard((Holidays) cards);
-                                break;
-                            case PHRASE:
-                                addPhrasesCard((Phrases) cards);
-                                break;
-                        }
-                    }
+                for (CardComponent card : response.getContent()) {
+                    if (card instanceof CurrentCurrency) addCurrencyCard((CurrentCurrency) card);
+                    if (card instanceof Holidays) addHolidaysCard((Holidays) card);
+                    if (card instanceof Phrases) addPhrasesCard((Phrases) card);
                 }
             }
 
@@ -100,10 +90,6 @@ public class PracticalInfoFragment extends BaseFragment {
                 Timber.d(response.toString());
             }
         }, "USD");
-    }
-
-    private void addInternetCard() {
-        mAdapter.addCard(new InternetCard());
     }
 
     private void addCurrencyCard(CurrentCurrency practicalInfo) {
@@ -123,12 +109,12 @@ public class PracticalInfoFragment extends BaseFragment {
     protected MainCardListener getListener() {
         return new MainCardListener() {
             @Override
-            public void onCardClick(MainCard card) {
+            public void onCardClick(Card card) {
 
             }
 
             @Override
-            public void dismissCard(MainCard card) {
+            public void dismissCard(Card card) {
 
             }
         };

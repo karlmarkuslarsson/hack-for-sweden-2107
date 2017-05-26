@@ -1,9 +1,9 @@
 package com.welcome.to.sweden.objects.main;
 
 import com.welcome.to.sweden.models.cards.phrases.Phrases;
-import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.Card;
 
-public class PhrasesCard extends MainCard {
+public class PhrasesCard extends Card {
     private final Phrases mPhrases;
 
     public PhrasesCard(Phrases content) {
@@ -12,11 +12,6 @@ public class PhrasesCard extends MainCard {
         } else {
             mPhrases = new Phrases();
         }
-    }
-
-    @Override
-    public int getViewType() {
-        return MainCard.TYPE_PHRASES;
     }
 
     public Phrases getPhrases() {

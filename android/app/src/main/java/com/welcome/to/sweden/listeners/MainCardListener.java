@@ -1,9 +1,9 @@
 package com.welcome.to.sweden.listeners;
 
-import com.welcome.to.sweden.objects.main.base.MainCard;
+import com.welcome.to.sweden.objects.main.base.Card;
 
 public interface MainCardListener {
-    public void onCardClick(MainCard card);
+    public void onCardClick(Card card);
 
-    void dismissCard(MainCard card);
+    void dismissCard(Card card);
 }
