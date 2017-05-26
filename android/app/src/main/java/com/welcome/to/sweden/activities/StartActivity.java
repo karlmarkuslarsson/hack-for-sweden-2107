@@ -20,6 +20,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.dialogs.CurrencyDialog;
@@ -55,6 +57,9 @@ public class StartActivity extends AppCompatActivity {
     @Inject
     HackOfSwedenApi mHackOfSwedenApi;
 
+    @Inject
+    FirebaseAnalytics mFirebaseAnalytics;
+
     private List<Currency> mCurrencyList;
 
     @Override
@@ -66,6 +71,7 @@ public class StartActivity extends AppCompatActivity {
             startMainActivity();
             return;
         }
+        mFirebaseAnalytics.setCurrentScreen(this, MainActivity.class.getSimpleName(), null);
 
         loadInitialData();
         setContentView(R.layout.activity_start);

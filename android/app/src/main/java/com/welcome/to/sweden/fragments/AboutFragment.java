@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import javax.inject.Inject;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
 import com.welcome.to.sweden.listeners.MainCardListener;

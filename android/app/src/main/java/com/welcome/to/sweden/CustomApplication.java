@@ -16,11 +16,13 @@ import com.welcome.to.sweden.di.DaggerAppComponent;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.di.NetworkModule;
 import com.welcome.to.sweden.di.StorageModule;
+import com.welcome.to.sweden.di.TrackingModule;
 import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.network.Callback;
 import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
 import com.welcome.to.sweden.network.response.APIResponse;
+
 import timber.log.Timber;
 
 public class CustomApplication extends Application {
@@ -33,13 +35,10 @@ public class CustomApplication extends Application {
     @Inject
     ExchangeRatesApi mExchangeRatesApi;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-
     @Override
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         initDependencyInjection();
         JodaTimeAndroid.init(this);
         initConfiguration();
@@ -50,6 +49,7 @@ public class CustomApplication extends Application {
                 .androidDaggerModule(new AndroidDaggerModule(this))
                 .coreDaggerModule(new CoreDaggerModule(this))
                 .storageModule(new StorageModule(this))
+                .trackingModule(new TrackingModule(this))
                 .networkModule(new NetworkModule(this))
                 .build();
         mAppComponent.inject(this);

@@ -20,6 +20,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.adapters.MainViewPagerAdapter;
@@ -53,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     LocationHelper mLocationHelper;
 
+    @Inject
+    FirebaseAnalytics mFirebaseAnalytics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         DaggerUtils.getComponent(this).inject(this);
         super.onCreate(savedInstanceState);
+        mFirebaseAnalytics.setCurrentScreen(this, MainActivity.class.getSimpleName(), null);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setupViews();
