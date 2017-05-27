@@ -3,6 +3,8 @@ package com.welcome.to.sweden.models.cards;
 import com.welcome.to.sweden.models.cards.base.CardComponent;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 
+import java.text.DecimalFormat;
+
 public class CurrencyCard extends CardComponent {
 
 
@@ -16,10 +18,12 @@ public class CurrencyCard extends CardComponent {
 
     public String getCurrencyString() {
         float rate = exchangeRates.getRate(currency);
-        if (rate > 1.0f) {
-            return "1 " + currency + " = " + rate + " SEK";
+        if (rate < 1.0f) {
+            String rateFormatted = new DecimalFormat("#.#").format(1.0f / rate);
+            return "1 " + currency + " = " + rateFormatted + " SEK";
         } else {
-            return "1 SEK = " + (1.0f/rate) + " " + currency;
+            String rateFormatted = new DecimalFormat("#.#").format(rate);
+            return "1 SEK = " + rateFormatted + " " + currency;
         }
     }
 }

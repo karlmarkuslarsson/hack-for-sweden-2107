@@ -16,8 +16,6 @@ import com.welcome.to.sweden.di.StorageModule;
 import com.welcome.to.sweden.models.Holidays;
 import com.welcome.to.sweden.models.Phrases;
 import com.welcome.to.sweden.models.cards.MyTrip;
-import com.welcome.to.sweden.models.currency.CountryMap;
-import com.welcome.to.sweden.models.currency.Currencies;
 import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.response.APIResponse;
 
@@ -95,7 +93,7 @@ public class HackOfSwedenLocalFilesApiTest {
 
     @Test
     public void getWeatherStats() throws Exception {
-        mApi.getWeatherStats(new Callback<WeatherStats>() {
+        mApi.getWeatherStats(new TestCallback<WeatherStats>() {
             @Override
             void test(WeatherStats content) {
                 assertThat(content.getStats(), hasSize(12));
