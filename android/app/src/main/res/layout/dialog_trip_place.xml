@@ -50,6 +50,7 @@
                 android:scaleType="centerCrop" />
 
             <TextView
+                tools:text="Type: x\nPrice: x\nDuration: x"
                 android:id="@+id/information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

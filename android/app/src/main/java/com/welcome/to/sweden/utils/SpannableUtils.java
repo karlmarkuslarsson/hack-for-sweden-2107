@@ -10,8 +10,11 @@ import java.util.List;
 
 public class SpannableUtils {
 
+    public static TitleValue title(String title, String value) {
+        return new TitleValue(title, value);
+    }
 
-    public static SpannableString boldTitle(List<TitleValue> list, SeparatorType type) {
+    public static SpannableString boldTitles(List<TitleValue> list, SeparatorType type) {
 
         List<Markup> boldMarkups = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
@@ -49,7 +52,7 @@ public class SpannableUtils {
         int mFrom;
         int mTo;
 
-        public Markup(int from, int to) {
+        private Markup(int from, int to) {
             mFrom = from;
             mTo = to;
         }
@@ -59,7 +62,7 @@ public class SpannableUtils {
         public String mTitle;
         public String mValue;
 
-        public TitleValue(String title, String value) {
+        private TitleValue(String title, String value) {
             mTitle = title;
             mValue = value;
         }

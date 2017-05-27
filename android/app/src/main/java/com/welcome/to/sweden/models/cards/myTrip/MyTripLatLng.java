@@ -15,4 +15,5 @@ public abstract class MyTripLatLng {
 
     public abstract Integer getDuration();
 
+    public abstract String getTag();
 }

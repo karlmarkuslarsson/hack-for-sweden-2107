@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.viewholders.main;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -18,6 +19,8 @@ import com.welcome.to.sweden.utils.TimeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.welcome.to.sweden.utils.ViewUtils.text;
 
 public class TripDinnerViewHolder extends MainViewHolder<TripDinnerCard> {
 
@@ -51,7 +54,7 @@ public class TripDinnerViewHolder extends MainViewHolder<TripDinnerCard> {
         mCard = card;
         mTitle.setText(card.getTripRestaurant().getTitle());
         mDescription.setText(card.getTripRestaurant().getDescription());
-        mTag.setText(R.string.card_type_dinner);
+        mTag.setText(card.getType());
         mStartTime.setText(card.getStartTime());
         setEventInfo();
 
@@ -75,12 +78,15 @@ public class TripDinnerViewHolder extends MainViewHolder<TripDinnerCard> {
     }
 
     private void setEventInfo() {
+        Context ctx = itemView.getContext();
         StringBuilder sb = new StringBuilder();
-        String durationTitle = "Duration: ";
-        sb.append(durationTitle);
-        sb.append(TimeUtils.getTime(mCard.getDuration()));
+
+        String duration = TimeUtils.getTime(mCard.getDuration());
+        int durationLabelLength = text(ctx, R.string.label_duration, "").length();
+        sb.append(text(ctx, R.string.label_duration, duration));
+
         SpannableString spannableString = new SpannableString(sb.toString());
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, durationTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, durationLabelLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mEventInfo.setText(spannableString, TextView.BufferType.SPANNABLE);
     }
 

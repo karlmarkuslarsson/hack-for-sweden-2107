@@ -29,4 +29,8 @@
     <string name="card_type_lunch">café / restaurant</string>
     <string name="card_type_dinner">restaurant</string>
 
+    <string name="label_type">Type</string>
+    <string name="label_price">Price</string>
+    <string name="label_duration">Duration</string>
+
 </resources>

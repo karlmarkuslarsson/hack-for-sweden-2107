@@ -16,6 +16,14 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.utils.SpannableUtils;
+import com.welcome.to.sweden.utils.TimeUtils;
+
+import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +32,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.utils.TimeUtils;
-import com.welcome.to.sweden.di.DaggerUtils;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
-import com.welcome.to.sweden.utils.SpannableUtils;
+
+import static com.welcome.to.sweden.utils.SpannableUtils.title;
+import static com.welcome.to.sweden.utils.ViewUtils.text;
 
 public class EventDialog extends Dialog {
 
@@ -57,13 +62,9 @@ public class EventDialog extends Dialog {
         super(context);
         setContentView(R.layout.dialog_trip_place);
         ButterKnife.bind(this);
-
         DaggerUtils.getComponent(getContext()).inject(this);
-
         mTripEvent = tripEvent;
-
         initViews();
-        setupCallbacks();
     }
 
     private void initViews() {
@@ -79,13 +80,13 @@ public class EventDialog extends Dialog {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
-                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                googleMap.moveCamera(CameraUpdateFactory.zoomTo(12));
                 LatLng latLng = new LatLng(mTripEvent.getLatitude(), mTripEvent.getLongitude());
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 MarkerOptions markerOption = new MarkerOptions().position(latLng);
                 googleMap.addMarker(markerOption);
-                googleMap.moveCamera(CameraUpdateFactory.zoomTo(11));
                 googleMap.getUiSettings().setMapToolbarEnabled(false);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
                 setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -99,20 +100,27 @@ public class EventDialog extends Dialog {
     }
 
     private void putInformation() {
+        String textType = text(getContext(), R.string.label_type);
+        String textPrice = text(getContext(), R.string.label_price);
+        String textDuration = text(getContext(), R.string.label_duration);
 
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
-        String price = getPriceString();
+        titleValueList.add(title(textType, WordUtils.capitalize(mTripEvent.getTag())));
+
+        final String price = getPriceString();
         if (price != null) {
-            titleValueList.add(new SpannableUtils.TitleValue("Price", getPriceString()));
+            titleValueList.add(title(textPrice, getPriceString()));
         }
-        Integer duration = mTripEvent.getDuration();
+
+        final Integer duration = mTripEvent.getDuration();
         if (duration != null) {
-            titleValueList.add(new SpannableUtils.TitleValue("Duration",
-                    TimeUtils.getTime(mTripEvent.getDuration())));
+            titleValueList.add(title(textDuration, TimeUtils.getTime(mTripEvent.getDuration())));
         }
+
         if (!titleValueList.isEmpty()) {
-            mInformation.setText(SpannableUtils.boldTitle(
-                    titleValueList, SpannableUtils.SeparatorType.NEW_LINE),
+            mInformation.setText(SpannableUtils.boldTitles(
+                    titleValueList,
+                    SpannableUtils.SeparatorType.NEW_LINE),
                     TextView.BufferType.SPANNABLE);
         } else {
             mInformation.setVisibility(View.GONE);
@@ -127,10 +135,6 @@ public class EventDialog extends Dialog {
         } catch (Exception e) {
             return priceInSek;
         }
-    }
-
-    private void setupCallbacks() {
-
     }
 
 }

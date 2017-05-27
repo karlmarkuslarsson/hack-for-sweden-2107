@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.objects.main;
 
+import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
 import com.welcome.to.sweden.objects.main.base.Card;
 
@@ -26,5 +27,9 @@ public class TripDinnerCard extends Card {
 
     public int getDuration() {
         return mDuration;
+    }
+
+    public int getType() {
+        return R.string.card_type_dinner;
     }
 }

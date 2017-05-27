@@ -76,4 +76,9 @@ public class MyTripRestaurant extends MyTripLatLng {
     public float getLongitude() {
         return mLongitude;
     }
+
+    @Override
+    public String getTag() {
+        return "restaurant";
+    }
 }

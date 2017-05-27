@@ -7,6 +7,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.welcome.to.sweden.R;
+import com.welcome.to.sweden.di.DaggerUtils;
+import com.welcome.to.sweden.dialogs.EventDialog;
+import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.myTrip.MyTripEvent;
+import com.welcome.to.sweden.objects.main.TripPlaceCard;
+import com.welcome.to.sweden.utils.AnimationUtils;
+import com.welcome.to.sweden.utils.SpannableUtils;
+import com.welcome.to.sweden.utils.SpannableUtils.SeparatorType;
+import com.welcome.to.sweden.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +26,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.welcome.to.sweden.utils.AnimationUtils;
-import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.utils.TimeUtils;
-import com.welcome.to.sweden.di.DaggerUtils;
-import com.welcome.to.sweden.dialogs.EventDialog;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
-import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.TripPlaceCard;
-import com.welcome.to.sweden.utils.SpannableUtils;
+
+import static com.welcome.to.sweden.utils.SpannableUtils.boldTitles;
+import static com.welcome.to.sweden.utils.SpannableUtils.title;
 
 public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
 
@@ -71,13 +76,15 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         removeDismissView();
         mCard = card;
         mListener = listener;
-        mTitle.setText(card.getTripEvent().getTitle());
-        mDescription.setText(card.getTripEvent().getDescription());
-        mTag.setText(card.getTripEvent().getTag());
+
+        MyTripEvent event = card.getTripEvent();
+        mTitle.setText(event.getTitle());
+        mDescription.setText(event.getDescription());
+        mTag.setText(event.getTag());
         mStartTime.setText(card.getStartTime());
         setEventInfo();
         Glide.with(itemView.getContext())
-                .load(card.getTripEvent().getImage())
+                .load(event.getImage())
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .crossFade()
                 .into(mImage);
@@ -119,11 +126,11 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
 
     private void setEventInfo() {
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
-        titleValueList.add(new SpannableUtils.TitleValue("Price", getPriceString()));
-        titleValueList.add(new SpannableUtils.TitleValue("Duration",
+        titleValueList.add(title("Price", getPriceString()));
+        titleValueList.add(title("Duration",
                 TimeUtils.getTime(mCard.getTripEvent().getDuration())));
-        mEventInfo.setText(SpannableUtils.boldTitle(
-                titleValueList, SpannableUtils.SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
+
+        mEventInfo.setText(boldTitles(titleValueList, SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
     }
 
     private String getPriceString() {
