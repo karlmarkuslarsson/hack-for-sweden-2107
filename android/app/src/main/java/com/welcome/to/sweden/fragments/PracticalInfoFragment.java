@@ -10,10 +10,19 @@ import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.cards.CardComponent;
-import com.welcome.to.sweden.models.cards.CurrentCurrency;
-import com.welcome.to.sweden.models.cards.holdays.Holidays;
-import com.welcome.to.sweden.models.cards.phrases.Phrases;
+import com.welcome.to.sweden.models.Holiday;
+import com.welcome.to.sweden.models.Holidays;
+import com.welcome.to.sweden.models.Phrase;
+import com.welcome.to.sweden.models.Phrases;
+import com.welcome.to.sweden.models.cards.AirportCard;
+import com.welcome.to.sweden.models.cards.CurrencyCard;
+import com.welcome.to.sweden.models.cards.HolidaysCard;
+import com.welcome.to.sweden.models.cards.PhrasesCard;
+import com.welcome.to.sweden.models.cards.SLAirportCard;
+import com.welcome.to.sweden.models.cards.SLClosestStationsCard;
+import com.welcome.to.sweden.models.cards.WeatherCard;
+import com.welcome.to.sweden.models.cards.base.Card;
+import com.welcome.to.sweden.models.currency.Currencies;
 import com.welcome.to.sweden.models.sl.ClosestStations;
 import com.welcome.to.sweden.models.sl.SLTrip;
 import com.welcome.to.sweden.models.smhi.Weather;
@@ -22,14 +31,6 @@ import com.welcome.to.sweden.network.HackOfSwedenApi;
 import com.welcome.to.sweden.network.response.APIResponse;
 import com.welcome.to.sweden.network.sl.SLApi;
 import com.welcome.to.sweden.network.smhi.SMHIApi;
-import com.welcome.to.sweden.objects.main.AirportCard;
-import com.welcome.to.sweden.objects.main.CurrencyCard;
-import com.welcome.to.sweden.objects.main.HolidaysCard;
-import com.welcome.to.sweden.objects.main.PhrasesCard;
-import com.welcome.to.sweden.objects.main.SLAirportCard;
-import com.welcome.to.sweden.objects.main.SLClosestStationsCard;
-import com.welcome.to.sweden.objects.main.WeatherCard;
-import com.welcome.to.sweden.objects.main.base.Card;
 
 import java.util.List;
 
@@ -60,9 +61,7 @@ public class PracticalInfoFragment extends BaseFragment {
     @Override
     protected void reloadData() {
         mAdapter.reset();
-        //addSLCard();
         getAllData();
-        //addSLAirportCard();
         addWeatherCard();
         addAirPortCard();
 
@@ -74,35 +73,52 @@ public class PracticalInfoFragment extends BaseFragment {
     }
 
     private void getAllData() {
-        mHackOfSwedenApi.getPracticalInfo(new Callback<List<CardComponent>>() {
-
+        mHackOfSwedenApi.getHolidays(new Callback<Holidays>() {
             @Override
-            public void onSuccess(@NonNull APIResponse<List<CardComponent>> response) {
-                for (CardComponent card : response.getContent()) {
-                    if (card instanceof CurrentCurrency) addCurrencyCard((CurrentCurrency) card);
-                    if (card instanceof Holidays) addHolidaysCard((Holidays) card);
-                    if (card instanceof Phrases) addPhrasesCard((Phrases) card);
-                }
+            public void onSuccess(@NonNull APIResponse<Holidays> response) {
+                Holidays holidays = response.getContent();
+                List<Holiday> list = holidays.getHolidays();
+
+                addCard(new HolidaysCard(list));
             }
 
             @Override
-            public void onFailure(@NonNull APIResponse<List<CardComponent>> response) {
-                Timber.d(response.toString());
+            public void onFailure(@NonNull APIResponse<Holidays> response) {
+                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
             }
-        }, "USD");
+        });
+
+        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<Currencies> response) {
+                CurrencyCard card = new CurrencyCard(response.getContent());
+                addCard(card);
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<Currencies> response) {
+                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
+            }
+        });
+
+
+        mHackOfSwedenApi.getPhrases(new Callback<Phrases>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<Phrases> response) {
+                Phrases phrases = response.getContent();
+                List<Phrase> list = phrases.getPhrases();
+                addCard(new PhrasesCard(list));
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<Phrases> response) {
+                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
+            }
+        });
     }
 
-    private void addCurrencyCard(CurrentCurrency practicalInfo) {
-        mAdapter.addCard(new CurrencyCard(practicalInfo));
-    }
-
-    private void addHolidaysCard(Holidays holidays) {
-        mAdapter.addCard(new HolidaysCard(holidays));
-
-    }
-
-    private void addPhrasesCard(Phrases phrases) {
-        mAdapter.addCard(new PhrasesCard(phrases));
+    private void addCard(Card phrases) {
+        mAdapter.addCard(phrases);
     }
 
     @Override

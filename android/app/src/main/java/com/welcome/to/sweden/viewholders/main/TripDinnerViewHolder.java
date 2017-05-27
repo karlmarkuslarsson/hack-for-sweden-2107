@@ -12,7 +12,7 @@ import com.google.common.collect.ImmutableList;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.dialogs.EventDialog;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.TripDinnerCard;
+import com.welcome.to.sweden.models.cards.TripDinnerCard;
 import com.welcome.to.sweden.utils.SpannableUtils;
 import com.welcome.to.sweden.utils.SpannableUtils.SeparatorType;
 import com.welcome.to.sweden.utils.TimeUtils;

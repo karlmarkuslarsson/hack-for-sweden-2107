@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.welcome.to.sweden.enums.TripObjectType;
-import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripEvent;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
+import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.MyTripEvent;
+import com.welcome.to.sweden.models.MyTripRestaurant;
 import com.welcome.to.sweden.objects.TripPath;
 
 public class TripCalculator {

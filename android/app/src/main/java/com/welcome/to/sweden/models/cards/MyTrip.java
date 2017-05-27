@@ -1,12 +1,12 @@
-package com.welcome.to.sweden.models.cards.myTrip;
+package com.welcome.to.sweden.models.cards;
 
 import com.google.gson.annotations.SerializedName;
+import com.welcome.to.sweden.models.MyTripEvent;
+import com.welcome.to.sweden.models.MyTripRestaurant;
 
 import java.util.List;
 
-import com.welcome.to.sweden.models.cards.CardComponent;
-
-public class MyTrip extends CardComponent {
+public class MyTrip  {
 
     @SerializedName("events")
     private List<MyTripEvent> mEvents;

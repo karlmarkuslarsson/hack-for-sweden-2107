@@ -19,7 +19,7 @@ import javax.inject.Inject;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
-import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.objects.TripPath;
 import timber.log.Timber;

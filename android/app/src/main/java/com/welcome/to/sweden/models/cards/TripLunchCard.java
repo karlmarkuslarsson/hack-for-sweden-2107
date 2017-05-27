@@ -1,7 +1,7 @@
-package com.welcome.to.sweden.objects.main;
+package com.welcome.to.sweden.models.cards;
 
 
-import com.welcome.to.sweden.objects.main.base.Card;
+import com.welcome.to.sweden.models.cards.base.Card;
 
 public class TripLunchCard extends Card {
     private final int mDuration;

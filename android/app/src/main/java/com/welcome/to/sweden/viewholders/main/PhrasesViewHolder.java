@@ -5,12 +5,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.cards.phrases.Phrase;
-import com.welcome.to.sweden.objects.main.PhrasesCard;
+import com.welcome.to.sweden.models.Phrase;
+import com.welcome.to.sweden.models.cards.PhrasesCard;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {
 
@@ -26,15 +27,15 @@ public class PhrasesViewHolder extends MainViewHolder<PhrasesCard> {
     public void init(PhrasesCard card, MainCardListener listener) {
         mContent.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-        for (int i = 0; i < card.getPhrases().getPhrases().size(); i++) {
+        for (int i = 0; i < card.getPhrases().size(); i++) {
             LinearLayout linearLayout = new LinearLayout(itemView.getContext());
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             linearLayout.setWeightSum(2);
 
-            addView(linearLayout, card.getPhrases().getPhrases().get(i), inflater);
+            addView(linearLayout, card.getPhrases().get(i), inflater);
             i++;
-            if (i < card.getPhrases().getPhrases().size()) {
-                addView(linearLayout, card.getPhrases().getPhrases().get(i), inflater);
+            if (i < card.getPhrases().size()) {
+                addView(linearLayout, card.getPhrases().get(i), inflater);
             }
 
             mContent.addView(linearLayout);

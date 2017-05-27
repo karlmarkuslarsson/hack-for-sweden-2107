@@ -1,7 +1,7 @@
-package com.welcome.to.sweden.objects.main;
+package com.welcome.to.sweden.models.cards;
 
+import com.welcome.to.sweden.models.cards.base.Card;
 import com.welcome.to.sweden.models.smhi.Weather;
-import com.welcome.to.sweden.objects.main.base.Card;
 
 public class WeatherCard extends Card {
     private final Weather mWeather;

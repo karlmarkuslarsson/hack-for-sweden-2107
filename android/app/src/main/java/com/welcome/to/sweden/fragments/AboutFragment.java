@@ -3,14 +3,13 @@ package com.welcome.to.sweden.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import javax.inject.Inject;
-
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
 import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.cards.base.Card;
 import com.welcome.to.sweden.network.HackOfSwedenApi;
-import com.welcome.to.sweden.objects.main.base.Card;
+
+import javax.inject.Inject;
 
 public class AboutFragment extends BaseFragment {
 

@@ -1,4 +1,4 @@
-package com.welcome.to.sweden.models.cards.holdays;
+package com.welcome.to.sweden.models;
 
 import com.google.gson.annotations.SerializedName;
 

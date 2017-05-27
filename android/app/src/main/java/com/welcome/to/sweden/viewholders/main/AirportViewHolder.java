@@ -16,7 +16,7 @@ import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.AirportCard;
+import com.welcome.to.sweden.models.cards.AirportCard;
 
 import java.util.List;
 

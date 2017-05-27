@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.helpers.CurrencyHelper;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.models.MyTripLatLng;
 import com.welcome.to.sweden.utils.SpannableUtils;
 import com.welcome.to.sweden.utils.TimeUtils;
 

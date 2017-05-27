@@ -7,7 +7,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.TripTransportationCard;
+import com.welcome.to.sweden.models.cards.TripTransportationCard;
 
 public class TripTransportationViewHolder extends MainViewHolder<TripTransportationCard> {
 

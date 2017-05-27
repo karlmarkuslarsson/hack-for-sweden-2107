@@ -8,7 +8,7 @@ import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.models.sl.StopLocation;
-import com.welcome.to.sweden.objects.main.SLClosestStationsCard;
+import com.welcome.to.sweden.models.cards.SLClosestStationsCard;
 
 public class SLClosestStationsViewHolder extends MainViewHolder<SLClosestStationsCard> {
 

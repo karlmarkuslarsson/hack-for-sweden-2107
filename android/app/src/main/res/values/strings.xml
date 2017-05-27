@@ -32,5 +32,6 @@
     <string name="label_type">Type</string>
     <string name="label_price">Price</string>
     <string name="label_duration">Duration</string>
+    <string name="card_airport_travel_header">Get To/From Arlanda Airport</string>
 
 </resources>

@@ -9,7 +9,7 @@ import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.models.smhi.Parameter;
 import com.welcome.to.sweden.models.smhi.WeatherPoint;
-import com.welcome.to.sweden.objects.main.WeatherCard;
+import com.welcome.to.sweden.models.cards.WeatherCard;
 
 public class WeatherViewHolder extends MainViewHolder<WeatherCard> {
 

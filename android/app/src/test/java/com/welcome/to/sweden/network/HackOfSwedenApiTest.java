@@ -13,7 +13,11 @@ import com.welcome.to.sweden.di.FirebaseModule;
 import com.welcome.to.sweden.di.NetworkModule;
 import com.welcome.to.sweden.di.RxSchedulerModule;
 import com.welcome.to.sweden.di.StorageModule;
+import com.welcome.to.sweden.models.Holidays;
+import com.welcome.to.sweden.models.Phrases;
+import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.currency.CountryMap;
+import com.welcome.to.sweden.models.currency.Currencies;
 import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.response.APIResponse;
 
@@ -106,6 +110,52 @@ public class HackOfSwedenApiTest {
             @Override
             void test(WeatherStats content) {
                 assertThat(content.getStats(), hasSize(12));
+            }
+        });
+        mScheduler.triggerActions();
+    }
+
+    @Test
+    public void getCurrencies() throws Exception {
+        mApi.getCurrencies(new TestCallback<Currencies>() {
+            @Override
+            void test(Currencies content) {
+                assertThat(content.getValue(), hasSize(32));
+            }
+        });
+        mScheduler.triggerActions();
+    }
+
+
+    @Test
+    public void getPhrases() throws Exception {
+        mApi.getPhrases(new TestCallback<Phrases>() {
+            @Override
+            void test(Phrases content) {
+                assertThat(content.getPhrases(), hasSize(4));
+            }
+        });
+        mScheduler.triggerActions();
+    }
+
+    @Test
+    public void getTriplist() throws Exception {
+        mApi.getTripList(new TestCallback<MyTrip>() {
+            @Override
+            void test(MyTrip content) {
+                assertThat(content.getEvents(), hasSize(24));
+                assertThat(content.getRestaurants(), hasSize(8));
+            }
+        });
+        mScheduler.triggerActions();
+    }
+
+    @Test
+    public void getHolidays() throws Exception {
+        mApi.getHolidays(new TestCallback<Holidays>() {
+            @Override
+            void test(Holidays content) {
+                assertThat(content.getHolidays(), hasSize(3));
             }
         });
         mScheduler.triggerActions();

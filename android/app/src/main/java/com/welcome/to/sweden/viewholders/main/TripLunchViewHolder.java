@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.objects.main.TripLunchCard;
+import com.welcome.to.sweden.models.cards.TripLunchCard;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

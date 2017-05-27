@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.listeners.GPSLocationListener;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripLatLng;
+import com.welcome.to.sweden.models.MyTripLatLng;
 
 import javax.inject.Inject;
 

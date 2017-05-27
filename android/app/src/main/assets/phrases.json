@@ -1,0 +1,20 @@
+{
+  "phrases": [
+    {
+      "eng": "hello",
+      "swe": "hej"
+    },
+    {
+      "eng": "bye",
+      "swe": "hejdå"
+    },
+    {
+      "eng": "thanks",
+      "swe": "tack"
+    },
+    {
+      "eng": "good",
+      "swe": "bra"
+    }
+  ]
+}

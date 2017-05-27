@@ -6,7 +6,7 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
-import com.welcome.to.sweden.models.cards.myTrip.MyTrip;
+import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.objects.TripPath;
 

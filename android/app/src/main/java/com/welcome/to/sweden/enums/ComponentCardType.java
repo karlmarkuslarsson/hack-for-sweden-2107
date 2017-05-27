@@ -3,18 +3,18 @@ package com.welcome.to.sweden.enums;
 import com.google.gson.annotations.SerializedName;
 
 import com.welcome.to.sweden.models.cards.CurrentCurrency;
-import com.welcome.to.sweden.models.cards.holdays.Holidays;
-import com.welcome.to.sweden.models.cards.phrases.Phrases;
+import com.welcome.to.sweden.models.cards.HolidaysCard;
+import com.welcome.to.sweden.models.cards.PhrasesCard;
 
 public enum ComponentCardType {
     @SerializedName("currency")
     CURRENCY("currency", CurrentCurrency.class),
 
     @SerializedName("holidays")
-    HOLIDAYS("holidays", Holidays.class),
+    HOLIDAYS("holidays", HolidaysCard.class),
 
     @SerializedName("phrase")
-    PHRASE("phrase", Phrases.class);
+    PHRASE("phrase", PhrasesCard.class);
 
     private final String mType;
     private final Class mObject;

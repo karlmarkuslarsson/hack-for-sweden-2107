@@ -10,8 +10,8 @@ import com.google.gson.JsonPrimitive;
 import java.lang.reflect.Type;
 
 import com.welcome.to.sweden.enums.ComponentCardType;
-import com.welcome.to.sweden.models.cards.CardComponent;
-import com.welcome.to.sweden.models.NoneComponent;
+import com.welcome.to.sweden.models.cards.base.CardComponent;
+import com.welcome.to.sweden.models.cards.base.NoneComponent;
 
 public class CardComponentTypeAdapter implements JsonDeserializer<CardComponent> {
 

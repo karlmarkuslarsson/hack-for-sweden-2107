@@ -12,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.cards.holdays.Holiday;
-import com.welcome.to.sweden.objects.main.HolidaysCard;
+import com.welcome.to.sweden.models.Holiday;
+import com.welcome.to.sweden.models.cards.HolidaysCard;
 
 public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
 
@@ -28,7 +28,7 @@ public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
     @Override
     public void init(HolidaysCard card, MainCardListener listener) {
         LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-        List<Holiday> holidays = card.getHolidays().getHolidays();
+        List<Holiday> holidays = card.getHolidays();
         mContent.removeAllViews();
         for (int i = 0; i < holidays.size(); i++) {
             Holiday holiday = holidays.get(i);

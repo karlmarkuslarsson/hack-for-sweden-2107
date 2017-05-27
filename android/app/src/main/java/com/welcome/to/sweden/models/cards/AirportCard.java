@@ -1,9 +1,9 @@
-package com.welcome.to.sweden.objects.main;
+package com.welcome.to.sweden.models.cards;
 
 import android.support.annotation.StringRes;
 
 import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.objects.main.base.Card;
+import com.welcome.to.sweden.models.cards.base.Card;
 
 import java.util.Arrays;
 import java.util.List;

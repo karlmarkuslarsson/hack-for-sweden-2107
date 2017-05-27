@@ -1,11 +1,11 @@
 package com.welcome.to.sweden.objects;
 
+import com.welcome.to.sweden.enums.TripObjectType;
+import com.welcome.to.sweden.models.MyTripEvent;
+import com.welcome.to.sweden.models.MyTripRestaurant;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import com.welcome.to.sweden.enums.TripObjectType;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripEvent;
-import com.welcome.to.sweden.models.cards.myTrip.MyTripRestaurant;
 
 public class TripPath implements Serializable {
     private ArrayList<TripObject> objectList;
