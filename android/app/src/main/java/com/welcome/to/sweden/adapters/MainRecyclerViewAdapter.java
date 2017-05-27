@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.adapters;
 
+import android.support.annotation.AnimRes;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,6 +50,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.welcome.to.sweden.utils.ViewUtils.dp2Px;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder> {
     private static final HashFunction HASH_FUNCTION = Hashing.goodFastHash(64);
@@ -138,6 +141,9 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         Card card = mCards.get(position);
         holder.init(card, mListener);
         addCardAnimation(holder.itemView, position);
+
+        boolean isLastCard = position == mCards.size() - 1;
+        holder.getLayoutParams().bottomMargin = dp2Px(holder.itemView, isLastCard ? 32 : 0);
     }
 
     @Override
@@ -158,7 +164,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
 
     private void addCardAnimation(View view, int position) {
         if (position > mLastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(view.getContext(), android.R.anim.slide_in_left);
+            @AnimRes int animationRes = position % 2 == 0
+                    ? R.anim.slide_in_left
+                    : R.anim.slide_in_right;
+            Animation animation = AnimationUtils.loadAnimation(view.getContext(), animationRes);
             view.startAnimation(animation);
             mLastPosition = position;
         }

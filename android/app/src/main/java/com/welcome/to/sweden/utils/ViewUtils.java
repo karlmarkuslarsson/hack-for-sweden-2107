@@ -2,12 +2,11 @@ package com.welcome.to.sweden.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.icu.lang.UCharacter;
 import android.support.annotation.StringRes;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
-
-import java.util.Locale;
 
 public class ViewUtils {
 
@@ -26,5 +25,14 @@ public class ViewUtils {
         return args.length == 0
                 ? resources.getString(res)
                 : resources.getString(res, (Object[]) args);
+    }
+
+    public static int dp2Px(View context, int dp) {
+        return dp2Px(context.getContext(), dp);
+    }
+
+    public static int dp2Px(Context context, int dp) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,   dp, displayMetrics);
     }
 }

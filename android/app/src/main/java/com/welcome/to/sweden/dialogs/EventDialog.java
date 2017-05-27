@@ -137,4 +137,9 @@ public class EventDialog extends Dialog {
         }
     }
 
+    public static EventDialog show(Context context, MyTripLatLng tripLatLng) {
+        final EventDialog dialog = new EventDialog(context, tripLatLng);
+        dialog.show();
+        return dialog;
+    }
 }

@@ -144,8 +144,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     }
 
     private void showTripPlaceDialog() {
-        final EventDialog dialog = new EventDialog(itemView.getContext(), mCard.getTripEvent());
-        dialog.show();
+        EventDialog.show(itemView.getContext(), mCard.getTripEvent());
     }
 
 }

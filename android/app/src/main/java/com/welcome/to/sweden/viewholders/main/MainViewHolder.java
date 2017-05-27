@@ -17,4 +17,8 @@ public abstract class MainViewHolder<T> extends RecyclerView.ViewHolder {
         itemView.clearAnimation();
     }
 
+    public RecyclerView.LayoutParams getLayoutParams() {
+        return (RecyclerView.LayoutParams) itemView.getLayoutParams();
+    }
+
 }
