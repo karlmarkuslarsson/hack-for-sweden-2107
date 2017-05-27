@@ -186,7 +186,7 @@ public class StartActivity extends AppCompatActivity {
                 LocalDate date = fmt.parseLocalDate(text);
                 onValidDate(date);
             } catch (IllegalArgumentException e) {
-                onInvalidDate(getString(R.string.input_invalid_date));
+                onInvalidDate(getString(R.string.input_invalid_date_use_yyyy_mm_dd));
             }
         } else {
             onValidDate(null);
