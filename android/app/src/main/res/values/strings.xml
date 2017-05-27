@@ -23,4 +23,10 @@
     <string name="airport_travel_shuttle">Airport Shuttle</string>
     <string name="airport_travel_taxi">Taxi</string>
 
+    <string name="card_lunch_description">Get a light lunch somewhere close to your previous location</string>
+    <string name="card_lunch_title">Get lunch</string>
+
+    <string name="card_type_lunch">café / restaurant</string>
+    <string name="card_type_dinner">restaurant</string>
+
 </resources>

@@ -39,8 +39,8 @@ import com.welcome.to.sweden.viewholders.main.NextDayViewHolder;
 import com.welcome.to.sweden.viewholders.main.PhrasesViewHolder;
 import com.welcome.to.sweden.viewholders.main.SLAirportTripViewHolder;
 import com.welcome.to.sweden.viewholders.main.SLClosestStationsViewHolder;
-import com.welcome.to.sweden.viewholders.main.TripFoodPlaceViewHolder;
-import com.welcome.to.sweden.viewholders.main.TripLunchPlaceViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripDinnerViewHolder;
+import com.welcome.to.sweden.viewholders.main.TripLunchViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripPlaceViewHolder;
 import com.welcome.to.sweden.viewholders.main.TripTransportationViewHolder;
 import com.welcome.to.sweden.viewholders.main.WeatherViewHolder;
@@ -68,8 +68,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         Phrases(PhrasesViewHolder.class, R.layout.card_phrases),
         SLAirportTrip(SLAirportTripViewHolder.class, R.layout.card_sl_airport_trip),
         TripPlaceView(TripPlaceViewHolder.class, R.layout.card_trip_place),
-        TripFoodPlace(TripFoodPlaceViewHolder.class, R.layout.card_trip_food),
-        TripLunch(TripLunchPlaceViewHolder.class, R.layout.card_trip_food),
+        TripFoodPlace(TripDinnerViewHolder.class, R.layout.card_trip_dinner),
+        TripLunch(TripLunchViewHolder.class, R.layout.card_trip_lunch),
         TripTransportation(TripTransportationViewHolder.class, R.layout.card_trip_transport),
         Airport(AirportViewHolder.class, R.layout.card_airport),
         NextDay(NextDayViewHolder.class, R.layout.card_next_day);

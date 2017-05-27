@@ -10,16 +10,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.utils.TimeUtils;
 import com.welcome.to.sweden.dialogs.EventDialog;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.objects.main.TripDinnerCard;
+import com.welcome.to.sweden.utils.TimeUtils;
 
-public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class TripDinnerViewHolder extends MainViewHolder<TripDinnerCard> {
 
     @BindView(R.id.image)
     ImageView mImage;
@@ -41,7 +41,7 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
 
     private TripDinnerCard mCard;
 
-    public TripFoodPlaceViewHolder(View itemView) {
+    public TripDinnerViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
@@ -51,7 +51,7 @@ public class TripFoodPlaceViewHolder extends MainViewHolder<TripDinnerCard> {
         mCard = card;
         mTitle.setText(card.getTripRestaurant().getTitle());
         mDescription.setText(card.getTripRestaurant().getDescription());
-        mTag.setText("restaurant");
+        mTag.setText(R.string.card_type_dinner);
         mStartTime.setText(card.getStartTime());
         setEventInfo();
 
