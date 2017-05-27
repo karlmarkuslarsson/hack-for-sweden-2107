@@ -2,13 +2,13 @@ package com.welcome.to.sweden.enums;
 
 import com.google.gson.annotations.SerializedName;
 
-import com.welcome.to.sweden.models.cards.CurrentCurrency;
+import com.welcome.to.sweden.models.cards.CurrentCurrencyCard;
 import com.welcome.to.sweden.models.cards.HolidaysCard;
 import com.welcome.to.sweden.models.cards.PhrasesCard;
 
 public enum ComponentCardType {
     @SerializedName("currency")
-    CURRENCY("currency", CurrentCurrency.class),
+    CURRENCY("currency", CurrentCurrencyCard.class),
 
     @SerializedName("holidays")
     HOLIDAYS("holidays", HolidaysCard.class),

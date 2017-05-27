@@ -10,12 +10,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 
+import com.welcome.to.sweden.R;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.welcome.to.sweden.R;
-import com.welcome.to.sweden.models.currency.Currency;
 
 public class CurrencyDialog extends Dialog {
 
@@ -37,13 +37,13 @@ public class CurrencyDialog extends Dialog {
     @BindView(R.id.dialog_scrollview)
     ScrollView mScrollView;
 
-    private final List<Currency> mCurrencyList;
+    private final List<String> mCurrencyList;
     private final String mCurrentCurrency;
     private CurrencyDialogListener mListener;
 
     public CurrencyDialog(
             @NonNull Context context,
-            List<Currency> currencyList,
+            List<String> currencyList,
             String currentCurrency,
             CurrencyDialogListener listener) {
         super(context);
@@ -63,10 +63,10 @@ public class CurrencyDialog extends Dialog {
             RadioButton radioButton = (RadioButton) inflater
                     .inflate(R.layout.dialog_radio_button_row, mRadioGroup, false);
             mRadioGroup.addView(radioButton);
-            if (mCurrencyList.get(i).getName().contains(mCurrentCurrency)) {
+            if (mCurrencyList.get(i).contains(mCurrentCurrency)) {
                 radioButton.setChecked(true);
             }
-            radioButton.setText(mCurrencyList.get(i).getCountry());
+            radioButton.setText(mCurrencyList.get(i));
         }
     }
 
@@ -119,7 +119,7 @@ public class CurrencyDialog extends Dialog {
     }
 
     public interface CurrencyDialogListener {
-        void onCurrencySelected(Currency currency);
+        void onCurrencySelected(String currency);
     }
 
 }

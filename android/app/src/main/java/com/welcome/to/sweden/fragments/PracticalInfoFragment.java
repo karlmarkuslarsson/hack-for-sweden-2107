@@ -9,7 +9,11 @@ import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
+import com.welcome.to.sweden.helpers.AirportData;
+import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.listeners.MainCardListeners;
+import com.welcome.to.sweden.models.AirportAlternative;
 import com.welcome.to.sweden.models.Holiday;
 import com.welcome.to.sweden.models.Holidays;
 import com.welcome.to.sweden.models.Phrase;
@@ -22,12 +26,12 @@ import com.welcome.to.sweden.models.cards.SLAirportCard;
 import com.welcome.to.sweden.models.cards.SLClosestStationsCard;
 import com.welcome.to.sweden.models.cards.WeatherCard;
 import com.welcome.to.sweden.models.cards.base.Card;
-import com.welcome.to.sweden.models.currency.Currencies;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.models.sl.ClosestStations;
 import com.welcome.to.sweden.models.sl.SLTrip;
 import com.welcome.to.sweden.models.smhi.Weather;
-import com.welcome.to.sweden.network.Callback;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.BasicCallback;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.response.APIResponse;
 import com.welcome.to.sweden.network.sl.SLApi;
 import com.welcome.to.sweden.network.smhi.SMHIApi;
@@ -35,8 +39,6 @@ import com.welcome.to.sweden.network.smhi.SMHIApi;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import timber.log.Timber;
 
 public class PracticalInfoFragment extends BaseFragment {
 
@@ -47,10 +49,13 @@ public class PracticalInfoFragment extends BaseFragment {
     SMHIApi mSMHIApi;
 
     @Inject
-    HackOfSwedenApi mHackOfSwedenApi;
+    HackOfSwedenLocalFilesApi mHackOfSwedenLocalFilesApi;
 
     @Inject
     Cache mCache;
+
+    @Inject
+    DataHelper mDataHelper;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,60 +66,41 @@ public class PracticalInfoFragment extends BaseFragment {
     @Override
     protected void reloadData() {
         mAdapter.reset();
-        getAllData();
-        addWeatherCard();
-        addAirPortCard();
-
+        addCards();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    private void addAirPortCard() {
-        mAdapter.addCard(new AirportCard());
-    }
-
-    private void getAllData() {
-        mHackOfSwedenApi.getHolidays(new Callback<Holidays>() {
+    private void addCards() {
+        mHackOfSwedenLocalFilesApi.getHolidays(new BasicCallback<Holidays>() {
             @Override
             public void onSuccess(@NonNull APIResponse<Holidays> response) {
                 Holidays holidays = response.getContent();
                 List<Holiday> list = holidays.getHolidays();
-
                 addCard(new HolidaysCard(list));
             }
+        });
 
+        mDataHelper.getExchangeRates(new BasicCallback<ExchangeRates>() {
             @Override
-            public void onFailure(@NonNull APIResponse<Holidays> response) {
-                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                ExchangeRates exchangeRates = response.getContent();
+                String currency = mDataHelper.getCurrency();
+                addCard(new CurrencyCard(exchangeRates, currency));
+                List<AirportAlternative> alternatives = AirportData.getAlternatives(exchangeRates, currency);
+                addCard(new AirportCard(alternatives));
             }
         });
 
-        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
-            @Override
-            public void onSuccess(@NonNull APIResponse<Currencies> response) {
-                CurrencyCard card = new CurrencyCard(response.getContent());
-                addCard(card);
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Currencies> response) {
-                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
-            }
-        });
-
-
-        mHackOfSwedenApi.getPhrases(new Callback<Phrases>() {
+        mHackOfSwedenLocalFilesApi.getPhrases(new BasicCallback<Phrases>() {
             @Override
             public void onSuccess(@NonNull APIResponse<Phrases> response) {
                 Phrases phrases = response.getContent();
                 List<Phrase> list = phrases.getPhrases();
                 addCard(new PhrasesCard(list));
             }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Phrases> response) {
-                Timber.e("Failed to get phrases: %s", response.getRawErrorBody());
-            }
         });
+
+        addWeatherCard();
     }
 
     private void addCard(Card phrases) {
@@ -123,17 +109,7 @@ public class PracticalInfoFragment extends BaseFragment {
 
     @Override
     protected MainCardListener getListener() {
-        return new MainCardListener() {
-            @Override
-            public void onCardClick(Card card) {
-
-            }
-
-            @Override
-            public void dismissCard(Card card) {
-
-            }
-        };
+        return MainCardListeners.dummy();
     }
 
     private void addSLAirportCard() {
@@ -144,16 +120,11 @@ public class PracticalInfoFragment extends BaseFragment {
                 Constants.CENTRALEN_LAT,
                 Constants.CENTRALEN_LNG,
                 "centralen",
-                new Callback<SLTrip>() {
+                new BasicCallback<SLTrip>() {
                     @Override
                     public void onSuccess(@NonNull APIResponse<SLTrip> response) {
                         SLTrip trip = response.getContent();
                         mAdapter.addCard(new SLAirportCard(trip));
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull APIResponse<SLTrip> response) {
-
                     }
                 });
     }
@@ -166,16 +137,11 @@ public class PracticalInfoFragment extends BaseFragment {
                     location.getLongitude(),
                     10,
                     SLApi.RADIUS,
-                    new Callback<ClosestStations>() {
+                    new BasicCallback<ClosestStations>() {
                         @Override
                         public void onSuccess(@NonNull APIResponse<ClosestStations> response) {
                             ClosestStations closestStations = response.getContent();
                             mAdapter.addCard(new SLClosestStationsCard(closestStations));
-                        }
-
-                        @Override
-                        public void onFailure(@NonNull APIResponse<ClosestStations> response) {
-
                         }
                     });
         }
@@ -189,17 +155,11 @@ public class PracticalInfoFragment extends BaseFragment {
             mSMHIApi.getWeatherForLatLng(
                     String.valueOf(lat),
                     String.valueOf(lon),
-                    new Callback<Weather>() {
+                    new BasicCallback<Weather>() {
                         @Override
                         public void onSuccess(@NonNull APIResponse<Weather> response) {
-
                             Weather weather = response.getContent();
                             mAdapter.addCard(new WeatherCard(weather));
-                        }
-
-                        @Override
-                        public void onFailure(@NonNull APIResponse<Weather> response) {
-
                         }
                     });
         }

@@ -6,15 +6,15 @@ import android.support.annotation.Nullable;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.cards.base.Card;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.listeners.MainCardListeners;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 
 import javax.inject.Inject;
 
 public class AboutFragment extends BaseFragment {
 
     @Inject
-    HackOfSwedenApi mHackOfSwedenApi;
+    HackOfSwedenLocalFilesApi mHackOfSwedenLocalFilesApi;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,17 +33,7 @@ public class AboutFragment extends BaseFragment {
 
     @Override
     protected MainCardListener getListener() {
-        return new MainCardListener() {
-            @Override
-            public void onCardClick(Card card) {
-
-            }
-
-            @Override
-            public void dismissCard(Card card) {
-
-            }
-        };
+        return MainCardListeners.dummy();
     }
 
 }

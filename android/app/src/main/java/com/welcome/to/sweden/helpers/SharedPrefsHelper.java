@@ -3,11 +3,11 @@ package com.welcome.to.sweden.helpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.welcome.to.sweden.di.InjectionContainer;
+
 import java.util.Set;
 
 import javax.inject.Inject;
-
-import com.welcome.to.sweden.di.InjectionContainer;
 
 public class SharedPrefsHelper {
 
@@ -23,6 +23,10 @@ public class SharedPrefsHelper {
         mSharedPreferences = mContext.getSharedPreferences(
                 SHARED_PREFERENCES_NAME,
                 Context.MODE_PRIVATE);
+    }
+
+    public boolean contains(String key) {
+        return mSharedPreferences.contains(key);
     }
 
     public String getPreference(final String name, final String defaultValue) {

@@ -11,15 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Locale;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.adapters.MainRecyclerViewAdapter;
@@ -29,21 +20,31 @@ import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.helpers.LocationHelper;
 import com.welcome.to.sweden.helpers.TripCalculator;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.MyTripEvent;
 import com.welcome.to.sweden.models.MyTripLatLng;
 import com.welcome.to.sweden.models.MyTripRestaurant;
-import com.welcome.to.sweden.network.Callback;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
-import com.welcome.to.sweden.network.response.APIResponse;
-import com.welcome.to.sweden.objects.TripObject;
-import com.welcome.to.sweden.objects.TripPath;
+import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.cards.NextDayDivider;
 import com.welcome.to.sweden.models.cards.TripDinnerCard;
 import com.welcome.to.sweden.models.cards.TripLunchCard;
 import com.welcome.to.sweden.models.cards.TripPlaceCard;
 import com.welcome.to.sweden.models.cards.TripTransportationCard;
 import com.welcome.to.sweden.models.cards.base.Card;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.network.BasicCallback;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
+import com.welcome.to.sweden.network.response.APIResponse;
+import com.welcome.to.sweden.objects.TripObject;
+import com.welcome.to.sweden.objects.TripPath;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Locale;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class TripFragment extends Fragment {
 
@@ -62,6 +63,8 @@ public class TripFragment extends Fragment {
     private boolean mUpdateDataOnLoad;
     private MyTrip mMyTripData;
     private int mDays;
+    private ExchangeRates mRates;
+    private String mCurrency;
 
     @Inject
     Cache mCache;
@@ -70,7 +73,7 @@ public class TripFragment extends Fragment {
     DataHelper mDataHelper;
 
     @Inject
-    HackOfSwedenApi mHackOfSwedenApi;
+    HackOfSwedenLocalFilesApi mHackOfSwedenLocalFilesApi;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +95,18 @@ public class TripFragment extends Fragment {
     private void initData() {
         mDays = mDataHelper.getTripDays();
         mTripPath = mDataHelper.getTripPaths();
+        mCurrency = mDataHelper.getCurrency();
+        mDataHelper.getExchangeRates(new BasicCallback<ExchangeRates>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                mRates = response.getContent();
+                startLoad();
+            }
+        });
+
+    }
+
+    private void startLoad() {
         mUpdateDataOnLoad = true;
 
         if (mTripPath != null) {
@@ -122,26 +137,30 @@ public class TripFragment extends Fragment {
     }
 
     private void setupRecyclerView() {
-        mAdapter = new MainRecyclerViewAdapter(getListener());
+        mAdapter = new MainRecyclerViewAdapter(new MainCardListener() {
+            @Override
+            public void onCardClick(Card card) {}
+
+            @Override
+            public void dismissCard(Card card) {
+                replaceCard(card);
+            }
+        });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
     }
 
     protected void loadData() {
-        mHackOfSwedenApi.getTripList(new Callback<MyTrip>() {
+        mHackOfSwedenLocalFilesApi.getTripList(new BasicCallback<MyTrip>() {
             @Override
             public void onSuccess(@NonNull APIResponse<MyTrip> response) {
+                MyTrip myTrip = response.getContent();
                 mSwipeRefreshLayout.setRefreshing(false);
-                mCache.setMyTrip(response.getContent());
-                mMyTripData = response.getContent();
+                mCache.setMyTrip(myTrip);
+                mMyTripData = myTrip;
                 if (mUpdateDataOnLoad) {
                     addTripCards();
                 }
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<MyTrip> response) {
-
             }
         });
     }
@@ -192,7 +211,7 @@ public class TripFragment extends Fragment {
                             onBadTripData();
                             return;
                         }
-                        mainCard = new TripPlaceCard(event, objectStartTime);
+                        mainCard = new TripPlaceCard(event, mRates, mCurrency, objectStartTime);
                         startTime += event.getDuration();
                         break;
                     case TRANSFER:
@@ -274,19 +293,6 @@ public class TripFragment extends Fragment {
         return String.format(Locale.US, "%02d:%02d", h, min);
     }
 
-    protected MainCardListener getListener() {
-        return new MainCardListener() {
-            @Override
-            public void onCardClick(Card card) {
-            }
-
-            @Override
-            public void dismissCard(Card card) {
-                replaceCard(card);
-            }
-        };
-    }
-
     private void replaceCard(Card card) {
         if (card instanceof TripDinnerCard) {
             for (TripPath path : mTripPath) {
@@ -324,7 +330,8 @@ public class TripFragment extends Fragment {
             for (MyTripEvent event : mMyTripData.getEvents()) {
                 if (!event.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {// && event.getDuration() <= ((TripPlaceCard) card).getTripEvent().getDuration()) {
                     if (!hasEvent(event)) {
-                        changeCard(card, new TripPlaceCard(event, ((TripPlaceCard) card).getStartTime()));
+                        String startTime = ((TripPlaceCard) card).getStartTime();
+                        changeCard(card, new TripPlaceCard(event, mRates, mCurrency, startTime));
                         return;
                     }
                 }

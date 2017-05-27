@@ -11,8 +11,7 @@ import com.welcome.to.sweden.models.Holidays;
 import com.welcome.to.sweden.models.Phrases;
 import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.cards.base.CardComponent;
-import com.welcome.to.sweden.models.currency.CountryMap;
-import com.welcome.to.sweden.models.currency.Currencies;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.adapters.CardComponentTypeAdapter;
 
@@ -22,7 +21,7 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import okhttp3.OkHttpClient;
 
-public class HackOfSwedenApi {
+public class HackOfSwedenLocalFilesApi {
 
     private JsonFileReader mJsonFileReader;
 
@@ -37,7 +36,7 @@ public class HackOfSwedenApi {
     @Named("io_scheduler")
     Scheduler mIOScheduler;
 
-    public HackOfSwedenApi(InjectionContainer injectionContainer) {
+    public HackOfSwedenLocalFilesApi(InjectionContainer injectionContainer) {
         injectionContainer.inject(this);
         init();
     }
@@ -62,15 +61,11 @@ public class HackOfSwedenApi {
         mJsonFileReader.read("events.json", MyTrip.class, callback);
     }
 
-    public void getCurrencies(Callback<Currencies> callback) {
-        mJsonFileReader.read("currencies.json", Currencies.class, callback);
-    }
-
     public void getWeatherStats(Callback<WeatherStats> callback) {
         mJsonFileReader.read("weather.json", WeatherStats.class, callback);
     }
 
-    public void getCountryMap(Callback<CountryMap> callback) {
-        mJsonFileReader.read("county_number_mapping.json", CountryMap.class, callback);
+    public void getExchangeRates(Callback<ExchangeRates> callback) {
+        mJsonFileReader.read("exchange_rates.json", ExchangeRates.class, callback);
     }
 }

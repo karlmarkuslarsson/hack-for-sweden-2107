@@ -19,7 +19,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.helpers.CurrencyHelper;
+import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.models.MyTripLatLng;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.network.BasicCallback;
+import com.welcome.to.sweden.network.response.APIResponse;
 import com.welcome.to.sweden.utils.SpannableUtils;
 import com.welcome.to.sweden.utils.TimeUtils;
 
@@ -56,7 +60,8 @@ public class EventDialog extends Dialog {
     MapView mMapView;
 
     @Inject
-    CurrencyHelper mCurrencyHelper;
+    DataHelper mDataHelper;
+    private ExchangeRates exchangeRates;
 
     public EventDialog(@NonNull Context context, MyTripLatLng tripEvent) {
         super(context);
@@ -65,6 +70,17 @@ public class EventDialog extends Dialog {
         DaggerUtils.getComponent(getContext()).inject(this);
         mTripEvent = tripEvent;
         initViews();
+        loadExchangeRates();
+    }
+
+    private void loadExchangeRates() {
+        mDataHelper.getExchangeRates(new BasicCallback<ExchangeRates>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                exchangeRates = response.getContent();
+                putInformation();
+            }
+        });
     }
 
     private void initViews() {
@@ -107,10 +123,7 @@ public class EventDialog extends Dialog {
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
         titleValueList.add(title(textType, WordUtils.capitalize(mTripEvent.getTag())));
 
-        final String price = getPriceString();
-        if (price != null) {
-            titleValueList.add(title(textPrice, getPriceString()));
-        }
+        titleValueList.add(getPrettyPrice(textPrice, mTripEvent.getPrice()));
 
         final Integer duration = mTripEvent.getDuration();
         if (duration != null) {
@@ -127,13 +140,13 @@ public class EventDialog extends Dialog {
         }
     }
 
-    private String getPriceString() {
-        String priceInSek = mTripEvent.getPrice();
-        try {
-            int price = Integer.parseInt(priceInSek);
-            return mCurrencyHelper.convertToSelectedCurrencyCurrencyString(price);
-        } catch (Exception e) {
-            return priceInSek;
+    private SpannableUtils.TitleValue getPrettyPrice(String title, String price) {
+        if (exchangeRates == null) {
+            return title(title, price + " " + CurrencyHelper.CURRENCY_SEK);
+        } else {
+            String currency = mDataHelper.getCurrency();
+            String pretty = CurrencyHelper.toForeignCurrencyPretty(exchangeRates, currency, price);
+            return title(title, pretty);
         }
     }
 

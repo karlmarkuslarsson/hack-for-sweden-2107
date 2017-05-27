@@ -1,28 +1,30 @@
 package com.welcome.to.sweden.helpers;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.location.Location;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.joda.time.LocalDate;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-
-import javax.inject.Inject;
-
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.models.cards.MyTrip;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.network.Callback;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
+import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
+import com.welcome.to.sweden.network.response.APIResponse;
 import com.welcome.to.sweden.objects.TripPath;
-import timber.log.Timber;
+
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
+import org.joda.time.LocalDate;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 public class DataHelper {
 
@@ -34,6 +36,12 @@ public class DataHelper {
 
     @Inject
     SharedPrefsHelper mSharedPrefsHelper;
+
+    @Inject
+    HackOfSwedenLocalFilesApi mHackOfSwedenLocalFilesApi;
+
+    @Inject
+    ExchangeRatesApi mExchangeRatesApi;
 
     public DataHelper(InjectionContainer injectionContainer) {
         injectionContainer.inject(this);
@@ -136,7 +144,7 @@ public class DataHelper {
         String currency = mCache.getCurrency();
         if (currency == null) {
             currency = mSharedPrefsHelper
-                    .getPreference(Constants.USER_CURRENCY, CurrencyHelper.DEFAULT_CURRENCY);
+                    .getPreference(Constants.USER_CURRENCY, CurrencyHelper.CURRENCY_DEFAULT);
             mCache.setCurrency(currency);
         }
         return currency;
@@ -148,28 +156,64 @@ public class DataHelper {
                 .toJson(exchangeRates));
     }
 
-    public ExchangeRates getExchangeRates() {
-        ExchangeRates exchangeRates = mCache.getExchangeRates();
-        if (exchangeRates == null) {
-            String exchangeRateString = mSharedPrefsHelper
-                    .getPreference(Constants.CACHED_EXCHANGE_RATES, (String) null);
-            if (exchangeRateString == null) {
-                try {
-                    AssetManager assets = mContext.getAssets();
-                    InputStream inputStream = null;
-                    inputStream = assets.open("exchange_rates.json");
-                    InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-                    exchangeRates = new Gson().fromJson(streamReader, ExchangeRates.class);
-                } catch (Exception e) {
-                    Timber.e(e);
-                    return null;
-                }
-            } else {
-                exchangeRates = new Gson().fromJson(exchangeRateString, ExchangeRates.class);
-            }
-            mCache.setExchangeRates(exchangeRates);
+    public void getExchangeRates(final Callback<ExchangeRates> callback) {
+        ExchangeRates rates = mCache.getExchangeRates();
+        if (rates != null) {
+            callback.onSuccess(new APIResponse<>(rates, -1));
+            return;
         }
-        return exchangeRates;
+
+        if (mSharedPrefsHelper.contains(Constants.CACHED_EXCHANGE_RATES)) {
+            String json = mSharedPrefsHelper.getPreference(Constants.CACHED_EXCHANGE_RATES, "{}");
+            rates = new Gson().fromJson(json, ExchangeRates.class);
+
+            // Check date of saved data
+            DateTime dt = rates.getDate();
+            boolean isOlderThan60Days = dt
+                    .withDurationAdded(Duration.standardDays(60), 1)
+                    .isAfterNow();
+
+            if (!isOlderThan60Days) {
+                callback.onSuccess(new APIResponse<>(rates, -1));
+                return;
+            }
+
+        }
+
+        getOnlineExchangeRates(callback);
+    }
+
+    private void getOnlineExchangeRates(final Callback<ExchangeRates> callback) {
+        mExchangeRatesApi.getExchangeRates(new Callback<ExchangeRates>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                ExchangeRates content = response.getContent();
+                setExchangeRates(content);
+                callback.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<ExchangeRates> response) {
+                // Failed to read from web api, read local version
+                getLocalExchangeRates(callback);
+            }
+        });
+    }
+
+    private void getLocalExchangeRates(final Callback<ExchangeRates> callback) {
+        mHackOfSwedenLocalFilesApi.getExchangeRates(new Callback<ExchangeRates>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                ExchangeRates content = response.getContent();
+                setExchangeRates(content);
+                callback.onSuccess(response);
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<ExchangeRates> response) {
+                callback.onFailure(response);
+            }
+        });
     }
 
 }

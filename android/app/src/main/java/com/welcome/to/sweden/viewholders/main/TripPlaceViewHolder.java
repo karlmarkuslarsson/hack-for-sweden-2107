@@ -10,7 +10,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.dialogs.EventDialog;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.models.MyTripEvent;
 import com.welcome.to.sweden.models.cards.TripPlaceCard;
@@ -21,8 +20,6 @@ import com.welcome.to.sweden.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,9 +58,6 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
 
     private TripPlaceCard mCard;
     private MainCardListener mListener;
-
-    @Inject
-    CurrencyHelper mCurrencyHelper;
 
     public TripPlaceViewHolder(View itemView) {
         super(itemView);
@@ -111,7 +105,6 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
                 mListener.dismissCard(mCard);
             }
         });
-
         mDissmissNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,22 +118,13 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     }
 
     private void setEventInfo() {
+        MyTripEvent event = mCard.getTripEvent();
+
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
-        titleValueList.add(title("Price", getPriceString()));
-        titleValueList.add(title("Duration",
-                TimeUtils.getTime(mCard.getTripEvent().getDuration())));
+        titleValueList.add(title("Price", mCard.getPricePretty()));
+        titleValueList.add(title("Duration", TimeUtils.getTime(event.getDuration())));
 
         mEventInfo.setText(boldTitles(titleValueList, SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
-    }
-
-    private String getPriceString() {
-        String priceInSek = mCard.getTripEvent().getPrice();
-        try {
-            int price = Integer.parseInt(priceInSek);
-            return mCurrencyHelper.convertToSelectedCurrencyCurrencyString(price);
-        } catch (Exception e) {
-            return priceInSek;
-        }
     }
 
     private void showTripPlaceDialog() {

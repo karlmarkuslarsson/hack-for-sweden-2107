@@ -10,17 +10,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
@@ -28,11 +17,23 @@ import com.welcome.to.sweden.dialogs.CurrencyDialog;
 import com.welcome.to.sweden.dialogs.DatePickerDialog;
 import com.welcome.to.sweden.dialogs.LengthDialog;
 import com.welcome.to.sweden.helpers.DataHelper;
-import com.welcome.to.sweden.models.currency.Currencies;
-import com.welcome.to.sweden.models.currency.Currency;
-import com.welcome.to.sweden.network.Callback;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.network.BasicCallback;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.response.APIResponse;
+
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -55,12 +56,12 @@ public class StartActivity extends AppCompatActivity {
     DataHelper mDataHelper;
 
     @Inject
-    HackOfSwedenApi mHackOfSwedenApi;
+    HackOfSwedenLocalFilesApi mHackOfSwedenLocalFilesApi;
 
     @Inject
     FirebaseAnalytics mFirebaseAnalytics;
 
-    private List<Currency> mCurrencyList;
+    private List<String> mCurrencyList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,15 +117,12 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void getCurrencies() {
-        mHackOfSwedenApi.getCurrencies(new Callback<Currencies>() {
+        mHackOfSwedenLocalFilesApi.getExchangeRates(new BasicCallback<ExchangeRates>() {
             @Override
-            public void onSuccess(@NonNull APIResponse<Currencies> response) {
-                mCurrencyList = response.getContent().getValue();
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<Currencies> response) {
-
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                mCurrencyList.clear();
+                mCurrencyList.addAll(response.getContent().rates.keySet());
+                Collections.sort(mCurrencyList);
             }
         });
     }
@@ -136,8 +134,8 @@ public class StartActivity extends AppCompatActivity {
                 mCurrencyField.getText().toString(),
                 new CurrencyDialog.CurrencyDialogListener() {
                     @Override
-                    public void onCurrencySelected(Currency currency) {
-                        mCurrencyField.setText(currency.getName());
+                    public void onCurrencySelected(String currency) {
+                        mCurrencyField.setText(currency);
                     }
                 });
         dialog.show();

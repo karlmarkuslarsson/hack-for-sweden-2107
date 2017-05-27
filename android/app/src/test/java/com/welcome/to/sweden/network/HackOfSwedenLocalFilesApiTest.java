@@ -37,11 +37,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, application = HackOfSwedenApiTest.TesMyApplication.class)
-public class HackOfSwedenApiTest {
+@Config(constants = BuildConfig.class, application = HackOfSwedenLocalFilesApiTest.TesMyApplication.class)
+public class HackOfSwedenLocalFilesApiTest {
 
     private TestScheduler mScheduler = new TestScheduler();
-    private HackOfSwedenApi mApi;
+    private HackOfSwedenLocalFilesApi mApi;
 
     public static class TesMyApplication extends CustomApplication {
         @Override protected void attachBaseContext(Context base) {
@@ -90,23 +90,12 @@ public class HackOfSwedenApiTest {
                 .androidDaggerModule(androidDaggerModule)
                 .build();
 
-        mApi = new HackOfSwedenApi(component);
-    }
-
-    @Test
-    public void getCountryMapping() throws Exception {
-        mApi.getCountryMap(new TestCallback<CountryMap>() {
-            @Override
-            void test(CountryMap content) {
-                assertThat(content.getValues(), hasSize(222));
-            }
-        });
-        mScheduler.triggerActions();
+        mApi = new HackOfSwedenLocalFilesApi(component);
     }
 
     @Test
     public void getWeatherStats() throws Exception {
-        mApi.getWeatherStats(new TestCallback<WeatherStats>() {
+        mApi.getWeatherStats(new Callback<WeatherStats>() {
             @Override
             void test(WeatherStats content) {
                 assertThat(content.getStats(), hasSize(12));
@@ -114,18 +103,6 @@ public class HackOfSwedenApiTest {
         });
         mScheduler.triggerActions();
     }
-
-    @Test
-    public void getCurrencies() throws Exception {
-        mApi.getCurrencies(new TestCallback<Currencies>() {
-            @Override
-            void test(Currencies content) {
-                assertThat(content.getValue(), hasSize(32));
-            }
-        });
-        mScheduler.triggerActions();
-    }
-
 
     @Test
     public void getPhrases() throws Exception {

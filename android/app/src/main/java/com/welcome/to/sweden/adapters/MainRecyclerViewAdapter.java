@@ -62,7 +62,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
     private List<Card> mCards;
     private int mLastPosition = -1;
 
-    enum ViewRender {
+    private enum ViewRender {
         Weather(WeatherViewHolder.class, R.layout.card_weather),
         SLClosestStations(SLClosestStationsViewHolder.class, R.layout.card_sl_closest_stations),
         Currency(CurrencyViewHolder.class, R.layout.card_currency),

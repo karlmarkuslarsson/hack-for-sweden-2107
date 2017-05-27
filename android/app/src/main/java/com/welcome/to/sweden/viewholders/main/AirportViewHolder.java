@@ -14,13 +14,11 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.listeners.MainCardListener;
+import com.welcome.to.sweden.models.AirportAlternative;
 import com.welcome.to.sweden.models.cards.AirportCard;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,9 +30,6 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     @BindView(R.id.content)
     ViewGroup mContent;
 
-    @Inject
-    CurrencyHelper mCurrencyHelper;
-
     public AirportViewHolder(View root) {
         super(root);
         DaggerUtils.getComponent(root.getContext()).inject(this);
@@ -44,19 +39,19 @@ public class AirportViewHolder extends MainViewHolder<AirportCard> {
     @Override
     public void init(AirportCard card, MainCardListener listener) {
         LayoutInflater inflater = LayoutInflater.from(itemView.getContext());
-        List<AirportCard.Alternative> alternatives = card.getAlternatives();
+        List<AirportAlternative> alternatives = card.getAlternatives();
         mContent.removeAllViews();
-        for (AirportCard.Alternative alternative : alternatives) {
+        for (AirportAlternative alternative : alternatives) {
             View view = inflater.inflate(R.layout.card_airport_part, mContent, false);
             setInfo(alternative, ViewGroup.class.cast(view));
             mContent.addView(view);
         }
     }
 
-    private void setInfo(AirportCard.Alternative line, ViewGroup root) {
+    private void setInfo(AirportAlternative line, ViewGroup root) {
         text(root.findViewById(R.id.text1), line.getTitle());
         text(root.findViewById(R.id.text2), line.getTime());
-        String cost = mCurrencyHelper.convertToSelectedCurrencyCurrencyString(line.getCost());
+        String cost = line.getCost();
         text(root.findViewById(R.id.text3), cost);
         ImageView imageView = (ImageView) root.findViewById(R.id.image);
 

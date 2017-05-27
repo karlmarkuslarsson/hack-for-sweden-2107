@@ -14,7 +14,7 @@ import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.helpers.LocationHelper;
 import com.welcome.to.sweden.helpers.SharedPrefsHelper;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
 import com.welcome.to.sweden.network.sl.SLApi;
 import com.welcome.to.sweden.network.smhi.SMHIApi;
@@ -54,7 +54,7 @@ public interface InjectionContainer {
 
     void inject(DataHelper object);
 
-    void inject(HackOfSwedenApi object);
+    void inject(HackOfSwedenLocalFilesApi object);
 
     void inject(StartActivity object);
 

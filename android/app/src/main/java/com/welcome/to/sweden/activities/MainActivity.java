@@ -15,21 +15,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.adapters.MainViewPagerAdapter;
 import com.welcome.to.sweden.di.DaggerUtils;
-import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.helpers.LocationHelper;
-import timber.log.Timber;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setupViews();
-
-        String currency = CurrencyHelper.getCurrency(this);
-        Timber.e(currency);
     }
 
     private void setupViews() {

@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import com.welcome.to.sweden.CustomApplication;
-import com.welcome.to.sweden.network.HackOfSwedenApi;
+import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
 import com.welcome.to.sweden.network.sl.SLApi;
 import com.welcome.to.sweden.network.smhi.SMHIApi;
@@ -32,8 +32,8 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    HackOfSwedenApi provideHFSApi() {
-        return new HackOfSwedenApi(mHomeApplication.getAppComponent());
+    HackOfSwedenLocalFilesApi provideHFSApi() {
+        return new HackOfSwedenLocalFilesApi(mHomeApplication.getAppComponent());
     }
 
     @Provides
