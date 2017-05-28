@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="300dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dialog_default_margin"
+        android:layout_marginRight="@dimen/dialog_default_margin"
+        android:layout_marginTop="@dimen/dialog_default_margin"
+        android:text="@string/dialog_clear_all_settings_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dialog_default_title_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dialog_default_margin"
+        android:layout_marginRight="@dimen/dialog_default_margin"
+        android:layout_marginTop="10dp"
+        android:text="@string/dialog_clear_all_settings_description" />
+
+    <include layout="@layout/dialog_cancel_ok" />
+
+</LinearLayout>

@@ -33,5 +33,7 @@
     <string name="label_price">Price</string>
     <string name="label_duration">Duration</string>
     <string name="card_airport_travel_header">Get To/From Arlanda Airport</string>
+    <string name="dialog_clear_all_settings_title">Restart - clear trip?</string>
+    <string name="dialog_clear_all_settings_description">This action will clear your trip.</string>
 
 </resources>

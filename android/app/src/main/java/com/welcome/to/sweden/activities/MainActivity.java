@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -137,10 +139,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restart() {
-        mDataHelper.clear();
-        Intent intent = new Intent(this, StartActivity.class);
-        startActivity(intent);
-        finish();
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_restart);
+        View ok = dialog.findViewById(R.id.dialog_ok);
+        View cancel = dialog.findViewById(R.id.dialog_cancel);
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDataHelper.clear();
+                Intent intent = new Intent(MainActivity.this, StartActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
 }
