@@ -16,12 +16,12 @@ public class TripCalculator {
 
     private static List<TripPart> getDefaultTemplate() {
         List<TripPart> template = new ArrayList<>();
-        template.add(new TripPart(TripObjectType.EVENT, 120));
+        template.add(new TripPart(TripObjectType.EVENT, 100));
         template.add(new TripPart(TripObjectType.LUNCH, 45));
-        template.add(new TripPart(TripObjectType.EVENT, 240));
+        template.add(new TripPart(TripObjectType.EVENT, 200));
         // add paus
         template.add(new TripPart(TripObjectType.RESTAURANT, 120));
-        template.add(new TripPart(TripObjectType.EVENT, 180));
+        template.add(new TripPart(TripObjectType.EVENT, 120));
         return template;
     }
 
