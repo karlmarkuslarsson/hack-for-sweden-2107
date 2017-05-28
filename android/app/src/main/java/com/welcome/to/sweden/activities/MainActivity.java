@@ -121,8 +121,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.main_menu_restart:
                 restart();
                 return true;
+            case R.id.main_menu_feedback:
+                feedback();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void feedback() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, "karl.markus.larsson@gmail.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Welcome to Sweden");
+        startActivity(Intent.createChooser(intent, "Send Email"));
     }
 
     private void restart() {
