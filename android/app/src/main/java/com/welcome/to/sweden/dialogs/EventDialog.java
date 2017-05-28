@@ -1,5 +1,6 @@
 package com.welcome.to.sweden.dialogs;
 
+import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -92,17 +94,31 @@ public class EventDialog extends Dialog {
                 .crossFade()
                 .into(mImage);
         putInformation();
+        mMapView.setVisibility(View.INVISIBLE);
         mMapView.onCreate(null);
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
+                googleMap.getUiSettings().setMapToolbarEnabled(false);
+                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
                 googleMap.moveCamera(CameraUpdateFactory.zoomTo(12));
                 LatLng latLng = new LatLng(mTripEvent.getLatitude(), mTripEvent.getLongitude());
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 MarkerOptions markerOption = new MarkerOptions().position(latLng);
                 googleMap.addMarker(markerOption);
-                googleMap.getUiSettings().setMapToolbarEnabled(false);
-                googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                if (mMapView != null) {
+                    mMapView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mMapView != null) {
+                                ObjectAnimator fadeIn = ObjectAnimator.ofFloat(mMapView, "alpha", .0f, 1f);
+                                fadeIn.setDuration(500);
+                                fadeIn.start();
+                                mMapView.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }, 100);
+                }
 
                 setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
