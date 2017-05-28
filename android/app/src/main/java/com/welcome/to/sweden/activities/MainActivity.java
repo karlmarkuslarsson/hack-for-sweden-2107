@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void feedback() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_EMAIL, "karl.markus.larsson@gmail.com");
         intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Welcome to Sweden");
