@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minWidth="300dp"
     android:orientation="vertical">
 
 
@@ -15,7 +16,6 @@
         android:elevation="4dp"
         map:liteMode="true"
         map:mapType="normal" />
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,27 +35,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:textSize="25sp"
                 android:textColor="@color/dark_grey"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Skansen" />
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="128dp"
-                android:layout_height="72dp"
+                android:layout_width="140dp"
+                android:layout_height="80dp"
                 android:layout_below="@id/title"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:scaleType="centerCrop" />
 
             <TextView
-                tools:text="Type: x\nPrice: x\nDuration: x"
                 android:id="@+id/information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@id/image"
-                android:layout_toRightOf="@id/image" />
+                android:layout_toRightOf="@id/image"
+                tools:text="Type: x\nPrice: x\nDuration: x" />
 
             <TextView
                 android:id="@+id/description"
