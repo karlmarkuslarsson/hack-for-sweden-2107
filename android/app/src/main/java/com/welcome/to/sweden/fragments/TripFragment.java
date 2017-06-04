@@ -167,7 +167,10 @@ public class TripFragment extends Fragment {
 
     private void addTripCards() {
         if (mTripPath == null || mTripPath.size() == 0) {
-            mTripPath = TripCalculator.calculateTrips(mMyTripData, mDays);
+            mTripPath = TripCalculator.calculateTrips(
+                    mMyTripData,
+                    mDays,
+                    TripCalculator.getDefaultTemplate());
             mDataHelper.setTripPaths(mTripPath);
         }
         int counter = 0;

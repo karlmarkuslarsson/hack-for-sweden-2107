@@ -18,6 +18,17 @@ public class TripPath implements Serializable {
         return objectList;
     }
 
+    public ArrayList<TripObject> getSelectedObjects(TripObjectType filteredType) {
+        ArrayList<TripObject> selectedObjects = new ArrayList<>();
+
+        for (TripObject tripObject : objectList) {
+            if(tripObject.getTripObjectType() == filteredType) {
+                selectedObjects.add(tripObject);
+            }
+        }
+        return selectedObjects;
+    }
+
     public void add(MyTripEvent tripEvent) {
         objectList.add(new TripObject(TripObjectType.EVENT, tripEvent.getId()));
     }
