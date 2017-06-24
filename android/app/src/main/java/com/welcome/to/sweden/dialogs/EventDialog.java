@@ -140,7 +140,9 @@ public class EventDialog extends Dialog {
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
         titleValueList.add(title(textType, WordUtils.capitalize(mTripEvent.getTag())));
 
-        titleValueList.add(getPrettyPrice(textPrice, mTripEvent.getPrice()));
+        if (mTripEvent.getPrice() != null) {
+            titleValueList.add(getPrettyPrice(textPrice, mTripEvent.getPrice()));
+        }
 
         final Integer duration = mTripEvent.getDuration();
         if (duration != null) {
