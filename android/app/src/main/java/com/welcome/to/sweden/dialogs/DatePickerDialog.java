@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 
@@ -36,6 +37,7 @@ public class DatePickerDialog extends Dialog {
             String currentDate,
             DatePickerDialogListener listener) {
         super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_date_picker);
         ButterKnife.bind(this);
 

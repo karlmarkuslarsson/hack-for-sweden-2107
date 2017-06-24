@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,6 +67,7 @@ public class EventDialog extends Dialog {
 
     public EventDialog(@NonNull Context context, MyTripLatLng tripEvent) {
         super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_trip_place);
         ButterKnife.bind(this);
         DaggerUtils.getComponent(getContext()).inject(this);

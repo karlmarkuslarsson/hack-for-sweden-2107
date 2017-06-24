@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void restart() {
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_restart);
         View ok = dialog.findViewById(R.id.dialog_ok);
         View cancel = dialog.findViewById(R.id.dialog_cancel);

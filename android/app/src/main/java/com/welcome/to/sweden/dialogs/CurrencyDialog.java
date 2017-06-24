@@ -2,9 +2,11 @@ package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,6 +49,7 @@ public class CurrencyDialog extends Dialog {
             String currentCurrency,
             CurrencyDialogListener listener) {
         super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(R.layout.dialog_currency);
         ButterKnife.bind(this);
         mCurrencyList = currencyList;
@@ -93,29 +96,31 @@ public class CurrencyDialog extends Dialog {
 
         mUpperDivider.setVisibility(View.INVISIBLE);
 
-        mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if (0 == scrollY) {
-                    // top reached
-                    mUpperDivider.setVisibility(View.INVISIBLE);
-                } else {
-                    mUpperDivider.setVisibility(View.VISIBLE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if (0 == scrollY) {
+                        // top reached
+                        mUpperDivider.setVisibility(View.INVISIBLE);
+                    } else {
+                        mUpperDivider.setVisibility(View.VISIBLE);
 
+                    }
+
+                    ScrollView scrollView = (ScrollView) v;
+                    View view = scrollView.getChildAt(scrollView.getChildCount() - 1);
+                    int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
+
+                    if (diff == 0) {
+                        // bottom reached
+                        mLowerDivider.setVisibility(View.INVISIBLE);
+                    } else {
+                        mLowerDivider.setVisibility(View.VISIBLE);
+                    }
                 }
-
-                ScrollView scrollView = (ScrollView) v;
-                View view = scrollView.getChildAt(scrollView.getChildCount() - 1);
-                int diff = (view.getBottom() - (scrollView.getHeight() + scrollView.getScrollY()));
-
-                if (diff == 0) {
-                    // bottom reached
-                    mLowerDivider.setVisibility(View.INVISIBLE);
-                } else {
-                    mLowerDivider.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+            });
+        }
     }
 
     public interface CurrencyDialogListener {
