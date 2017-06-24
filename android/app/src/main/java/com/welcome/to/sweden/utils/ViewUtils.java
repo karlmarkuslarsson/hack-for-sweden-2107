@@ -20,15 +20,15 @@ public class ViewUtils {
         TextView.class.cast(v).setText(text);
     }
 
-    public static String text(Context c, @StringRes int res, String... args) {
-        Resources resources = c.getResources();
+    public static String text(Context context, @StringRes int res, String... args) {
+        Resources resources = context.getResources();
         return args.length == 0
                 ? resources.getString(res)
                 : resources.getString(res, (Object[]) args);
     }
 
-    public static int dp2Px(View context, int dp) {
-        return dp2Px(context.getContext(), dp);
+    public static int dp2Px(View view, int dp) {
+        return dp2Px(view.getContext(), dp);
     }
 
     public static int dp2Px(Context context, int dp) {

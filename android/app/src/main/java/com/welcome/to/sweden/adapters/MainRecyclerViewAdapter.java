@@ -51,8 +51,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.welcome.to.sweden.utils.ViewUtils.dp2Px;
-
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder> {
     private static final HashFunction HASH_FUNCTION = Hashing.goodFastHash(64);
 
@@ -141,9 +139,6 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         Card card = mCards.get(position);
         holder.init(card, mListener);
         addCardAnimation(holder.itemView, position);
-
-        boolean isLastCard = position == mCards.size() - 1;
-        holder.getLayoutParams().bottomMargin = dp2Px(holder.itemView, isLastCard ? 32 : 0);
     }
 
     @Override
