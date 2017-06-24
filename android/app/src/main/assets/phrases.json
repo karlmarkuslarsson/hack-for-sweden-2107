@@ -15,6 +15,18 @@
     {
       "eng": "good",
       "swe": "bra"
+    },
+    {
+      "eng": "yes",
+      "swe": "ja"
+    },
+    {
+      "eng": "no",
+      "swe": "nej"
+    },
+    {
+      "eng": "sorry",
+      "swe": "förlåt"
     }
   ]
 }

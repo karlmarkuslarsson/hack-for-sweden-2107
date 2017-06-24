@@ -10,6 +10,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.models.Holiday;
@@ -48,8 +49,22 @@ public class HolidaysViewHolder extends MainViewHolder<HolidaysCard> {
     private void addView(LinearLayout linearLayout, Holiday holiday, LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.card_holidays_part, linearLayout, false);
         TextView.class.cast(view.findViewById(R.id.text1)).setText(holiday.getName());
-        TextView.class.cast(view.findViewById(R.id.text2)).setText(holiday.getWeekday());
-        TextView.class.cast(view.findViewById(R.id.text3)).setText(holiday.getDate());
+        TextView weekDayView = TextView.class.cast(view.findViewById(R.id.text2));
+        TextView dateView = TextView.class.cast(view.findViewById(R.id.text3));
+        if (holiday.getWeekday() == null) {
+            weekDayView.setVisibility(View.GONE);
+        } else {
+            weekDayView.setText(holiday.getWeekday());
+            weekDayView.setVisibility(View.VISIBLE);
+        }
+
+        if (holiday.getDate() == null) {
+            dateView.setVisibility(View.GONE);
+        } else {
+            dateView.setText(holiday.getDate());
+            dateView.setVisibility(View.VISIBLE);
+        }
+
         linearLayout.addView(view);
     }
 

@@ -1,19 +1,45 @@
 {
   "holidays": [
     {
-      "weekday": "sunday",
-      "date": "2017-01-02",
-      "name": "Juldagen"
+      "date": "1 Janunary",
+      "name": "New Year's Day"
     },
     {
-      "weekday": "saturday",
-      "date": "2017-01-01",
-      "name": "Julafton"
+      "date": "6 January",
+      "name": "Epiphany"
     },
     {
-      "weekday": "friday",
-      "date": "2017-06-01",
-      "name": "Midsommar"
+      "date": "~March - April",
+      "name": "Easter"
+    },
+    {
+      "date": "1 May",
+      "name": "International Workers' Day"
+    },
+    {
+      "date": "Thursday (April - May)",
+      "name": "Feast of the Ascension"
+    },
+    {
+      "date": "6 June",
+      "name": "National Day of Sweden"
+    },
+    {
+      "weekday": "Friday",
+      "date": "(19-25) June",
+      "name": "Midsummer"
+    },
+    {
+      "date": "24 December",
+      "name": "Christmas Eve"
+    },
+    {
+      "date": "25 December",
+      "name": "Christmas Day"
+    },
+    {
+      "date": "26 December",
+      "name": "Day after Christmas day"
     }
   ]
 }
