@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/city_bg"
-    android:fillViewport="true"
-    android:fitsSystemWindows="true">
+    android:background="@drawable/city_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:descendantFocusability="beforeDescendants"
-        android:fitsSystemWindows="true"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:orientation="vertical">
