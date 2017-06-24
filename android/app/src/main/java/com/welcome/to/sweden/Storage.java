@@ -2,6 +2,7 @@ package com.welcome.to.sweden;
 
 import android.location.Location;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -16,9 +17,9 @@ public interface Storage {
 
     Location getLocation();
 
-    LocalDate getTripDate();
+    DateTime getTripDate();
 
-    void setTripDate(LocalDate mTripDate);
+    void setTripDate(DateTime mTripDate);
 
     void hasStarted(boolean hasStarted);
 

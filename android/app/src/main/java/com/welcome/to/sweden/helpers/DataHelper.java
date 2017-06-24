@@ -55,8 +55,8 @@ public class DataHelper {
         throw new RuntimeException("Not implemented!");
     }
 
-    public LocalDate getTripDate() {
-        LocalDate date = mCache.getTripDate();
+    public DateTime getTripDate() {
+        DateTime date = mCache.getTripDate();
         if (date == null) {
             date = tryReadDate(mSharedPrefsHelper.getPreference(Constants.USER_TRIP_DATE, ""));
             mCache.setTripDate(date);
@@ -64,15 +64,15 @@ public class DataHelper {
         return date;
     }
 
-    private LocalDate tryReadDate(String date) {
+    private DateTime tryReadDate(String date) {
         try {
-            return LocalDate.parse(date);
+            return DateTime.parse(date);
         } catch (IllegalArgumentException e) {
             return null;
         }
     }
 
-    public void setTripDate(LocalDate tripDate) {
+    public void setTripDate(DateTime tripDate) {
         mCache.setTripDate(tripDate);
         mSharedPrefsHelper.setPreference(Constants.USER_TRIP_DATE,
                 tripDate != null ? tripDate.toString("yyyy-MM-dd") : null);

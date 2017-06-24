@@ -170,7 +170,8 @@ public class TripFragment extends Fragment {
             mTripPath = TripCalculator.calculateTrips(
                     mMyTripData,
                     mDays,
-                    TripCalculator.getDefaultTemplate());
+                    TripCalculator.getDefaultTemplate(),
+                    mCache.getTripDate());
             mDataHelper.setTripPaths(mTripPath);
         }
         int counter = 0;
@@ -277,12 +278,7 @@ public class TripFragment extends Fragment {
         if (isLunch) {
             return 0;
         }
-        float kilometer = LocationHelper.getKilometerDistance(preTrip, nextTrip);
-        if (kilometer < 10) {
-            return (int) (kilometer * 5 * 2);
-        } else {
-            return (int) (kilometer * 2 * 2);
-        }
+        return LocationHelper.getTimeBetweenEvents(preTrip, nextTrip);
     }
 
     private String getTimeFromTenOClock(int startTime) {

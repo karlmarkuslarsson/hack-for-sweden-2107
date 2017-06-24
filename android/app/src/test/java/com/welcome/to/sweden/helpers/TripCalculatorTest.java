@@ -49,8 +49,8 @@ public class TripCalculatorTest {
         int timeLeft = 10;
         List<MyTripEvent> availableEvents = new ArrayList<>();
         TripPath tripPath = new TripPath();
-        int eventDuration = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath);
-
+        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null);
+        int eventDuration = event != null ? event.getDuration() : 0;
         assertEquals(eventDuration, 0);
     }
 
@@ -65,7 +65,9 @@ public class TripCalculatorTest {
         availableEvents.add(event1);
         availableEvents.add(event2);
         TripPath tripPath = new TripPath();
-        int eventDuration = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath);
+
+        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null);
+        int eventDuration = event != null ? event.getDuration() : 0;
 
         assertEquals(eventDuration, 0);
         assertEquals(tripPath.getObjectList().size(), 0);
@@ -83,7 +85,8 @@ public class TripCalculatorTest {
         availableEvents.add(event1);
         availableEvents.add(event2);
         TripPath tripPath = new TripPath();
-        int eventDuration = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath);
+        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null);
+        int eventDuration = event != null ? event.getDuration() : 0;
 
         assertEquals(eventDuration, 20);
         assertEquals(tripPath.getObjectList().size(), 1);

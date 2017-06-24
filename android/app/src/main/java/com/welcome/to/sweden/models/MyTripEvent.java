@@ -48,6 +48,11 @@ public class MyTripEvent extends MyTripLatLng {
     @SerializedName("last_month")
     private Integer mLastMonth;
 
+    @SerializedName("openingHourFrom")
+    private Integer mOpeningHourFrom;
+
+    @SerializedName("openingHourTo")
+    private Integer mOpeningHourTo;
 
     public String getId() {
         return mId;
@@ -156,6 +161,14 @@ public class MyTripEvent extends MyTripLatLng {
 
     public Integer getLastMonth() {
         return mLastMonth;
+    }
+
+    public Integer getOpeningHourFrom() {
+        return mOpeningHourFrom;
+    }
+
+    public Integer getOpeningHourTo() {
+        return mOpeningHourTo;
     }
 
 }

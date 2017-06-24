@@ -2,6 +2,7 @@ package com.welcome.to.sweden;
 
 import android.location.Location;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import com.welcome.to.sweden.objects.TripPath;
 public class Cache implements Storage {
 
     private Location mLocation;
-    private LocalDate mTripDate;
+    private DateTime mTripDate;
     private boolean mHasStarted;
     private MyTrip mMyTrip;
     private ArrayList<TripPath> mTripPaths;
@@ -40,12 +41,12 @@ public class Cache implements Storage {
     }
 
     @Override
-    public LocalDate getTripDate() {
+    public DateTime getTripDate() {
         return mTripDate;
     }
 
     @Override
-    public void setTripDate(LocalDate mTripDate) {
+    public void setTripDate(DateTime mTripDate) {
         this.mTripDate = mTripDate;
     }
 

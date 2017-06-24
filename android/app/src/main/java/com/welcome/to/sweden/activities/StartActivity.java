@@ -22,6 +22,7 @@ import com.welcome.to.sweden.network.BasicCallback;
 import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.response.APIResponse;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -181,7 +182,7 @@ public class StartActivity extends AppCompatActivity {
         if (!text.isEmpty()) {
             try {
                 DateTimeFormatter fmt = DateTimeFormat.forPattern(DATE_FORMAT);
-                LocalDate date = fmt.parseLocalDate(text);
+                DateTime date = fmt.parseDateTime(text);
                 onValidDate(date);
             } catch (IllegalArgumentException e) {
                 onInvalidDate(getString(R.string.input_invalid_date_use_yyyy_mm_dd));
@@ -195,7 +196,7 @@ public class StartActivity extends AppCompatActivity {
         mDateField.setError(message);
     }
 
-    private void onValidDate(LocalDate localDate) {
+    private void onValidDate(DateTime localDate) {
         mDataHelper.setTripDate(localDate);
         mDataHelper.setTripDays(Integer.parseInt(String.valueOf(mLengthField.getText().charAt(0))));
         mDataHelper.setCurrency(mCurrencyField.getText().toString());
