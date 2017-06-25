@@ -2,10 +2,8 @@ package com.welcome.to.sweden;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
@@ -22,10 +20,6 @@ import com.welcome.to.sweden.di.NetworkModule;
 import com.welcome.to.sweden.di.StorageModule;
 import com.welcome.to.sweden.di.FirebaseModule;
 import com.welcome.to.sweden.helpers.DataHelper;
-import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
-import com.welcome.to.sweden.network.Callback;
-import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
-import com.welcome.to.sweden.network.response.APIResponse;
 
 import timber.log.Timber;
 
@@ -36,9 +30,6 @@ public class CustomApplication extends Application {
     @Inject
     DataHelper mDataHelper;
 
-    @Inject
-    ExchangeRatesApi mExchangeRatesApi;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,7 +37,7 @@ public class CustomApplication extends Application {
         Timber.plant(new Timber.DebugTree());
         initDependencyInjection();
         JodaTimeAndroid.init(this);
-        initConfiguration();
+        mDataHelper.loadInitialData();
     }
 
     @Override
@@ -64,22 +55,6 @@ public class CustomApplication extends Application {
                 .networkModule(new NetworkModule(this))
                 .build();
         mAppComponent.inject(this);
-    }
-
-    private void initConfiguration() {
-        mExchangeRatesApi.getExchangeRates(new Callback<ExchangeRates>() {
-            @Override
-            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
-                if (response.isSuccessful()) {
-                    mDataHelper.setExchangeRates(response.getContent());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull APIResponse<ExchangeRates> response) {
-
-            }
-        });
     }
 
     public InjectionContainer getAppComponent() {

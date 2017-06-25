@@ -10,17 +10,17 @@ import timber.log.Timber;
 
 public class GPSLocationListener implements LocationListener {
 
-    private final Storage mCache;
+    private final Storage mStorage;
 
-    public GPSLocationListener(Storage cache) {
-        mCache = cache;
+    public GPSLocationListener(Storage storage) {
+        mStorage = storage;
     }
 
     @Override
     public void onLocationChanged(Location location) {
         Timber.d("New location: %s", location);
         if (location != null && location.getAccuracy() <= 100) {
-            mCache.setLocation(location);
+            mStorage.setLocation(location);
         }
     }
 

@@ -242,9 +242,35 @@ public class DataHelper {
         }
     }
 
-    private void setWeatherStats(WeatherStats content) {
+    public void setWeatherStats(WeatherStats content) {
         mCache.setWeatherStats(content);
     }
 
 
+    public void loadInitialData() {
+        mHackOfSwedenLocalFilesApi.getWeatherStats(new Callback<WeatherStats>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<WeatherStats> response) {
+                setWeatherStats(response.getContent());
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<WeatherStats> response) {
+
+            }
+        });
+        mExchangeRatesApi.getExchangeRates(new Callback<ExchangeRates>() {
+            @Override
+            public void onSuccess(@NonNull APIResponse<ExchangeRates> response) {
+                if (response.isSuccessful()) {
+                    setExchangeRates(response.getContent());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull APIResponse<ExchangeRates> response) {
+
+            }
+        });
+    }
 }
