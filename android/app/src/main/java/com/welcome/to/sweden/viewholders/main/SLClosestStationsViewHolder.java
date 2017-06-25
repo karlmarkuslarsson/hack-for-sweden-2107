@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.listeners.MainCardListener;
 import com.welcome.to.sweden.models.sl.StopLocation;

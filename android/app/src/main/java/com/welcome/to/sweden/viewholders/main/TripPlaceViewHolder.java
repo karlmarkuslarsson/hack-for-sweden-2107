@@ -124,7 +124,8 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         titleValueList.add(title("Price", mCard.getPricePretty()));
         titleValueList.add(title("Duration", TimeUtils.getTime(event.getDuration())));
 
-        mEventInfo.setText(boldTitles(titleValueList, SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
+        mEventInfo.setText(
+                boldTitles(titleValueList, SeparatorType.SPACE), TextView.BufferType.SPANNABLE);
     }
 
     private void showTripPlaceDialog() {
