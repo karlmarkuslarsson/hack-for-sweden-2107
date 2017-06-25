@@ -11,7 +11,7 @@ import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.dialogs.EventDialog;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.MyTripEvent;
+import com.welcome.to.sweden.models.TripEvent;
 import com.welcome.to.sweden.models.cards.TripPlaceCard;
 import com.welcome.to.sweden.utils.AnimationUtils;
 import com.welcome.to.sweden.utils.SpannableUtils;
@@ -71,7 +71,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
         mCard = card;
         mListener = listener;
 
-        MyTripEvent event = card.getTripEvent();
+        TripEvent event = card.getTripEvent();
         mTitle.setText(event.getTitle());
         mDescription.setText(event.getDescription());
         mTag.setText(event.getTag());
@@ -118,7 +118,7 @@ public class TripPlaceViewHolder extends MainViewHolder<TripPlaceCard> {
     }
 
     private void setEventInfo() {
-        MyTripEvent event = mCard.getTripEvent();
+        TripEvent event = mCard.getTripEvent();
 
         List<SpannableUtils.TitleValue> titleValueList = new ArrayList<>();
         titleValueList.add(title("Price", mCard.getPricePretty()));

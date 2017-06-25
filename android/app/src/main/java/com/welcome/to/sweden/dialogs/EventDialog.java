@@ -22,7 +22,7 @@ import com.welcome.to.sweden.R;
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.helpers.CurrencyHelper;
 import com.welcome.to.sweden.helpers.DataHelper;
-import com.welcome.to.sweden.models.MyTripLatLng;
+import com.welcome.to.sweden.models.TripLocation;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.network.BasicCallback;
 import com.welcome.to.sweden.network.response.APIResponse;
@@ -44,7 +44,7 @@ import static com.welcome.to.sweden.utils.ViewUtils.text;
 
 public class EventDialog extends Dialog {
 
-    private final MyTripLatLng mTripEvent;
+    private final TripLocation mTripEvent;
 
     @BindView(R.id.title)
     TextView mTitle;
@@ -65,7 +65,7 @@ public class EventDialog extends Dialog {
     DataHelper mDataHelper;
     private ExchangeRates exchangeRates;
 
-    public EventDialog(@NonNull Context context, MyTripLatLng tripEvent) {
+    public EventDialog(@NonNull Context context, TripLocation tripEvent) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_trip_place);
@@ -169,7 +169,7 @@ public class EventDialog extends Dialog {
         }
     }
 
-    public static EventDialog show(Context context, MyTripLatLng tripLatLng) {
+    public static EventDialog show(Context context, TripLocation tripLatLng) {
         final EventDialog dialog = new EventDialog(context, tripLatLng);
         dialog.show();
         return dialog;

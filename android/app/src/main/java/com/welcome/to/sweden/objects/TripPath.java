@@ -1,8 +1,8 @@
 package com.welcome.to.sweden.objects;
 
 import com.welcome.to.sweden.enums.TripObjectType;
-import com.welcome.to.sweden.models.MyTripEvent;
-import com.welcome.to.sweden.models.MyTripRestaurant;
+import com.welcome.to.sweden.models.TripEvent;
+import com.welcome.to.sweden.models.TripRestaurant;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,11 +29,11 @@ public class TripPath implements Serializable {
         return selectedObjects;
     }
 
-    public void add(MyTripEvent tripEvent) {
+    public void add(TripEvent tripEvent) {
         objectList.add(new TripObject(TripObjectType.EVENT, tripEvent.getId()));
     }
 
-    public void add(MyTripRestaurant tripRestaurant) {
+    public void add(TripRestaurant tripRestaurant) {
         objectList.add(new TripObject(TripObjectType.RESTAURANT, tripRestaurant.getId()));
     }
 

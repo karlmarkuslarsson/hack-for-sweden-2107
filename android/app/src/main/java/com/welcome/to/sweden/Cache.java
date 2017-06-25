@@ -3,14 +3,13 @@ package com.welcome.to.sweden;
 import android.location.Location;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import com.welcome.to.sweden.di.InjectionContainer;
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.objects.TripPath;
 
@@ -19,7 +18,7 @@ public class Cache implements Storage {
     private Location mLocation;
     private DateTime mTripDate;
     private boolean mHasStarted;
-    private MyTrip mMyTrip;
+    private TripData mMyTrip;
     private ArrayList<TripPath> mTripPaths;
     private int mDays;
     private String mCurrency;
@@ -60,7 +59,7 @@ public class Cache implements Storage {
         return mHasStarted;
     }
 
-    public void setMyTrip(MyTrip myTrip) {
+    public void setMyTrip(TripData myTrip) {
         mMyTrip = myTrip;
     }
 
@@ -79,7 +78,7 @@ public class Cache implements Storage {
         mDays = days;
     }
 
-    public MyTrip getMyTrip() {
+    public TripData getTripData() {
         return mMyTrip;
     }
 

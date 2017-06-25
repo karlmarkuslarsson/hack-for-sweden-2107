@@ -15,7 +15,7 @@ import com.welcome.to.sweden.di.RxSchedulerModule;
 import com.welcome.to.sweden.di.StorageModule;
 import com.welcome.to.sweden.models.Holidays;
 import com.welcome.to.sweden.models.Phrases;
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.response.APIResponse;
 
@@ -115,9 +115,9 @@ public class HackOfSwedenLocalFilesApiTest {
 
     @Test
     public void getTriplist() throws Exception {
-        mApi.getTripList(new TestCallback<MyTrip>() {
+        mApi.getTripList(new TestCallback<TripData>() {
             @Override
-            void test(MyTrip content) {
+            void test(TripData content) {
                 assertThat(content.getEvents(), hasSize(24));
                 assertThat(content.getRestaurants(), hasSize(8));
             }

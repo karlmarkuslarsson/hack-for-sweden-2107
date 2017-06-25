@@ -9,7 +9,7 @@ import com.welcome.to.sweden.files.JsonFileReader;
 import com.welcome.to.sweden.helpers.HttpInterceptorHelper;
 import com.welcome.to.sweden.models.Holidays;
 import com.welcome.to.sweden.models.Phrases;
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.cards.base.CardComponent;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.models.weather.WeatherStats;
@@ -57,8 +57,8 @@ public class HackOfSwedenLocalFilesApi {
         mJsonFileReader.read("holidays.json", Holidays.class, callback);
     }
 
-    public void getTripList(Callback<MyTrip> callback) {
-        mJsonFileReader.read("events.json", MyTrip.class, callback);
+    public void getTripList(Callback<TripData> callback) {
+        mJsonFileReader.read("events.json", TripData.class, callback);
     }
 
     public void getWeatherStats(Callback<WeatherStats> callback) {

@@ -10,7 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.listeners.GPSLocationListener;
-import com.welcome.to.sweden.models.MyTripLatLng;
+import com.welcome.to.sweden.models.TripLocation;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -122,11 +122,11 @@ public class LocationHelper {
         }
     }
 
-    public static float getKilometerDistance(MyTripLatLng e1, MyTripLatLng e2) {
+    public static float getKilometerDistance(TripLocation e1, TripLocation e2) {
         return ((float) getMeterDistance(e1, e2)) / 1000.0f;
     }
 
-    public static int getMeterDistance(@Nonnull MyTripLatLng e1, @Nonnull MyTripLatLng e2) {
+    public static int getMeterDistance(@Nonnull TripLocation e1, @Nonnull TripLocation e2) {
         return getMeterDistance(
                 e1.getLatitude(),
                 e1.getLongitude(),
@@ -147,7 +147,7 @@ public class LocationHelper {
         return (int) loc1.distanceTo(loc2);
     }
 
-    public static int getTimeBetweenEvents(MyTripLatLng preTrip, MyTripLatLng nextTrip) {
+    public static int getTimeBetweenEvents(TripLocation preTrip, TripLocation nextTrip) {
         float kilometer = LocationHelper.getKilometerDistance(preTrip, nextTrip);
         if (kilometer < 10) {
             return (int) (kilometer * 5 * 2);

@@ -20,10 +20,10 @@ import com.welcome.to.sweden.helpers.DataHelper;
 import com.welcome.to.sweden.helpers.LocationHelper;
 import com.welcome.to.sweden.helpers.TripCalculator;
 import com.welcome.to.sweden.listeners.MainCardListener;
-import com.welcome.to.sweden.models.MyTripEvent;
-import com.welcome.to.sweden.models.MyTripLatLng;
-import com.welcome.to.sweden.models.MyTripRestaurant;
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.TripEvent;
+import com.welcome.to.sweden.models.TripLocation;
+import com.welcome.to.sweden.models.TripRestaurant;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.cards.NextDayDivider;
 import com.welcome.to.sweden.models.cards.TripDinnerCard;
 import com.welcome.to.sweden.models.cards.TripLunchCard;
@@ -48,20 +48,19 @@ import butterknife.ButterKnife;
 
 public class TripFragment extends Fragment {
 
-    public static final int TIME_DINNER = 120;
-    public static final int TIME_LUNCH = 45;
-
     @BindView(R.id.fragment_main_swipe_to_refresh)
     public SwipeRefreshLayout mSwipeRefreshLayout;
 
     @BindView(R.id.fragment_main_recycler_view)
     public RecyclerView mRecyclerView;
 
-    protected MainRecyclerViewAdapter mAdapter;
     private View mRoot;
+
+    protected MainRecyclerViewAdapter mAdapter;
+
     private ArrayList<TripPath> mTripPath;
     private boolean mUpdateDataOnLoad;
-    private MyTrip mMyTripData;
+    private TripData mTripData;
     private int mDays;
     private ExchangeRates mRates;
     private String mCurrency;
@@ -93,8 +92,8 @@ public class TripFragment extends Fragment {
     }
 
     private void initData() {
-        mDays = mDataHelper.getTripDays();
-        mTripPath = mDataHelper.getTripPaths();
+        mDays = mDataHelper.getNumberOfDaysForTrip();
+        mTripPath = mDataHelper.getTripPath();
         mCurrency = mDataHelper.getCurrency();
         mDataHelper.getExchangeRates(new BasicCallback<ExchangeRates>() {
             @Override
@@ -110,8 +109,8 @@ public class TripFragment extends Fragment {
         mUpdateDataOnLoad = true;
 
         if (mTripPath != null) {
-            mMyTripData = mCache.getMyTrip();
-            if (mMyTripData != null) {
+            mTripData = mCache.getTripData();
+            if (mTripData != null) {
                 mUpdateDataOnLoad = false;
                 addTripCards();
             }
@@ -151,13 +150,13 @@ public class TripFragment extends Fragment {
     }
 
     protected void loadData() {
-        mHackOfSwedenLocalFilesApi.getTripList(new BasicCallback<MyTrip>() {
+        mHackOfSwedenLocalFilesApi.getTripList(new BasicCallback<TripData>() {
             @Override
-            public void onSuccess(@NonNull APIResponse<MyTrip> response) {
-                MyTrip myTrip = response.getContent();
+            public void onSuccess(@NonNull APIResponse<TripData> response) {
+                TripData myTrip = response.getContent();
                 mSwipeRefreshLayout.setRefreshing(false);
                 mCache.setMyTrip(myTrip);
-                mMyTripData = myTrip;
+                mTripData = myTrip;
                 if (mUpdateDataOnLoad) {
                     addTripCards();
                 }
@@ -168,7 +167,7 @@ public class TripFragment extends Fragment {
     private void addTripCards() {
         if (mTripPath == null || mTripPath.size() == 0) {
             mTripPath = TripCalculator.calculateTrips(
-                    mMyTripData,
+                    mTripData,
                     mDays,
                     TripCalculator.getDefaultTemplate(),
                     mCache.getTripDate());
@@ -195,22 +194,22 @@ public class TripFragment extends Fragment {
 
                 switch (currentTrip.getTripObjectType()) {
                     case RESTAURANT:
-                        MyTripRestaurant restaurant = mMyTripData.getRestaurant(currentTrip.getId());
+                        TripRestaurant restaurant = mTripData.getRestaurant(currentTrip.getId());
                         if (restaurant == null) {
                             onBadTripData();
                             return;
                         }
-                        int duration = TIME_DINNER;
+                        int duration = TripCalculator.RESTAURANT_TIME;
                         mainCard = new TripDinnerCard(restaurant, objectStartTime, duration);
                         startTime += duration;
                         break;
                     case LUNCH:
-                        int lunchDuration = TIME_LUNCH;
+                        int lunchDuration = TripCalculator.LUNCH_TIME;
                         mainCard = new TripLunchCard(objectStartTime, lunchDuration);
                         startTime += lunchDuration;
                         break;
                     case EVENT:
-                        MyTripEvent event = mMyTripData.getEvent(currentTrip.getId());
+                        TripEvent event = mTripData.getEvent(currentTrip.getId());
                         if (event == null) {
                             onBadTripData();
                             return;
@@ -220,7 +219,7 @@ public class TripFragment extends Fragment {
                         break;
                     case TRANSFER:
                         if (i != tripPath.getObjectList().size() - 1 && i > 0) {
-                            int transportationTime = addTransportation(mMyTripData, tripPath, i);
+                            int transportationTime = addTransportation(mTripData, tripPath, i);
                             mainCard = new TripTransportationCard(transportationTime + " min");
                             startTime += transportationTime;
                         }
@@ -243,9 +242,9 @@ public class TripFragment extends Fragment {
         mAdapter.addCard(new NextDayDivider(counter));
     }
 
-    private int addTransportation(MyTrip mMyTripData, TripPath tripPath, int position) {
-        MyTripLatLng preTrip = null;
-        MyTripLatLng nextTrip = null;
+    private int addTransportation(TripData mMyTripData, TripPath tripPath, int position) {
+        TripLocation preTrip = null;
+        TripLocation nextTrip = null;
 
 
         TripObject preObject = tripPath.getObjectList().get(position - 1);
@@ -305,7 +304,7 @@ public class TripFragment extends Fragment {
                     }
                 }
             }
-            for (MyTripRestaurant restaurant : mMyTripData.getRestaurants()) {
+            for (TripRestaurant restaurant : mTripData.getRestaurants()) {
                 if (!restaurant.getId().equals(((TripDinnerCard) card).getTripRestaurant().getId())) {
                     if (!hasRestaurant(restaurant)) {
                         changeCard(card, new TripDinnerCard(restaurant, ((TripDinnerCard) card).getStartTime(), ((TripDinnerCard) card).getDuration()));
@@ -326,7 +325,7 @@ public class TripFragment extends Fragment {
                     }
                 }
             }
-            for (MyTripEvent event : mMyTripData.getEvents()) {
+            for (TripEvent event : mTripData.getEvents()) {
                 if (!event.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {// && event.getDuration() <= ((TripPlaceCard) card).getTripEvent().getDuration()) {
                     if (!hasEvent(event)) {
                         String startTime = ((TripPlaceCard) card).getStartTime();
@@ -340,7 +339,7 @@ public class TripFragment extends Fragment {
         mAdapter.removeCard(card);
     }
 
-    private boolean hasEvent(MyTripEvent event) {
+    private boolean hasEvent(TripEvent event) {
         for (TripPath path : mTripPath) {
             for (TripObject object : path.getObjectList()) {
                 if (object.getId() != null && object.getId().equals(event.getId())) {
@@ -355,7 +354,7 @@ public class TripFragment extends Fragment {
         mAdapter.changeCard(oldCard, newCard);
     }
 
-    private boolean hasRestaurant(MyTripRestaurant restaurant) {
+    private boolean hasRestaurant(TripRestaurant restaurant) {
         for (TripPath path : mTripPath) {
             for (TripObject object : path.getObjectList()) {
                 if (object.getId() != null && object.getId().equals(restaurant.getId())) {

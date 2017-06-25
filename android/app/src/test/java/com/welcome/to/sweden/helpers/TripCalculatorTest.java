@@ -2,9 +2,8 @@ package com.welcome.to.sweden.helpers;
 
 
 import com.welcome.to.sweden.enums.TripObjectType;
-import com.welcome.to.sweden.models.MyTripEvent;
-import com.welcome.to.sweden.models.MyTripLatLng;
-import com.welcome.to.sweden.models.MyTripRestaurant;
+import com.welcome.to.sweden.models.TripEvent;
+import com.welcome.to.sweden.models.TripRestaurant;
 import com.welcome.to.sweden.objects.TripPath;
 
 import org.joda.time.DateTime;
@@ -12,9 +11,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotSame;
@@ -53,9 +49,9 @@ public class TripCalculatorTest {
     public void addNextEventTest_emptyEvents() {
         DateTime dateTime = new DateTime();
         int timeLeft = 10;
-        List<MyTripEvent> availableEvents = new ArrayList<>();
+        List<TripEvent> availableEvents = new ArrayList<>();
         TripPath tripPath = new TripPath();
-        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, null);
+        TripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, null);
         int eventDuration = event != null ? event.getDuration() : 0;
         assertEquals(eventDuration, 0);
     }
@@ -64,16 +60,16 @@ public class TripCalculatorTest {
     public void addNextEventTest_tooLongEvents() {
         DateTime dateTime = new DateTime();
         int timeLeft = 30;
-        List<MyTripEvent> availableEvents = new ArrayList<>();
-        MyTripEvent event1 = new MyTripEvent();
+        List<TripEvent> availableEvents = new ArrayList<>();
+        TripEvent event1 = new TripEvent();
         event1.setDuration(40);
-        MyTripEvent event2 = new MyTripEvent();
+        TripEvent event2 = new TripEvent();
         event2.setDuration(50);
         availableEvents.add(event1);
         availableEvents.add(event2);
         TripPath tripPath = new TripPath();
 
-        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, dateTime);
+        TripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, dateTime);
         int eventDuration = event != null ? event.getDuration() : 0;
 
         assertEquals(eventDuration, 0);
@@ -85,15 +81,15 @@ public class TripCalculatorTest {
     public void addNextEventTest_firstTooLongEvent() {
         DateTime dateTime = new DateTime();
         int timeLeft = 30;
-        List<MyTripEvent> availableEvents = new ArrayList<>();
-        MyTripEvent event1 = new MyTripEvent();
+        List<TripEvent> availableEvents = new ArrayList<>();
+        TripEvent event1 = new TripEvent();
         event1.setDuration(40);
-        MyTripEvent event2 = new MyTripEvent();
+        TripEvent event2 = new TripEvent();
         event2.setDuration(20);
         availableEvents.add(event1);
         availableEvents.add(event2);
         TripPath tripPath = new TripPath();
-        MyTripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, dateTime);
+        TripEvent event = TripCalculator.addNextEvent(timeLeft, availableEvents, tripPath, null, dateTime);
         int eventDuration = event != null ? event.getDuration() : 0;
 
         assertEquals(eventDuration, 20);
@@ -105,8 +101,8 @@ public class TripCalculatorTest {
     public void calculateTrips_emptyEventsAndRestaurants() {
         DateTime dateTime = new DateTime();
         int days = 3;
-        List<MyTripEvent> events = new ArrayList<>();
-        List<MyTripRestaurant> restaurants = new ArrayList<>();
+        List<TripEvent> events = new ArrayList<>();
+        List<TripRestaurant> restaurants = new ArrayList<>();
         List<TripCalculator.TripPart> tripTemplate = TripCalculator.getDefaultTemplate();
         ArrayList<TripPath> tripPaths =
                 TripCalculator.calculateTrips(events, restaurants, days, tripTemplate, dateTime);
@@ -122,11 +118,11 @@ public class TripCalculatorTest {
     public void calculateTrips_tooLongEvent() {
         DateTime dateTime = new DateTime();
         int days = 1;
-        List<MyTripEvent> events = new ArrayList<>();
-        MyTripEvent event1 = new MyTripEvent();
+        List<TripEvent> events = new ArrayList<>();
+        TripEvent event1 = new TripEvent();
         event1.setDuration(1000000);
         events.add(event1);
-        List<MyTripRestaurant> restaurants = new ArrayList<>();
+        List<TripRestaurant> restaurants = new ArrayList<>();
         List<TripCalculator.TripPart> tripTemplate = TripCalculator.getDefaultTemplate();
         ArrayList<TripPath> tripPaths =
                 TripCalculator.calculateTrips(events, restaurants, days, tripTemplate, dateTime);
@@ -142,15 +138,15 @@ public class TripCalculatorTest {
     public void calculateTrips_secondEventOkay() {
         DateTime dateTime = new DateTime();
         int days = 1;
-        List<MyTripEvent> events = new ArrayList<>();
-        MyTripEvent event1 = new MyTripEvent();
+        List<TripEvent> events = new ArrayList<>();
+        TripEvent event1 = new TripEvent();
         event1.setDuration(1000000);
         events.add(event1);
-        MyTripEvent event2 = new MyTripEvent();
+        TripEvent event2 = new TripEvent();
         event2.setDuration(100);
         event2.setId("1337");
         events.add(event2);
-        List<MyTripRestaurant> restaurants = new ArrayList<>();
+        List<TripRestaurant> restaurants = new ArrayList<>();
         List<TripCalculator.TripPart> tripTemplate = TripCalculator.getDefaultTemplate();
         ArrayList<TripPath> tripPaths =
                 TripCalculator.calculateTrips(events, restaurants, days, tripTemplate, dateTime);
@@ -166,17 +162,17 @@ public class TripCalculatorTest {
     public void calculateTrips_twoRestaurantsDefaultTemplate() {
         DateTime dateTime = new DateTime();
         int days = 1;
-        List<MyTripEvent> events = new ArrayList<>();
-        MyTripEvent event1 = new MyTripEvent();
+        List<TripEvent> events = new ArrayList<>();
+        TripEvent event1 = new TripEvent();
         event1.setDuration(1000000);
         events.add(event1);
-        MyTripEvent event2 = new MyTripEvent();
+        TripEvent event2 = new TripEvent();
         event2.setDuration(100);
         event2.setId("1337");
         events.add(event2);
-        List<MyTripRestaurant> restaurants = new ArrayList<>();
-        restaurants.add(new MyTripRestaurant());
-        restaurants.add(new MyTripRestaurant());
+        List<TripRestaurant> restaurants = new ArrayList<>();
+        restaurants.add(new TripRestaurant());
+        restaurants.add(new TripRestaurant());
         List<TripCalculator.TripPart> tripTemplate = TripCalculator.getDefaultTemplate();
         ArrayList<TripPath> tripPaths =
                 TripCalculator.calculateTrips(events, restaurants, days, tripTemplate, dateTime);

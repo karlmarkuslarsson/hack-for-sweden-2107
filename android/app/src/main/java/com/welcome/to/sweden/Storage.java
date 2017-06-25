@@ -3,11 +3,10 @@ package com.welcome.to.sweden;
 import android.location.Location;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.objects.TripPath;
 
@@ -25,9 +24,9 @@ public interface Storage {
 
     boolean hasStarted();
 
-    MyTrip getMyTrip();
+    TripData getTripData();
 
-    void setMyTrip(MyTrip content);
+    void setMyTrip(TripData content);
 
     ArrayList<TripPath> getTripPaths();
 

@@ -1,6 +1,6 @@
 package com.welcome.to.sweden.models;
 
-public abstract class MyTripLatLng {
+public abstract class TripLocation {
     public abstract float getLatitude();
 
     public abstract float getLongitude();

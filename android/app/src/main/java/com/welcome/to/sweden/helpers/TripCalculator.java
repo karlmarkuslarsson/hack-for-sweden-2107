@@ -6,30 +6,30 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.welcome.to.sweden.enums.TripObjectType;
-import com.welcome.to.sweden.models.MyTripLatLng;
-import com.welcome.to.sweden.models.cards.MyTrip;
-import com.welcome.to.sweden.models.MyTripEvent;
-import com.welcome.to.sweden.models.MyTripRestaurant;
+import com.welcome.to.sweden.models.TripLocation;
+import com.welcome.to.sweden.models.cards.TripData;
+import com.welcome.to.sweden.models.TripEvent;
+import com.welcome.to.sweden.models.TripRestaurant;
 import com.welcome.to.sweden.objects.TripPath;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TripCalculator {
 
-    private static final int LUNCH_TIME = 45;
-    private static final int RESTAURANT_TIME = 120;
-    private static final int MINIMUM_EVENT_TIME = 15;
+    public static final int LUNCH_TIME = 45; //minutes
+    public static final int RESTAURANT_TIME = 120; //minutes
+    private static final int MINIMUM_EVENT_TIME = 15; //minutes
+
     private static List<TripPart> sTemplate = new ArrayList<TripPart>() {{
         add(new TripPart(TripObjectType.EVENT, 100));
         add(new TripPart(TripObjectType.LUNCH, LUNCH_TIME));
-        add(new TripPart(TripObjectType.EVENT, 200));
+        add(new TripPart(TripObjectType.EVENT, 230));
         // add pause
         add(new TripPart(TripObjectType.RESTAURANT, RESTAURANT_TIME));
-        add(new TripPart(TripObjectType.EVENT, 120));
+        add(new TripPart(TripObjectType.EVENT, 90));
     }};
 
     public static List<TripPart> getDefaultTemplate() {
@@ -37,18 +37,18 @@ public class TripCalculator {
     }
 
     public static ArrayList<TripPath> calculateTrips(
-            MyTrip tripData,
+            TripData tripData,
             int days,
             List<TripPart> template,
             DateTime startDate) {
-        List<MyTripEvent> shuffledEvents = shuffleAndCopyList(tripData.getEvents());
-        List<MyTripRestaurant> shuffledRestaurants = shuffleAndCopyList(tripData.getRestaurants());
+        List<TripEvent> shuffledEvents = shuffleAndCopyList(tripData.getEvents());
+        List<TripRestaurant> shuffledRestaurants = shuffleAndCopyList(tripData.getRestaurants());
         return calculateTrips(shuffledEvents, shuffledRestaurants, days, template, startDate);
     }
 
     public static ArrayList<TripPath> calculateTrips(
-            List<MyTripEvent> shuffledEvents,
-            List<MyTripRestaurant> shuffledRestaurants,
+            List<TripEvent> shuffledEvents,
+            List<TripRestaurant> shuffledRestaurants,
             int days,
             List<TripPart> template,
             DateTime startDate) {
@@ -56,7 +56,7 @@ public class TripCalculator {
         ArrayList<TripPath> trips = new ArrayList<>();
         for (int day = 0; day < days; day++) {
             DateTime date = getStartOfDay(startDate, day);
-            MyTripLatLng previousEvent = null;
+            TripLocation previousEvent = null;
             TripPath tripPath = new TripPath();
             for (TripPart tripPart : template) {
                 int timeLeft = tripPart.duration;
@@ -64,7 +64,7 @@ public class TripCalculator {
                     switch (tripPart.eventType) {
                         case RESTAURANT:
                             if (!shuffledRestaurants.isEmpty()) {
-                                MyTripRestaurant restaurantEvent = shuffledRestaurants.get(0);
+                                TripRestaurant restaurantEvent = shuffledRestaurants.get(0);
                                 tripPath.add(restaurantEvent);
 
                                 // transfer time
@@ -86,7 +86,7 @@ public class TripCalculator {
                             date = date.plusMinutes(LUNCH_TIME);
                             break;
                         case EVENT:
-                            MyTripEvent event = addNextEvent
+                            TripEvent event = addNextEvent
                                     (timeLeft, shuffledEvents, tripPath, previousEvent, date);
                             int timeTaken = event != null ? event.getDuration() : 0;
                             if (timeTaken == 0) {
@@ -111,7 +111,7 @@ public class TripCalculator {
     }
 
     private static int getTransferTimeInMinutes(
-            @Nullable MyTripLatLng fromEvent, MyTripLatLng toEvent) {
+            @Nullable TripLocation fromEvent, TripLocation toEvent) {
 
         if (fromEvent == null) {
             return 0;
@@ -139,16 +139,16 @@ public class TripCalculator {
     /**
      * @return 0 if there isn´t any event.
      */
-    protected static MyTripEvent addNextEvent(
+    protected static TripEvent addNextEvent(
             int timeLeft,
-            @Nonnull List<MyTripEvent> events,
+            @Nonnull List<TripEvent> events,
             @Nonnull TripPath tripPath,
-            @Nullable MyTripLatLng previousEvent,
+            @Nullable TripLocation previousEvent,
             @Nonnull DateTime currentTimeBeforeTransfer) {
 
-        Iterator<MyTripEvent> iterator = events.iterator();
+        Iterator<TripEvent> iterator = events.iterator();
         while (iterator.hasNext()) {
-            MyTripEvent event = iterator.next();
+            TripEvent event = iterator.next();
             if (withinTime(event, timeLeft)
                     && closeEnough(event, previousEvent)
                     && isOpen(currentTimeBeforeTransfer, previousEvent, event)) {
@@ -162,8 +162,8 @@ public class TripCalculator {
 
     private static boolean isOpen(
             DateTime currentTimeBeforeTransfer,
-            MyTripLatLng previousEvent,
-            MyTripEvent event) {
+            TripLocation previousEvent,
+            TripEvent event) {
         int transferTime = getTransferTimeInMinutes(previousEvent, event);
         DateTime startTime = currentTimeBeforeTransfer.plusMinutes(transferTime);
         DateTime endTime = startTime.plusMinutes(event.getDuration());
@@ -191,11 +191,11 @@ public class TripCalculator {
         return true;
     }
 
-    private static boolean withinTime(MyTripEvent event, int timeLeft) {
+    private static boolean withinTime(TripEvent event, int timeLeft) {
         return event.getDuration() <= timeLeft;
     }
 
-    private static boolean closeEnough(MyTripEvent event, @Nullable MyTripLatLng previousEvent) {
+    private static boolean closeEnough(TripEvent event, @Nullable TripLocation previousEvent) {
         if (previousEvent == null) {
             return true;
         }

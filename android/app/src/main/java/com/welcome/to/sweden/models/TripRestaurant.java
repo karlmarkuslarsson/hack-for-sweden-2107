@@ -2,7 +2,7 @@ package com.welcome.to.sweden.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MyTripRestaurant extends MyTripLatLng {
+public class TripRestaurant extends TripLocation {
 
     @SerializedName("id")
     private String mId;

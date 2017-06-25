@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
-import com.welcome.to.sweden.models.cards.MyTrip;
+import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.network.Callback;
 import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
@@ -19,7 +19,6 @@ import com.welcome.to.sweden.objects.TripPath;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -88,11 +87,11 @@ public class DataHelper {
                 .getPreference(Constants.USER_HAS_STARTED, false);
     }
 
-    public static MyTrip getMyTrip() {
+    public static TripData getMyTrip() {
         return null;
     }
 
-    public static void setMyTrip(MyTrip content) {
+    public static void setMyTrip(TripData content) {
 
     }
 
@@ -104,7 +103,7 @@ public class DataHelper {
         mCache.setTripPaths(null);
     }
 
-    public ArrayList<TripPath> getTripPaths() {
+    public ArrayList<TripPath> getTripPath() {
         ArrayList<TripPath> tripPaths = mCache.getTripPaths();
         if (tripPaths == null) {
             String paths = mSharedPrefsHelper.getPreference(Constants.TRIP_PATHS, (String) null);
@@ -126,7 +125,7 @@ public class DataHelper {
         mSharedPrefsHelper.setPreference(Constants.USER_TRIP_DAYS, days);
     }
 
-    public int getTripDays() {
+    public int getNumberOfDaysForTrip() {
         int days = mCache.getDays();
         if (days == 0) {
             days = mSharedPrefsHelper.getPreference(Constants.USER_TRIP_DAYS, 2);
