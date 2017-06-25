@@ -81,4 +81,13 @@ public class MyTripRestaurant extends MyTripLatLng {
     public String getTag() {
         return "restaurant";
     }
+
+    public void setLatitude(Float latitude) {
+        mLatitude = latitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        mLongitude = longitude;
+    }
+
 }
