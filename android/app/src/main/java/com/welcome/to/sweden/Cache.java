@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.objects.TripPath;
 
 public class Cache implements Storage {
@@ -23,6 +24,7 @@ public class Cache implements Storage {
     private int mDays;
     private String mCurrency;
     private ExchangeRates mExchangeRates;
+    private WeatherStats mWeatherStats;
 
     @Inject
     public Cache(InjectionContainer injectionContainer) {
@@ -105,6 +107,14 @@ public class Cache implements Storage {
     @Override
     public ExchangeRates getExchangeRates() {
         return mExchangeRates;
+    }
+
+    public WeatherStats getWeatherStats() {
+        return mWeatherStats;
+    }
+
+    public void setWeatherStats(WeatherStats weatherStats) {
+        mWeatherStats = weatherStats;
     }
 
 }

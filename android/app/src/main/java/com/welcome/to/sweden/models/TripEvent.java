@@ -141,17 +141,11 @@ public class TripEvent extends TripLocation {
         this.mTag = mTag;
     }
 
-    public int getMinTemp() {
-        if (mMinTemp == null) {
-            return -1000;
-        }
+    public Integer getMinTemp() {
         return mMinTemp;
     }
 
     public Integer getMaxTemp() {
-        if (mMaxTemp == null) {
-            return 1000;
-        }
         return mMaxTemp;
     }
 

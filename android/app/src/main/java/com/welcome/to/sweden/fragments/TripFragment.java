@@ -170,7 +170,8 @@ public class TripFragment extends Fragment {
                     mTripData,
                     mDays,
                     TripCalculator.getDefaultTemplate(),
-                    mCache.getTripDate());
+                    mDataHelper.getTripDate(),
+                    mDataHelper.getTemperature(mDataHelper.getTripDate()));
             mDataHelper.setTripPaths(mTripPath);
         }
         int counter = 0;

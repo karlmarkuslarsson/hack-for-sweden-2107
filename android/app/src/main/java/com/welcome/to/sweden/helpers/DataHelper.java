@@ -1,6 +1,7 @@
 package com.welcome.to.sweden.helpers;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
 
@@ -11,6 +12,8 @@ import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
+import com.welcome.to.sweden.models.weather.WeatherStat;
+import com.welcome.to.sweden.models.weather.WeatherStats;
 import com.welcome.to.sweden.network.Callback;
 import com.welcome.to.sweden.network.HackOfSwedenLocalFilesApi;
 import com.welcome.to.sweden.network.exchangerates.ExchangeRatesApi;
@@ -20,9 +23,13 @@ import com.welcome.to.sweden.objects.TripPath;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 public class DataHelper {
@@ -214,5 +221,30 @@ public class DataHelper {
             }
         });
     }
+
+    public synchronized int getTemperature(@NonNull DateTime dateTime) {
+        WeatherStats weatherStats = mCache.getWeatherStats();
+        if (weatherStats == null) {
+            loadWeatherStats();
+        }
+        weatherStats = mCache.getWeatherStats();
+        return weatherStats.getStats().get(dateTime.getMonthOfYear() - 1).getTemperature();
+    }
+
+    private void loadWeatherStats() {
+        AssetManager assets = mContext.getAssets();
+        try {
+            InputStream inputStream = assets.open("weather.json");
+            InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+            setWeatherStats(new Gson().fromJson(streamReader, WeatherStats.class));
+        } catch (IOException e) {
+
+        }
+    }
+
+    private void setWeatherStats(WeatherStats content) {
+        mCache.setWeatherStats(content);
+    }
+
 
 }

@@ -17,6 +17,8 @@ import org.joda.time.DateTime;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import timber.log.Timber;
+
 public class TripCalculator {
 
     public static final int LUNCH_TIME = 45; //minutes
@@ -26,7 +28,7 @@ public class TripCalculator {
     private static List<TripPart> sTemplate = new ArrayList<TripPart>() {{
         add(new TripPart(TripObjectType.EVENT, 100));
         add(new TripPart(TripObjectType.LUNCH, LUNCH_TIME));
-        add(new TripPart(TripObjectType.EVENT, 230));
+        add(new TripPart(TripObjectType.EVENT, 300));
         // add pause
         add(new TripPart(TripObjectType.RESTAURANT, RESTAURANT_TIME));
         add(new TripPart(TripObjectType.EVENT, 90));
@@ -40,10 +42,11 @@ public class TripCalculator {
             TripData tripData,
             int days,
             List<TripPart> template,
-            DateTime startDate) {
+            DateTime startDate,
+            int temperature) {
         List<TripEvent> shuffledEvents = shuffleAndCopyList(tripData.getEvents());
         List<TripRestaurant> shuffledRestaurants = shuffleAndCopyList(tripData.getRestaurants());
-        return calculateTrips(shuffledEvents, shuffledRestaurants, days, template, startDate);
+        return calculateTrips(shuffledEvents, shuffledRestaurants, days, template, startDate, temperature);
     }
 
     public static ArrayList<TripPath> calculateTrips(
@@ -51,7 +54,8 @@ public class TripCalculator {
             List<TripRestaurant> shuffledRestaurants,
             int days,
             List<TripPart> template,
-            DateTime startDate) {
+            DateTime startDate,
+            int temperature) {
 
         ArrayList<TripPath> trips = new ArrayList<>();
         for (int day = 0; day < days; day++) {
@@ -87,7 +91,7 @@ public class TripCalculator {
                             break;
                         case EVENT:
                             TripEvent event = addNextEvent
-                                    (timeLeft, shuffledEvents, tripPath, previousEvent, date);
+                                    (timeLeft, shuffledEvents, tripPath, previousEvent, date, temperature);
                             int timeTaken = event != null ? event.getDuration() : 0;
                             if (timeTaken == 0) {
                                 timeLeft = 0;
@@ -144,20 +148,36 @@ public class TripCalculator {
             @Nonnull List<TripEvent> events,
             @Nonnull TripPath tripPath,
             @Nullable TripLocation previousEvent,
-            @Nonnull DateTime currentTimeBeforeTransfer) {
+            @Nonnull DateTime currentTimeBeforeTransfer,
+            int temperature) {
 
         Iterator<TripEvent> iterator = events.iterator();
         while (iterator.hasNext()) {
             TripEvent event = iterator.next();
             if (withinTime(event, timeLeft)
                     && closeEnough(event, previousEvent)
-                    && isOpen(currentTimeBeforeTransfer, previousEvent, event)) {
+                    && isOpen(currentTimeBeforeTransfer, previousEvent, event)
+                    && correctTemperature(event, temperature)) {
                 tripPath.add(event);
                 iterator.remove();
                 return event;
             }
         }
         return null;
+    }
+
+    private static boolean correctTemperature(TripEvent event, int temperature) {
+        // too cold outside
+        if (event.getMinTemp() != null && event.getMinTemp() > temperature) {
+            Timber.d("Filter out %s [too cold outside]", event);
+            return false;
+        }
+        // too hot outside
+        if (event.getMaxTemp() != null && event.getMaxTemp() < temperature) {
+            Timber.d("Filter out %s [too hot outside]", event);
+            return false;
+        }
+        return true;
     }
 
     private static boolean isOpen(
@@ -170,21 +190,25 @@ public class TripCalculator {
 
         // check if time is before first opened month
         if (event.getFirstMonth() != null && event.getFirstMonth() > startTime.getMonthOfYear()) {
+            Timber.d("Filter out %s [before first month]", event);
             return false;
         }
 
         // check if time is after last opened month
         if (event.getLastMonth() != null && event.getLastMonth() < startTime.getMonthOfYear()) {
+            Timber.d("Filter out %s [after first month]", event);
             return false;
         }
 
         // event not opened
         if (event.getOpeningHourFrom() != null && event.getOpeningHourFrom() > startTime.getHourOfDay()) {
+            Timber.d("Filter out %s [before first hour]", event);
             return false;
         }
 
         // event has closed
         if (event.getOpeningHourTo() != null && event.getOpeningHourTo() < endTime.getHourOfDay()) {
+            Timber.d("Filter out %s [after last hour]", event);
             return false;
         }
 
