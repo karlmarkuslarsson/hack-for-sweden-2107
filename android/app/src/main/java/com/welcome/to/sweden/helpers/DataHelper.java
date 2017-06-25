@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
+import com.welcome.to.sweden.files.JsonFileReader;
 import com.welcome.to.sweden.models.cards.TripData;
 import com.welcome.to.sweden.models.exchangerates.ExchangeRates;
 import com.welcome.to.sweden.models.weather.WeatherStat;
@@ -232,13 +233,9 @@ public class DataHelper {
     }
 
     private void loadWeatherStats() {
-        AssetManager assets = mContext.getAssets();
         try {
-            InputStream inputStream = assets.open("weather.json");
-            InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-            setWeatherStats(new Gson().fromJson(streamReader, WeatherStats.class));
-        } catch (IOException e) {
-
+            setWeatherStats(JsonFileReader.read(Constants.LOCAL_WEATHER_FILE, WeatherStats.class, new Gson(), mContext));
+        } catch (Exception ignore) {
         }
     }
 

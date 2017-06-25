@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.welcome.to.sweden.Constants;
 import com.welcome.to.sweden.di.InjectionContainer;
 import com.welcome.to.sweden.files.JsonFileReader;
 import com.welcome.to.sweden.helpers.HttpInterceptorHelper;
@@ -51,21 +52,21 @@ public class HackOfSwedenLocalFilesApi {
     }
 
     public void getPhrases(Callback<Phrases> callback) {
-        mJsonFileReader.read("phrases.json", Phrases.class, callback);
+        mJsonFileReader.read(Constants.LOCAL_PHRASES_FILE, Phrases.class, callback);
     }
     public void getHolidays(Callback<Holidays> callback) {
-        mJsonFileReader.read("holidays.json", Holidays.class, callback);
+        mJsonFileReader.read(Constants.LOCAL_HOLIDAYS_FILE, Holidays.class, callback);
     }
 
     public void getTripList(Callback<TripData> callback) {
-        mJsonFileReader.read("events.json", TripData.class, callback);
+        mJsonFileReader.read(Constants.LOCAL_EVENTS_FILE, TripData.class, callback);
     }
 
     public void getWeatherStats(Callback<WeatherStats> callback) {
-        mJsonFileReader.read("weather.json", WeatherStats.class, callback);
+        mJsonFileReader.read(Constants.LOCAL_WEATHER_FILE, WeatherStats.class, callback);
     }
 
     public void getExchangeRates(Callback<ExchangeRates> callback) {
-        mJsonFileReader.read("exchange_rates.json", ExchangeRates.class, callback);
+        mJsonFileReader.read(Constants.LOCAL_EXCHANGE_RATES_FILE, ExchangeRates.class, callback);
     }
 }

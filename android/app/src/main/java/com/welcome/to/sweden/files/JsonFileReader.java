@@ -29,32 +29,38 @@ public class JsonFileReader {
         this.mMainScheduler = mMainScheduler;
     }
 
-    public  <T> void read(final String fileName, final Class<T> clz, final Callback<T> callback) {
+    public <T> void read(final String fileName, final Class<T> clz, final Callback<T> callback) {
         Observable.fromCallable(new Callable<T>() {
             @Override
             public T call() throws Exception {
-                AssetManager assets = mContext.getAssets();
-                InputStream inputStream = assets.open(fileName);
-                InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
-                return mGson.fromJson(streamReader, clz);
+                return read(fileName, clz, mGson, mContext);
             }
         })
-        .subscribeOn(mIOScheduler)
-        .observeOn(mMainScheduler)
-        .subscribe(new DefaultObserver<T>() {
-            @Override
-            public void onNext(T value) {
-                callback.onSuccess(new APIResponse<>(value, 200));
-            }
+                .subscribeOn(mIOScheduler)
+                .observeOn(mMainScheduler)
+                .subscribe(new DefaultObserver<T>() {
+                    @Override
+                    public void onNext(T value) {
+                        callback.onSuccess(new APIResponse<>(value, 200));
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                callback.onFailure(new APIResponse<T>(e));
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onFailure(new APIResponse<T>(e));
+                    }
 
-            @Override
-            public void onComplete() {
-            }
-        });
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
+
+    public static <T> T read(final String fileName, final Class<T> clz, Gson gson, Context context)
+            throws Exception {
+        AssetManager assets = context.getAssets();
+        InputStream inputStream = assets.open(fileName);
+        InputStreamReader streamReader = new InputStreamReader(inputStream, "UTF-8");
+        return gson.fromJson(streamReader, clz);
+    }
+
 }

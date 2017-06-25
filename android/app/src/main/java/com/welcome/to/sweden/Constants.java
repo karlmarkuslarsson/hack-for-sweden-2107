@@ -33,4 +33,10 @@ public class Constants {
     public static final String TRIP_PATHS = "prefTripPath";
     public static final String EXCHANGE_RATES_URL = "http://api.fixer.io/";
     public static final String CACHED_EXCHANGE_RATES = "prefExchangeRates";
+
+    public static final String LOCAL_PHRASES_FILE = "phrases.json";
+    public static final String LOCAL_HOLIDAYS_FILE = "holidays.json";
+    public static final String LOCAL_EVENTS_FILE = "events.json";
+    public static final String LOCAL_WEATHER_FILE = "weather.json";
+    public static final String LOCAL_EXCHANGE_RATES_FILE = "exchange_rates.json";
 }
