@@ -1,7 +1,12 @@
 package com.welcome.to.sweden.utils;
 
+import javax.annotation.Nullable;
+
 public class TimeUtils {
-    public static String getTime(Integer duration) {
+    public static String getHourAndMinutes(@Nullable Integer duration) {
+        if (duration == null) {
+            return "";
+        }
         int dur = duration;
         int hours = dur / 60;
         dur = dur - hours * 60;

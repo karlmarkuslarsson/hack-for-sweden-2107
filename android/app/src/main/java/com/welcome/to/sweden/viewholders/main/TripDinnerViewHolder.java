@@ -82,7 +82,7 @@ public class TripDinnerViewHolder extends MainViewHolder<TripDinnerCard> {
     private void setEventInfo() {
         Context ctx = itemView.getContext();
         List<SpannableUtils.TitleValue> values = ImmutableList.of(
-                title(text(ctx, R.string.label_duration), TimeUtils.getTime(mCard.getDuration()))
+                title(text(ctx, R.string.label_duration), TimeUtils.getHourAndMinutes(mCard.getDuration()))
         );
         SpannableString text = SpannableUtils.boldTitles(values, SeparatorType.SPACE);
         mEventInfo.setText(text, TextView.BufferType.SPANNABLE);

@@ -146,7 +146,7 @@ public class EventDialog extends Dialog {
 
         final Integer duration = mTripEvent.getDuration();
         if (duration != null) {
-            titleValueList.add(title(textDuration, TimeUtils.getTime(mTripEvent.getDuration())));
+            titleValueList.add(title(textDuration, TimeUtils.getHourAndMinutes(mTripEvent.getDuration())));
         }
 
         if (!titleValueList.isEmpty()) {
