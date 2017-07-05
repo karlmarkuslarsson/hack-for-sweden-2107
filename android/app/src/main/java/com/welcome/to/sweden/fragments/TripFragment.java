@@ -138,7 +138,8 @@ public class TripFragment extends Fragment {
     private void setupRecyclerView() {
         mAdapter = new MainRecyclerViewAdapter(new MainCardListener() {
             @Override
-            public void onCardClick(Card card) {}
+            public void onCardClick(Card card) {
+            }
 
             @Override
             public void dismissCard(Card card) {
@@ -294,48 +295,74 @@ public class TripFragment extends Fragment {
 
     private void replaceCard(Card card) {
         if (card instanceof TripDinnerCard) {
+            TripDinnerCard dinnerCard = (TripDinnerCard) card;
+
+            int index = 0;
+            TripPath inPath = null;
             for (TripPath path : mTripPath) {
                 Iterator<TripObject> itr = path.getObjectList().iterator();
-
+                index = 0;
+                boolean hasFoundRestaurant = false;
                 while (itr.hasNext()) {
                     TripObject object = itr.next();
-                    if (object.getId() != null && object.getId().equals(((TripDinnerCard) card).getTripRestaurant().getId())) {
+                    if (object.getId() != null && object.getId().equals(dinnerCard.getTripRestaurant().getId())) {
                         itr.remove();  // TODO: insert new card here
+                        hasFoundRestaurant = true;
+                        inPath = path;
                         break;
                     }
+                    index++;
+                }
+                if (hasFoundRestaurant) {
+                    break;
                 }
             }
             for (TripRestaurant restaurant : mTripData.getRestaurants()) {
-                if (!restaurant.getId().equals(((TripDinnerCard) card).getTripRestaurant().getId())) {
+                if (!restaurant.getId().equals(dinnerCard.getTripRestaurant().getId())) {
                     if (!hasRestaurant(restaurant)) {
-                        changeCard(card, new TripDinnerCard(restaurant, ((TripDinnerCard) card).getStartTime(), ((TripDinnerCard) card).getDuration()));
+                        inPath.getObjectList().add(index, new TripObject(TripObjectType.RESTAURANT, restaurant.getId()));
+                        changeCard(card, new TripDinnerCard(restaurant, dinnerCard.getStartTime(), dinnerCard.getDuration()));
                         return;
                     }
                 }
             }
 
-        } else {
+        } else if (card instanceof TripPlaceCard) {
+            TripPlaceCard placeCard = (TripPlaceCard) card;
+
+            int index = 0;
+            TripPath inPath = null;
             for (TripPath path : mTripPath) {
                 Iterator<TripObject> itr = path.getObjectList().iterator();
 
+                index = 0;
+                boolean hasFoundPlace = false;
                 while (itr.hasNext()) {
                     TripObject object = itr.next();
-                    if (object.getId() != null && object.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {
+                    if (object.getId() != null && object.getId().equals(placeCard.getTripEvent().getId())) {
                         itr.remove();
+                        hasFoundPlace = true;
+                        inPath = path;
                         break;
                     }
+                    index++;
+                }
+                if (hasFoundPlace) {
+                    break;
                 }
             }
             for (TripEvent event : mTripData.getEvents()) {
-                if (!event.getId().equals(((TripPlaceCard) card).getTripEvent().getId())) {// && event.getDuration() <= ((TripPlaceCard) card).getTripEvent().getDuration()) {
+                if (!event.getId().equals(placeCard.getTripEvent().getId())) {// && event.getDuration() <= ((TripPlaceCard) card).getTripEvent().getDuration()) {
                     if (!hasEvent(event)) {
-                        String startTime = ((TripPlaceCard) card).getStartTime();
-                        changeCard(card, new TripPlaceCard(event, mRates, mCurrency, startTime));
+                        inPath.getObjectList().add(index, new TripObject(TripObjectType.EVENT, event.getId()));
+                        String startTime = placeCard.getStartTime();
+                        changeCard(placeCard, new TripPlaceCard(event, mRates, mCurrency, startTime));
                         return;
                     }
                 }
             }
-
+        } else {
+            return;
         }
         mAdapter.removeCard(card);
     }
