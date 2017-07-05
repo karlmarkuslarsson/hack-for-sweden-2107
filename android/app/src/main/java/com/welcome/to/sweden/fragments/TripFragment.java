@@ -294,6 +294,12 @@ public class TripFragment extends Fragment {
     }
 
     private void replaceCard(Card card) {
+
+        // TODO
+        // 1. shuffle mTripData
+        // 2. save removed events
+        // 3. check that event is valid, temperature, time, etc..
+
         if (card instanceof TripDinnerCard) {
             TripDinnerCard dinnerCard = (TripDinnerCard) card;
 
