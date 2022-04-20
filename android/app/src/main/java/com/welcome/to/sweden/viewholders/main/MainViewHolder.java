@@ -1,7 +1,8 @@
 package com.welcome.to.sweden.viewholders.main;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.welcome.to.sweden.listeners.MainCardListener;
 

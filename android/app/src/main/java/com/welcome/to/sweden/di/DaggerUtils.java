@@ -1,7 +1,8 @@
 package com.welcome.to.sweden.di;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.welcome.to.sweden.CustomApplication;
 

@@ -1,6 +1,6 @@
 package com.welcome.to.sweden.network;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.welcome.to.sweden.network.response.APIResponse;
 

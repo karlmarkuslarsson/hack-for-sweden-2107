@@ -1,6 +1,7 @@
 package com.welcome.to.sweden.models;
 
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
 
 public class AirportAlternative {
     public AirportAlternative(@StringRes int title, String img, String time, String cost) {
@@ -14,7 +15,8 @@ public class AirportAlternative {
     private String time;
     private String cost;
 
-    @StringRes private int title;
+    @StringRes
+    private int title;
 
     public int getTitle() {
         return title;

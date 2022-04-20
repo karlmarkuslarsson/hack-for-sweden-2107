@@ -1,32 +1,19 @@
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.22.2'
-    }
-}
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
-
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 30
+    buildToolsVersion '32.0.0'
     defaultConfig {
         applicationId "com.welcome.to.sweden"
-        minSdkVersion 22
-        targetSdkVersion 25
+        minSdkVersion 23
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,47 +21,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-        exclude module: 'jsr305'
-    })
 
-    testCompile "org.robolectric:robolectric:3.3.2", {
-        exclude group: 'com.google.guava', module: 'guava'
-    }
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.firebase:firebase-core:20.1.2'
+    implementation 'com.google.firebase:firebase-database:20.0.4'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    implementation 'com.jakewharton.timber:timber:4.5.0'
+    implementation 'net.danlew:android.joda:2.9.5.1'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'com.google.guava:guava:22.0-android'
+    implementation 'org.apache.commons:commons-lang3:3.1'
+    implementation "com.google.android.material:material:1.3.0"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    implementation "com.google.dagger:dagger:2.28.3"
+    kapt "com.google.dagger:dagger-compiler:2.28.3"
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
-        transitive = true;
-    }
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.google.firebase:firebase-core:10.2.6'
-    compile 'com.google.firebase:firebase-database:10.2.6'
-    compile 'com.google.android.gms:play-services-maps:10.2.6'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
-    compile 'com.jakewharton.timber:timber:4.5.0'
-    compile 'net.danlew:android.joda:2.9.5.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.google.guava:guava:22.0-android'
-    compile 'org.apache.commons:commons-lang3:3.1'
-    compile 'com.google.dagger:dagger:2.10'
-    compile 'com.jakewharton:butterknife:8.5.1'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.8.9'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    kapt 'com.jakewharton:butterknife-compiler:10.2.3'
 }
-
-apply plugin: 'com.google.gms.google-services'

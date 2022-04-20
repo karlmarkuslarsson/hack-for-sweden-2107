@@ -4,7 +4,6 @@ import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -41,6 +40,8 @@ import butterknife.ButterKnife;
 
 import static com.welcome.to.sweden.utils.SpannableUtils.title;
 import static com.welcome.to.sweden.utils.ViewUtils.text;
+
+import androidx.annotation.NonNull;
 
 public class EventDialog extends Dialog {
 

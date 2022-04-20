@@ -2,11 +2,12 @@ package com.welcome.to.sweden.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.StringRes;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.StringRes;
 
 public class ViewUtils {
 

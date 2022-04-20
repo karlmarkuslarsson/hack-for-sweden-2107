@@ -2,11 +2,6 @@ package com.welcome.to.sweden;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
-
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 import net.danlew.android.joda.JodaTimeAndroid;
 
 import javax.inject.Inject;
@@ -33,17 +28,10 @@ public class CustomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
         Timber.plant(new Timber.DebugTree());
         initDependencyInjection();
         JodaTimeAndroid.init(this);
         mDataHelper.loadInitialData();
-    }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
     }
 
     private void initDependencyInjection() {

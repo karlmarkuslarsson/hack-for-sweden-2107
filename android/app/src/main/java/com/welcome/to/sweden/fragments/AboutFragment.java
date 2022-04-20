@@ -1,7 +1,8 @@
 package com.welcome.to.sweden.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.welcome.to.sweden.di.DaggerUtils;
 import com.welcome.to.sweden.fragments.base.BaseFragment;

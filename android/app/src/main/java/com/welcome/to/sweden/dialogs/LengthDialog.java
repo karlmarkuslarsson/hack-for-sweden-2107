@@ -2,13 +2,14 @@ package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.NonNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

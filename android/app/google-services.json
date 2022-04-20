@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "977497343374",
+    "firebase_url": "https://welcome-to-sweden-4abe3.firebaseio.com",
+    "project_id": "welcome-to-sweden-4abe3",
+    "storage_bucket": "welcome-to-sweden-4abe3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977497343374:android:a435249a4364a202",
+        "android_client_info": {
+          "package_name": "com.welcome.to.sweden"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977497343374-hg59u8j2lg8m3e1pmv0j532j6m0p60b3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.welcome.to.sweden",
+            "certificate_hash": "2b97a31dc549e1a5ad431aa3a26ff71c06de918b"
+          }
+        },
+        {
+          "client_id": "977497343374-hln383r44tm36jf7dbdmhhvsu2pugt6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgoDVvVHqEuSRmdqef-V-5Iag2ZVs_Y0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977497343374-hln383r44tm36jf7dbdmhhvsu2pugt6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

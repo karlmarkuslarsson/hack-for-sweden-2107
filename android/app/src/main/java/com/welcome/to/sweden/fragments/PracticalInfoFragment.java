@@ -2,8 +2,9 @@ package com.welcome.to.sweden.fragments;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.Constants;

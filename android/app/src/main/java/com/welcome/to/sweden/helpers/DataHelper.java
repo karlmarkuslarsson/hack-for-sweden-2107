@@ -3,7 +3,8 @@ package com.welcome.to.sweden.helpers;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.location.Location;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

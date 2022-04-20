@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 
 import com.welcome.to.sweden.Cache;
 import com.welcome.to.sweden.di.InjectionContainer;
@@ -17,6 +16,8 @@ import javax.inject.Inject;
 
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
+import androidx.core.app.ActivityCompat;
 
 public class LocationHelper {
     private static final int REQUEST_LOCATION = 12;

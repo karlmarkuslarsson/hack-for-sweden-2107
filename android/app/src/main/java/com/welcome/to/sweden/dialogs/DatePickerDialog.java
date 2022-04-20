@@ -2,7 +2,6 @@ package com.welcome.to.sweden.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,6 +16,8 @@ import butterknife.ButterKnife;
 import com.welcome.to.sweden.R;
 
 import static com.welcome.to.sweden.activities.StartActivity.DATE_FORMAT;
+
+import androidx.annotation.NonNull;
 
 public class DatePickerDialog extends Dialog {
 

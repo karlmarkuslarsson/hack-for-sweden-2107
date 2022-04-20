@@ -1,13 +1,14 @@
 package com.welcome.to.sweden.adapters;
 
-import android.support.annotation.AnimRes;
-import android.support.annotation.LayoutRes;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import androidx.annotation.AnimRes;
+import androidx.annotation.LayoutRes;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.BiMap;
@@ -76,7 +77,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainViewHolder
         NextDay(NextDayViewHolder.class, R.layout.card_next_day);
 
         private final Class<? extends MainViewHolder> viewHolder;
-        @LayoutRes private final int layout;
+        @LayoutRes
+        private final int layout;
 
         ViewRender(Class<? extends MainViewHolder> viewHolder, int layout) {
             this.viewHolder = viewHolder;
